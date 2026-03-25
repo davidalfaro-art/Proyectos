@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilar Financiero Digital — Caja Los Andes</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --blue: #388bfd;
+    --blue-dim: #1f3a5f;
+    --green: #3fb950;
+    --green-dim: #1a3a28;
+    --yellow: #d29922;
+    --yellow-dim: #3a2d10;
+    --red: #f85149;
+    --red-dim: #3a1010;
+    --purple: #bc8cff;
+    --purple-dim: #2d1f4a;
+    --orange: #f0883e;
+    --orange-dim: #3a2010;
+    --teal: #39d353;
+    --cyan: #56d4dd;
+    --cyan-dim: #0f2d33;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,17,23,0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; gap: 4px;
+    padding: 0 24px; height: 52px;
+  }
+  nav .logo {
+    font-weight: 700; font-size: 15px; color: var(--blue);
+    margin-right: 16px; white-space: nowrap;
+  }
+  nav button {
+    background: none; border: none; color: var(--muted);
+    padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    font-size: 13px; transition: all .15s;
+  }
+  nav button:hover { background: var(--bg3); color: var(--text); }
+  nav button.active { background: var(--blue-dim); color: var(--blue); }
+
+  /* ── SECTIONS ── */
+  main { padding-top: 52px; }
+  section { display: none; min-height: calc(100vh - 52px); padding: 32px 24px; }
+  section.visible { display: block; }
+
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+  h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  p  { color: var(--muted); margin-bottom: 12px; line-height: 1.6; }
+
+  .subtitle { font-size: 16px; color: var(--muted); margin-bottom: 32px; }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px; letter-spacing: .3px;
+  }
+  .badge-red    { background: var(--red-dim);    color: var(--red);    }
+  .badge-green  { background: var(--green-dim);  color: var(--green);  }
+  .badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
+  .badge-blue   { background: var(--blue-dim);   color: var(--blue);   }
+  .badge-purple { background: var(--purple-dim); color: var(--purple); }
+  .badge-orange { background: var(--orange-dim); color: var(--orange); }
+  .badge-cyan   { background: var(--cyan-dim);   color: var(--cyan);   }
+
+  /* ── CARDS ── */
+  .cards { display: grid; gap: 16px; }
+  .cards-2 { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .cards-3 { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .cards-4 { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+  .card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px;
+  }
+  .card.clickable {
+    cursor: pointer; transition: all .2s;
+  }
+  .card.clickable:hover {
+    border-color: var(--blue); transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(56,139,253,.15);
+  }
+
+  /* ── ARCHITECTURE DIAGRAM ── */
+  .arch-container {
+    display: flex; flex-direction: column; gap: 10px;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .arch-layer {
+    border-radius: 10px; padding: 14px 16px;
+    border: 1px solid var(--border);
+  }
+  .arch-layer-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 10px; opacity: .6;
+  }
+  .arch-nodes {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+
+  .node {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px;
+    cursor: pointer; transition: all .2s;
+    display: flex; flex-direction: column; gap: 3px;
+    min-width: 130px;
+  }
+  .node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  }
+  .node-name { font-size: 13px; font-weight: 600; }
+  .node-tech { font-size: 11px; color: var(--muted); }
+
+  /* Layer color themes */
+  .layer-channels   { background: rgba(56,139,253,.06);  border-color: rgba(56,139,253,.25);  }
+  .layer-channels   .node:hover { border-color: var(--blue); }
+  .layer-channels   .arch-layer-label { color: var(--blue); }
+
+  .layer-security   { background: rgba(188,140,255,.06); border-color: rgba(188,140,255,.25); }
+  .layer-security   .node:hover { border-color: var(--purple); }
+  .layer-security   .arch-layer-label { color: var(--purple); }
+
+  .layer-gateway    { background: rgba(86,212,221,.06);  border-color: rgba(86,212,221,.25);  }
+  .layer-gateway    .node:hover { border-color: var(--cyan); }
+  .layer-gateway    .arch-layer-label { color: var(--cyan); }
+
+  .layer-session    { background: rgba(240,136,62,.06);  border-color: rgba(240,136,62,.25);  }
+  .layer-session    .node:hover { border-color: var(--orange); }
+  .layer-session    .arch-layer-label { color: var(--orange); }
+
+  .layer-orchestration { background: rgba(63,185,80,.06); border-color: rgba(63,185,80,.25); }
+  .layer-orchestration .node:hover { border-color: var(--green); }
+  .layer-orchestration .arch-layer-label { color: var(--green); }
+
+  .layer-evaluation { background: rgba(56,139,253,.08);  border-color: rgba(56,139,253,.3);   }
+  .layer-evaluation .node:hover { border-color: var(--blue); }
+  .layer-evaluation .arch-layer-label { color: var(--blue); }
+
+  .layer-data       { background: rgba(210,153,34,.06);  border-color: rgba(210,153,34,.25);  }
+  .layer-data       .node:hover { border-color: var(--yellow); }
+  .layer-data       .arch-layer-label { color: var(--yellow); }
+
+  .layer-external   { background: rgba(248,81,73,.06);   border-color: rgba(248,81,73,.25);   }
+  .layer-external   .node:hover { border-color: var(--red); }
+  .layer-external   .arch-layer-label { color: var(--red); }
+
+  .layer-infra      { background: rgba(139,148,158,.06); border-color: rgba(139,148,158,.2);  }
+  .layer-infra      .node:hover { border-color: var(--muted); }
+  .layer-infra      .arch-layer-label { color: var(--muted); }
+
+  /* ── DETAIL PANEL ── */
+  #detail-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+  }
+  #detail-overlay.open { display: flex; align-items: center; justify-content: center; }
+
+  #detail-panel {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px; width: 560px; max-width: 95vw;
+    max-height: 85vh; overflow-y: auto; position: relative;
+  }
+  #detail-panel h2 { font-size: 18px; margin-bottom: 4px; }
+  #detail-panel .close-btn {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--bg3); border: 1px solid var(--border);
+    color: var(--muted); border-radius: 6px; padding: 4px 10px;
+    cursor: pointer; font-size: 13px;
+  }
+  #detail-panel .close-btn:hover { color: var(--text); }
+
+  .detail-section { margin-top: 16px; }
+  .detail-section h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: .8px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+  }
+  .detail-section ul { list-style: none; padding: 0; }
+  .detail-section ul li {
+    padding: 6px 0; border-bottom: 1px solid var(--border);
+    color: var(--text); font-size: 13px;
+  }
+  .detail-section ul li:last-child { border-bottom: none; }
+  .detail-section p { font-size: 13px; color: var(--muted); }
+
+  .fix-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 6px 0; border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .fix-icon { margin-top: 2px; flex-shrink: 0; }
+
+  /* ── PROBLEMS SECTION ── */
+  .problem-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px; border-left: 3px solid var(--red);
+  }
+  .problem-card.warning { border-left-color: var(--yellow); }
+  .problem-card.info    { border-left-color: var(--blue); }
+
+  .problem-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+  }
+  .problem-id {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    background: var(--bg3); padding: 2px 7px; border-radius: 4px;
+  }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow {
+    display: flex; align-items: flex-start; gap: 0;
+    overflow-x: auto; padding-bottom: 12px;
+  }
+  .flow-step {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    min-width: 120px;
+  }
+  .flow-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px; text-align: center;
+    font-size: 12px; font-weight: 500; width: 110px;
+    cursor: pointer; transition: all .2s;
+  }
+  .flow-box:hover { border-color: var(--blue); }
+  .flow-box.bad  { border-color: var(--red);    background: var(--red-dim);    }
+  .flow-box.good { border-color: var(--green);  background: var(--green-dim);  }
+  .flow-box.warn { border-color: var(--yellow); background: var(--yellow-dim); }
+  .flow-arrow {
+    display: flex; align-items: center; padding-top: 20px;
+    color: var(--muted); font-size: 18px; min-width: 30px; justify-content: center;
+  }
+
+  /* ── COMPARISON ── */
+  .comparison {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .comp-col { }
+  .comp-col h3 {
+    padding: 10px 16px; border-radius: 8px 8px 0 0;
+    margin-bottom: 0; font-size: 14px;
+  }
+  .comp-col.old h3 { background: var(--red-dim);   color: var(--red);   border: 1px solid var(--red); border-bottom: none; }
+  .comp-col.new h3 { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); border-bottom: none; }
+  .comp-items {
+    border-radius: 0 0 8px 8px; overflow: hidden;
+  }
+  .comp-item {
+    padding: 10px 16px; border-bottom: 1px solid var(--border);
+    font-size: 13px; display: flex; align-items: flex-start; gap: 8px;
+  }
+  .comp-col.old .comp-items { border: 1px solid var(--red);   border-top: none; background: rgba(248,81,73,.04); }
+  .comp-col.new .comp-items { border: 1px solid var(--green); border-top: none; background: rgba(63,185,80,.04); }
+
+  /* ── ROADMAP ── */
+  .timeline {
+    position: relative; padding-left: 28px;
+  }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 28px;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute;
+    left: -24px; top: 4px; width: 12px; height: 12px;
+    border-radius: 50%; border: 2px solid var(--bg2);
+  }
+  .timeline-item.done::before  { background: var(--green);  border-color: var(--green); }
+  .timeline-item.progress::before { background: var(--yellow); border-color: var(--yellow); }
+  .timeline-item.future::before { background: var(--blue);   border-color: var(--blue); }
+  .timeline-item.far::before   { background: var(--muted);  border-color: var(--muted); }
+  .timeline-date {
+    font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 4px;
+  }
+  .timeline-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .timeline-desc  { font-size: 13px; color: var(--muted); }
+
+  /* ── KPIs ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 16px; }
+  .kpi-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+  }
+  .kpi-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .kpi-value { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .kpi-sub   { font-size: 12px; color: var(--muted); }
+  .kpi-blue   .kpi-value { color: var(--blue); }
+  .kpi-green  .kpi-value { color: var(--green); }
+  .kpi-yellow .kpi-value { color: var(--yellow); }
+  .kpi-red    .kpi-value { color: var(--red); }
+  .kpi-purple .kpi-value { color: var(--purple); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  .tag {
+    display: inline-block; font-size: 11px;
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: 4px; margin: 2px;
+  }
+
+  .alert {
+    padding: 12px 16px; border-radius: 8px; font-size: 13px;
+    margin-bottom: 16px; display: flex; align-items: flex-start; gap: 10px;
+  }
+  .alert-red    { background: var(--red-dim);    border: 1px solid rgba(248,81,73,.3);  color: #f98080; }
+  .alert-yellow { background: var(--yellow-dim); border: 1px solid rgba(210,153,34,.3); color: #d4a84b; }
+  .alert-green  { background: var(--green-dim);  border: 1px solid rgba(63,185,80,.3);  color: #5cb85c; }
+  .alert-blue   { background: var(--blue-dim);   border: 1px solid rgba(56,139,253,.3); color: #6db3fa; }
+
+  @media (max-width: 700px) {
+    .comparison { grid-template-columns: 1fr; }
+    nav .logo { font-size: 13px; }
+    nav button { font-size: 12px; padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">⬡ Pilar Financiero Digital</span>
+  <button class="active" onclick="show('intro')">Intro</button>
+  <button onclick="show('diagnostico')">Diagnóstico</button>
+  <button onclick="show('arquitectura')">Arquitectura</button>
+  <button onclick="show('flujo')">Flujo Omnicanal</button>
+  <button onclick="show('roadmap')">Roadmap</button>
+  <button onclick="show('kpis')">KPIs</button>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════════ INTRO -->
+<section id="intro" class="visible">
+  <div style="max-width:800px; margin:0 auto; padding-top:40px;">
+    <div class="badge badge-blue" style="margin-bottom:14px;">Assessment Técnico 2026</div>
+    <h1>Pilar Financiero Digital</h1>
+    <p class="subtitle">Arquitectura de Modernización del Ecosistema de Crédito — Caja Los Andes</p>
+
+    <div class="alert alert-yellow">
+      <span>⚠️</span>
+      <span>El ecosistema actual presenta <strong>6 hallazgos raíz críticos</strong>, 73+ acciones de remediación identificadas y una deuda técnica que impide la omnicanalidad y limita la escala.</span>
+    </div>
+
+    <div class="cards cards-3" style="margin-bottom:32px;">
+      <div class="card">
+        <div class="badge badge-red" style="margin-bottom:10px;">Causa Raíz</div>
+        <h3>Apache Ignite (T6)</h3>
+        <p>Falsos positivos que matan nodos sanos y desencadenan cascada completa de errores en el motor FICO.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-red" style="margin-bottom:10px;">Anti-patrón</div>
+        <h3>Doble Invocación</h3>
+        <p>FICO evalúa 2 veces el mismo crédito. El Servicio 147 re-ejecuta toda "La Araña" al formalizar.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:10px;">Ineficiencia</div>
+        <h3>Triple Simulación</h3>
+        <p>FlexCube es invocado 3 veces para construir opciones de cuotas que luego se descartan.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-red" style="margin-bottom:10px;">Bloqueante</div>
+        <h3>Sin Omnicanalidad</h3>
+        <p>No es posible iniciar un crédito en un canal y continuarlo en otro. Cada canal es una isla.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:10px;">Obsolescencia</div>
+        <h3>Stack EOL</h3>
+        <p>Windows Server 2008 R2, CentOS 7, Blaze v4 con Nashorn deprecated, FlexCube 11.3.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:10px;">Dependencia</div>
+        <h3>Araña Síncrona</h3>
+        <p>OSB sin circuit breakers. Una caída en MenuAndes baja hasta 13 servicios en cascada.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <h2>Principios de Diseño de la Nueva Arquitectura</h2>
+    <div class="cards cards-2">
+      <div class="card">
+        <div style="font-size:20px;margin-bottom:8px;">🔁</div>
+        <h3>Omnicanalidad Real</h3>
+        <p>El estado del crédito persiste en sesión centralizada. El afiliado puede iniciar en TAPP, continuar en SVP y finalizar en sucursal.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:20px;margin-bottom:8px;">⚡</div>
+        <h3>Evaluación Única</h3>
+        <p>La preevaluación ES la evaluación formal. Se elimina el Servicio 147 y la doble invocación de "La Araña".</p>
+      </div>
+      <div class="card">
+        <div style="font-size:20px;margin-bottom:8px;">📡</div>
+        <h3>Event-Driven</h3>
+        <p>Kafka como columna vertebral asíncrona. Las cargas de campaña no colapsan el motor de riesgo.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:20px;margin-bottom:8px;">🛡️</div>
+        <h3>Resiliencia</h3>
+        <p>Circuit breakers en todos los servicios. Sin puntos únicos de falla. Degradación graciosa.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:20px;margin-bottom:8px;">📈</div>
+        <h3>Escalabilidad Horizontal</h3>
+        <p>Microservicios en GKE/OKE. Auto-scaling por demanda. Sin dependencia de pools fijos de 4 hilos.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:20px;margin-bottom:8px;">👁️</div>
+        <h3>Observabilidad Total</h3>
+        <p>Prometheus + Grafana + Jaeger. Trazabilidad distribuida. Alertas proactivas antes del impacto al negocio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ DIAGNÓSTICO -->
+<section id="diagnostico">
+  <div style="max-width:900px; margin:0 auto;">
+    <h1>Diagnóstico del Ecosistema Actual</h1>
+    <p class="subtitle">Hallazgos críticos identificados en el assessment técnico</p>
+
+    <h2>Causa Raíz Primaria</h2>
+    <div class="problem-card" style="margin-bottom:12px;">
+      <div class="problem-header">
+        <span class="problem-id">T6</span>
+        <span class="badge badge-red">CAUSA RAÍZ — CONFIRMADA</span>
+      </div>
+      <h3>Apache Ignite — Kill de Nodos Sanos</h3>
+      <p>Apache Ignite mata nodos sanos por falsos positivos en la detección de fallas (<code>failureDetectionTimeout</code> menor que <code>metricsUpdateFrequency</code>). Con 0 backups configurados, cada kill genera pérdida total de caché y cascada de errores. El agente APM genera el 12.57% del tráfico HTTP total y el 79.9% de los errores. ARIs: ARI-14, 15, 16, 52, 53, 54, 55, 56, 57.</p>
+    </div>
+
+    <h2 style="margin-top:24px;">Hallazgos de Arquitectura</h2>
+    <div class="cards cards-2">
+      <div class="problem-card">
+        <div class="problem-header"><span class="problem-id">FG-22</span><span class="badge badge-red">Crítico</span></div>
+        <h3>Doble Invocación (Servicio 147)</h3>
+        <p>Al confirmar el crédito, el Servicio 147 re-ejecuta toda "La Araña": MenuAndes, FlexCube, Experian, BigQuery y Blaze. El trabajo de la preevaluación se descarta por completo.</p>
+        <div style="margin-top:8px;"><span class="tag">+4s latencia</span><span class="tag">2× carga motor</span><span class="tag">Anti-patrón</span></div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-header"><span class="problem-id">FG-26</span><span class="badge badge-red">Crítico</span></div>
+        <h3>Triple Simulación FlexCube</h3>
+        <p>Para mostrar opciones de pago (24, 36, 48 cuotas), el sistema invoca 3 veces al core bancario generando cuadros completos que luego se descartan. El simulador express no se usa por diferencias de $1-$2 en redondeo.</p>
+        <div style="margin-top:8px;"><span class="tag">3× carga FlexCube</span><span class="tag">Redondeo bloquea mejora</span></div>
+      </div>
+      <div class="problem-card warning">
+        <div class="problem-header"><span class="problem-id">FG-19</span><span class="badge badge-yellow">Alto</span></div>
+        <h3>BigQuery Síncrono — 4.3s de Latencia</h3>
+        <p>El Scoring Middleware conecta OCI con GCP de forma síncrona. Cada evaluación espera ~4.3 segundos la respuesta de BigQuery. Las variables de riesgo se actualizan solo mensualmente (batch).</p>
+        <div style="margin-top:8px;"><span class="tag">~4,312ms / llamada</span><span class="tag">Variables mensuales</span></div>
+      </div>
+      <div class="problem-card warning">
+        <div class="problem-header"><span class="problem-id">FG-05</span><span class="badge badge-yellow">Alto</span></div>
+        <h3>OSB sin Circuit Breakers</h3>
+        <p>El Oracle Service Bus no tiene circuit breakers en ninguno de sus 14 servicios. Cuando se satura, los hilos se agotan y hasta 13 servicios caen en cascada simultáneamente. Timeout configurado en 50 segundos.</p>
+        <div style="margin-top:8px;"><span class="tag">50s timeout</span><span class="tag">13 servicios en cascada</span></div>
+      </div>
+      <div class="problem-card warning">
+        <div class="problem-header"><span class="problem-id">FG-12</span><span class="badge badge-yellow">Alto</span></div>
+        <h3>Datos Desincronizados (T5)</h3>
+        <p>Los datos de MenuAndes se sincronizan con Siebel por procesos batch nocturnos. Las inconsistencias generan excepciones Nashorn que alimentan el Full GC del motor FICO. EAI-005 registró 18.350 errores en 5 meses.</p>
+        <div style="margin-top:8px;"><span class="tag">18,350 errores EAI-005</span><span class="tag">Sync nocturno</span></div>
+      </div>
+      <div class="problem-card warning">
+        <div class="problem-header"><span class="problem-id">FG-25</span><span class="badge badge-yellow">Alto</span></div>
+        <h3>Baja Base Aprobados Fallida</h3>
+        <p>El microservicio de baja en TAPP falla regularmente. El sistema depende de un proceso batch nocturno para registrar que un crédito ya fue otorgado, lo que permite re-solicitudes indebidas el mismo día.</p>
+        <div style="margin-top:8px;"><span class="tag">Re-solicitudes indebidas</span><span class="tag">Batch nocturno</span></div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <h2>Obsolescencia Tecnológica</h2>
+    <div class="cards cards-3">
+      <div class="card">
+        <div class="badge badge-red" style="margin-bottom:8px;">EOL</div>
+        <h3>Windows Server 2008 R2</h3>
+        <p>Infraestructura on-premise en Sonda operando sobre OS sin soporte desde 2020.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-red" style="margin-bottom:8px;">EOL</div>
+        <h3>CentOS 7 + Blaze v4</h3>
+        <p>CentOS 7 EOL. Blaze Advisor v4 usa motor Nashorn que Java 15+ deprecó.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:8px;">Obsoleto</div>
+        <h3>FlexCube 11.3 + Siebel</h3>
+        <p>Core financiero 3 versiones atrás. Siebel a reemplazar por Salesforce (proyecto New Core, dic 2027).</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:8px;">Riesgo</div>
+        <h3>Oracle Forms 10g</h3>
+        <p>MenuAndes corre sobre Oracle Forms 10g. Impide separar el aplicativo de la base de datos corporativa.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:8px;">Sub-dimensionado</div>
+        <h3>Infra Insuficiente (T4)</h3>
+        <p>Pools de 4 hilos, BD 8GB, disco 80GB. Los pods de OKE operan al 98% de memoria en reposo.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:8px;">Riesgo</div>
+        <h3>JVM OSB — Full GC</h3>
+        <p>OSB server 2 al 82.8% de heap. Full GC 2-3.5 veces/min congela la JVM ~50-150ms cada vez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ ARQUITECTURA -->
+<section id="arquitectura">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h1>Nueva Arquitectura — Pilar Financiero Digital</h1>
+    <p class="subtitle">Haz clic en cualquier componente para ver especificaciones y hallazgos que corrige</p>
+
+    <div class="arch-container">
+
+      <!-- Canales -->
+      <div class="arch-layer layer-channels">
+        <div class="arch-layer-label">🖥 Capa de Canales</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('tapp')">
+            <span class="node-name">TAPP</span>
+            <span class="node-tech">React Native · GKE</span>
+          </div>
+          <div class="node" onclick="openDetail('svp')">
+            <span class="node-name">SVP 1.5</span>
+            <span class="node-tech">React · GKE</span>
+          </div>
+          <div class="node" onclick="openDetail('salesforce')">
+            <span class="node-name">Salesforce CRM</span>
+            <span class="node-tech">Reemplaza Siebel</span>
+          </div>
+          <div class="node" onclick="openDetail('api-portal')">
+            <span class="node-name">API Portal</span>
+            <span class="node-tech">Integraciones 3rd party</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seguridad -->
+      <div class="arch-layer layer-security">
+        <div class="arch-layer-label">🔐 Identidad &amp; Seguridad</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('keycloak')">
+            <span class="node-name">Keycloak</span>
+            <span class="node-tech">SSO / OAuth2 / OIDC</span>
+          </div>
+          <div class="node" onclick="openDetail('activeit')">
+            <span class="node-name">Active IT</span>
+            <span class="node-tech">Biometría / RUT</span>
+          </div>
+          <div class="node" onclick="openDetail('zerotrust')">
+            <span class="node-name">Zero Trust Layer</span>
+            <span class="node-tech">mTLS · RBAC · WAF</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gateway -->
+      <div class="arch-layer layer-gateway">
+        <div class="arch-layer-label">🌐 API Gateway &amp; BFF</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('kong')">
+            <span class="node-name">Kong Gateway</span>
+            <span class="node-tech">Rate Limit · Circuit Breaker</span>
+          </div>
+          <div class="node" onclick="openDetail('bff-digital')">
+            <span class="node-name">BFF Digital</span>
+            <span class="node-tech">Go · TAPP + SVP</span>
+          </div>
+          <div class="node" onclick="openDetail('bff-presencial')">
+            <span class="node-name">BFF Presencial</span>
+            <span class="node-tech">Salesforce / MuleSoft</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sesión Omnicanal -->
+      <div class="arch-layer layer-session">
+        <div class="arch-layer-label">🔄 Sesión Omnicanal &amp; Eventos</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('redis')">
+            <span class="node-name">Redis Cluster HA</span>
+            <span class="node-tech">Sesión crédito · Cache evaluación</span>
+          </div>
+          <div class="node" onclick="openDetail('kafka')">
+            <span class="node-name">Apache Kafka</span>
+            <span class="node-tech">Event Streaming · OKE</span>
+          </div>
+          <div class="node" onclick="openDetail('session-mgr')">
+            <span class="node-name">Session Manager</span>
+            <span class="node-tech">Estado crédito por RUT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orquestador -->
+      <div class="arch-layer layer-orchestration">
+        <div class="arch-layer-label">🧩 Orquestador de Crédito (Nuevo — reemplaza Servicio 147)</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('credit-orchestrator')">
+            <span class="node-name">Credit Orchestrator</span>
+            <span class="node-tech">Microservicio GKE · Java/Go</span>
+          </div>
+          <div class="node" onclick="openDetail('doc-service')">
+            <span class="node-name">Document Service</span>
+            <span class="node-tech">Mutuo · Pagaré · Seguros</span>
+          </div>
+          <div class="node" onclick="openDetail('approved-service')">
+            <span class="node-name">Aprobados RT Service</span>
+            <span class="node-tech">Baja en línea · Tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evaluación -->
+      <div class="arch-layer layer-evaluation">
+        <div class="arch-layer-label">⚙️ Motor de Evaluación de Riesgo</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('fico-v7')">
+            <span class="node-name">FICO v7 (OKE)</span>
+            <span class="node-tech">Blaze Advisor v7 · OCI</span>
+          </div>
+          <div class="node" onclick="openDetail('ignite')">
+            <span class="node-name">Apache Ignite</span>
+            <span class="node-tech">failureDetection corregido</span>
+          </div>
+          <div class="node" onclick="openDetail('scoring-cache')">
+            <span class="node-name">Scoring Cache</span>
+            <span class="node-tech">Redis · BigQuery → Redis sync</span>
+          </div>
+          <div class="node" onclick="openDetail('eval-db')">
+            <span class="node-name">Eval Scoring DB</span>
+            <span class="node-tech">Oracle OCI · Auditoría</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos -->
+      <div class="arch-layer layer-data">
+        <div class="arch-layer-label">🗄 Capa de Datos</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('flexcube')">
+            <span class="node-name">FlexCube 14.7</span>
+            <span class="node-tech">New Core · REST APIs</span>
+          </div>
+          <div class="node" onclick="openDetail('menuandes')">
+            <span class="node-name">MenuAndes Data API</span>
+            <span class="node-tech">REST sobre Oracle · Desacoplado</span>
+          </div>
+          <div class="node" onclick="openDetail('bigquery')">
+            <span class="node-name">BigQuery / Nicanor</span>
+            <span class="node-tech">GCP Santiago · Analítica</span>
+          </div>
+          <div class="node" onclick="openDetail('aprobados-db')">
+            <span class="node-name">Base Aprobados</span>
+            <span class="node-tech">Oracle OCI · Tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Externos -->
+      <div class="arch-layer layer-external">
+        <div class="arch-layer-label">🌍 Proveedores Externos</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('experian')">
+            <span class="node-name">Experian / Equifax</span>
+            <span class="node-tech">Buró de crédito · API + Cache</span>
+          </div>
+          <div class="node" onclick="openDetail('esign')">
+            <span class="node-name">e-Sign Chile (ISA)</span>
+            <span class="node-tech">Firma electrónica avanzada</span>
+          </div>
+          <div class="node" onclick="openDetail('toku')">
+            <span class="node-name">Toku / Redbanc</span>
+            <span class="node-tech">Pasarela de desembolso</span>
+          </div>
+          <div class="node" onclick="openDetail('sinacaf')">
+            <span class="node-name">SINACAF / SINACOFI</span>
+            <span class="node-tech">Validaciones regulatorias</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infra y Observabilidad -->
+      <div class="arch-layer layer-infra">
+        <div class="arch-layer-label">📊 Observabilidad &amp; Infraestructura</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('grafana')">
+            <span class="node-name">Grafana + Prometheus</span>
+            <span class="node-tech">Métricas · Alertas</span>
+          </div>
+          <div class="node" onclick="openDetail('elasticsearch')">
+            <span class="node-name">Elasticsearch</span>
+            <span class="node-tech">Logs centralizados</span>
+          </div>
+          <div class="node" onclick="openDetail('jaeger')">
+            <span class="node-name">Jaeger / Zipkin</span>
+            <span class="node-tech">Trazabilidad distribuida</span>
+          </div>
+          <div class="node" onclick="openDetail('ci-cd')">
+            <span class="node-name">CI/CD Pipeline</span>
+            <span class="node-tech">GitOps · OKE/GKE deploy</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /arch-container -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ FLUJO -->
+<section id="flujo">
+  <div style="max-width:900px; margin:0 auto;">
+    <h1>Flujo Omnicanal de Crédito</h1>
+    <p class="subtitle">Comparación entre el flujo actual (problemático) y el flujo propuesto</p>
+
+    <div class="comparison" style="margin-bottom:32px;">
+      <div class="comp-col old">
+        <h3>❌ Flujo Actual</h3>
+        <div class="comp-items">
+          <div class="comp-item"><span>🔴</span><span><strong>Preevaluación:</strong> FICO ejecuta "La Araña" completa (MenuAndes + FlexCube + BQ + Experian)</span></div>
+          <div class="comp-item"><span>🔴</span><span><strong>Triple simulación:</strong> 3 llamadas a FlexCube para mostrar opciones de cuota</span></div>
+          <div class="comp-item"><span>🔴</span><span><strong>Confirmación:</strong> Servicio 147 (Siebel) re-ejecuta toda "La Araña" desde cero</span></div>
+          <div class="comp-item"><span>🔴</span><span><strong>Formalización:</strong> Creación secuencial, inmodificable, sin paralelismo</span></div>
+          <div class="comp-item"><span>🔴</span><span><strong>Baja Aprobados:</strong> Falla en TAPP, depende de batch nocturno</span></div>
+          <div class="comp-item"><span>🔴</span><span><strong>Canal:</strong> Canal único, no se puede retomar desde otro</span></div>
+          <div class="comp-item"><span>🔴</span><span><strong>Rate limit:</strong> Solo en preevaluación, evaluación formal sin límite</span></div>
+        </div>
+      </div>
+      <div class="comp-col new">
+        <h3>✅ Flujo Propuesto</h3>
+        <div class="comp-items">
+          <div class="comp-item"><span>🟢</span><span><strong>Evaluación única:</strong> La preevaluación ES la formal. Resultado guardado en Redis</span></div>
+          <div class="comp-item"><span>🟢</span><span><strong>Simulación unificada:</strong> Una sola llamada a FlexCube devuelve las 3 opciones</span></div>
+          <div class="comp-item"><span>🟢</span><span><strong>Confirmación:</strong> Credit Orchestrator reutiliza el resultado desde Redis. Cero doble evaluación</span></div>
+          <div class="comp-item"><span>🟢</span><span><strong>Formalización:</strong> Paralela donde sea posible. Directo a FlexCube 14.7 REST</span></div>
+          <div class="comp-item"><span>🟢</span><span><strong>Baja Aprobados:</strong> API en tiempo real post-firma. Kafka event: credit.disbursed</span></div>
+          <div class="comp-item"><span>🟢</span><span><strong>Omnicanal:</strong> Sesión en Redis por RUT, reanudable desde cualquier canal</span></div>
+          <div class="comp-item"><span>🟢</span><span><strong>Rate limit:</strong> Kong Gateway aplica límites en todos los endpoints</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Flujo Paso a Paso — Nuevo Modelo</h2>
+    <div style="overflow-x:auto;">
+      <div class="flow" style="padding:16px 0; min-width:900px;">
+
+        <div class="flow-step">
+          <div class="flow-box good">① Usuario<br>Canal (TAPP / SVP / Salesforce)</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Cualquier canal digital o presencial</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box good">② Keycloak<br>Auth + Biometría</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Active IT para biometría</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box good">③ Kong Gateway<br>Rate Limit + CB</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Circuit breaker en todos los endpoints</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box warn">④ Redis Check<br>¿Cache válida?</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Si existe, saltar evaluación</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box good">⑤ FICO v7 OKE<br>Evaluación Única</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Una sola ejecución de "La Araña"</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box good">⑥ FlexCube 14.7<br>Simulación ×1</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">1 llamada, 3 opciones de plazo</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box warn">⑦ Sesión Redis<br>Estado Omnicanal</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Crédito retomable desde otro canal</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box good">⑧ Credit Orch.<br>Formalización</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Reutiliza resultado, sin re-evaluar</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box good">⑨ e-Sign Chile<br>Firma Docs</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">ISA Chile / Firma avanzada</span>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="flow-box good">⑩ Desembolso<br>Toku / Redbanc</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Evento Kafka → Baja Aprobados RT</span>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider">
+    <h2>Omnicanalidad — ¿Cómo funciona?</h2>
+    <div class="alert alert-blue">
+      <span>💡</span>
+      <span>La clave es que el <strong>estado del crédito se almacena en Redis indexado por RUT</strong>. Cada paso del flujo escribe su resultado en la sesión. Cualquier canal que autentique al mismo afiliado puede leer y continuar desde donde quedó.</span>
+    </div>
+    <div class="cards cards-3">
+      <div class="card">
+        <h3>🟢 Inicio en TAPP</h3>
+        <p>El afiliado inicia la solicitud en la app móvil. Pasa la evaluación. Se interrumpe antes de firmar.</p>
+        <p style="color:var(--green);">→ Estado guardado en Redis</p>
+      </div>
+      <div class="card">
+        <h3>🔵 Continuación en SVP</h3>
+        <p>Al día siguiente entra desde la Sucursal Virtual. El sistema detecta una sesión activa y carga el crédito pendiente de firma.</p>
+        <p style="color:var(--blue);">→ No re-evalúa si el resultado aún es válido</p>
+      </div>
+      <div class="card">
+        <h3>🟡 Cierre Presencial</h3>
+        <p>Si necesita apoyo, el ejecutivo en Salesforce ve el mismo estado del crédito y puede completar la operación sin empezar desde cero.</p>
+        <p style="color:var(--yellow);">→ Desembolso unificado vía Toku/Redbanc</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ ROADMAP -->
+<section id="roadmap">
+  <div style="max-width:800px; margin:0 auto;">
+    <h1>Hoja de Ruta de Modernización</h1>
+    <p class="subtitle">Desde la estabilización inmediata hasta el New Core</p>
+
+    <div class="cards-2 cards" style="margin-bottom:28px;">
+      <div class="card">
+        <h3>Categorización Estratégica</h3>
+        <div style="margin-top:10px;">
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
+            <span class="badge badge-green">Invertir</span>
+            <span style="font-size:13px;color:var(--muted);">FICO Cloud v7, Salesforce, Microservicios GCP/GKE</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
+            <span class="badge badge-blue">Migrar</span>
+            <span style="font-size:13px;color:var(--muted);">FlexCube 11→14.7, Siebel → Salesforce</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
+            <span class="badge badge-red">Eliminar</span>
+            <span style="font-size:13px;color:var(--muted);">Cupo Controlado, Mambú, SOA PF (OSB)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;">
+            <span class="badge badge-yellow">Tolerar</span>
+            <span style="font-size:13px;color:var(--muted);">Crédito Hipotecario en MenuAndes (hasta 2049)</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>ARIs Críticos — Acción Inmediata</h3>
+        <div style="margin-top:10px;">
+          <div style="padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;"><span class="tag">ARI-14</span> failureDetectionTimeout Ignite</div>
+          <div style="padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;"><span class="tag">ARI-15</span> StopNodeOrHaltFailureHandler</div>
+          <div style="padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;"><span class="tag">ARI-57</span> Configurar 1 backup en Ignite</div>
+          <div style="padding:5px 0;border-bottom:1px solid var(--border);font-size:13px;"><span class="tag">ARI-52</span> Remover agente APM FICO</div>
+          <div style="padding:5px 0;font-size:13px;"><span class="tag">ARI-67</span> Timeout OSB: 50s → 10s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item done">
+        <div class="timeline-date">Q1 2026 — En curso</div>
+        <div class="timeline-title">ARIs de Estabilización (73 acciones)</div>
+        <div class="timeline-desc">Corrección Apache Ignite, tuning JVM, remoción agente APM, configuración Kafka, circuit breakers OSB. Resultado esperado: eliminación cascadas de error, reducción latencia 40%.</div>
+      </div>
+
+      <div class="timeline-item progress">
+        <div class="timeline-date">Q2–Q3 2026</div>
+        <div class="timeline-title">FICO v7 Cloud (OKE) — Go Live Producción</div>
+        <div class="timeline-desc">Migración definitiva del motor FICO desde Sonda on-premise a OCI/OKE. Blaze Advisor v4 → v7 (elimina Nashorn deprecated). Validación paridad de resultados con v4.</div>
+      </div>
+
+      <div class="timeline-item progress">
+        <div class="timeline-date">Q3 2026</div>
+        <div class="timeline-title">Retiro OSB (SOA PF) + Credit Orchestrator</div>
+        <div class="timeline-desc">Reemplazo del Oracle Service Bus con microservicio Credit Orchestrator. Eliminación definitiva del Servicio 147. Implementación de sesión omnicanal en Redis. Desacoplamiento "Araña".</div>
+      </div>
+
+      <div class="timeline-item future">
+        <div class="timeline-date">Q4 2026</div>
+        <div class="timeline-title">MenuAndes Data API + Omnicanalidad Completa</div>
+        <div class="timeline-desc">Separación definitiva Oracle Forms del motor de base de datos. REST API sobre la BD corporativa. Eliminación de batch nocturno de sincronización. Canal digital ≥50% de las ventas.</div>
+      </div>
+
+      <div class="timeline-item future">
+        <div class="timeline-date">Q1–Q2 2027</div>
+        <div class="timeline-title">BigQuery → Scoring en Tiempo Real</div>
+        <div class="timeline-desc">Migración de variables de scoring desde BigQuery batch mensual a base transaccional (Cloud Spanner o AlloyDB) con cache Redis. Reducción latencia evaluación de ~4.3s a &lt;200ms.</div>
+      </div>
+
+      <div class="timeline-item far">
+        <div class="timeline-date">Diciembre 2027</div>
+        <div class="timeline-title">New Core — FlexCube 14.7 + Salesforce</div>
+        <div class="timeline-desc">Migración core financiero FlexCube 11.3 → 14.7. Decomiso definitivo de Siebel, consolidación en Salesforce. Simplificación radical del mapa aplicativo. REST APIs nativas FlexCube.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ KPIs -->
+<section id="kpis">
+  <div style="max-width:900px; margin:0 auto;">
+    <h1>KPIs &amp; Resultados Esperados</h1>
+    <p class="subtitle">Indicadores de éxito de la modernización</p>
+
+    <h2>Impacto en Rendimiento</h2>
+    <div class="kpi-grid" style="margin-bottom:32px;">
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Reducción doble evaluación</div>
+        <div class="kpi-value">−100%</div>
+        <div class="kpi-sub">Cero re-ejecuciones de "La Araña" al formalizar</div>
+      </div>
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Reducción llamadas FlexCube</div>
+        <div class="kpi-value">3× → 1×</div>
+        <div class="kpi-sub">Simulación unificada multi-plazo</div>
+      </div>
+      <div class="kpi-card kpi-blue">
+        <div class="kpi-label">Latencia BigQuery</div>
+        <div class="kpi-value">4.3s → &lt;200ms</div>
+        <div class="kpi-sub">Redis cache de variables de scoring</div>
+      </div>
+      <div class="kpi-card kpi-blue">
+        <div class="kpi-label">Timeout OSB</div>
+        <div class="kpi-value">50s → 10s</div>
+        <div class="kpi-sub">ARI-67: liberación oportuna de hilos</div>
+      </div>
+      <div class="kpi-card kpi-yellow">
+        <div class="kpi-label">Errores EAI-005</div>
+        <div class="kpi-value">18.350 → ~0</div>
+        <div class="kpi-sub">Manejo correcto multicotizantes</div>
+      </div>
+      <div class="kpi-card kpi-yellow">
+        <div class="kpi-label">Tráfico APM innecesario</div>
+        <div class="kpi-value">−79.9%</div>
+        <div class="kpi-sub">Remoción agente APM (ARI-52)</div>
+      </div>
+    </div>
+
+    <h2>Impacto en Negocio</h2>
+    <div class="kpi-grid" style="margin-bottom:32px;">
+      <div class="kpi-card kpi-purple">
+        <div class="kpi-label">Canal Digital de Ventas</div>
+        <div class="kpi-value">10% → 100%</div>
+        <div class="kpi-sub">Objetivo: desplazar del canal presencial al digital</div>
+      </div>
+      <div class="kpi-card kpi-purple">
+        <div class="kpi-label">Canales habilitados</div>
+        <div class="kpi-value">1 → 4</div>
+        <div class="kpi-sub">TAPP, SVP, Salesforce, API — todos reanudables</div>
+      </div>
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Incidentes P1 por latencia</div>
+        <div class="kpi-value">−70%</div>
+        <div class="kpi-sub">Eliminación causa raíz Apache Ignite (T6)</div>
+      </div>
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">MTTR ante caída</div>
+        <div class="kpi-value">hrs → min</div>
+        <div class="kpi-sub">Grafana + alertas proactivas + CB automáticos</div>
+      </div>
+    </div>
+
+    <h2>Gobernanza &amp; Deuda Técnica</h2>
+    <div class="cards cards-3">
+      <div class="card">
+        <div class="badge badge-blue" style="margin-bottom:8px;">COBIT</div>
+        <h3>Marco de Gobernanza</h3>
+        <p>CMDB actualizada. Catálogo de APIs centralizado. Propietario definido por dominio de datos.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-green" style="margin-bottom:8px;">Reducción</div>
+        <h3>Componentes Eliminados</h3>
+        <p>Servicio 147, OSB, Mambú, Cupo Controlado, Blaze v4 (Nashorn), agente APM mal configurado.</p>
+      </div>
+      <div class="card">
+        <div class="badge badge-yellow" style="margin-bottom:8px;">Pendiente</div>
+        <h3>Riesgo Residual</h3>
+        <p>MenuAndes Oracle Forms → tolerar hasta New Core (2027). Crédito Hipotecario hasta 2049.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- DETAIL OVERLAY -->
+<div id="detail-overlay" onclick="closeDetail(event)">
+  <div id="detail-panel">
+    <button class="close-btn" onclick="closeDetailBtn()">✕ Cerrar</button>
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<script>
+// ── Navigation ──
+function show(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('visible');
+  const idx = ['intro','diagnostico','arquitectura','flujo','roadmap','kpis'].indexOf(id);
+  document.querySelectorAll('nav button')[idx].classList.add('active');
+}
+
+// ── Detail Panel ──
+const details = {
+  tapp: {
+    name: 'TAPP — App Móvil',
+    badge: '🟡 Parcial', badgeClass: 'badge-yellow',
+    tech: 'React Native · Go BFF · GCP GKE',
+    desc: 'Canal digital principal. Backend en Go (BFF). Soporta créditos, seguros y servicios financieros. Alojado en GCP con DR en GCP Brasil (normativa CMF).',
+    fixes: [
+      { icon: '✅', text: 'Omnicanalidad: sesión de crédito en Redis, reanudable en SVP o Salesforce' },
+      { icon: '✅', text: 'Rate limit aplicado en TODOS los endpoints vía Kong, no solo en preevaluación' },
+      { icon: '✅', text: 'Eliminación dependencia de Servicio 147' },
+    ],
+    aris: 'ARI-13 (Baja Aprobados en línea), ARI-07 (Rate limit evaluación formal)'
+  },
+  svp: {
+    name: 'SVP 1.5 — Sucursal Virtual',
+    badge: '🔴 No integrado', badgeClass: 'badge-red',
+    tech: 'React · NestJS BFF · GCP GKE',
+    desc: 'Portal web para solicitudes de crédito. Actualmente no integrado con el flujo de TAPP. La migración hacia el stack unificado de TAPP está planificada en SVP 1.5.',
+    fixes: [
+      { icon: '✅', text: 'Integración completa con sesión omnicanal (Redis). Reanuda créditos iniciados en TAPP' },
+      { icon: '✅', text: 'Unificación de BFF bajo Go para consistencia con TAPP' },
+    ],
+    aris: 'Proyecto SVP 1.5 (Q2 2026)'
+  },
+  salesforce: {
+    name: 'Salesforce CRM',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Salesforce · MuleSoft · REST',
+    desc: 'Reemplaza a Siebel como CRM corporativo. Los ejecutivos presenciales operan el crédito desde Salesforce, que se integra con FlexCube 14.7 vía MuleSoft. Elimina la dependencia del Servicio 147.',
+    fixes: [
+      { icon: '✅', text: 'Reemplaza Siebel — elimina el Servicio 147 y su flujo secuencial inmodificable' },
+      { icon: '✅', text: 'Sincronización en tiempo real con FlexCube (no batch nocturno)' },
+      { icon: '✅', text: 'Canal presencial puede retomar créditos iniciados en canales digitales' },
+    ],
+    aris: 'Proyecto New Core (Dic 2027). ARIs: ARI-29, ARI-30, ARI-31'
+  },
+  kong: {
+    name: 'Kong API Gateway',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Kong Gateway · OKE/GKE · Lua plugins',
+    desc: 'Reemplaza la función de gateway del DMPS. Punto único de entrada con rate limiting, circuit breakers, autenticación JWT y logging centralizado en todos los endpoints.',
+    fixes: [
+      { icon: '✅', text: 'Rate limit en evaluación FORMAL (hoy sin control: 100 evaluaciones/día mismo RUT)' },
+      { icon: '✅', text: 'Circuit breakers: si FICO cae, responde 503 inmediato en vez de colgar hilos 50s' },
+      { icon: '✅', text: 'Elimina valores "dummy" que DMPS inyecta para forzar 200 OK' },
+    ],
+    aris: 'ARI-07, ARI-35, ARI-38, ARI-67'
+  },
+  redis: {
+    name: 'Redis Cluster HA',
+    badge: '🔄 Ampliado', badgeClass: 'badge-blue',
+    tech: 'Redis 7 · Cluster mode · OCI + GCP',
+    desc: 'Capa de sesión omnicanal. Almacena el estado completo del crédito (evaluación, opciones elegidas, documentos generados) indexado por RUT. Redis existente se amplía para soportar sesión de crédito cross-canal.',
+    fixes: [
+      { icon: '✅', text: 'Habilita la omnicanalidad: cualquier canal puede leer el estado del crédito en curso' },
+      { icon: '✅', text: 'Cache de preevaluación ya existente + cache de scoring BigQuery (nuevo)' },
+      { icon: '✅', text: 'Elimina la necesidad de re-evaluar al formalizar (reutiliza resultado guardado)' },
+    ],
+    aris: 'ARI-13 (microservicio baja Base Aprobados)'
+  },
+  kafka: {
+    name: 'Apache Kafka',
+    badge: '🔄 Estabilizado', badgeClass: 'badge-yellow',
+    tech: 'Kafka 3.x · OKE · Prometheus',
+    desc: 'Bus de eventos asíncrono. Los eventos del ciclo de crédito (iniciado, evaluado, aceptado, firmado, desembolsado) se publican en Kafka. Permite desacoplar el flujo y manejar picos de demanda sin colapsar el motor.',
+    fixes: [
+      { icon: '✅', text: 'Alertas automáticas ante pérdida de consumidores (hoy solo se detecta por impacto) — ARI-02' },
+      { icon: '✅', text: 'request.timeout.ms: 1500 → 5000ms para reducir timeouts prematuros — ARI-17' },
+      { icon: '✅', text: 'Rotación automática de logs en 8 servidores — ARI-18' },
+      { icon: '✅', text: 'Baja de Base Aprobados vía evento credit.disbursed (real-time, reemplaza batch)' },
+    ],
+    aris: 'ARI-02, ARI-17, ARI-37'
+  },
+  'credit-orchestrator': {
+    name: 'Credit Orchestrator',
+    badge: '🆕 Nuevo — Reemplaza Servicio 147', badgeClass: 'badge-green',
+    tech: 'Microservicio Java/Go · GKE · Kafka consumer',
+    desc: 'El reemplazo directo del Servicio 147. Es un microservicio stateless que orquesta la formalización del crédito reutilizando el resultado de evaluación guardado en Redis. A diferencia del Servicio 147, puede paralelizar pasos independientes y es completamente modificable.',
+    fixes: [
+      { icon: '✅', text: 'Elimina la "doble invocación": reutiliza el resultado de FICO desde Redis, no re-evalúa' },
+      { icon: '✅', text: 'Reemplaza el flujo secuencial inmodificable del Servicio 147 (FG-22)' },
+      { icon: '✅', text: 'Omnicanal: opera con sesión de crédito independiente del canal de origen' },
+      { icon: '✅', text: 'Actualiza Base Aprobados en tiempo real vía API (elimina dependencia de batch)' },
+    ],
+    aris: 'FG-22 (Servicio 147), ARI-13, ARI-25'
+  },
+  'fico-v7': {
+    name: 'FICO v7 — OKE (Oracle Kubernetes)',
+    badge: '🔄 En migración', badgeClass: 'badge-yellow',
+    tech: 'FICO DM Platform v7 · Blaze Advisor v7 · OKE · Java 17',
+    desc: 'Motor de decisión crediticia migrado a OCI con OKE. Blaze Advisor v7 en Java nativo (elimina Nashorn deprecated). Se realizan evaluaciones crediticias únicas —la preevaluación y la formal son la misma evaluación.',
+    fixes: [
+      { icon: '✅', text: 'Blaze v4 (Nashorn deprecated) → Blaze v7 (Java nativo) — elimina FG-20' },
+      { icon: '✅', text: 'Pods correctamente dimensionados: memoria ≥512Mi, pools ≥16 hilos — ARI-42,43,44' },
+      { icon: '✅', text: 'Evaluación única: preevaluación = formal, eliminando doble invocación — FG-22' },
+      { icon: '✅', text: 'Health check corregido: reporta estado real ante errores 504 — ARI-03' },
+    ],
+    aris: 'ARI-36, ARI-42, ARI-43, ARI-44, ARI-48, ARI-50'
+  },
+  ignite: {
+    name: 'Apache Ignite — Configuración Corregida',
+    badge: '✅ Causa Raíz — T6', badgeClass: 'badge-red',
+    tech: 'Apache Ignite 2.x · JMX + Prometheus metrics',
+    desc: 'La causa raíz primaria de las cascadas de error. failureDetectionTimeout < metricsUpdateFrequency generaba falsos positivos que mataban nodos sanos. Con 0 backups, cada kill perdía toda la caché.',
+    fixes: [
+      { icon: '✅', text: 'failureDetectionTimeout > metricsUpdateFrequency: elimina falsos positivos — ARI-14' },
+      { icon: '✅', text: 'StopNodeOrHaltFailureHandler: detención ordenada antes de terminar nodo — ARI-15' },
+      { icon: '✅', text: 'Pools de hilos: 4 → mínimo 16 (público, servicio, sistema) — ARI-16' },
+      { icon: '✅', text: 'Backups: 0 → 1 (cluster sobrevive pérdida de un nodo sin perder caché) — ARI-57' },
+      { icon: '✅', text: 'Métricas JMX/Prometheus: ratio hits/miss, latencia, estado nodos — ARI-56' },
+    ],
+    aris: 'ARI-14, ARI-15, ARI-16, ARI-52, ARI-56, ARI-57'
+  },
+  'scoring-cache': {
+    name: 'Scoring Cache (Redis → BigQuery)',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Redis · Cloud Scheduler · BigQuery GCP',
+    desc: 'Las variables de riesgo precalculadas en BigQuery (VARIABLES_PERSONA, VARIABLES_EMPRESA) se cargan en Redis periódicamente (diario o en tiempo real). FICO consulta Redis en vez de BigQuery síncrono.',
+    fixes: [
+      { icon: '✅', text: 'Latencia BigQuery: ~4,312ms → <50ms por hit de Redis — FG-19' },
+      { icon: '✅', text: 'BigQuery deja de ser un cuello de botella síncrono en el flujo de evaluación' },
+      { icon: '✅', text: 'Frecuencia de actualización: mensual → diaria (o near-realtime)' },
+    ],
+    aris: 'ARI-49 (cuotas BigQuery), FG-19'
+  },
+  flexcube: {
+    name: 'FlexCube 14.7 — New Core',
+    badge: '🔄 Migración 2027', badgeClass: 'badge-yellow',
+    tech: 'Oracle FlexCube 14.7 · REST APIs nativas · OCI',
+    desc: 'Actualización del core financiero de v11.3 a v14.7. FlexCube 14.7 expone APIs REST nativas, eliminando la necesidad de SOAP. La nueva versión soporta API de simulación multi-plazo en una sola llamada.',
+    fixes: [
+      { icon: '✅', text: 'Triple simulación eliminada: una sola llamada REST devuelve opciones para 24/36/48 cuotas' },
+      { icon: '✅', text: 'EOD FlexCube: corrige el no-cierre de día sábados/domingos — FG-26' },
+      { icon: '✅', text: 'REST sobre SOAP: elimina transformaciones XML pesadas del OSB' },
+      { icon: '✅', text: 'Integración directa con Salesforce vía MuleSoft (sin Siebel intermediario)' },
+    ],
+    aris: 'Proyecto New Core (Dic 2027). ARI-31, ARI-32, ARI-33'
+  },
+  menuandes: {
+    name: 'MenuAndes Data API',
+    badge: '🔄 Modernización', badgeClass: 'badge-yellow',
+    tech: 'REST API · Oracle DB OCI · Desacoplado de Oracle Forms',
+    desc: 'Capa REST construida sobre la base de datos corporativa de MenuAndes, separada del aplicativo Oracle Forms 10g. Los Producers WebLogic existentes se unifican bajo un API Gateway con contratos versionados.',
+    fixes: [
+      { icon: '✅', text: 'Elimina dualidad: MenuAndes ya no viaja por dos caminos (OSB + WebLogic Producers)' },
+      { icon: '✅', text: 'EAI-053, EAI-106, EAI-110 consolidados en el Producer — elimina carga OSB' },
+      { icon: '✅', text: 'Sincronización delta con Salesforce (no batch completo nocturno) — ARI-30' },
+      { icon: '✅', text: 'Datos laborales en tiempo real: elimina rechazos por datos stale — T5' },
+    ],
+    aris: 'ARI-39, ARI-30, ARI-40. FG-12, FG-31'
+  },
+  grafana: {
+    name: 'Grafana + Prometheus',
+    badge: '🔄 Ampliado', badgeClass: 'badge-blue',
+    tech: 'Grafana 10 · Prometheus · Alertmanager · PagerDuty',
+    desc: 'Stack de observabilidad de métricas. Dashboards específicos por dominio: FICO DMPS, Apache Ignite, Kafka, FlexCube, OSB. Alertas proactivas configuradas para detectar degradación antes del impacto.',
+    fixes: [
+      { icon: '✅', text: 'Dashboard DPC → Ignite → Workers: alerta ante caídas en <1 minuto — ARI-62' },
+      { icon: '✅', text: 'Métricas Apache Ignite expuestas vía JMX/Prometheus — ARI-56' },
+      { icon: '✅', text: 'Acceso del equipo funcional a Grafana/Elasticsearch — ARI-10' },
+    ],
+    aris: 'ARI-10, ARI-56, ARI-62, ARI-63'
+  },
+  elasticsearch: {
+    name: 'Elasticsearch',
+    badge: '🔄 Ampliado', badgeClass: 'badge-blue',
+    tech: 'Elasticsearch · Kibana · Logstash (ELK)',
+    desc: 'Centralización de logs de todos los componentes del ecosistema. El shell de análisis de logs (ARI-27) ya redujo el tiempo de análisis de días a minutos. Se amplía con dashboards para el equipo funcional.',
+    fixes: [
+      { icon: '✅', text: 'Rotación automática de logs en 8 servidores (sin riesgo de saturación de disco) — ARI-18' },
+      { icon: '✅', text: 'Acceso funcional para que el negocio vea estado sin depender de IT — ARI-10' },
+      { icon: '✅', text: 'Limpieza de 3,694 errores residuales de Mambú dado de baja — ARI-05' },
+    ],
+    aris: 'ARI-05, ARI-10, ARI-18, ARI-27'
+  },
+  keycloak: {
+    name: 'Keycloak (SSO)',
+    badge: '🟢 Funcional', badgeClass: 'badge-green',
+    tech: 'Keycloak 22+ · OAuth2 · OIDC · LDAP',
+    desc: 'Proveedor de identidad centralizado. Todos los canales (TAPP, SVP, Salesforce) usan el mismo token de sesión, lo que permite la transición entre canales sin re-autenticación.',
+    fixes: [
+      { icon: '✅', text: 'Token único cross-canal: base para la omnicanalidad sin re-autenticar' },
+      { icon: '✅', text: 'Integración con directorio corporativo para ejecutivos y afiliados' },
+    ],
+    aris: 'Base para omnicanalidad'
+  },
+  experian: {
+    name: 'Experian / Equifax',
+    badge: '🟡 Cache activo', badgeClass: 'badge-yellow',
+    tech: 'API externa · Cache diario',
+    desc: 'Único buró de crédito consultado. FICO consulta el nivel de endeudamiento del afiliado. Cuenta con cache para evitar consultas duplicadas del mismo día.',
+    fixes: [
+      { icon: '✅', text: 'Cache diario existente se mantiene y se integra con el nuevo flujo de evaluación única' },
+      { icon: '✅', text: 'Circuit breaker en Kong: si buró no responde, flujo continúa con datos en caché' },
+    ],
+    aris: 'Sin ARI específico. Funciona correctamente con cache.'
+  },
+  esign: {
+    name: 'e-Sign Chile (ISA)',
+    badge: '🟢 Funcional', badgeClass: 'badge-green',
+    tech: 'ISA Chile · Firma Electrónica Avanzada',
+    desc: 'Proveedor de firma electrónica avanzada. Los documentos legales (mutuo, pagaré, seguros) se presentan al afiliado para firma vía este proveedor. En el nuevo flujo, los documentos se generan antes de llegar aquí.',
+    fixes: [
+      { icon: '✅', text: 'Se integra en el nuevo flujo omnicanal: el documento puede firmarse en cualquier canal' },
+    ],
+    aris: 'Sin cambios. Funciona correctamente.'
+  },
+  toku: {
+    name: 'Toku / Redbanc',
+    badge: '🟢 Funcional', badgeClass: 'badge-green',
+    tech: 'Pasarela de pagos · Transferencias bancarias',
+    desc: 'Pasarela de desembolso. Una vez activado el crédito en FlexCube, el dinero se transfiere al afiliado via Toku o Redbanc.',
+    fixes: [
+      { icon: '✅', text: 'El evento credit.disbursed en Kafka actualiza inmediatamente la Base Aprobados (elimina dependencia batch)' },
+    ],
+    aris: 'ARI-13 (baja Base Aprobados en tiempo real)'
+  },
+  jaeger: {
+    name: 'Jaeger / Zipkin',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Jaeger · OpenTelemetry · GKE sidecar',
+    desc: 'Trazabilidad distribuida. Permite seguir una evaluación de crédito completa a través de todos los microservicios (BFF → Kong → FICO → FlexCube → ...) con un único trace ID.',
+    fixes: [
+      { icon: '✅', text: 'Diagnóstico de incidentes en minutos en vez de horas (hoy requiere correlación manual de logs)' },
+      { icon: '✅', text: 'Identifica exactamente en qué servicio se origina la latencia en cada evaluación' },
+    ],
+    aris: 'ARI-27 (análisis acelerado de logs), ARI-28 (mapa arquitectura)'
+  },
+  'api-portal': {
+    name: 'API Portal',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Kong Developer Portal · OpenAPI 3.0',
+    desc: 'Catálogo público/interno de APIs para integraciones de terceros y equipos internos. Centraliza la gobernanza de APIs según el plan estratégico.',
+    fixes: [
+      { icon: '✅', text: 'Gobernanza de APIs: catálogo centralizado con contratos versionados — Plan COBIT' },
+      { icon: '✅', text: 'Reutilización de servicios en nuevos proyectos sin duplicación de integraciones' },
+    ],
+    aris: 'ARI-39 (plan desacoplamiento MenuAndes)'
+  },
+  'activeit': {
+    name: 'Active IT',
+    badge: '🟢 Funcional', badgeClass: 'badge-green',
+    tech: 'Validación biométrica · RUT · API externa',
+    desc: 'Proveedor externo para validaciones biométricas y de identidad (RUT). Se usa en el flujo de autenticación junto con Keycloak.',
+    fixes: [
+      { icon: '✅', text: 'Funciona correctamente. Se mantiene en el nuevo flujo.' },
+    ],
+    aris: 'Sin cambios relevantes.'
+  },
+  'zerotrust': {
+    name: 'Zero Trust Layer',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'mTLS · RBAC · WAF · Network Policies GKE',
+    desc: 'Modelo de seguridad de confianza cero. Todos los servicios se autentican entre sí con mTLS. Las Network Policies en GKE limitan el tráfico entre namespaces. WAF en el borde.',
+    fixes: [
+      { icon: '✅', text: 'Elimina tráfico lateral no autorizado (como el del agente APM) — ARI-53, ARI-54' },
+      { icon: '✅', text: 'Firewall rules para aislar agentes inactivos — ARI-53, ARI-54' },
+    ],
+    aris: 'ARI-53, ARI-54'
+  },
+  'session-mgr': {
+    name: 'Session Manager',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Microservicio Go · Redis · Kafka',
+    desc: 'Gestiona el ciclo de vida del estado de una solicitud de crédito. Crea la sesión al iniciar la evaluación, actualiza el estado en cada paso, y la expira cuando el crédito se desembolsa o el afiliado la abandona.',
+    fixes: [
+      { icon: '✅', text: 'Pieza central de la omnicanalidad: cualquier canal consulta el estado por RUT' },
+      { icon: '✅', text: 'Permite retomar créditos parciales: si el afiliado abandona en paso 5, retoma en paso 5' },
+    ],
+    aris: 'Base para omnicanalidad completa'
+  },
+  'doc-service': {
+    name: 'Document Service',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Microservicio · BI Publisher → PDF Service · OCI Object Storage',
+    desc: 'Reemplaza la generación monolítica de documentos de BI Publisher + WebCenter Content. Genera los documentos legales (mutuo, pagaré, seguros) de forma asíncrona vía eventos Kafka y los almacena en OCI Object Storage.',
+    fixes: [
+      { icon: '✅', text: 'Desacopla la generación de documentos del flujo principal (no bloquea al usuario)' },
+      { icon: '✅', text: 'OCI Object Storage reemplaza el WebCenter Content (20TB, sin info técnica documentada)' },
+    ],
+    aris: 'FG-BI Publisher, ARI-28'
+  },
+  'approved-service': {
+    name: 'Aprobados RT Service',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'Microservicio REST · Oracle DB OCI · Kafka consumer',
+    desc: 'Gestiona la Base de Aprobados en tiempo real. Consume el evento credit.disbursed de Kafka para dar de baja la oferta inmediatamente. Elimina la dependencia del proceso batch nocturno.',
+    fixes: [
+      { icon: '✅', text: 'Baja en tiempo real: elimina la ventana de re-solicitud indebida durante el día — FG-25' },
+      { icon: '✅', text: 'API de consulta para el Credit Orchestrator (reemplaza ws_aprobados WebLogic)' },
+    ],
+    aris: 'ARI-13, FG-25'
+  },
+  'eval-db': {
+    name: 'Eval Scoring DB',
+    badge: '🟡 Mantener', badgeClass: 'badge-yellow',
+    tech: 'Oracle DB · OCI Santiago · Auditoría',
+    desc: 'Base de datos Oracle que registra históricamente los datos de entrada y el resultado de cada evaluación crediticia procesada por el motor FICO. Se mantiene con una escritura por evaluación (antes había 2 por doble invocación).',
+    fixes: [
+      { icon: '✅', text: 'Solo 1 escritura por crédito (antes 2 por doble invocación): mitad de carga en la BD' },
+    ],
+    aris: 'Beneficio indirecto de eliminar doble invocación'
+  },
+  'bigquery': {
+    name: 'BigQuery / Nicanor',
+    badge: '🟡 Asíncrono', badgeClass: 'badge-yellow',
+    tech: 'Google BigQuery · GCP Santiago · Data Lake',
+    desc: 'Base de datos analítica que almacena las variables de scoring precalculadas (VARIABLES_PERSONA, VARIABLES_EMPRESA). En el nuevo modelo, BigQuery ya no es parte del flujo síncrono de evaluación. Un proceso diario carga las variables en Redis.',
+    fixes: [
+      { icon: '✅', text: 'Sale del flujo síncrono: no bloquea la evaluación, las variables se leen desde Redis' },
+      { icon: '✅', text: 'Latencia: ~4,312ms → 0ms en el flujo crítico (Redis hit: <1ms)' },
+      { icon: '✅', text: 'Revisión de cuotas y throttling GCP — ARI-49' },
+    ],
+    aris: 'ARI-49, FG-19'
+  },
+  'aprobados-db': {
+    name: 'Base de Aprobados',
+    badge: '🔄 Real-time', badgeClass: 'badge-blue',
+    tech: 'Oracle DB · OCI Santiago · REST API',
+    desc: 'Base de datos de afiliados con ofertas de crédito preaprobadas (campañas de riesgo). Se moderniza con una API REST para consulta y baja en tiempo real, eliminando la dependencia de ws_aprobados en WebLogic y el batch nocturno.',
+    fixes: [
+      { icon: '✅', text: 'API REST reemplaza el ws_aprobados WebLogic (SOAP)' },
+      { icon: '✅', text: 'Baja en línea en tiempo real vía Kafka (credit.disbursed)' },
+      { icon: '✅', text: 'Elimina re-solicitudes indebidas el mismo día — FG-25, ARI-13' },
+    ],
+    aris: 'ARI-13, FG-25'
+  },
+  'bff-digital': {
+    name: 'BFF Digital (Go)',
+    badge: '🔴 Sin info técnica', badgeClass: 'badge-red',
+    tech: 'Go · REST · Kafka producer · GKE',
+    desc: 'Backend for Frontend para los canales digitales TAPP y SVP. Intermediario entre el frontend y el ecosistema de backend. Se documenta y estabiliza como parte de las ARIs de gobierno técnico.',
+    fixes: [
+      { icon: '✅', text: 'Documentación técnica completa (hoy sin info técnica documentada) — ARI-28' },
+      { icon: '✅', text: 'Integración con Session Manager para publicar estado del crédito en Redis' },
+    ],
+    aris: 'ARI-28 (mapa arquitectura), ARI-08'
+  },
+  'bff-presencial': {
+    name: 'BFF Presencial',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'MuleSoft · Salesforce API · REST',
+    desc: 'Interfaz entre Salesforce y el ecosistema de backend. Permite que el ejecutivo presencial opere con el mismo Credit Orchestrator que los canales digitales, habilitando la omnicanalidad presencial.',
+    fixes: [
+      { icon: '✅', text: 'Presencial accede al mismo estado de crédito que los canales digitales' },
+      { icon: '✅', text: 'Reemplaza la integración Siebel → OSB → FlexCube con Salesforce → MuleSoft → FlexCube REST' },
+    ],
+    aris: 'Proyecto New Core (Dic 2027)'
+  },
+  'ci-cd': {
+    name: 'CI/CD Pipeline',
+    badge: '🆕 Nuevo', badgeClass: 'badge-green',
+    tech: 'GitOps · ArgoCD · GitHub Actions · OKE + GKE',
+    desc: 'Pipeline de despliegue continuo basado en GitOps. Permite despliegues a OKE y GKE de forma automática y auditable. Los rollbacks son instantáneos ante errores.',
+    fixes: [
+      { icon: '✅', text: 'Homologación automática QA → PRD: los tunings validados en QA llegan a PRD — ARI-48' },
+      { icon: '✅', text: 'Elimina el riesgo de configuraciones desincronizadas entre ambientes' },
+    ],
+    aris: 'ARI-48 (homologar ajustes QA → PRD)'
+  },
+  sinacaf: {
+    name: 'SINACAF / SINACOFI',
+    badge: '🟡 OK', badgeClass: 'badge-yellow',
+    tech: 'SOAP · EAI-003 / EAI-004',
+    desc: 'Validaciones regulatorias externas. EAI-003 conecta con SINACAF y EAI-004 con SINACOFI. No tienen circuit breakers configurados actualmente.',
+    fixes: [
+      { icon: '✅', text: 'Circuit breakers en Kong para EAI-003 y EAI-004' },
+      { icon: '✅', text: 'SLA y contratos de datos a documentar — ARI-28' },
+    ],
+    aris: 'ARI-28 (contratos de datos), governance'
+  },
+};
+
+function openDetail(id) {
+  const d = details[id];
+  if (!d) return;
+  const html = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <h2>${d.name}</h2>
+    </div>
+    <span class="badge ${d.badgeClass}" style="margin-bottom:16px;display:inline-block;">${d.badge}</span>
+
+    <div class="detail-section">
+      <h4>Tecnología</h4>
+      <p style="color:var(--cyan);font-family:monospace;">${d.tech}</p>
+    </div>
+
+    <div class="detail-section">
+      <h4>Descripción</h4>
+      <p>${d.desc}</p>
+    </div>
+
+    <div class="detail-section">
+      <h4>Hallazgos que corrige</h4>
+      ${d.fixes.map(f => `<div class="fix-item"><span class="fix-icon">${f.icon}</span><span>${f.text}</span></div>`).join('')}
+    </div>
+
+    <div class="detail-section">
+      <h4>ARIs / Iniciativas relacionadas</h4>
+      <p>${d.aris}</p>
+    </div>
+  `;
+  document.getElementById('detail-content').innerHTML = html;
+  document.getElementById('detail-overlay').classList.add('open');
+}
+
+function closeDetail(e) {
+  if (e.target === document.getElementById('detail-overlay')) closeDetailBtn();
+}
+function closeDetailBtn() {
+  document.getElementById('detail-overlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeDetailBtn(); });
+</script>
+</body>
+</html>

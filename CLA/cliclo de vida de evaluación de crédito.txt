@@ -1,0 +1,267 @@
+El flujo de una evaluación de crédito originada desde la aplicación móvil TAPP es un proceso complejo que involucra una mezcla de integraciones modernas y sistemas legados. Uno de los grandes hallazgos del assessment actual es que este flujo sufre de una "doble invocación" (hacer el trabajo pesado dos veces) y una "triple simulación"
+.
+A continuación, te detallo el paso a paso del ciclo de vida completo de la solicitud:
+Fase 1: Autenticación y Preevaluación (El camino rápido)
+Ingreso y Autenticación: El usuario ingresa a TAPP. Su identidad se valida a través del directorio de la Caja utilizando Keycloak ("Klock")
+. Además, se apoya en el proveedor externo Active IT para validaciones biométricas y de identidad (RUT)
+.
+Consulta de Caché: El canal digital cuenta con una caché en memoria (basada en Redis). Si el usuario ya fue preevaluado y aprobado recientemente, TAPP rescata este resultado desde la caché para evitar golpear al motor nuevamente
+.
+Petición Directa a FICO (OCI): Si no hay caché, cuando el usuario hace clic en el banner de crédito, el backend de TAPP (el BFF en Go) invoca directamente a una API expuesta en la nube (GCP/OCI) que apunta al orquestador DMPS del nuevo motor FICO
+.
+Filtro Temprano y Base de Aprobados: El DMPS inicia el "Job de Knockout" para descartes rápidos
+. Inmediatamente consulta la base de datos Base de Aprobados (mediante el servicio ws_aprobados en WebLogic) para verificar si el RUT forma parte de una campaña con oferta preaprobada, lo que relajaría las reglas de evaluación
+.
+Fase 2: Recolección de Datos ("La Araña") y Proveedores Externos
+Si el usuario avanza, el DMPS de FICO actúa como "La Araña", y sale a consultar múltiples bases de datos y proveedores externos de forma síncrona
+:
+FlexCube (Base de Datos / Core): Consulta la carga financiera y si el usuario tiene deuda actual en la Caja mediante el servicio EAI-005
+.
+MenuAndes (Base de Datos Corporativa): A través de servicios WebLogic, FICO extrae datos laborales, renta, línea de detalle y licencias médicas vigentes u operativas
+.
+Experian / Equifax (Proveedor Externo): Único buró de crédito consultado. FICO le pregunta el nivel de endeudamiento del afiliado en el sistema financiero nacional
+.
+BigQuery (Base de Datos en GCP): Consulta variables complejas de perfil de riesgo (VARIABLES_PERSONA, VARIABLES_EMPRESA) que ya están precalculadas por el equipo de analítica
+.
+Fase 3: Decisión y Triple Simulación
+Motor Blaze Advisor: Con todos los datos recopilados, el DMPS los inyecta en el motor de reglas Blaze
+. Blaze ejecuta sus políticas (aprobando o rechazando) y determina el monto y cuota máxima que se le puede ofrecer al afiliado
+.
+Poblamiento de BD Scoring: El resultado exacto de esta evaluación (los datos de entrada y la decisión del motor) se guarda en la base de datos Oracle llamada Eval Scoring DB (o BD Scoring)
+.
+La Triple Simulación en FlexCube: Con la preevaluación aprobada, TAPP le muestra al cliente opciones de pago. Para armar estas opciones, TAPP invoca al simulador de FlexCube tres veces consecutivas (ej. para 24, 36 y 48 cuotas), generando y descartando cuadros de pago completos, lo que añade carga a la red
+.
+Fase 4: Evaluación Formal (La "Doble Invocación")
+Simulación del Servicio 147 (Siebel): Cuando el afiliado acepta una de las opciones de cuotas en la app y decide cursar el crédito, TAPP no utiliza el resultado de la preevaluación
+. En su lugar, para crear formalmente el crédito, el sistema gatilla el Servicio 147
+.
+Re-evaluación Secuencial: Este servicio 147 es un orquestador inmodificable que simula, de manera secuencial, todos los clics que haría un ejecutivo humano en el canal presencial (Siebel)
+.
+El "Dejavu" Tecnológico: El Servicio 147 vuelve a llamar a la evaluación final (Servicio 130 o EAI-138), lo que provoca que "La Araña" vuelva a ir a MenuAndes, FlexCube, Experian y BigQuery, procese todo en Blaze y registre un nuevo resultado en la Eval Scoring DB
+.
+Fase 5: Materialización y Desembolso
+Creación del Crédito Inactivo: Tras la aprobación de la segunda pasada, Siebel le indica a FlexCube que genere el crédito formal en estado "inactivo" y construya el cuadro de pago definitivo
+.
+Gestión Documental: El componente BI Publisher toma los datos de Siebel y FlexCube y renderiza los documentos PDF legales (mutuo, pagaré, seguros), los cuales quedan alojados en el gestor Web Center Content
+.
+Firma Electrónica (Proveedor Externo): Los documentos se le presentan al afiliado en la app TAPP. Para firmarlos, se utiliza la plataforma del proveedor externo e-Sign Chile (integrado con ISA Chile), la cual emite la firma electrónica avanzada
+.
+Activación y Pago: Con los documentos firmados y las validaciones del canal listas, se le indica a FlexCube que active el crédito y curse el desembolso del dinero hacia la cuenta del afiliado (ya sea mediante transferencias o la pasarela Toku/Redbanc)
+. Finalmente, la venta de este crédito se marca para ser dada de baja de la Base de Aprobados
+
+
+no todas las consultas pasan por el OSB (Oracle Service Bus). Aunque el OSB es el integrador principal por donde transita una gran parte del tráfico, el orquestador de FICO (el DMPS o "La Araña") utiliza distintos caminos y tecnologías dependiendo de la fuente de datos que necesite consultar:
+FlexCube (y Siebel): Sí pasan por el OSB. FICO consume la información de estos sistemas (como la deuda vigente y carga financiera en FlexCube) a través del bus utilizando servicios SOAP específicos, siendo el EAI-005 el más utilizado
+.
+MenuAndes: No pasa por el OSB en la consulta directa del motor. Para extraer datos como licencias médicas, información laboral, línea de detalle o rentas, FICO se comunica a través de servidores WebLogic (un conjunto de clústeres llamados internamente "Producers")
+. Estos servidores WebLogic se conectan a la base de datos corporativa legada para consumir distintos paquetes (packages) de Oracle
+.
+BigQuery (GCP): No pasa por el OSB. FICO va a buscar el perfil de riesgo y las variables precalculadas a la nube de Google mediante una conexión directa a través de un componente interno llamado Scoring Middleware, operando bajo un protocolo HTTP/REST de forma síncrona
+.
+Experian / Equifax: Se va a buscar la información del buró externo a través de una API específica (API Caja), a la cual se le configuró una capa de caché para evitar ir a buscar un dato que ya se consultó en el día
+.
+Por lo tanto, "La Araña" distribuye sus interacciones combinando llamadas al bus OSB (para el Core y CRM), llamadas a WebLogic (para el maestro corporativo), y conexiones directas o APIs (para la nube y el buró externo)
+
+La parte específica de FICO que se conecta a MenuAndes es el DMPS (el orquestador interno del motor), y lo hace de manera puntual durante la ejecución del Job "Proceso de Solicitud" (el trabajo central que internamente llaman "La Araña")
+.
+Respecto a cómo se realiza la conexión, el DMPS no utiliza un único camino, sino que se integra con MenuAndes de dos formas distintas dependiendo del dato que necesite:
+1. A través de servidores WebLogic ("Producers") - La vía principal: Para la extracción de la gran mayoría de la información del afiliado (como información laboral, rentas, línea de detalle, deterioro y licencias médicas), FICO no utiliza un servicio EAI del bus OSB
+. En su lugar, el DMPS invoca directamente a unos backends o Web Services que están construidos y expuestos en un entorno WebLogic que el equipo técnico denomina internamente "Producers"
+. Estos "Producers" albergan aproximadamente 11 servicios distintos que actúan como puente para ir a consultar de forma directa la base de datos corporativa de MenuAndes mediante la ejecución de Paquetes de Oracle (Packages), como por ejemplo PKG_MDC_LICENCIAS_MEDICAS o PKG_MDC_LABORAL_AFILIADO
+.
+2. A través del bus OSB (Servicios EAI) - Para consultas específicas: Aunque el grueso de la información laboral viaja por la vía de los Producers de WebLogic, sí existen algunas consultas particulares a MenuAndes que se exponen en el bus de integración y que FICO consume como servicios EAI
+. El inventario técnico detalla que estos servicios son el EAI-053 (MenuAndes Mora Empresa), el EAI-106 (MenuAndes Cotizaciones) y el EAI-110 (MenuAndes CRT)
+.
+En resumen, es el DMPS (en el Job de Solicitud) quien gatilla la búsqueda, pero delega la mayor parte de las consultas a la capa de microservicios WebLogic ("Producers") para atacar la base de datos a través de packages, mientras que solo un subconjunto menor de datos se orquesta a través de los clásicos servicios EAI del bus
+.
+Sería posible y eficiente que los datos que se consultan a través del bus los trajera también el producer? o hay una razón para que se consulten a traves del bus?
+
+Para responder a esto con precisión, debemos separar el análisis dependiendo del origen de los datos que FICO ("La Araña") necesita consultar.
+La respuesta corta es: Sí, sería muy eficiente para los datos que habitan en MenuAndes, pero no sería correcto ni posible para los datos que habitan en los demás sistemas (FlexCube, Siebel, Experian, etc.).
+Aquí te explico las razones arquitectónicas y operativas desde tu frente de Infraestructura y Aplicativos:
+1. Para los datos que NO son de MenuAndes (FlexCube, Siebel, BigQuery): No es posible ni eficiente
+Los servidores WebLogic conocidos internamente como "Producers" son clústeres configurados con un propósito muy específico: actuar como una capa de acceso directo a la base de datos corporativa legada de MenuAndes mediante la ejecución de paquetes de Oracle (Packages)
+.
+El Producer no es un middleware de integración ni un orquestador. Si el motor FICO le pidiera al Producer que fuera a buscar la deuda vigente a FlexCube, estaríamos forzando al Producer a convertirse en un "falso OSB".
+La razón arquitectónica: Sistemas como FlexCube (el core bancario) y Siebel (el CRM) ya exponen nativamente sus propios servicios en formato SOAP hacia el bus de integración (OSB)
+. "La Araña" (DMPS) es quien tiene el rol de orquestador central y es el responsable de ir a tocar la puerta de cada sistema
+.
+2. Para los datos de MenuAndes que HOY viajan por el OSB: Sí, sería posible y sumamente eficiente
+Actualmente, el motor FICO va a buscar la gran mayoría de la información laboral y médica al Producer, pero curiosamente, existen servicios de MenuAndes que siguen viajando a través del bus OSB (como el EAI-053 para Mora Empresa, EAI-106 para Cotizaciones y EAI-110 para CRT)
+.
+Que el Producer asuma la carga de estos servicios específicos que hoy pasan por el bus sería una mejora arquitectónica muy eficiente por las siguientes razones documentadas en tu levantamiento:
+El OSB añade latencia innecesaria: El equipo técnico ha reconocido en las mesas de trabajo que orquestar a través del OSB fue una decisión histórica que terminó haciendo que "todo fuera más lento"
+. Pasar consultas de una base de datos a través del bus añade saltos de red y transformaciones pesadas de XML/JSON que el Producer se salta al usar JDBC directo.
+El OSB es un punto crítico de fallas (Cascada): Uno de los hallazgos más graves del assessment es que el OSB no tiene circuit breakers (cortocircuitos) configurados hacia los servicios externos
+. Cuando el bus se satura, los hilos de conexión se agotan y provocan que hasta 13 servicios distintos caigan en cascada simultáneamente
+.
+Reducción de dependencias: Si el Producer centraliza absolutamente todas las consultas hacia MenuAndes, liberas al OSB de esa carga transaccional, dejándolo respirar para que se enfoque solo en FlexCube y Siebel, mitigando el riesgo de que una lentitud en MenuAndes termine botando al OSB completo
+.
+En tu rol de relevamiento técnico exhaustivo
+, documentar esta dualidad (por qué el motor va a MenuAndes por dos caminos distintos) te servirá como un excelente argumento para proponer que se eliminen las llamadas innecesarias al OSB y se unifiquen en el Producer, reduciendo los puntos de falla de la "Araña".
+Que hace el eai 005
+
+El servicio EAI-005 es una interfaz expuesta en el bus de integración (OSB) que se conecta directamente con el core financiero, FlexCube
+.
+Su función principal es consultar la deuda vigente y la carga financiera de la persona que está solicitando un crédito
+. Específicamente, este servicio evalúa los créditos previos del afiliado en la Caja para calcular la diferencia entre lo que ya está pagando y su límite permitido, determinando así cuánta cuota adicional se le puede autorizar para un nuevo crédito
+.
+Como hallazgo crítico del assessment, el EAI-005 es el servicio externo que más falla dentro de todo el ecosistema, registrando un volumen de 18.350 errores en un periodo de 5 meses (entre octubre de 2025 y febrero de 2026)
+.
+Gran parte de estos fallos se originan por "falsos positivos" o incongruencias de datos
+. El servicio está diseñado para hacer un cruce exacto entre el centro de costos, el RUT del afiliado y el RUT de la empresa empleadora
+. Si un afiliado es multicotizante (trabaja en más de una empresa), se cambió de trabajo recientemente, o si hay un error en el registro de la empresa, el servicio no logra hacer el cruce y arroja un error
+. El motor de decisiones (FICO) no sabe cómo manejar esta excepción y la interpreta erróneamente como una caída técnica o de comunicación del servicio
+.
+lunes, 23 de marzo d
+Describe a detalle la consulta de fico a big query, describiendo cads componente involucrado
+
+El proceso en el que FICO consulta a BigQuery es una pieza clave en la evaluación de riesgo, pero también uno de los puntos que mayor latencia introduce al sistema. A continuación, te detallo el flujo y cada uno de los componentes involucrados:
+1. El Orquestador: FICO DMPS ("La Araña") El proceso se gatilla desde el DMPS (Decision Management Platform Server) de FICO, específicamente durante la ejecución del job conocido como "Proceso de Solicitud"
+. Cuando la Araña requiere el perfil de riesgo del cliente, no utiliza el bus de integración (OSB), sino que dirige la petición hacia un componente intermedio específico
+.
+2. El Componente Conector: Scoring Middleware Para salir del entorno de OCI (Oracle Cloud Infrastructure) y llegar a Google Cloud, el DMPS utiliza un componente interno llamado Scoring Middleware
+.
+Protocolo: Este middleware se conecta con la nube de Google mediante una invocación HTTP/REST de forma síncrona
+.
+Problema de Latencia: Al ser una llamada síncrona hacia una base de datos analítica, este componente registra una latencia muy alta, demorando aproximadamente 4,312 milisegundos (~4.3 segundos) en cada llamada, lo que impacta fuertemente el tiempo total de la evaluación
+.
+3. El Destino: Google BigQuery (GCP) La consulta llega a la base de datos BigQuery alojada en Google Cloud Platform (a veces referenciada internamente dentro del ecosistema del Data Lake "Nicanor")
+.
+Tablas consultadas: FICO va a buscar la información específicamente a dos tablas: VARIABLES_PERSONA y VARIABLES_EMPRESA
+.
+4. Los Datos: Variables Precalculadas (Scoring) El equipo de Riesgo utiliza BigQuery para almacenar variables complejas de perfil de riesgo
+.
+Dado que estos cálculos (basados en modelos matemáticos y estadísticos en Python) son demasiado pesados para ejecutarse en tiempo real durante la evaluación, el equipo de analítica los procesa de forma batch y los deja precalculados y cargados mensualmente en esta base de datos
+.
+5. Comportamiento ante Datos Inexistentes (Miss) Un detalle funcional importante de esta consulta es cómo maneja los datos faltantes. Si FICO consulta BigQuery y el cliente no tiene un perfil precalculado allí (un miss), BigQuery retorna un valor por defecto de -1
+. Este valor representa el "peor escenario de score" y obliga al motor de reglas a procesar la evaluación utilizando valores por defecto
+.
+Desafíos y planes a futuro: Debido a que BigQuery es una base de datos analítica y no transaccional, el equipo técnico ha manifestado en las mesas de trabajo la necesidad de quitar este componente del flujo síncrono o apuntar a una base de datos transaccional que sea mucho más rápida y mantenible, para así evitar el cuello de botella de los más de 4 segundos de espera
+.
+
+El Servicio 147 se encuentra alojado físicamente en el entorno de nube OCI Santiago (Oracle Cloud Infrastructure)
+.
+A nivel de software y aplicativo, este servicio vive y se ejecuta dentro del Workflow Manager de Siebel
+.
+Para complementar tu comprensión sobre este componente, sus características principales son:
+Propósito: Fue creado y "encapsulado" específicamente para habilitar el proyecto de crédito digital (conocido internamente como "Quickwin" o "Goodwin")
+.
+Funcionamiento: Actúa como un orquestador que simula exactamente las acciones y "clics" que realizaría un ejecutivo humano en la atención presencial. Al ser invocado, gatilla internamente una serie de llamadas a diferentes servicios de Siebel de forma automática
+.
+Limitaciones técnicas: Este flujo de pasos es estrictamente secuencial y no se puede paralelizar, ya que el resultado de cada validación y paso previo es requisito para continuar con el siguiente (por ejemplo, validar si tiene TAPP, simular, etc.) hasta llegar a la invocación final de la evaluación de FICO
+. En el inventario de arquitectura, está catalogado como un componente "inmodificable" y un "anti-patrón"
+.
+Describeme el ciclo de vida de una consulta a travez del flujo web
+
+El ciclo de vida de una solicitud de crédito a través del flujo web o digital (como la aplicación móvil TAPP o la Sucursal Virtual de Personas - SVP) es un proceso altamente integrado que, según los hallazgos del assessment técnico, sufre de ineficiencias importantes como la "doble invocación" y la "triple simulación"
+,
+.
+A continuación, te detallo el viaje completo de la consulta:
+1. Ingreso y Caché Inicial (Frontend a BFF) El usuario interactúa con el canal digital (TAPP, construido en React Native con un backend BFF en Go; o SVP, construido en React con un BFF en NestJS)
+,
+. Cuando el usuario hace clic para solicitar un crédito, el sistema primero consulta una base de datos en memoria Redis
+,
+. Si el usuario ya fue preevaluado y aprobado recientemente en el día, se rescata ese resultado directamente desde la caché para evitar sobrecargar al motor de riesgo
+,
+.
+2. La Preevaluación Directa (Fase 1) Si no hay información en caché, el canal digital no pasa por el CRM tradicional, sino que el BFF invoca de forma directa a una API expuesta en la nube (Oracle Cloud Infrastructure - OCI) que se comunica directamente con el orquestador DMPS del nuevo motor FICO
+,
+,
+,
+,
+,
+.
+Esta preevaluación es apenas un poco más ligera que la evaluación completa (tiene unas 5 reglas menos) y ejecuta el pesado procesamiento de "La Araña"
+,
+.
+El motor consulta la Base de Aprobados (campañas) para ver si el afiliado tiene relajo de políticas
+,
+.
+FICO devuelve la "Regla 274", que contiene la contraoferta con el monto máximo, la cuota máxima y el plazo permitido
+.
+Nota de diseño: A esta capa de preevaluación se le aplicó un rate limit (límite de peticiones) que logró reducir las consultas de 38.000 a 9.000 mensuales, mitigando parte del impacto en el motor
+,
+.
+3. La "Triple Simulación" en FlexCube Con el crédito preaprobado, la aplicación le muestra al cliente opciones de pago (por ejemplo, a 24, 36 y 48 cuotas)
+. Para armar estas tres opciones, el canal digital realiza tres llamadas individuales de simulación
+,
+.
+Aunque existe un "Simulador Express" ligero (que responde en 0,004 milisegundos), no se utiliza en el canal digital debido a diferencias de 1 o 2 pesos por temas de redondeo en la amortización francesa, lo que podría generar reclamos legales
+,
+,
+.
+En su lugar, el sistema va hasta el core bancario FlexCube tres veces consecutivas, obligándolo a calcular y generar cuadros de pago completos que luego se transponen y se descartan para mostrar solo el resumen en la pantalla
+,
+.
+4. Evaluación Formal y la "Doble Invocación" (Fase 2) Cuando el afiliado selecciona una opción de cuotas y confirma que desea el crédito, el sistema no reutiliza el resultado de la preevaluación anterior
+,
+. Para materializar la venta, el canal invoca el Servicio 147
+.
+El Servicio 147 es un flujo alojado en el Workflow Manager de Siebel que simula, de manera estrictamente secuencial e inmodificable, todos y cada uno de los clics y pasos que haría un ejecutivo de atención presencial
+,
+,
+,
+,
+.
+Como parte de esta simulación humana, el Servicio 147 vuelve a invocar a la evaluación formal profunda (Servicio 130 o EAI-138)
+,
+,
+. Esto provoca una "doble invocación", donde FICO ("La Araña") debe salir de nuevo, a través del bus OSB, a consultar a FlexCube, MenuAndes, Experian y BigQuery
+,
+,
+,
+.
+El motor Blaze procesa las reglas matemáticas y de riesgo
+. A diferencia de la preevaluación, a este punto de evaluación formal no se le configuró un rate limit, lo que permite anomalías como que un solo RUT genere hasta 100 evaluaciones formales en un día
+,
+.
+5. Persistencia, Documentación y Desembolso Con la evaluación final aprobada:
+El orquestador DMPS de FICO empaqueta el resultado final y los datos de entrada, y los guarda para auditoría en la base de datos Oracle llamada Eval Scoring DB
+,
+,
+,
+,
+,
+.
+Siebel le instruye al core FlexCube que genere el crédito en estado "inactivo" y construya el cuadro de pago final
+.
+El componente BI Publisher captura esta información y renderiza los documentos legales en PDF (mutuo, pagaré, seguros), alojándolos en el gestor Web Center Content
+,
+,
+.
+Se solicita al afiliado la validación biométrica y la firma electrónica avanzada (mediante ISA Chile / e-Sign) del Mandato de Canales Remotos
+,
+.
+Una vez firmados, se le notifica a FlexCube que active el crédito y realice el desembolso del dinero (mediante transferencias o la pasarela Toku/Redbanc)
+,
+,
+.
+Por último, el sistema debe dar de baja la oferta en la Base de Aprobados para que no vuelva a tomar el crédito. Actualmente, el microservicio de baja en el canal digital (TAPP) presenta fallas, por lo que a menudo el sistema depende de un proceso batch nocturno (o de que FICO detecte la deuda nueva al día siguiente) para darse cuenta de que el crédito ya fue cursado
+,
+,
+.
+martes, 24 de marzo d
+Donde están alojadas las bases de datos de Aprobados, menu
+
+Tanto la base de datos de Aprobados como la base de datos de MenuAndes se encuentran alojadas físicamente en el entorno de nube OCI Santiago (Oracle Cloud Infrastructure)
+.
+A nivel de motor y tecnología, ambas comparten las siguientes características:
+Base de datos de MenuAndes (Legados): Es una base de datos corporativa Oracle que actúa como el maestro principal de datos de la institución (donde reside la información de afiliación, empresas y personas) alojada en OCI Santiago
+.
+Base de datos de Aprobados: También es una base de datos Oracle alojada en OCI Santiago gestionada por el área de Riesgo. Esta base contiene el listado de afiliados con ofertas de crédito preaprobadas y se expone hacia el bus de integración (OSB) y los canales digitales a través de servicios web y APIs
+.
+Donde están alojadas las bases de datos de gcp y scoring?, big query es una base de datos?
+
+Las bases de datos por las que consultas se encuentran alojadas en las siguientes ubicaciones:
+Bases de datos en GCP (Google Cloud Platform): La infraestructura de datos en Google (donde reside Nicanor y BigQuery) está alojada principalmente en la región de GCP Santiago, con algunos componentes residuales ubicados en Estados Unidos
+. Además, debido a normativas de la CMF, el canal digital TAP cuenta con un entorno de recuperación ante desastres (DR) que está alojado físicamente en GCP Brasil
+.
+Base de datos de Scoring (Eval Scoring DB): Esta es una base de datos relacional Oracle que se encuentra alojada en la nube de Oracle, específicamente en el entorno OCI Santiago
+. En esta base se guarda el registro histórico detallado con los datos de entrada y la respuesta de cada evaluación crediticia procesada por el motor
+.
+Respecto a tu segunda pregunta: Sí, BigQuery funciona como una base de datos. Dentro del ecosistema de la Caja, opera específicamente como una base de datos analítica en la nube (GCP) y forma parte del data lake conocido internamente como "Nicanor"
+.
+Su rol es almacenar variables complejas precalculadas que determinan el perfil de riesgo del afiliado
+. Como los modelos estadísticos para obtener estas variables son demasiado pesados para procesarse en línea durante la solicitud de un crédito, el equipo de riesgo realiza el cálculo de forma batch y carga los resultados en las tablas de BigQuery una vez al mes, dejándolas listas para que FICO las consulte de manera directa
+.

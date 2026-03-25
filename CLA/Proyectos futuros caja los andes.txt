@@ -1,0 +1,87 @@
+Informe de Iniciativas y Medidas a Futuro: Ecosistema de Crédito - Caja Los Andes
+
+1. Contexto y Objetivos del Informe
+
+El presente informe consolida la hoja de ruta estratégica y técnica para la modernización del ecosistema de crédito de Caja Los Andes. Este documento surge como respuesta a los hallazgos críticos del assessment técnico, donde se identificaron brechas de latencia, inestabilidad operativa y una alta concentración de deuda técnica en componentes legados.
+
+El objetivo primordial es transitar desde una arquitectura reactiva hacia un modelo de "Pilar Financiero" moderno, basado en los siguientes pilares:
+
+* Estabilidad Operativa: Mitigación de caídas en periodos de alta demanda (eventos de campañas push) y optimización de los tiempos de respuesta en servicios de evaluación.
+* Modernización Arquitectónica: Desacoplamiento de orquestaciones complejas y migración de cargas críticas a infraestructuras de nube de última generación.
+* Escalabilidad del Canal Digital: Habilitación de una capacidad transaccional que soporte el objetivo de desplazar la venta desde el canal presencial (actualmente 80-90%) hacia un flujo 100% digital y automatizado.
+
+2. Diagnóstico del Ecosistema Actual (Punto de Partida)
+
+El análisis técnico profundo revela que la arquitectura actual padece de una rigidez estructural producto de decisiones tácticas acumuladas. Un factor determinante fue la utilización del Oracle Service Bus (OSB) para orquestaciones complejas, debido a la indisponibilidad de licencias de BPEL en su momento, lo que derivó en la actual "Araña" de integraciones.
+
+Desafío Identificado	Impacto en el Negocio/Operación
+Arquitectura de "Araña" en OSB	Orquestaciones síncronas excesivas que degradan el rendimiento. Interfaces críticas como LAI005 (Evaluación) y LAI025 (Simulación) presentan latencias severas.
+Timeouts críticos (50 segundos)	Tiempos de espera excesivos en simulaciones de crédito (especialmente en productos de alta cuota o hipotecarios), afectando la experiencia de afiliados y ejecutivos.
+Saturación y "Silent Errors" en Gateway (DMPS)	El Gateway inyecta valores "dummy" (ej. strings en campos de fecha) para forzar respuestas 200 OK, lo que provoca fallas de inserción SQL en el backend y corrompe la integridad de la evaluación.
+Obsolescencia Tecnológica Crítica	Infraestructura en Sonda operando sobre Windows Server 2008 R2 y CentOS 7 (EOL), junto con versiones de FICO y WebLogic que carecen de soporte moderno.
+Sincronización Batch MenuAndes	Dependencia de procesos nocturnos (tabla AFIPFTransAC) y ETLs de SAP para reflejar cambios en el Pilar Financiero, impidiendo la omnicanalidad en tiempo real.
+
+3. Iniciativas de Transformación y Proyectos Clave
+
+Crédito Digital (Quick Win)
+
+Evolución acelerada para transformar el canal digital en el motor principal de ventas. El objetivo es automatizar el flujo de punta a punta (originación a desembolso) para reducir la carga operativa de las sucursales y mejorar el Time to Market.
+
+Sucursal Virtual Personas (SVP)
+
+Optimización del flujo de venta digital dentro de la nueva SVP (SVP 1.5). Se busca replicar la experiencia de éxito de Tapp, asegurando que las ofertas pre-aprobadas y las simulaciones sean consistentes entre canales, eliminando fricciones en la validación del afiliado.
+
+Migración FICO a OCI (Cloud)
+
+Traslado del motor de reglas desde Sonda (On-premise) hacia Oracle Cloud Infrastructure (OCI). Este proyecto incluye el upgrade a FICO v7, utilizando OKE (Oracle Kubernetes Engine) para la orquestación de contenedores y la herramienta Coloquia para el monitoreo avanzado vía JMX. Fecha compromiso de migración: 30/09/2025.
+
+Proyecto New Core
+
+Actualización del núcleo financiero migrando de Flexcube 11.3 a la versión Flexcube 14.7. Esta iniciativa incluye el decomiso de Siebel para centralizar la gestión comercial en Salesforce, simplificando radicalmente el mapa aplicativo. Fecha compromiso: 31/12/2027.
+
+4. Evolución de la Arquitectura Funcional y Técnica
+
+La nueva arquitectura debe priorizar la resiliencia y la independencia de componentes:
+
+1. Desacoplamiento de la "Araña": Eliminación de orquestaciones pesadas en el OSB. Se propone una integración directa entre Salesforce y Flexcube para simplificar el flujo de mensajes.
+2. Arquitecturas Hexagonales y Event-Driven: Implementación de modelos que desacoplen la lógica de negocio de los adaptadores de base de datos. El uso de arquitecturas orientadas a eventos permitirá gestionar la carga mediante colas, evitando el bloqueo de servicios ante picos de demanda.
+3. Modernización de MenuAndes: Separación definitiva entre el aplicativo (Oracle Forms) y la Base de Datos Corporativa. Se busca que los servicios de crédito consulten directamente el repositorio de datos sin pasar por la lógica legada del forms.
+4. Estrategia de APIs y Gateway: Reemplazo del actual Gateway (DMPS) por una capa de APIs centralizada que evite transformaciones innecesarias de mensajes y garantice la validación estricta de esquemas de datos (evitando valores "dummy").
+
+5. Acciones de Rápida Implementación (ARIs) y Continuidad Operacional
+
+Para estabilizar la operación mientras se ejecutan los proyectos de fondo, se han definido las siguientes medidas de remediación inmediata:
+
+ARI	Problema que Mitiga	Estado / Acción Técnica
+Tuning de la JVM	Latencias por Garbage Collection (Stop-the-world).	Ajuste de parámetros XMX/XMS y monitoreo específico de espacios Eden, S0 y S1 para optimizar la recolección de objetos.
+Gestión de Colas (Kafka/Cassandra)	Cuellos de botella en el flujo de FICO.	Monitoreo activo de la profundidad de colas en Kafka para detectar encolamientos preventivamente durante campañas push.
+Observabilidad Avanzada	Detección tardía de causa raíz.	Centralización de logs en Elasticsearch e implementación de Watson AIOps (basado en el éxito en Banco de Chile) para reducir el análisis de incidentes de horas a minutos.
+Saneamiento de Datos (DMPS)	Errores silenciosos de inserción en BD.	Corrección de la lógica de transformación en el Gateway para manejar valores nulos reales y evitar tipos de datos incompatibles en el backend.
+Tuning de Balanceadores (F5)	Cortes de conexión (Timeouts).	Alineación de los tiempos de desconexión en balanceadores con los tiempos de respuesta reales de las aplicaciones para evitar cierres prematuros de sesión.
+
+6. Hoja de Ruta de Modernización Tecnológica (Roadmap)
+
+Basado en el análisis de obsolescencia y el plan "TIME TOBE", se define la siguiente cronología de acciones:
+
+* Q3 2025 (Hito Crítico): Finalización de la migración de FICO Cloud (OCI) y actualización de componentes de Sucursal Virtual (SVP).
+* Noviembre 2025: Cierre de la migración de Mambú (Big Bang completado).
+* Q3 2026: Retiro programado de SOA PF (OSB) y migración de módulos de Crédito Social hacia el nuevo stack.
+* Diciembre 2027: Implementación completa del New Core (Flexcube 14.7) y decomiso final de Siebel.
+* Categorización Estratégica:
+  * Invertir: FICO Cloud (v7), Salesforce, Microservicios en GCP/GKE.
+  * Migrar: Flexcube 11 a 14.7, Siebel a Salesforce.
+  * Eliminar: Cupo Controlado (MenuAndes), Mambú, SOA PF.
+  * Tolerar: Módulo de Crédito Hipotecario en MenuAndes (vigente hasta la extinción de la deuda en 2049).
+
+7. Gobernanza y Gestión de Datos a Futuro
+
+Para asegurar que las mejoras no se diluyan en el tiempo, se establece un marco de gobernanza basado en estándares COBIT y la actualización permanente de la CMDB.
+
+La sostenibilidad del ecosistema dependerá de:
+
+* Mapeo de Arquitectura de Datos: Identificación clara de fuentes de verdad para evitar la duplicación de tecnología y esfuerzos, lo que se traduce en un Ahorro Empresarial directo al reutilizar servicios en nuevos proyectos.
+* Indicadores de Éxito (KPIs):
+  * Reducción del Time to Market en productos financieros.
+  * Disminución de incidentes P1 relacionados con latencia de servicios LAI.
+  * Eficiencia operacional mediante la automatización del flujo de riesgo.
+* Gobernanza de APIs: Centralización del catálogo de servicios para garantizar que toda nueva funcionalidad respete los principios de desacoplamiento y seguridad definidos por la arquitectura estratégica.
