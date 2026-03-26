@@ -6,27 +6,27 @@
 <title>Pilar Financiero Digital — Caja Los Andes</title>
 <style>
   :root {
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --bg3: #21262d;
-    --border: #30363d;
-    --text: #e6edf3;
-    --muted: #8b949e;
-    --blue: #388bfd;
-    --blue-dim: #1f3a5f;
-    --green: #3fb950;
-    --green-dim: #1a3a28;
-    --yellow: #d29922;
-    --yellow-dim: #3a2d10;
-    --red: #f85149;
-    --red-dim: #3a1010;
-    --purple: #bc8cff;
-    --purple-dim: #2d1f4a;
-    --orange: #f0883e;
-    --orange-dim: #3a2010;
-    --teal: #39d353;
-    --cyan: #56d4dd;
-    --cyan-dim: #0f2d33;
+    --bg: #f6f8fa;
+    --bg2: #ffffff;
+    --bg3: #eaeef2;
+    --border: #d0d7de;
+    --text: #1f2328;
+    --muted: #656d76;
+    --blue: #0969da;
+    --blue-dim: #dbeafe;
+    --green: #1a7f37;
+    --green-dim: #dcfce7;
+    --yellow: #9a6700;
+    --yellow-dim: #fef9c3;
+    --red: #cf222e;
+    --red-dim: #fee2e2;
+    --purple: #7c3aed;
+    --purple-dim: #ede9fe;
+    --orange: #c05621;
+    --orange-dim: #ffedd5;
+    --teal: #1a7f37;
+    --cyan: #0e7490;
+    --cyan-dim: #cffafe;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,7 +42,7 @@
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(13,17,23,0.95);
+    background: rgba(246,248,250,0.97);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(8px);
     display: flex; align-items: center; gap: 4px;
@@ -85,7 +85,7 @@
   .badge-orange { background: var(--orange-dim); color: var(--orange); }
   .badge-cyan   { background: var(--cyan-dim);   color: var(--cyan);   }
   .badge-orange { background: var(--orange-dim); color: var(--orange); }
-  .alert-orange { background: var(--orange-dim); border: 1px solid rgba(240,136,62,.3); color: #f0a060; }
+  .alert-orange { background: var(--orange-dim); border: 1px solid rgba(192,86,33,.25); color: #7c2d12; }
 
   /* ── CARDS ── */
   .cards { display: grid; gap: 16px; }
@@ -132,7 +132,7 @@
   }
   .node:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+    box-shadow: 0 4px 16px rgba(0,0,0,.1);
   }
   .node-name { font-size: 13px; font-weight: 600; }
   .node-tech { font-size: 11px; color: var(--muted); }
@@ -335,10 +335,10 @@
     padding: 12px 16px; border-radius: 8px; font-size: 13px;
     margin-bottom: 16px; display: flex; align-items: flex-start; gap: 10px;
   }
-  .alert-red    { background: var(--red-dim);    border: 1px solid rgba(248,81,73,.3);  color: #f98080; }
-  .alert-yellow { background: var(--yellow-dim); border: 1px solid rgba(210,153,34,.3); color: #d4a84b; }
-  .alert-green  { background: var(--green-dim);  border: 1px solid rgba(63,185,80,.3);  color: #5cb85c; }
-  .alert-blue   { background: var(--blue-dim);   border: 1px solid rgba(56,139,253,.3); color: #6db3fa; }
+  .alert-red    { background: var(--red-dim);    border: 1px solid rgba(207,34,46,.25);  color: #9b1c1c; }
+  .alert-yellow { background: var(--yellow-dim); border: 1px solid rgba(154,103,0,.25);  color: #7d5a00; }
+  .alert-green  { background: var(--green-dim);  border: 1px solid rgba(26,127,55,.25);  color: #14532d; }
+  .alert-blue   { background: var(--blue-dim);   border: 1px solid rgba(9,105,218,.25);  color: #1e40af; }
 
   /* ── SUB-TABS ── */
   .subtab-bar {
@@ -1005,16 +1005,16 @@
       <defs>
         <!-- arrow markers -->
         <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="#484f58"/>
+          <path d="M0,0 L0,6 L8,3 z" fill="#8c959f"/>
         </marker>
         <marker id="arr-red" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="#f85149"/>
+          <path d="M0,0 L0,6 L8,3 z" fill="#cf222e"/>
         </marker>
         <marker id="arr-yellow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="#d29922"/>
+          <path d="M0,0 L0,6 L8,3 z" fill="#9a6700"/>
         </marker>
         <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="#f0883e"/>
+          <path d="M0,0 L0,6 L8,3 z" fill="#c05621"/>
         </marker>
         <!-- glow filter for problem zones -->
         <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -1025,223 +1025,223 @@
 
       <!-- ─ Background panels ─ -->
       <!-- Phase 1 bg -->
-      <rect x="8" y="10" width="200" height="590" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <text x="108" y="30" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="700" letter-spacing="1">FASE 1 · PREEVALUACIÓN</text>
+      <rect x="8" y="10" width="200" height="590" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+      <text x="108" y="30" text-anchor="middle" fill="#656d76" font-size="10" font-weight="700" letter-spacing="1">FASE 1 · PREEVALUACIÓN</text>
 
       <!-- Phase 2 bg -->
-      <rect x="218" y="10" width="150" height="590" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <text x="293" y="30" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="700" letter-spacing="1">FASE 2 · ARAÑA</text>
+      <rect x="218" y="10" width="150" height="590" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+      <text x="293" y="30" text-anchor="middle" fill="#656d76" font-size="10" font-weight="700" letter-spacing="1">FASE 2 · ARAÑA</text>
 
       <!-- Phase 3 bg (triple sim) — red tint -->
-      <rect x="378" y="10" width="160" height="590" rx="10" fill="rgba(248,81,73,0.05)" stroke="rgba(248,81,73,0.3)" stroke-width="1.5"/>
-      <text x="458" y="30" text-anchor="middle" fill="#f85149" font-size="10" font-weight="700" letter-spacing="1">FASE 3 · TRIPLE SIM 🔴</text>
+      <rect x="378" y="10" width="160" height="590" rx="10" fill="rgba(207,34,46,0.05)" stroke="rgba(207,34,46,0.35)" stroke-width="1.5"/>
+      <text x="458" y="30" text-anchor="middle" fill="#cf222e" font-size="10" font-weight="700" letter-spacing="1">FASE 3 · TRIPLE SIM 🔴</text>
 
       <!-- Phase 4 bg (double invoke) — red tint -->
-      <rect x="548" y="10" width="200" height="590" rx="10" fill="rgba(248,81,73,0.06)" stroke="rgba(248,81,73,0.35)" stroke-width="1.5"/>
-      <text x="648" y="30" text-anchor="middle" fill="#f85149" font-size="10" font-weight="700" letter-spacing="1">FASE 4 · DOBLE INV. 🔴</text>
+      <rect x="548" y="10" width="200" height="590" rx="10" fill="rgba(207,34,46,0.05)" stroke="rgba(207,34,46,0.4)" stroke-width="1.5"/>
+      <text x="648" y="30" text-anchor="middle" fill="#cf222e" font-size="10" font-weight="700" letter-spacing="1">FASE 4 · DOBLE INV. 🔴</text>
 
       <!-- Phase 5 bg -->
-      <rect x="758" y="10" width="215" height="590" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <text x="865" y="30" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="700" letter-spacing="1">FASE 5 · DESEMBOLSO</text>
+      <rect x="758" y="10" width="215" height="590" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+      <text x="865" y="30" text-anchor="middle" fill="#656d76" font-size="10" font-weight="700" letter-spacing="1">FASE 5 · DESEMBOLSO</text>
 
       <!-- ─── ROW 1: User + Auth ─── -->
       <!-- TAPP -->
-      <rect x="22" y="48" width="80" height="40" rx="7" fill="#1f3a5f" stroke="#388bfd" stroke-width="1.5"/>
-      <text x="62" y="63" text-anchor="middle" fill="#388bfd" font-size="11" font-weight="700">TAPP</text>
-      <text x="62" y="78" text-anchor="middle" fill="#8b949e" font-size="9">React Native</text>
+      <rect x="22" y="48" width="80" height="40" rx="7" fill="#dbeafe" stroke="#0969da" stroke-width="1.5"/>
+      <text x="62" y="63" text-anchor="middle" fill="#0969da" font-size="11" font-weight="700">TAPP</text>
+      <text x="62" y="78" text-anchor="middle" fill="#656d76" font-size="9">React Native</text>
 
       <!-- Keycloak -->
-      <rect x="115" y="48" width="80" height="40" rx="7" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="155" y="63" text-anchor="middle" fill="#e6edf3" font-size="11" font-weight="600">Keycloak</text>
-      <text x="155" y="78" text-anchor="middle" fill="#8b949e" font-size="9">+ Active IT</text>
+      <rect x="115" y="48" width="80" height="40" rx="7" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="155" y="63" text-anchor="middle" fill="#1f2328" font-size="11" font-weight="600">Keycloak</text>
+      <text x="155" y="78" text-anchor="middle" fill="#656d76" font-size="9">+ Active IT</text>
 
       <!-- arrow TAPP → Keycloak -->
-      <line x1="102" y1="68" x2="115" y2="68" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <line x1="102" y1="68" x2="115" y2="68" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- ─── ROW 2: Redis Cache check ─── -->
-      <rect x="22" y="115" width="80" height="40" rx="7" fill="#3a2010" stroke="#f0883e" stroke-width="1.5"/>
-      <text x="62" y="130" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="700">Redis</text>
-      <text x="62" y="145" text-anchor="middle" fill="#8b949e" font-size="9">Cache check</text>
+      <rect x="22" y="115" width="80" height="40" rx="7" fill="#ffedd5" stroke="#c05621" stroke-width="1.5"/>
+      <text x="62" y="130" text-anchor="middle" fill="#c05621" font-size="11" font-weight="700">Redis</text>
+      <text x="62" y="145" text-anchor="middle" fill="#656d76" font-size="9">Cache check</text>
 
-      <rect x="115" y="115" width="80" height="40" rx="7" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="155" y="130" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">Base Aprobados</text>
-      <text x="155" y="145" text-anchor="middle" fill="#8b949e" font-size="9">ws_aprobados WLS</text>
+      <rect x="115" y="115" width="80" height="40" rx="7" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="155" y="130" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">Base Aprobados</text>
+      <text x="155" y="145" text-anchor="middle" fill="#656d76" font-size="9">ws_aprobados WLS</text>
 
       <!-- arrows row 2 -->
-      <line x1="62" y1="155" x2="62" y2="115" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
-      <line x1="155" y1="155" x2="155" y2="115" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
-      <text x="85" y="110" text-anchor="middle" fill="#8b949e" font-size="9">↓ si no hay cache</text>
+      <line x1="62" y1="155" x2="62" y2="115" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <line x1="155" y1="155" x2="155" y2="115" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <text x="85" y="110" text-anchor="middle" fill="#656d76" font-size="9">↓ si no hay cache</text>
 
       <!-- ─── FICO DMPS — center element ─── -->
-      <rect x="22" y="185" width="173" height="50" rx="8" fill="#1f3a5f" stroke="#388bfd" stroke-width="2"/>
-      <text x="108" y="204" text-anchor="middle" fill="#388bfd" font-size="12" font-weight="700">FICO DMPS</text>
-      <text x="108" y="220" text-anchor="middle" fill="#8b949e" font-size="9">"La Araña" — Orquestador</text>
-      <text x="108" y="232" text-anchor="middle" fill="#8b949e" font-size="8">Blaze Advisor v4 (Nashorn ⚠️)</text>
+      <rect x="22" y="185" width="173" height="50" rx="8" fill="#dbeafe" stroke="#0969da" stroke-width="2"/>
+      <text x="108" y="204" text-anchor="middle" fill="#0969da" font-size="12" font-weight="700">FICO DMPS</text>
+      <text x="108" y="220" text-anchor="middle" fill="#656d76" font-size="9">"La Araña" — Orquestador</text>
+      <text x="108" y="232" text-anchor="middle" fill="#656d76" font-size="8">Blaze Advisor v4 (Nashorn ⚠️)</text>
 
       <!-- DMPS arrow down from cache -->
-      <line x1="62" y1="175" x2="62" y2="185" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <line x1="62" y1="175" x2="62" y2="185" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- ─── THE SPIDER: FICO → data sources (Phase 2) ─── -->
       <!-- OSB box -->
-      <rect x="228" y="160" width="125" height="36" rx="6" fill="#3a2d10" stroke="#d29922" stroke-width="1.5"/>
-      <text x="290" y="178" text-anchor="middle" fill="#d29922" font-size="11" font-weight="700">OSB</text>
-      <text x="290" y="191" text-anchor="middle" fill="#8b949e" font-size="8">Oracle Service Bus 11g</text>
+      <rect x="228" y="160" width="125" height="36" rx="6" fill="#fef9c3" stroke="#9a6700" stroke-width="1.5"/>
+      <text x="290" y="178" text-anchor="middle" fill="#9a6700" font-size="11" font-weight="700">OSB</text>
+      <text x="290" y="191" text-anchor="middle" fill="#656d76" font-size="8">Oracle Service Bus 11g</text>
 
       <!-- DMPS → OSB -->
-      <line x1="195" y1="210" x2="228" y2="178" stroke="#d29922" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-yellow)"/>
+      <line x1="195" y1="210" x2="228" y2="178" stroke="#9a6700" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-yellow)"/>
 
       <!-- Data sources in Phase 2 -->
       <!-- FlexCube -->
-      <rect x="228" y="215" width="125" height="34" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="290" y="232" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">FlexCube</text>
-      <text x="290" y="244" text-anchor="middle" fill="#8b949e" font-size="8">EAI-005 · 18,350 errores 🔴</text>
+      <rect x="228" y="215" width="125" height="34" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="290" y="232" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">FlexCube</text>
+      <text x="290" y="244" text-anchor="middle" fill="#656d76" font-size="8">EAI-005 · 18,350 errores 🔴</text>
 
       <!-- MenuAndes -->
-      <rect x="228" y="263" width="125" height="34" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="290" y="280" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">MenuAndes</text>
-      <text x="290" y="292" text-anchor="middle" fill="#8b949e" font-size="8">WebLogic Producers + OSB</text>
+      <rect x="228" y="263" width="125" height="34" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="290" y="280" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">MenuAndes</text>
+      <text x="290" y="292" text-anchor="middle" fill="#656d76" font-size="8">WebLogic Producers + OSB</text>
 
       <!-- Experian -->
-      <rect x="228" y="311" width="125" height="34" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="290" y="328" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">Experian/Equifax</text>
-      <text x="290" y="340" text-anchor="middle" fill="#8b949e" font-size="8">Buró externo · API + cache</text>
+      <rect x="228" y="311" width="125" height="34" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="290" y="328" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">Experian/Equifax</text>
+      <text x="290" y="340" text-anchor="middle" fill="#656d76" font-size="8">Buró externo · API + cache</text>
 
       <!-- BigQuery -->
-      <rect x="228" y="359" width="125" height="34" rx="6" fill="#3a2010" stroke="#f0883e" stroke-width="1.5"/>
-      <text x="290" y="376" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="600">BigQuery (GCP)</text>
-      <text x="290" y="388" text-anchor="middle" fill="#8b949e" font-size="8">~4,312 ms síncrono 🔴</text>
+      <rect x="228" y="359" width="125" height="34" rx="6" fill="#ffedd5" stroke="#c05621" stroke-width="1.5"/>
+      <text x="290" y="376" text-anchor="middle" fill="#c05621" font-size="10" font-weight="600">BigQuery (GCP)</text>
+      <text x="290" y="388" text-anchor="middle" fill="#656d76" font-size="8">~4,312 ms síncrono 🔴</text>
 
       <!-- Blaze Advisor -->
-      <rect x="228" y="407" width="125" height="34" rx="6" fill="#1f3a5f" stroke="#388bfd" stroke-width="1"/>
-      <text x="290" y="424" text-anchor="middle" fill="#388bfd" font-size="10" font-weight="600">Blaze Advisor v4</text>
-      <text x="290" y="436" text-anchor="middle" fill="#8b949e" font-size="8">Motor de reglas (Nashorn)</text>
+      <rect x="228" y="407" width="125" height="34" rx="6" fill="#dbeafe" stroke="#0969da" stroke-width="1"/>
+      <text x="290" y="424" text-anchor="middle" fill="#0969da" font-size="10" font-weight="600">Blaze Advisor v4</text>
+      <text x="290" y="436" text-anchor="middle" fill="#656d76" font-size="8">Motor de reglas (Nashorn)</text>
 
       <!-- Eval Scoring DB -->
-      <rect x="228" y="455" width="125" height="34" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="290" y="472" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">Eval Scoring DB</text>
-      <text x="290" y="484" text-anchor="middle" fill="#8b949e" font-size="8">1ª escritura aquí</text>
+      <rect x="228" y="455" width="125" height="34" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="290" y="472" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">Eval Scoring DB</text>
+      <text x="290" y="484" text-anchor="middle" fill="#656d76" font-size="8">1ª escritura aquí</text>
 
       <!-- DMPS → data sources arrows -->
-      <line x1="195" y1="215" x2="228" y2="232" stroke="#484f58" stroke-width="1.2" marker-end="url(#arr-gray)"/>
-      <line x1="195" y1="220" x2="228" y2="280" stroke="#484f58" stroke-width="1.2" marker-end="url(#arr-gray)"/>
-      <line x1="195" y1="220" x2="228" y2="328" stroke="#484f58" stroke-width="1.2" marker-end="url(#arr-gray)"/>
-      <line x1="195" y1="225" x2="228" y2="376" stroke="#f0883e" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-      <line x1="195" y1="225" x2="228" y2="424" stroke="#484f58" stroke-width="1.2" marker-end="url(#arr-gray)"/>
-      <line x1="195" y1="225" x2="228" y2="472" stroke="#484f58" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+      <line x1="195" y1="215" x2="228" y2="232" stroke="#8c959f" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+      <line x1="195" y1="220" x2="228" y2="280" stroke="#8c959f" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+      <line x1="195" y1="220" x2="228" y2="328" stroke="#8c959f" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+      <line x1="195" y1="225" x2="228" y2="376" stroke="#c05621" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+      <line x1="195" y1="225" x2="228" y2="424" stroke="#8c959f" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+      <line x1="195" y1="225" x2="228" y2="472" stroke="#8c959f" stroke-width="1.2" marker-end="url(#arr-gray)"/>
 
       <!-- ─── FASE 3: TRIPLE SIMULATION ─── -->
       <!-- Problem badge -->
-      <rect x="386" y="155" width="144" height="22" rx="5" fill="rgba(248,81,73,0.2)" stroke="rgba(248,81,73,0.5)" stroke-width="1"/>
-      <text x="458" y="170" text-anchor="middle" fill="#f85149" font-size="9" font-weight="700">⚠ Triple Simulación</text>
+      <rect x="386" y="155" width="144" height="22" rx="5" fill="rgba(248,81,73,0.2)" stroke="rgba(207,34,46,0.5)" stroke-width="1"/>
+      <text x="458" y="170" text-anchor="middle" fill="#cf222e" font-size="9" font-weight="700">⚠ Triple Simulación</text>
 
-      <rect x="386" y="188" width="144" height="40" rx="7" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="458" y="205" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">FlexCube Simulator</text>
-      <text x="458" y="218" text-anchor="middle" fill="#8b949e" font-size="9">3 llamadas × cuotas</text>
+      <rect x="386" y="188" width="144" height="40" rx="7" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="458" y="205" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">FlexCube Simulator</text>
+      <text x="458" y="218" text-anchor="middle" fill="#656d76" font-size="9">3 llamadas × cuotas</text>
 
       <!-- 3 arrows from TAPP→ FlexCube sim (representing 3 calls) -->
-      <path d="M 108 185 Q 280 140 386 208" stroke="#f85149" stroke-width="1.3" fill="none" marker-end="url(#arr-red)"/>
-      <path d="M 108 185 Q 280 150 386 208" stroke="#f85149" stroke-width="1.3" fill="none" stroke-dasharray="3 2" marker-end="url(#arr-red)"/>
-      <path d="M 108 185 Q 280 160 386 208" stroke="#f85149" stroke-width="1.3" fill="none" stroke-dasharray="1 3" marker-end="url(#arr-red)"/>
-      <text x="270" y="138" fill="#f85149" font-size="9" text-anchor="middle">×3 llamadas</text>
+      <path d="M 108 185 Q 280 140 386 208" stroke="#cf222e" stroke-width="1.3" fill="none" marker-end="url(#arr-red)"/>
+      <path d="M 108 185 Q 280 150 386 208" stroke="#cf222e" stroke-width="1.3" fill="none" stroke-dasharray="3 2" marker-end="url(#arr-red)"/>
+      <path d="M 108 185 Q 280 160 386 208" stroke="#cf222e" stroke-width="1.3" fill="none" stroke-dasharray="1 3" marker-end="url(#arr-red)"/>
+      <text x="270" y="138" fill="#cf222e" font-size="9" text-anchor="middle">×3 llamadas</text>
 
       <!-- Options shown to user -->
-      <rect x="386" y="248" width="144" height="34" rx="6" fill="#1a3a28" stroke="#3fb950" stroke-width="1"/>
-      <text x="458" y="265" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="600">Opciones al usuario</text>
-      <text x="458" y="278" text-anchor="middle" fill="#8b949e" font-size="8">24 / 36 / 48 cuotas</text>
-      <line x1="458" y1="228" x2="458" y2="248" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <rect x="386" y="248" width="144" height="34" rx="6" fill="#dcfce7" stroke="#1a7f37" stroke-width="1"/>
+      <text x="458" y="265" text-anchor="middle" fill="#1a7f37" font-size="10" font-weight="600">Opciones al usuario</text>
+      <text x="458" y="278" text-anchor="middle" fill="#656d76" font-size="8">24 / 36 / 48 cuotas</text>
+      <line x1="458" y1="228" x2="458" y2="248" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- ─── FASE 4: DOBLE INVOCACIÓN ─── -->
       <!-- User accepts -->
-      <rect x="556" y="188" width="90" height="36" rx="7" fill="#1f3a5f" stroke="#388bfd" stroke-width="1.5"/>
-      <text x="601" y="204" text-anchor="middle" fill="#388bfd" font-size="10" font-weight="600">Afiliado</text>
-      <text x="601" y="217" text-anchor="middle" fill="#8b949e" font-size="9">acepta cuotas</text>
+      <rect x="556" y="188" width="90" height="36" rx="7" fill="#dbeafe" stroke="#0969da" stroke-width="1.5"/>
+      <text x="601" y="204" text-anchor="middle" fill="#0969da" font-size="10" font-weight="600">Afiliado</text>
+      <text x="601" y="217" text-anchor="middle" fill="#656d76" font-size="9">acepta cuotas</text>
 
       <!-- Arrow from options → afiliado -->
-      <line x1="530" y1="265" x2="556" y2="210" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <line x1="530" y1="265" x2="556" y2="210" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- Service 147 — RED problem box -->
-      <rect x="556" y="246" width="130" height="44" rx="7" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="2" filter="url(#glow-red)"/>
-      <text x="621" y="263" text-anchor="middle" fill="#f85149" font-size="11" font-weight="700">Servicio 147</text>
-      <text x="621" y="276" text-anchor="middle" fill="#8b949e" font-size="8">Siebel Workflow Manager</text>
-      <text x="621" y="287" text-anchor="middle" fill="#f85149" font-size="8">Anti-patrón · Inmodificable</text>
+      <rect x="556" y="246" width="130" height="44" rx="7" fill="rgba(207,34,46,0.08)" stroke="#cf222e" stroke-width="2" filter="url(#glow-red)"/>
+      <text x="621" y="263" text-anchor="middle" fill="#cf222e" font-size="11" font-weight="700">Servicio 147</text>
+      <text x="621" y="276" text-anchor="middle" fill="#656d76" font-size="8">Siebel Workflow Manager</text>
+      <text x="621" y="287" text-anchor="middle" fill="#cf222e" font-size="8">Anti-patrón · Inmodificable</text>
 
-      <line x1="601" y1="224" x2="601" y2="246" stroke="#f85149" stroke-width="1.5" marker-end="url(#arr-red)"/>
+      <line x1="601" y1="224" x2="601" y2="246" stroke="#cf222e" stroke-width="1.5" marker-end="url(#arr-red)"/>
 
       <!-- Service 147 → re-calls FICO (double invocation arrow) -->
-      <path d="M 556 268 Q 440 490 228 470" stroke="#f85149" stroke-width="2" fill="none" stroke-dasharray="5 3" marker-end="url(#arr-red)"/>
-      <text x="390" y="508" fill="#f85149" font-size="9" font-weight="700" text-anchor="middle">Re-evalúa todo desde cero (doble invocación)</text>
+      <path d="M 556 268 Q 440 490 228 470" stroke="#cf222e" stroke-width="2" fill="none" stroke-dasharray="5 3" marker-end="url(#arr-red)"/>
+      <text x="390" y="508" fill="#cf222e" font-size="9" font-weight="700" text-anchor="middle">Re-evalúa todo desde cero (doble invocación)</text>
 
       <!-- 2nd Eval Scoring DB write label -->
-      <text x="265" y="500" fill="#f85149" font-size="8" text-anchor="middle">2ª escritura</text>
+      <text x="265" y="500" fill="#cf222e" font-size="8" text-anchor="middle">2ª escritura</text>
 
       <!-- ─── Siebel → FlexCube credit creation ─── -->
-      <rect x="556" y="314" width="130" height="36" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="621" y="331" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">Siebel CRM</text>
-      <text x="621" y="344" text-anchor="middle" fill="#8b949e" font-size="8">Crea crédito inactivo</text>
-      <line x1="621" y1="290" x2="621" y2="314" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <rect x="556" y="314" width="130" height="36" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="621" y="331" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">Siebel CRM</text>
+      <text x="621" y="344" text-anchor="middle" fill="#656d76" font-size="8">Crea crédito inactivo</text>
+      <line x1="621" y1="290" x2="621" y2="314" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- ─── FASE 5: DESEMBOLSO ─── -->
       <!-- BI Publisher -->
-      <rect x="766" y="50" width="130" height="36" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="831" y="67" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">BI Publisher</text>
-      <text x="831" y="80" text-anchor="middle" fill="#8b949e" font-size="8">Genera PDFs (mutuo, pagaré)</text>
+      <rect x="766" y="50" width="130" height="36" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="831" y="67" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">BI Publisher</text>
+      <text x="831" y="80" text-anchor="middle" fill="#656d76" font-size="8">Genera PDFs (mutuo, pagaré)</text>
 
       <!-- WebCenter -->
-      <rect x="766" y="105" width="130" height="36" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="831" y="122" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">WebCenter Content</text>
-      <text x="831" y="135" text-anchor="middle" fill="#8b949e" font-size="8">Docs (~20TB)</text>
-      <line x1="831" y1="86" x2="831" y2="105" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <rect x="766" y="105" width="130" height="36" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="831" y="122" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">WebCenter Content</text>
+      <text x="831" y="135" text-anchor="middle" fill="#656d76" font-size="8">Docs (~20TB)</text>
+      <line x1="831" y1="86" x2="831" y2="105" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- e-Sign -->
-      <rect x="766" y="160" width="130" height="36" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="831" y="177" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">e-Sign Chile</text>
-      <text x="831" y="190" text-anchor="middle" fill="#8b949e" font-size="8">Firma electrónica avanzada</text>
-      <line x1="831" y1="141" x2="831" y2="160" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <rect x="766" y="160" width="130" height="36" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="831" y="177" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">e-Sign Chile</text>
+      <text x="831" y="190" text-anchor="middle" fill="#656d76" font-size="8">Firma electrónica avanzada</text>
+      <line x1="831" y1="141" x2="831" y2="160" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- FlexCube activation -->
-      <rect x="766" y="215" width="130" height="36" rx="6" fill="#1f3a5f" stroke="#388bfd" stroke-width="1.5"/>
-      <text x="831" y="232" text-anchor="middle" fill="#388bfd" font-size="10" font-weight="600">FlexCube</text>
-      <text x="831" y="245" text-anchor="middle" fill="#8b949e" font-size="8">Activa crédito</text>
-      <line x1="831" y1="196" x2="831" y2="215" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <rect x="766" y="215" width="130" height="36" rx="6" fill="#dbeafe" stroke="#0969da" stroke-width="1.5"/>
+      <text x="831" y="232" text-anchor="middle" fill="#0969da" font-size="10" font-weight="600">FlexCube</text>
+      <text x="831" y="245" text-anchor="middle" fill="#656d76" font-size="8">Activa crédito</text>
+      <line x1="831" y1="196" x2="831" y2="215" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- Toku -->
-      <rect x="766" y="270" width="130" height="36" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="831" y="287" text-anchor="middle" fill="#e6edf3" font-size="10" font-weight="600">Toku / Redbanc</text>
-      <text x="831" y="300" text-anchor="middle" fill="#8b949e" font-size="8">Desembolso</text>
-      <line x1="831" y1="251" x2="831" y2="270" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+      <rect x="766" y="270" width="130" height="36" rx="6" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="831" y="287" text-anchor="middle" fill="#1f2328" font-size="10" font-weight="600">Toku / Redbanc</text>
+      <text x="831" y="300" text-anchor="middle" fill="#656d76" font-size="8">Desembolso</text>
+      <line x1="831" y1="251" x2="831" y2="270" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arr-gray)"/>
 
       <!-- Base Aprobados FAIL -->
-      <rect x="766" y="325" width="130" height="44" rx="6" fill="rgba(248,81,73,0.1)" stroke="rgba(248,81,73,0.4)" stroke-width="1.5"/>
-      <text x="831" y="342" text-anchor="middle" fill="#f85149" font-size="10" font-weight="600">Base Aprobados</text>
-      <text x="831" y="355" text-anchor="middle" fill="#8b949e" font-size="8">Baja en TAPP falla 🔴</text>
-      <text x="831" y="366" text-anchor="middle" fill="#f85149" font-size="8">Depende batch nocturno</text>
-      <line x1="831" y1="306" x2="831" y2="325" stroke="#f85149" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-red)"/>
+      <rect x="766" y="325" width="130" height="44" rx="6" fill="rgba(207,34,46,0.06)" stroke="rgba(207,34,46,0.45)" stroke-width="1.5"/>
+      <text x="831" y="342" text-anchor="middle" fill="#cf222e" font-size="10" font-weight="600">Base Aprobados</text>
+      <text x="831" y="355" text-anchor="middle" fill="#656d76" font-size="8">Baja en TAPP falla 🔴</text>
+      <text x="831" y="366" text-anchor="middle" fill="#cf222e" font-size="8">Depende batch nocturno</text>
+      <line x1="831" y1="306" x2="831" y2="325" stroke="#cf222e" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-red)"/>
 
       <!-- Siebel → Phase 5 arrow -->
-      <line x1="686" y1="332" x2="766" y2="68" stroke="#484f58" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+      <line x1="686" y1="332" x2="766" y2="68" stroke="#8c959f" stroke-width="1.2" marker-end="url(#arr-gray)"/>
 
       <!-- ─── LEGEND ─── -->
-      <rect x="22" y="535" width="940" height="72" rx="8" fill="#21262d" stroke="#30363d" stroke-width="1"/>
-      <text x="42" y="555" fill="#8b949e" font-size="10" font-weight="700">LEYENDA</text>
+      <rect x="22" y="535" width="940" height="72" rx="8" fill="#f0f2f5" stroke="#d0d7de" stroke-width="1"/>
+      <text x="42" y="555" fill="#656d76" font-size="10" font-weight="700">LEYENDA</text>
       <!-- gray line -->
-      <line x1="42" y1="572" x2="72" y2="572" stroke="#484f58" stroke-width="2"/>
-      <text x="78" y="576" fill="#8b949e" font-size="10">Flujo normal</text>
+      <line x1="42" y1="572" x2="72" y2="572" stroke="#8c959f" stroke-width="2"/>
+      <text x="78" y="576" fill="#656d76" font-size="10">Flujo normal</text>
       <!-- red line -->
-      <line x1="160" y1="572" x2="190" y2="572" stroke="#f85149" stroke-width="2"/>
-      <text x="196" y="576" fill="#f85149" font-size="10">Anti-patrón / Problema crítico</text>
+      <line x1="160" y1="572" x2="190" y2="572" stroke="#cf222e" stroke-width="2"/>
+      <text x="196" y="576" fill="#cf222e" font-size="10">Anti-patrón / Problema crítico</text>
       <!-- orange line -->
-      <line x1="370" y1="572" x2="400" y2="572" stroke="#f0883e" stroke-width="2"/>
-      <text x="406" y="576" fill="#f0883e" font-size="10">Cuello de botella (~4.3s)</text>
+      <line x1="370" y1="572" x2="400" y2="572" stroke="#c05621" stroke-width="2"/>
+      <text x="406" y="576" fill="#c05621" font-size="10">Cuello de botella (~4.3s)</text>
       <!-- yellow dashed -->
-      <line x1="560" y1="572" x2="590" y2="572" stroke="#d29922" stroke-width="2" stroke-dasharray="4 2"/>
-      <text x="596" y="576" fill="#d29922" font-size="10">OSB (sin circuit breakers)</text>
+      <line x1="560" y1="572" x2="590" y2="572" stroke="#9a6700" stroke-width="2" stroke-dasharray="4 2"/>
+      <text x="596" y="576" fill="#9a6700" font-size="10">OSB (sin circuit breakers)</text>
       <!-- red dashed -->
-      <line x1="750" y1="572" x2="780" y2="572" stroke="#f85149" stroke-width="2" stroke-dasharray="5 3"/>
-      <text x="786" y="576" fill="#f85149" font-size="10">Re-evaluación (doble invocación)</text>
+      <line x1="750" y1="572" x2="780" y2="572" stroke="#cf222e" stroke-width="2" stroke-dasharray="5 3"/>
+      <text x="786" y="576" fill="#cf222e" font-size="10">Re-evaluación (doble invocación)</text>
 
       <!-- badge labels for problem zones -->
-      <rect x="386" y="490" width="144" height="22" rx="5" fill="rgba(248,81,73,0.15)" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
-      <text x="458" y="505" text-anchor="middle" fill="#f85149" font-size="8" font-weight="600">Sin omnicanalidad · 1 solo canal</text>
+      <rect x="386" y="490" width="144" height="22" rx="5" fill="rgba(207,34,46,0.08)" stroke="rgba(207,34,46,0.35)" stroke-width="1"/>
+      <text x="458" y="505" text-anchor="middle" fill="#cf222e" font-size="8" font-weight="600">Sin omnicanalidad · 1 solo canal</text>
 
     </svg>
     </div><!-- /overflow -->
@@ -1550,8 +1550,8 @@
     <thead>
       <tr style="background:var(--bg3);border-bottom:2px solid var(--border);">
         <th style="padding:10px 14px;text-align:left;color:var(--muted);font-weight:700;font-size:11px;letter-spacing:.5px;width:22%;">CRITERIO</th>
-        <th style="padding:10px 14px;text-align:center;color:#bc8cff;font-weight:700;font-size:11px;letter-spacing:.5px;width:39%;">MODELO 1 — Microservicios + Temporal / Kong</th>
-        <th style="padding:10px 14px;text-align:center;color:#f0883e;font-weight:700;font-size:11px;letter-spacing:.5px;width:39%;">MODELO 2 — Apache Camel + Redis</th>
+        <th style="padding:10px 14px;text-align:center;color:#7c3aed;font-weight:700;font-size:11px;letter-spacing:.5px;width:39%;">MODELO 1 — Microservicios + Temporal / Kong</th>
+        <th style="padding:10px 14px;text-align:center;color:#c05621;font-weight:700;font-size:11px;letter-spacing:.5px;width:39%;">MODELO 2 — Apache Camel + Redis</th>
       </tr>
     </thead>
     <tbody id="compare-table-body">
@@ -1578,192 +1578,192 @@
   <svg viewBox="0 0 940 500" style="width:100%;min-width:780px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <marker id="ca-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#484f58"/>
+        <path d="M0,0 L0,6 L8,3 z" fill="#8c959f"/>
       </marker>
       <marker id="ca-arr-orange" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#f0883e"/>
+        <path d="M0,0 L0,6 L8,3 z" fill="#c05621"/>
       </marker>
       <marker id="ca-arr-green" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#3fb950"/>
+        <path d="M0,0 L0,6 L8,3 z" fill="#1a7f37"/>
       </marker>
       <marker id="ca-arr-red" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#f85149"/>
+        <path d="M0,0 L0,6 L8,3 z" fill="#cf222e"/>
       </marker>
     </defs>
 
     <!-- Background: Input zone -->
-    <rect x="8" y="8" width="155" height="480" rx="10" fill="#161b22" stroke="#30363d"/>
-    <text x="85" y="26" text-anchor="middle" fill="#8b949e" font-size="9" font-weight="700" letter-spacing="1">CANALES</text>
+    <rect x="8" y="8" width="155" height="480" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="85" y="26" text-anchor="middle" fill="#656d76" font-size="9" font-weight="700" letter-spacing="1">CANALES</text>
 
     <!-- Background: Camel zone -->
-    <rect x="172" y="8" width="390" height="480" rx="10" fill="rgba(240,136,62,0.04)" stroke="rgba(240,136,62,0.3)" stroke-width="1.5"/>
-    <text x="367" y="26" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="700" letter-spacing="1">APACHE CAMEL — Credit Orchestrator (OKE)</text>
+    <rect x="172" y="8" width="390" height="480" rx="10" fill="rgba(192,86,33,0.04)" stroke="rgba(240,136,62,0.3)" stroke-width="1.5"/>
+    <text x="367" y="26" text-anchor="middle" fill="#c05621" font-size="9" font-weight="700" letter-spacing="1">APACHE CAMEL — Credit Orchestrator (OKE)</text>
 
     <!-- Background: Redis zone -->
     <rect x="572" y="8" width="170" height="480" rx="10" fill="rgba(248,81,73,0.04)" stroke="rgba(248,81,73,0.25)"/>
-    <text x="657" y="26" text-anchor="middle" fill="#f85149" font-size="9" font-weight="700" letter-spacing="1">REDIS STATE</text>
+    <text x="657" y="26" text-anchor="middle" fill="#cf222e" font-size="9" font-weight="700" letter-spacing="1">REDIS STATE</text>
 
     <!-- Background: Systems zone -->
-    <rect x="752" y="8" width="182" height="480" rx="10" fill="#161b22" stroke="#30363d"/>
-    <text x="843" y="26" text-anchor="middle" fill="#8b949e" font-size="9" font-weight="700" letter-spacing="1">SISTEMAS</text>
+    <rect x="752" y="8" width="182" height="480" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="843" y="26" text-anchor="middle" fill="#656d76" font-size="9" font-weight="700" letter-spacing="1">SISTEMAS</text>
 
     <!-- ── CHANNELS ── -->
-    <rect x="18" y="48" width="130" height="32" rx="6" fill="#1f3a5f" stroke="#388bfd" stroke-width="1.5"/>
-    <text x="83" y="64" text-anchor="middle" fill="#388bfd" font-size="11" font-weight="700">TAPP</text>
-    <text x="83" y="74" text-anchor="middle" fill="#8b949e" font-size="8">REST · BFF Go</text>
+    <rect x="18" y="48" width="130" height="32" rx="6" fill="#dbeafe" stroke="#0969da" stroke-width="1.5"/>
+    <text x="83" y="64" text-anchor="middle" fill="#0969da" font-size="11" font-weight="700">TAPP</text>
+    <text x="83" y="74" text-anchor="middle" fill="#656d76" font-size="8">REST · BFF Go</text>
 
-    <rect x="18" y="93" width="130" height="32" rx="6" fill="#1f3a5f" stroke="#388bfd" stroke-width="1"/>
-    <text x="83" y="109" text-anchor="middle" fill="#388bfd" font-size="11" font-weight="600">SVP 1.5</text>
-    <text x="83" y="119" text-anchor="middle" fill="#8b949e" font-size="8">REST · BFF NestJS</text>
+    <rect x="18" y="93" width="130" height="32" rx="6" fill="#dbeafe" stroke="#0969da" stroke-width="1"/>
+    <text x="83" y="109" text-anchor="middle" fill="#0969da" font-size="11" font-weight="600">SVP 1.5</text>
+    <text x="83" y="119" text-anchor="middle" fill="#656d76" font-size="8">REST · BFF NestJS</text>
 
-    <rect x="18" y="138" width="130" height="32" rx="6" fill="#21262d" stroke="#30363d"/>
-    <text x="83" y="154" text-anchor="middle" fill="#e6edf3" font-size="11" font-weight="600">Salesforce</text>
-    <text x="83" y="164" text-anchor="middle" fill="#8b949e" font-size="8">REST · MuleSoft</text>
+    <rect x="18" y="138" width="130" height="32" rx="6" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="83" y="154" text-anchor="middle" fill="#1f2328" font-size="11" font-weight="600">Salesforce</text>
+    <text x="83" y="164" text-anchor="middle" fill="#656d76" font-size="8">REST · MuleSoft</text>
 
     <!-- Kafka input -->
-    <rect x="18" y="195" width="130" height="32" rx="6" fill="#3a2010" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="83" y="211" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="700">Kafka</text>
-    <text x="83" y="221" text-anchor="middle" fill="#8b949e" font-size="8">credit.events topic</text>
+    <rect x="18" y="195" width="130" height="32" rx="6" fill="#ffedd5" stroke="#c05621" stroke-width="1.5"/>
+    <text x="83" y="211" text-anchor="middle" fill="#c05621" font-size="11" font-weight="700">Kafka</text>
+    <text x="83" y="221" text-anchor="middle" fill="#656d76" font-size="8">credit.events topic</text>
 
     <!-- ── CAMEL ROUTES ── -->
     <!-- Route 1: Evaluation -->
-    <rect x="184" y="40" width="170" height="44" rx="7" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="198" y="57" fill="#f0883e" font-size="9" font-weight="700">Route: evaluation</text>
-    <text x="198" y="70" fill="#8b949e" font-size="9">REST → Kong → FICO v7</text>
-    <text x="198" y="81" fill="#8b949e" font-size="8">Resilience4j CB · retry(3)</text>
+    <rect x="184" y="40" width="170" height="44" rx="7" fill="#f0f2f5" stroke="#c05621" stroke-width="1.5"/>
+    <text x="198" y="57" fill="#c05621" font-size="9" font-weight="700">Route: evaluation</text>
+    <text x="198" y="70" fill="#656d76" font-size="9">REST → Kong → FICO v7</text>
+    <text x="198" y="81" fill="#656d76" font-size="8">Resilience4j CB · retry(3)</text>
 
     <!-- Route 2: Simulation -->
-    <rect x="184" y="100" width="170" height="44" rx="7" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="198" y="117" fill="#f0883e" font-size="9" font-weight="700">Route: simulation</text>
-    <text x="198" y="130" fill="#8b949e" font-size="9">Redis → FlexCube REST</text>
-    <text x="198" y="141" fill="#8b949e" font-size="8">1 llamada · 3 opciones</text>
+    <rect x="184" y="100" width="170" height="44" rx="7" fill="#f0f2f5" stroke="#c05621" stroke-width="1.5"/>
+    <text x="198" y="117" fill="#c05621" font-size="9" font-weight="700">Route: simulation</text>
+    <text x="198" y="130" fill="#656d76" font-size="9">Redis → FlexCube REST</text>
+    <text x="198" y="141" fill="#656d76" font-size="8">1 llamada · 3 opciones</text>
 
     <!-- Route 3: Formalization -->
-    <rect x="184" y="160" width="170" height="44" rx="7" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="198" y="177" fill="#f0883e" font-size="9" font-weight="700">Route: formalization</text>
-    <text x="198" y="190" fill="#8b949e" font-size="9">Redis check → FlexCube</text>
-    <text x="198" y="201" fill="#8b949e" font-size="8">Reutiliza eval (sin re-evaluar)</text>
+    <rect x="184" y="160" width="170" height="44" rx="7" fill="#f0f2f5" stroke="#c05621" stroke-width="1.5"/>
+    <text x="198" y="177" fill="#c05621" font-size="9" font-weight="700">Route: formalization</text>
+    <text x="198" y="190" fill="#656d76" font-size="9">Redis check → FlexCube</text>
+    <text x="198" y="201" fill="#656d76" font-size="8">Reutiliza eval (sin re-evaluar)</text>
 
     <!-- Route 4: Documents -->
-    <rect x="184" y="220" width="170" height="44" rx="7" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="198" y="237" fill="#f0883e" font-size="9" font-weight="700">Route: documents</text>
-    <text x="198" y="250" fill="#8b949e" font-size="9">Kafka consumer → PDF Svc</text>
-    <text x="198" y="261" fill="#8b949e" font-size="8">Async · no bloquea usuario</text>
+    <rect x="184" y="220" width="170" height="44" rx="7" fill="#f0f2f5" stroke="#c05621" stroke-width="1.5"/>
+    <text x="198" y="237" fill="#c05621" font-size="9" font-weight="700">Route: documents</text>
+    <text x="198" y="250" fill="#656d76" font-size="9">Kafka consumer → PDF Svc</text>
+    <text x="198" y="261" fill="#656d76" font-size="8">Async · no bloquea usuario</text>
 
     <!-- Route 5: Signing -->
-    <rect x="184" y="280" width="170" height="44" rx="7" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="198" y="297" fill="#f0883e" font-size="9" font-weight="700">Route: signing</text>
-    <text x="198" y="310" fill="#8b949e" font-size="9">Redis PENDING_SIGN →</text>
-    <text x="198" y="321" fill="#8b949e" font-size="8">e-Sign Chile · Kafka resume</text>
+    <rect x="184" y="280" width="170" height="44" rx="7" fill="#f0f2f5" stroke="#c05621" stroke-width="1.5"/>
+    <text x="198" y="297" fill="#c05621" font-size="9" font-weight="700">Route: signing</text>
+    <text x="198" y="310" fill="#656d76" font-size="9">Redis PENDING_SIGN →</text>
+    <text x="198" y="321" fill="#656d76" font-size="8">e-Sign Chile · Kafka resume</text>
 
     <!-- Route 6: Disbursement -->
-    <rect x="184" y="340" width="170" height="44" rx="7" fill="#21262d" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="198" y="357" fill="#f0883e" font-size="9" font-weight="700">Route: disbursement</text>
-    <text x="198" y="370" fill="#8b949e" font-size="9">Toku/Redbanc → FlexCube</text>
-    <text x="198" y="381" fill="#8b949e" font-size="8">Publica credit.disbursed</text>
+    <rect x="184" y="340" width="170" height="44" rx="7" fill="#f0f2f5" stroke="#c05621" stroke-width="1.5"/>
+    <text x="198" y="357" fill="#c05621" font-size="9" font-weight="700">Route: disbursement</text>
+    <text x="198" y="370" fill="#656d76" font-size="9">Toku/Redbanc → FlexCube</text>
+    <text x="198" y="381" fill="#656d76" font-size="8">Publica credit.disbursed</text>
 
     <!-- Route 7: DLQ / Compensation -->
-    <rect x="184" y="400" width="170" height="44" rx="7" fill="rgba(248,81,73,0.08)" stroke="rgba(248,81,73,0.4)" stroke-width="1"/>
-    <text x="198" y="417" fill="#f85149" font-size="9" font-weight="700">Route: dead-letter</text>
-    <text x="198" y="430" fill="#8b949e" font-size="9">Error → compensación</text>
-    <text x="198" y="441" fill="#8b949e" font-size="8">Rollback state en Redis</text>
+    <rect x="184" y="400" width="170" height="44" rx="7" fill="rgba(248,81,73,0.08)" stroke="rgba(207,34,46,0.45)" stroke-width="1"/>
+    <text x="198" y="417" fill="#cf222e" font-size="9" font-weight="700">Route: dead-letter</text>
+    <text x="198" y="430" fill="#656d76" font-size="9">Error → compensación</text>
+    <text x="198" y="441" fill="#656d76" font-size="8">Rollback state en Redis</text>
 
     <!-- Camel internal event bus (vertical arrow) -->
     <line x1="370" y1="60" x2="370" y2="445" stroke="rgba(240,136,62,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
     <text x="374" y="244" fill="rgba(240,136,62,0.5)" font-size="8">Kafka interno</text>
 
     <!-- ── REDIS STATE BOXES ── -->
-    <text x="657" y="50" text-anchor="middle" fill="#8b949e" font-size="9" font-weight="600">credit:{RUT}:state</text>
+    <text x="657" y="50" text-anchor="middle" fill="#656d76" font-size="9" font-weight="600">credit:{RUT}:state</text>
 
     <!-- States vertical list -->
-    <rect x="582" y="58" width="150" height="22" rx="4" fill="#21262d" stroke="#30363d"/>
-    <text x="657" y="73" text-anchor="middle" fill="#8b949e" font-size="9">INITIATED</text>
+    <rect x="582" y="58" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="657" y="73" text-anchor="middle" fill="#656d76" font-size="9">INITIATED</text>
 
-    <rect x="582" y="88" width="150" height="22" rx="4" fill="#21262d" stroke="#388bfd" stroke-width="1"/>
-    <text x="657" y="103" text-anchor="middle" fill="#388bfd" font-size="9">EVALUATED</text>
+    <rect x="582" y="88" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#0969da" stroke-width="1"/>
+    <text x="657" y="103" text-anchor="middle" fill="#0969da" font-size="9">EVALUATED</text>
 
-    <rect x="582" y="118" width="150" height="22" rx="4" fill="#21262d" stroke="#388bfd" stroke-width="1"/>
-    <text x="657" y="133" text-anchor="middle" fill="#388bfd" font-size="9">OPTION_SELECTED</text>
+    <rect x="582" y="118" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#0969da" stroke-width="1"/>
+    <text x="657" y="133" text-anchor="middle" fill="#0969da" font-size="9">OPTION_SELECTED</text>
 
-    <rect x="582" y="148" width="150" height="22" rx="4" fill="#21262d" stroke="#f0883e" stroke-width="1"/>
-    <text x="657" y="163" text-anchor="middle" fill="#f0883e" font-size="9">FORMALIZING</text>
+    <rect x="582" y="148" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#c05621" stroke-width="1"/>
+    <text x="657" y="163" text-anchor="middle" fill="#c05621" font-size="9">FORMALIZING</text>
 
-    <rect x="582" y="178" width="150" height="22" rx="4" fill="#21262d" stroke="#f0883e" stroke-width="1"/>
-    <text x="657" y="193" text-anchor="middle" fill="#f0883e" font-size="9">DOCS_GENERATED</text>
+    <rect x="582" y="178" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#c05621" stroke-width="1"/>
+    <text x="657" y="193" text-anchor="middle" fill="#c05621" font-size="9">DOCS_GENERATED</text>
 
-    <rect x="582" y="208" width="150" height="22" rx="4" fill="#21262d" stroke="#d29922" stroke-width="1.5"/>
-    <text x="657" y="223" text-anchor="middle" fill="#d29922" font-size="9">PENDING_SIGNATURE ⏳</text>
+    <rect x="582" y="208" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#9a6700" stroke-width="1.5"/>
+    <text x="657" y="223" text-anchor="middle" fill="#9a6700" font-size="9">PENDING_SIGNATURE ⏳</text>
 
-    <rect x="582" y="238" width="150" height="22" rx="4" fill="#21262d" stroke="#d29922" stroke-width="1"/>
-    <text x="657" y="253" text-anchor="middle" fill="#d29922" font-size="9">SIGNED</text>
+    <rect x="582" y="238" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#9a6700" stroke-width="1"/>
+    <text x="657" y="253" text-anchor="middle" fill="#9a6700" font-size="9">SIGNED</text>
 
-    <rect x="582" y="268" width="150" height="22" rx="4" fill="#21262d" stroke="#3fb950" stroke-width="1.5"/>
-    <text x="657" y="283" text-anchor="middle" fill="#3fb950" font-size="9">DISBURSED ✓</text>
+    <rect x="582" y="268" width="150" height="22" rx="4" fill="#f0f2f5" stroke="#1a7f37" stroke-width="1.5"/>
+    <text x="657" y="283" text-anchor="middle" fill="#1a7f37" font-size="9">DISBURSED ✓</text>
 
-    <rect x="582" y="298" width="150" height="22" rx="4" fill="rgba(248,81,73,0.1)" stroke="rgba(248,81,73,0.4)"/>
-    <text x="657" y="313" text-anchor="middle" fill="#f85149" font-size="9">COMPENSATING</text>
+    <rect x="582" y="298" width="150" height="22" rx="4" fill="rgba(207,34,46,0.06)" stroke="rgba(207,34,46,0.45)"/>
+    <text x="657" y="313" text-anchor="middle" fill="#cf222e" font-size="9">COMPENSATING</text>
 
     <!-- TTL label -->
     <rect x="582" y="335" width="150" height="40" rx="6" fill="var(--bg3)" stroke="var(--border)"/>
-    <text x="657" y="351" text-anchor="middle" fill="#8b949e" font-size="9" font-weight="600">TTL: 48h</text>
-    <text x="657" y="365" text-anchor="middle" fill="#8b949e" font-size="8">Distributed Lock (SETNX)</text>
-    <text x="657" y="375" text-anchor="middle" fill="#8b949e" font-size="8">Omnicanal: cualquier canal lee</text>
+    <text x="657" y="351" text-anchor="middle" fill="#656d76" font-size="9" font-weight="600">TTL: 48h</text>
+    <text x="657" y="365" text-anchor="middle" fill="#656d76" font-size="8">Distributed Lock (SETNX)</text>
+    <text x="657" y="375" text-anchor="middle" fill="#656d76" font-size="8">Omnicanal: cualquier canal lee</text>
 
     <!-- Keys stored -->
     <rect x="582" y="390" width="150" height="75" rx="6" fill="var(--bg3)" stroke="var(--border)"/>
-    <text x="592" y="406" fill="#8b949e" font-size="8" font-weight="600">Claves por RUT:</text>
-    <text x="592" y="420" fill="#8b949e" font-size="8">• :state · :evaluation</text>
-    <text x="592" y="433" fill="#8b949e" font-size="8">• :selected_option</text>
-    <text x="592" y="446" fill="#8b949e" font-size="8">• :documents · :channel</text>
-    <text x="592" y="459" fill="#8b949e" font-size="8">• :lock (SETNX concurrencia)</text>
+    <text x="592" y="406" fill="#656d76" font-size="8" font-weight="600">Claves por RUT:</text>
+    <text x="592" y="420" fill="#656d76" font-size="8">• :state · :evaluation</text>
+    <text x="592" y="433" fill="#656d76" font-size="8">• :selected_option</text>
+    <text x="592" y="446" fill="#656d76" font-size="8">• :documents · :channel</text>
+    <text x="592" y="459" fill="#656d76" font-size="8">• :lock (SETNX concurrencia)</text>
 
     <!-- ── SISTEMAS ── -->
-    <rect x="762" y="42" width="162" height="30" rx="6" fill="#1f3a5f" stroke="#388bfd" stroke-width="1.5"/>
-    <text x="843" y="61" text-anchor="middle" fill="#388bfd" font-size="10" font-weight="600">FICO v7 (OKE)</text>
+    <rect x="762" y="42" width="162" height="30" rx="6" fill="#dbeafe" stroke="#0969da" stroke-width="1.5"/>
+    <text x="843" y="61" text-anchor="middle" fill="#0969da" font-size="10" font-weight="600">FICO v7 (OKE)</text>
 
-    <rect x="762" y="85" width="162" height="30" rx="6" fill="#21262d" stroke="#30363d"/>
-    <text x="843" y="104" text-anchor="middle" fill="#e6edf3" font-size="10">FlexCube 14.7</text>
+    <rect x="762" y="85" width="162" height="30" rx="6" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="843" y="104" text-anchor="middle" fill="#1f2328" font-size="10">FlexCube 14.7</text>
 
-    <rect x="762" y="128" width="162" height="30" rx="6" fill="#21262d" stroke="#30363d"/>
-    <text x="843" y="147" text-anchor="middle" fill="#e6edf3" font-size="10">MenuAndes API</text>
+    <rect x="762" y="128" width="162" height="30" rx="6" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="843" y="147" text-anchor="middle" fill="#1f2328" font-size="10">MenuAndes API</text>
 
-    <rect x="762" y="171" width="162" height="30" rx="6" fill="#21262d" stroke="#30363d"/>
-    <text x="843" y="190" text-anchor="middle" fill="#e6edf3" font-size="10">Experian/Equifax</text>
+    <rect x="762" y="171" width="162" height="30" rx="6" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="843" y="190" text-anchor="middle" fill="#1f2328" font-size="10">Experian/Equifax</text>
 
-    <rect x="762" y="214" width="162" height="30" rx="6" fill="#21262d" stroke="#30363d"/>
-    <text x="843" y="233" text-anchor="middle" fill="#e6edf3" font-size="10">e-Sign Chile</text>
+    <rect x="762" y="214" width="162" height="30" rx="6" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="843" y="233" text-anchor="middle" fill="#1f2328" font-size="10">e-Sign Chile</text>
 
-    <rect x="762" y="257" width="162" height="30" rx="6" fill="#21262d" stroke="#30363d"/>
-    <text x="843" y="276" text-anchor="middle" fill="#e6edf3" font-size="10">Toku / Redbanc</text>
+    <rect x="762" y="257" width="162" height="30" rx="6" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="843" y="276" text-anchor="middle" fill="#1f2328" font-size="10">Toku / Redbanc</text>
 
-    <rect x="762" y="300" width="162" height="30" rx="6" fill="#21262d" stroke="#30363d"/>
-    <text x="843" y="319" text-anchor="middle" fill="#e6edf3" font-size="10">Base Aprobados</text>
+    <rect x="762" y="300" width="162" height="30" rx="6" fill="#f0f2f5" stroke="#d0d7de"/>
+    <text x="843" y="319" text-anchor="middle" fill="#1f2328" font-size="10">Base Aprobados</text>
 
-    <rect x="762" y="343" width="162" height="30" rx="6" fill="#3a2010" stroke="#f0883e" stroke-width="1"/>
-    <text x="843" y="362" text-anchor="middle" fill="#f0883e" font-size="10">Kafka (eventos)</text>
+    <rect x="762" y="343" width="162" height="30" rx="6" fill="#ffedd5" stroke="#c05621" stroke-width="1"/>
+    <text x="843" y="362" text-anchor="middle" fill="#c05621" font-size="10">Kafka (eventos)</text>
 
     <!-- ── ARROWS: channels → routes ── -->
-    <line x1="148" y1="64"  x2="184" y2="62"  stroke="#484f58" stroke-width="1.3" marker-end="url(#ca-arr)"/>
-    <line x1="148" y1="109" x2="184" y2="122" stroke="#484f58" stroke-width="1.3" marker-end="url(#ca-arr)"/>
-    <line x1="148" y1="154" x2="184" y2="182" stroke="#484f58" stroke-width="1.3" marker-end="url(#ca-arr)"/>
-    <line x1="148" y1="211" x2="184" y2="242" stroke="#f0883e" stroke-width="1.3" marker-end="url(#ca-arr-orange)"/>
+    <line x1="148" y1="64"  x2="184" y2="62"  stroke="#8c959f" stroke-width="1.3" marker-end="url(#ca-arr)"/>
+    <line x1="148" y1="109" x2="184" y2="122" stroke="#8c959f" stroke-width="1.3" marker-end="url(#ca-arr)"/>
+    <line x1="148" y1="154" x2="184" y2="182" stroke="#8c959f" stroke-width="1.3" marker-end="url(#ca-arr)"/>
+    <line x1="148" y1="211" x2="184" y2="242" stroke="#c05621" stroke-width="1.3" marker-end="url(#ca-arr-orange)"/>
 
     <!-- ── ARROWS: routes → Redis ── -->
-    <line x1="354" y1="62"  x2="582" y2="99"  stroke="#f85149" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
-    <line x1="354" y1="122" x2="582" y2="129" stroke="#f85149" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
-    <line x1="354" y1="182" x2="582" y2="159" stroke="#f85149" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
-    <line x1="354" y1="242" x2="582" y2="189" stroke="#f85149" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
-    <line x1="354" y1="302" x2="582" y2="219" stroke="#f85149" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
-    <line x1="354" y1="362" x2="582" y2="279" stroke="#3fb950" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-green)"/>
+    <line x1="354" y1="62"  x2="582" y2="99"  stroke="#cf222e" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
+    <line x1="354" y1="122" x2="582" y2="129" stroke="#cf222e" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
+    <line x1="354" y1="182" x2="582" y2="159" stroke="#cf222e" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
+    <line x1="354" y1="242" x2="582" y2="189" stroke="#cf222e" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
+    <line x1="354" y1="302" x2="582" y2="219" stroke="#cf222e" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-red)"/>
+    <line x1="354" y1="362" x2="582" y2="279" stroke="#1a7f37" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ca-arr-green)"/>
 
     <!-- ── ARROWS: routes → systems ── -->
-    <line x1="354" y1="55"  x2="762" y2="57"  stroke="#484f58" stroke-width="1.2" marker-end="url(#ca-arr)"/>
-    <line x1="354" y1="120" x2="762" y2="100" stroke="#484f58" stroke-width="1.2" marker-end="url(#ca-arr)"/>
-    <line x1="354" y1="182" x2="762" y2="143" stroke="#484f58" stroke-width="1.2" marker-end="url(#ca-arr)"/>
-    <line x1="354" y1="302" x2="762" y2="229" stroke="#484f58" stroke-width="1.2" marker-end="url(#ca-arr)"/>
-    <line x1="354" y1="362" x2="762" y2="272" stroke="#484f58" stroke-width="1.2" marker-end="url(#ca-arr)"/>
-    <line x1="354" y1="362" x2="762" y2="315" stroke="#3fb950" stroke-width="1.2" marker-end="url(#ca-arr-green)"/>
-    <line x1="354" y1="362" x2="762" y2="358" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ca-arr-orange)"/>
+    <line x1="354" y1="55"  x2="762" y2="57"  stroke="#8c959f" stroke-width="1.2" marker-end="url(#ca-arr)"/>
+    <line x1="354" y1="120" x2="762" y2="100" stroke="#8c959f" stroke-width="1.2" marker-end="url(#ca-arr)"/>
+    <line x1="354" y1="182" x2="762" y2="143" stroke="#8c959f" stroke-width="1.2" marker-end="url(#ca-arr)"/>
+    <line x1="354" y1="302" x2="762" y2="229" stroke="#8c959f" stroke-width="1.2" marker-end="url(#ca-arr)"/>
+    <line x1="354" y1="362" x2="762" y2="272" stroke="#8c959f" stroke-width="1.2" marker-end="url(#ca-arr)"/>
+    <line x1="354" y1="362" x2="762" y2="315" stroke="#1a7f37" stroke-width="1.2" marker-end="url(#ca-arr-green)"/>
+    <line x1="354" y1="362" x2="762" y2="358" stroke="#c05621" stroke-width="1.2" marker-end="url(#ca-arr-orange)"/>
   </svg>
   </div>
 
@@ -1812,41 +1812,41 @@
   <!-- ─ CODE SNIPPET ─ -->
   <h2 style="margin-bottom:14px;">Ejemplo de Ruta — Formalización sin doble invocación</h2>
   <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;overflow-x:auto;margin-bottom:32px;">
-  <pre style="font-family:'Fira Code','Cascadia Code',monospace;font-size:12px;line-height:1.7;color:#e6edf3;margin:0;"><span style="color:#8b949e">// Ruta: formalization — reemplaza el Servicio 147
+  <pre style="font-family:'Fira Code','Cascadia Code',monospace;font-size:12px;line-height:1.7;color:#e6edf3;margin:0;"><span style="color:#656d76">// Ruta: formalization — reemplaza el Servicio 147
 // Lee el resultado de la preevaluación desde Redis
 // sin llamar a FICO por segunda vez</span>
 
-<span style="color:#f0883e">from</span>(<span style="color:#3fb950">"kafka:credit.option.selected?groupId=credit-orchestrator"</span>)
-  .<span style="color:#56d4dd">process</span>(exchange <span style="color:#f0883e">-></span> {
-    String rut = exchange.getIn().getHeader(<span style="color:#3fb950">"rut"</span>, String.class);
+<span style="color:#c05621">from</span>(<span style="color:#1a7f37">"kafka:credit.option.selected?groupId=credit-orchestrator"</span>)
+  .<span style="color:#0e7490">process</span>(exchange <span style="color:#c05621">-></span> {
+    String rut = exchange.getIn().getHeader(<span style="color:#1a7f37">"rut"</span>, String.class);
 
-    <span style="color:#8b949e">// 1. Leer estado guardado en Redis (sin re-evaluar)</span>
+    <span style="color:#656d76">// 1. Leer estado guardado en Redis (sin re-evaluar)</span>
     CreditSession session = redisService.getSession(rut);
-    <span style="color:#f0883e">if</span> (session == <span style="color:#56d4dd">null</span> || session.isExpired()) {
-      <span style="color:#f0883e">throw new</span> SessionExpiredException(<span style="color:#3fb950">"Sesión vencida para RUT: "</span> + rut);
+    <span style="color:#c05621">if</span> (session == <span style="color:#0e7490">null</span> || session.isExpired()) {
+      <span style="color:#c05621">throw new</span> SessionExpiredException(<span style="color:#1a7f37">"Sesión vencida para RUT: "</span> + rut);
     }
 
-    <span style="color:#8b949e">// 2. Actualizar estado → FORMALIZING</span>
+    <span style="color:#656d76">// 2. Actualizar estado → FORMALIZING</span>
     redisService.setState(rut, CreditState.FORMALIZING);
     exchange.getIn().setBody(session);
   })
 
-  <span style="color:#8b949e">// 3. Crear crédito directamente en FlexCube 14.7 REST</span>
-  .<span style="color:#56d4dd">circuitBreaker</span>()
-    .<span style="color:#56d4dd">resilience4jConfiguration</span>()
-      .slidingWindowSize(<span style="color:#bc8cff">10</span>).failureRateThreshold(<span style="color:#bc8cff">50</span>)
-      .waitDurationInOpenState(<span style="color:#bc8cff">30</span>).end()
-    .<span style="color:#56d4dd">to</span>(<span style="color:#3fb950">"rest:post:flexcube/credit/create"</span>)
-  .<span style="color:#56d4dd">onFallback</span>()
-    .<span style="color:#56d4dd">process</span>(e <span style="color:#f0883e">-></span> redisService.setState(e.getIn().getHeader(<span style="color:#3fb950">"rut"</span>, String.class),
+  <span style="color:#656d76">// 3. Crear crédito directamente en FlexCube 14.7 REST</span>
+  .<span style="color:#0e7490">circuitBreaker</span>()
+    .<span style="color:#0e7490">resilience4jConfiguration</span>()
+      .slidingWindowSize(<span style="color:#7c3aed">10</span>).failureRateThreshold(<span style="color:#7c3aed">50</span>)
+      .waitDurationInOpenState(<span style="color:#7c3aed">30</span>).end()
+    .<span style="color:#0e7490">to</span>(<span style="color:#1a7f37">"rest:post:flexcube/credit/create"</span>)
+  .<span style="color:#0e7490">onFallback</span>()
+    .<span style="color:#0e7490">process</span>(e <span style="color:#c05621">-></span> redisService.setState(e.getIn().getHeader(<span style="color:#1a7f37">"rut"</span>, String.class),
                                              CreditState.COMPENSATING))
-  .<span style="color:#56d4dd">end</span>()
+  .<span style="color:#0e7490">end</span>()
 
-  <span style="color:#8b949e">// 4. Publicar evento para que Document Service genere PDFs</span>
-  .<span style="color:#56d4dd">to</span>(<span style="color:#3fb950">"kafka:credit.formalized?brokers={{kafka.brokers}}"</span>)
+  <span style="color:#656d76">// 4. Publicar evento para que Document Service genere PDFs</span>
+  .<span style="color:#0e7490">to</span>(<span style="color:#1a7f37">"kafka:credit.formalized?brokers={{kafka.brokers}}"</span>)
 
-  <span style="color:#8b949e">// 5. Estado → DOCS_GENERATED (lo actualiza la ruta de documentos)</span>
-  .<span style="color:#56d4dd">log</span>(<span style="color:#3fb950">"Crédito formalizado sin re-evaluación: ${header.rut}"</span>);</pre>
+  <span style="color:#656d76">// 5. Estado → DOCS_GENERATED (lo actualiza la ruta de documentos)</span>
+  .<span style="color:#0e7490">log</span>(<span style="color:#1a7f37">"Crédito formalizado sin re-evaluación: ${header.rut}"</span>);</pre>
   </div>
 
 </div>
