@@ -354,6 +354,18 @@
   .subtab-btn:hover { color: var(--text); background: var(--bg3); }
   .subtab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
   .subtab-btn.active-orange { color: var(--orange); border-bottom-color: var(--orange); }
+  .subtab-btn.active-purple { color: var(--purple); border-bottom-color: var(--purple); }
+
+  /* TOGAF/Gobierno layer color */
+  .layer-togaf { background: rgba(124,58,237,.08); border-color: rgba(124,58,237,.25); }
+  .layer-togaf .node:hover { border-color: var(--purple); }
+  .layer-togaf .arch-layer-label { color: var(--purple); }
+
+  /* TB1 stabilization layer */
+  .layer-stabilization { background: rgba(26,127,55,.08); border-color: rgba(26,127,55,.25); }
+  .layer-stabilization .node:hover { border-color: var(--green); }
+  .layer-stabilization .arch-layer-label { color: var(--green); }
+
   .subtab-panel { display: none; }
   .subtab-panel.visible { display: block; }
 
@@ -361,6 +373,21 @@
   .layer-camel { background: rgba(240, 118, 62, 0.377); border-color: rgba(240, 136, 62, 0.534); }
   .layer-camel .node:hover { border-color: var(--orange); }
   .layer-camel .arch-layer-label { color: var(--orange); }
+
+  /* TB1 green subtab */
+  .subtab-btn.active-tb1 { color: #1a7f37; border-bottom-color: #1a7f37; }
+  /* TB2 orange subtab */
+  .subtab-btn.active-tb2 { color: var(--orange); border-bottom-color: var(--orange); }
+  /* TB3 purple subtab */
+  .subtab-btn.active-tb3 { color: var(--purple); border-bottom-color: var(--purple); }
+  /* TOGAF governance layer */
+  .layer-togaf { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.25); }
+  .layer-togaf .node:hover { border-color: var(--purple); }
+  .layer-togaf .arch-layer-label { color: var(--purple); }
+  /* Modernization layer for TB3 */
+  .layer-modern { background: rgba(14,116,144,0.08); border-color: rgba(14,116,144,0.25); }
+  .layer-modern .node:hover { border-color: var(--cyan); }
+  .layer-modern .arch-layer-label { color: var(--cyan); }
 
   @media (max-width: 700px) {
     .comparison { grid-template-columns: 1fr; }
@@ -380,7 +407,7 @@
   <button onclick="show('flujo')">Flujo Omnicanal</button>
   <button onclick="show('roadmap')">Roadmap</button>
   <button onclick="show('kpis')">KPIs</button>
-  <button onclick="show('orquestador')">Orquestador</button>
+  <button onclick="show('orquestador')">To Be</button>
 </nav>
 
 <main>
@@ -416,7 +443,7 @@
       <div class="card">
         <div class="badge badge-red" style="margin-bottom:10px;">Bloqueante</div>
         <h3>Sin Omnicanalidad</h3>
-        <p>No es posible iniciar un crédito en un canal y continuarlo en otro. Cada canal es una isla.</p>
+        <p>277,407 solicitudes/mes rechazadas en TAPP_NOR sin derivación humana. Sin retomabilidad entre canales (FG-31, FG-36).</p>
       </div>
       <div class="card">
         <div class="badge badge-yellow" style="margin-bottom:10px;">Obsolescencia</div>
@@ -426,42 +453,64 @@
       <div class="card">
         <div class="badge badge-yellow" style="margin-bottom:10px;">Dependencia</div>
         <h3>Araña Síncrona</h3>
-        <p>OSB sin circuit breakers. Una caída en MenuAndes baja hasta 13 servicios en cascada.</p>
+        <p>OSB sin circuit breakers. 16+ servicios de avales secuenciales. Una caída baja 13 servicios en cascada. Timeout 50.9s invertido (FG-05, FG-13).</p>
       </div>
     </div>
 
     <hr class="divider">
+    <h2>Horizontes de Modernización</h2>
+    <div class="cards cards-3" style="margin-bottom:24px;">
+      <div class="card" style="border-left:4px solid #1a7f37;">
+        <div class="badge badge-green" style="margin-bottom:10px;">To-Be 1 — ≤3 meses</div>
+        <h3>Convivencia Unificada</h3>
+        <p>No se reemplazan componentes. Se estabiliza la plataforma actual. OSB 11g se mantiene. Corrección Ignite (T6), remoción agente APM (−80% errores), alertas Grafana (MTTD 45→5 min), Rate Limiter N-04, Owner E2E + RACI, Blaze v7 (apaga v4).</p>
+        <p style="color:var(--green);font-size:12px;margin-bottom:0;">INI-02, 03, 05, 06, 10, 12, 15</p>
+      </div>
+      <div class="card" style="border-left:4px solid #c05621;">
+        <div class="badge badge-orange" style="margin-bottom:10px;">To-Be 2 — 3-6 meses</div>
+        <h3>Reemplazar Bus (Apache Camel)</h3>
+        <p>Camel reemplaza el OSB 11g en 4 fases (evaluación, EAI, externos, apagar OSB). Evaluación única, avales en paralelo (−60/75%), derivación digital Kafka N-12, retomabilidad Redis N-05, 24 circuit breakers Resilience4j. Conversión E2E ≥7%.</p>
+        <p style="color:var(--orange);font-size:12px;margin-bottom:0;">INI-01, 04, 07, 08, 09</p>
+      </div>
+      <div class="card" style="border-left:4px solid #7c3aed;">
+        <div class="badge badge-purple" style="margin-bottom:10px;">To-Be 3 — &gt;6 meses</div>
+        <h3>TOGAF Completo + Camel Consolidado</h3>
+        <p>OSB formalmente apagado. MenuAndes APEX ($0), Oracle 19c, WebLogic evaluado. CMDB 100+, SLAs 7 proveedores, DRP RTO≤4h, 6 runbooks. N-11 parametrización reglas (semanas→horas). Madurez TOGAF 1.21→3.0/5.</p>
+        <p style="color:var(--purple);font-size:12px;margin-bottom:0;">INI-11, 13, 14, 16, 17</p>
+      </div>
+    </div>
+
     <h2>Principios de Diseño de la Nueva Arquitectura</h2>
     <div class="cards cards-2">
       <div class="card">
         <div style="font-size:20px;margin-bottom:8px;">🔁</div>
         <h3>Omnicanalidad Real</h3>
-        <p>El estado del crédito persiste en sesión centralizada. El afiliado puede iniciar en TAPP, continuar en SVP y finalizar en sucursal.</p>
+        <p>El estado del crédito persiste en sesión centralizada (Redis N-05). El afiliado puede iniciar en TAPP, continuar en SVP y finalizar en sucursal.</p>
       </div>
       <div class="card">
         <div style="font-size:20px;margin-bottom:8px;">⚡</div>
         <h3>Evaluación Única</h3>
-        <p>La preevaluación ES la evaluación formal. Se elimina el Servicio 147 y la doble invocación de "La Araña".</p>
+        <p>Knockout + ProcesaSolicitud fusionados en flujo único. Preevaluación = evaluación formal. Se elimina el Servicio 147 y la doble invocación (FG-20, FG-38).</p>
       </div>
       <div class="card">
         <div style="font-size:20px;margin-bottom:8px;">📡</div>
         <h3>Event-Driven</h3>
-        <p>Kafka como columna vertebral asíncrona. Las cargas de campaña no colapsan el motor de riesgo.</p>
+        <p>Kafka como columna vertebral asíncrona. Las cargas de campaña no colapsan el motor de riesgo. Derivación digital N-12.</p>
       </div>
       <div class="card">
         <div style="font-size:20px;margin-bottom:8px;">🛡️</div>
         <h3>Resiliencia</h3>
-        <p>Circuit breakers en todos los servicios. Sin puntos únicos de falla. Degradación graciosa.</p>
+        <p>24 circuit breakers Resilience4j en To-Be 2. Sin puntos únicos de falla. Degradación graciosa. DRP con RTO≤4h en To-Be 3.</p>
       </div>
       <div class="card">
         <div style="font-size:20px;margin-bottom:8px;">📈</div>
         <h3>Escalabilidad Horizontal</h3>
-        <p>Microservicios en GKE/OKE. Auto-scaling por demanda. Sin dependencia de pools fijos de 4 hilos.</p>
+        <p>Camel K en OKE. Auto-scaling por ruta. Sin dependencia de pools fijos. OSB apagado en To-Be 3.</p>
       </div>
       <div class="card">
         <div style="font-size:20px;margin-bottom:8px;">👁️</div>
         <h3>Observabilidad Total</h3>
-        <p>Prometheus + Grafana + Jaeger. Trazabilidad distribuida. Alertas proactivas antes del impacto al negocio.</p>
+        <p>Grafana + Prometheus desde To-Be 1. Micrometer por ruta en To-Be 2. OpenTelemetry + Jaeger E2E + CMDB 100+ en To-Be 3.</p>
       </div>
     </div>
   </div>
@@ -567,12 +616,383 @@
     <p class="subtitle">Haz clic en cualquier componente para ver especificaciones y hallazgos que corrige</p>
 
     <div class="subtab-bar">
-      <button class="subtab-btn active" onclick="showSubtab('arch-m1', this)">Modelo 1 — Microservicios + Temporal / Kong</button>
-      <button class="subtab-btn" onclick="showSubtab('arch-m2', this)">Modelo 2 — Apache Camel + Redis</button>
+      <button class="subtab-btn active-tb1" onclick="showSubtab('arch-tb1', this)">To-Be 1 — Convivencia Unificada · ≤3 meses</button>
+      <button class="subtab-btn" onclick="showSubtab('arch-tb2', this)">To-Be 2 — Apache Camel · 3-6 meses</button>
+      <button class="subtab-btn" onclick="showSubtab('arch-tb3', this)">To-Be 3 — TOGAF + Camel · &gt;6 meses</button>
     </div>
 
-    <!-- ══ SUB-TAB: MODELO 1 ══ -->
-    <div id="arch-m1" class="subtab-panel visible">
+    <!-- ══ SUB-TAB: TO-BE 1 — Convivencia Unificada ══ -->
+    <div id="arch-tb1" class="subtab-panel visible">
+    <div class="arch-container">
+
+      <!-- Canales -->
+      <div class="arch-layer layer-channels">
+        <div class="arch-layer-label"> Capa de Canales</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('tapp')">
+            <span class="node-name">TAPP</span>
+            <span class="node-tech">React Native · GKE</span>
+          </div>
+          <div class="node" onclick="openDetail('svp')">
+            <span class="node-name">SVP 1.5</span>
+            <span class="node-tech">React · GKE</span>
+          </div>
+          <div class="node" onclick="openDetail('salesforce')">
+            <span class="node-name">Salesforce CRM</span>
+            <span class="node-tech">Reemplaza Siebel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seguridad -->
+      <div class="arch-layer layer-security">
+        <div class="arch-layer-label"> Identidad &amp; Seguridad</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('keycloak')">
+            <span class="node-name">Keycloak</span>
+            <span class="node-tech">SSO / OAuth2 / OIDC</span>
+          </div>
+          <div class="node" onclick="openDetail('activeit')">
+            <span class="node-name">Active IT</span>
+            <span class="node-tech">Biometría / RUT</span>
+          </div>
+          <div class="node" onclick="openDetail('zerotrust')">
+            <span class="node-name">Zero Trust Layer</span>
+            <span class="node-tech">mTLS · RBAC · WAF</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bus — OSB se mantiene pero estabilizado -->
+      <div class="arch-layer layer-session">
+        <div class="arch-layer-label"> Bus de Integración — Se mantiene y estabiliza (INI-15)</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('osb-tb1')">
+            <span class="node-name">OSB 11g Estabilizado</span>
+            <span class="node-tech badge badge-yellow" style="font-size:10px;padding:1px 6px;border-radius:4px;">Se mantiene</span>
+          </div>
+          <div class="node" onclick="openDetail('fico-v7')">
+            <span class="node-name">Blaze v7</span>
+            <span class="node-tech">Migrado desde v4 · Sin Nashorn (INI-02)</span>
+          </div>
+          <div class="node" onclick="openDetail('bff-digital')">
+            <span class="node-name">BFF Digital</span>
+            <span class="node-tech">Go · backpressure ante degradación</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motor FICO -->
+      <div class="arch-layer layer-evaluation">
+        <div class="arch-layer-label"> Motor de Evaluación de Riesgo</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('fico-v7')">
+            <span class="node-name">FICO v7 OKE</span>
+            <span class="node-tech">Blaze Advisor v7 · OCI</span>
+          </div>
+          <div class="node" onclick="openDetail('ignite')">
+            <span class="node-name">Apache Ignite (corregido T6)</span>
+            <span class="node-tech">failureDetectionTimeout · pools≥16 · backup≥1</span>
+          </div>
+          <div class="node" onclick="openDetail('grafana')">
+            <span class="node-name">Alertas Grafana</span>
+            <span class="node-tech">MTTD 45min→≤5min · INI-10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos -->
+      <div class="arch-layer layer-data">
+        <div class="arch-layer-label"> Capa de Datos</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('flexcube')">
+            <span class="node-name">FlexCube</span>
+            <span class="node-tech">Core bancario</span>
+          </div>
+          <div class="node" onclick="openDetail('menuandes')">
+            <span class="node-name">MenuAndes</span>
+            <span class="node-tech">Forms 10g · se mantiene</span>
+          </div>
+          <div class="node" onclick="openDetail('bigquery')">
+            <span class="node-name">BigQuery / Nicanor</span>
+            <span class="node-tech">GCP Santiago · Analítica</span>
+          </div>
+          <div class="node" onclick="openDetail('aprobados-db')">
+            <span class="node-name">Base Aprobados</span>
+            <span class="node-tech">Oracle OCI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Externos -->
+      <div class="arch-layer layer-external">
+        <div class="arch-layer-label"> Proveedores Externos</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('experian')">
+            <span class="node-name">Experian / Equifax</span>
+            <span class="node-tech">Buró de crédito · API + Cache</span>
+          </div>
+          <div class="node" onclick="openDetail('esign')">
+            <span class="node-name">e-Sign Chile (ISA)</span>
+            <span class="node-tech">Firma electrónica avanzada</span>
+          </div>
+          <div class="node" onclick="openDetail('toku')">
+            <span class="node-name">Toku / Redbanc</span>
+            <span class="node-tech">Pasarela de desembolso</span>
+          </div>
+          <div class="node" onclick="openDetail('sinacaf')">
+            <span class="node-name">SINACAF / SINACOFI</span>
+            <span class="node-tech">Validaciones regulatorias</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infra y Observabilidad -->
+      <div class="arch-layer layer-infra">
+        <div class="arch-layer-label"> Observabilidad &amp; Infraestructura (INI-10, INI-15)</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('grafana')">
+            <span class="node-name">Grafana + Prometheus</span>
+            <span class="node-tech">Alertas automáticas · 5 dashboards</span>
+          </div>
+          <div class="node" onclick="openDetail('elasticsearch')">
+            <span class="node-name">Elasticsearch</span>
+            <span class="node-tech">Logs centralizados · APM restaurado</span>
+          </div>
+          <div class="node" onclick="openDetail('n04-ratelimit')">
+            <span class="node-name">Rate Limiter N-04</span>
+            <span class="node-tech">Rate limit por RUT (INI-06)</span>
+          </div>
+          <div class="node" onclick="openDetail('ci-cd')">
+            <span class="node-name">CI/CD Pipeline</span>
+            <span class="node-tech">GitOps · OKE/GKE deploy</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /arch-container TB1 -->
+    </div><!-- /subtab-panel TB1 -->
+
+    <!-- ══ SUB-TAB: TO-BE 2 — Apache Camel ══ -->
+    <div id="arch-tb2" class="subtab-panel">
+    <div class="arch-container">
+
+      <!-- Canales -->
+      <div class="arch-layer layer-channels">
+        <div class="arch-layer-label"> Capa de Canales</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('tapp')">
+            <span class="node-name">TAPP</span>
+            <span class="node-tech">React Native · GKE</span>
+          </div>
+          <div class="node" onclick="openDetail('svp')">
+            <span class="node-name">SVP 1.5</span>
+            <span class="node-tech">React · GKE</span>
+          </div>
+          <div class="node" onclick="openDetail('salesforce')">
+            <span class="node-name">Salesforce CRM</span>
+            <span class="node-tech">Reemplaza Siebel</span>
+          </div>
+          <div class="node" onclick="openDetail('api-portal')">
+            <span class="node-name">API Portal</span>
+            <span class="node-tech">Integraciones 3rd party</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seguridad -->
+      <div class="arch-layer layer-security">
+        <div class="arch-layer-label"> Identidad &amp; Seguridad</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('keycloak')">
+            <span class="node-name">Keycloak</span>
+            <span class="node-tech">SSO / OAuth2 / OIDC</span>
+          </div>
+          <div class="node" onclick="openDetail('activeit')">
+            <span class="node-name">Active IT</span>
+            <span class="node-tech">Biometría / RUT</span>
+          </div>
+          <div class="node" onclick="openDetail('zerotrust')">
+            <span class="node-name">Zero Trust Layer</span>
+            <span class="node-tech">mTLS · RBAC · WAF</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gateway ligero -->
+      <div class="arch-layer layer-gateway">
+        <div class="arch-layer-label"> API Gateway &amp; BFF</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('bff-digital')">
+            <span class="node-name">BFF Digital</span>
+            <span class="node-tech">Go · TAPP + SVP · backpressure</span>
+          </div>
+          <div class="node" onclick="openDetail('bff-presencial')">
+            <span class="node-name">BFF Presencial</span>
+            <span class="node-tech">Salesforce / MuleSoft</span>
+          </div>
+          <div class="node" onclick="openDetail('n04-ratelimit')">
+            <span class="node-name">Rate Limiter N-04</span>
+            <span class="node-tech">Rate limit por RUT pre/evaluación</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eventos y Estado -->
+      <div class="arch-layer layer-session">
+        <div class="arch-layer-label">Eventos &amp; Estado (INI-04, INI-08, INI-09)</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('redis-camel')">
+            <span class="node-name">Redis Cluster HA</span>
+            <span class="node-tech">N-02 caché transversal · N-05 estado · N-07 scoring</span>
+          </div>
+          <div class="node" onclick="openDetail('kafka')">
+            <span class="node-name">Apache Kafka</span>
+            <span class="node-tech">N-12 cola derivación digital · OKE</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-evaluation')">
+            <span class="node-name">Gestor Tokens N-03</span>
+            <span class="node-tech">Token único OAG+ApiGee con TTL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAMEL — capa central -->
+      <div class="arch-layer layer-camel">
+        <div class="arch-layer-label"> Apache Camel K — Reemplaza OSB gradualmente (INI-01, INI-07)</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('camel-evaluation')">
+            <span class="node-name">Route: evaluation</span>
+            <span class="node-tech">REST → FICO v7 · Resilience4j CB</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-simulation')">
+            <span class="node-name">Route: simulation</span>
+            <span class="node-tech">Redis → FlexCube REST · 1 llamada / 3 opciones</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-formalization')">
+            <span class="node-name">Route: formalization</span>
+            <span class="node-tech">Redis check → FlexCube · Sin re-evaluar</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-documents')">
+            <span class="node-name">Route: documents</span>
+            <span class="node-tech">Kafka consumer → PDF Service · Async</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-signing')">
+            <span class="node-name">Route: signing</span>
+            <span class="node-tech">e-Sign Chile · Kafka resume</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-disbursement')">
+            <span class="node-name">Route: disbursement</span>
+            <span class="node-tech">FlexCube → Toku/Redbanc · credit.disbursed</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-osb-eai005')">
+            <span class="node-name">Route: EAI-005</span>
+            <span class="node-tech">FlexCube Info Financiera · migrado de OSB</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-osb-menuandes')">
+            <span class="node-name">Route: EAI-MenuAndes</span>
+            <span class="node-tech">EAI-053/106/110 · migrado de OSB</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-dlq')">
+            <span class="node-name">Route: dead-letter</span>
+            <span class="node-tech">Error → compensación → Redis COMPENSATING</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motor FICO -->
+      <div class="arch-layer layer-evaluation">
+        <div class="arch-layer-label"> Motor de Evaluación de Riesgo</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('fico-v7')">
+            <span class="node-name">FICO v7 (OKE)</span>
+            <span class="node-tech">Blaze Advisor v7 · OCI</span>
+          </div>
+          <div class="node" onclick="openDetail('ignite')">
+            <span class="node-name">Apache Ignite</span>
+            <span class="node-tech">failureDetection corregido</span>
+          </div>
+          <div class="node" onclick="openDetail('scoring-cache')">
+            <span class="node-name">Scoring Cache N-07</span>
+            <span class="node-tech">Redis · BigQuery precalculadas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos -->
+      <div class="arch-layer layer-data">
+        <div class="arch-layer-label"> Capa de Datos</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('flexcube')">
+            <span class="node-name">FlexCube</span>
+            <span class="node-tech">Core bancario · REST APIs</span>
+          </div>
+          <div class="node" onclick="openDetail('menuandes')">
+            <span class="node-name">MenuAndes</span>
+            <span class="node-tech">Forms 10g · Camel via EAI</span>
+          </div>
+          <div class="node" onclick="openDetail('bigquery')">
+            <span class="node-name">BigQuery / Nicanor</span>
+            <span class="node-tech">GCP Santiago · Analítica</span>
+          </div>
+          <div class="node" onclick="openDetail('aprobados-db')">
+            <span class="node-name">Base Aprobados N-08</span>
+            <span class="node-tech">Baja en tiempo real · Microservicio</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Externos -->
+      <div class="arch-layer layer-external">
+        <div class="arch-layer-label"> Proveedores Externos</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('experian')">
+            <span class="node-name">Experian / Equifax</span>
+            <span class="node-tech">Buró de crédito · API + Cache</span>
+          </div>
+          <div class="node" onclick="openDetail('esign')">
+            <span class="node-name">e-Sign Chile (ISA)</span>
+            <span class="node-tech">Firma electrónica avanzada</span>
+          </div>
+          <div class="node" onclick="openDetail('toku')">
+            <span class="node-name">Toku / Redbanc</span>
+            <span class="node-tech">Pasarela de desembolso</span>
+          </div>
+          <div class="node" onclick="openDetail('sinacaf')">
+            <span class="node-name">SINACAF / SINACOFI</span>
+            <span class="node-tech">Validaciones regulatorias</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Observabilidad -->
+      <div class="arch-layer layer-infra">
+        <div class="arch-layer-label"> Observabilidad &amp; Infraestructura</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('grafana')">
+            <span class="node-name">Grafana + Prometheus</span>
+            <span class="node-tech">Métricas · Alertas</span>
+          </div>
+          <div class="node" onclick="openDetail('elasticsearch')">
+            <span class="node-name">Elasticsearch</span>
+            <span class="node-tech">Logs centralizados</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-micrometer')">
+            <span class="node-name">Micrometer</span>
+            <span class="node-tech">Métricas por ruta Camel → Grafana</span>
+          </div>
+          <div class="node" onclick="openDetail('ci-cd')">
+            <span class="node-name">CI/CD Pipeline</span>
+            <span class="node-tech">GitOps · Camel K operator</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /arch-container TB2 -->
+    </div><!-- /subtab-panel TB2 -->
+
+    <!-- ══ SUB-TAB: TO-BE 3 — TOGAF + Camel Consolidado ══ -->
+    <div id="arch-tb3" class="subtab-panel">
     <div class="arch-container">
 
       <!-- Canales -->
@@ -621,237 +1041,43 @@
       <div class="arch-layer layer-gateway">
         <div class="arch-layer-label"> API Gateway &amp; BFF</div>
         <div class="arch-nodes">
-          <div class="node" onclick="openDetail('kong')">
-            <span class="node-name">Kong Gateway</span>
-            <span class="node-tech">Rate Limit · Circuit Breaker</span>
-          </div>
           <div class="node" onclick="openDetail('bff-digital')">
             <span class="node-name">BFF Digital</span>
-            <span class="node-tech">Go · TAPP + SVP</span>
+            <span class="node-tech">Go · TAPP + SVP · backpressure</span>
           </div>
           <div class="node" onclick="openDetail('bff-presencial')">
             <span class="node-name">BFF Presencial</span>
             <span class="node-tech">Salesforce / MuleSoft</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Sesión Omnicanal -->
-      <div class="arch-layer layer-session">
-        <div class="arch-layer-label"> Sesión Omnicanal &amp; Eventos</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('redis')">
-            <span class="node-name">Redis Cluster HA</span>
-            <span class="node-tech">Sesión crédito · Cache evaluación</span>
-          </div>
-          <div class="node" onclick="openDetail('kafka')">
-            <span class="node-name">Apache Kafka</span>
-            <span class="node-tech">Event Streaming · OKE</span>
-          </div>
-          <div class="node" onclick="openDetail('session-mgr')">
-            <span class="node-name">Session Manager</span>
-            <span class="node-tech">Estado crédito por RUT</span>
+          <div class="node" onclick="openDetail('n04-ratelimit')">
+            <span class="node-name">Rate Limiter N-04</span>
+            <span class="node-tech">Rate limit por RUT</span>
           </div>
         </div>
       </div>
 
-      <!-- Orquestador -->
-      <div class="arch-layer layer-orchestration">
-        <div class="arch-layer-label"> Orquestador de Crédito (Nuevo — reemplaza Servicio 147)</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('credit-orchestrator')">
-            <span class="node-name">Credit Orchestrator</span>
-            <span class="node-tech">Microservicio GKE · Java/Go</span>
-          </div>
-          <div class="node" onclick="openDetail('doc-service')">
-            <span class="node-name">Document Service</span>
-            <span class="node-tech">Mutuo · Pagaré · Seguros</span>
-          </div>
-          <div class="node" onclick="openDetail('approved-service')">
-            <span class="node-name">Aprobados RT Service</span>
-            <span class="node-tech">Baja en línea · Tiempo real</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Evaluación -->
-      <div class="arch-layer layer-evaluation">
-        <div class="arch-layer-label"> Motor de Evaluación de Riesgo</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('fico-v7')">
-            <span class="node-name">FICO v7 (OKE)</span>
-            <span class="node-tech">Blaze Advisor v7 · OCI</span>
-          </div>
-          <div class="node" onclick="openDetail('ignite')">
-            <span class="node-name">Apache Ignite</span>
-            <span class="node-tech">failureDetection corregido</span>
-          </div>
-          <div class="node" onclick="openDetail('scoring-cache')">
-            <span class="node-name">Scoring Cache</span>
-            <span class="node-tech">Redis · BigQuery → Redis sync</span>
-          </div>
-          <div class="node" onclick="openDetail('eval-db')">
-            <span class="node-name">Eval Scoring DB</span>
-            <span class="node-tech">Oracle OCI · Auditoría</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Datos -->
-      <div class="arch-layer layer-data">
-        <div class="arch-layer-label"> Capa de Datos</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('flexcube')">
-            <span class="node-name">FlexCube 14.7</span>
-            <span class="node-tech">New Core · REST APIs</span>
-          </div>
-          <div class="node" onclick="openDetail('menuandes')">
-            <span class="node-name">MenuAndes Data API</span>
-            <span class="node-tech">REST sobre Oracle · Desacoplado</span>
-          </div>
-          <div class="node" onclick="openDetail('bigquery')">
-            <span class="node-name">BigQuery / Nicanor</span>
-            <span class="node-tech">GCP Santiago · Analítica</span>
-          </div>
-          <div class="node" onclick="openDetail('aprobados-db')">
-            <span class="node-name">Base Aprobados</span>
-            <span class="node-tech">Oracle OCI · Tiempo real</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Externos -->
-      <div class="arch-layer layer-external">
-        <div class="arch-layer-label"> Proveedores Externos</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('experian')">
-            <span class="node-name">Experian / Equifax</span>
-            <span class="node-tech">Buró de crédito · API + Cache</span>
-          </div>
-          <div class="node" onclick="openDetail('esign')">
-            <span class="node-name">e-Sign Chile (ISA)</span>
-            <span class="node-tech">Firma electrónica avanzada</span>
-          </div>
-          <div class="node" onclick="openDetail('toku')">
-            <span class="node-name">Toku / Redbanc</span>
-            <span class="node-tech">Pasarela de desembolso</span>
-          </div>
-          <div class="node" onclick="openDetail('sinacaf')">
-            <span class="node-name">SINACAF / SINACOFI</span>
-            <span class="node-tech">Validaciones regulatorias</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Infra y Observabilidad -->
-      <div class="arch-layer layer-infra">
-        <div class="arch-layer-label"> Observabilidad &amp; Infraestructura</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('grafana')">
-            <span class="node-name">Grafana + Prometheus</span>
-            <span class="node-tech">Métricas · Alertas</span>
-          </div>
-          <div class="node" onclick="openDetail('elasticsearch')">
-            <span class="node-name">Elasticsearch</span>
-            <span class="node-tech">Logs centralizados</span>
-          </div>
-          <div class="node" onclick="openDetail('jaeger')">
-            <span class="node-name">Jaeger / Zipkin</span>
-            <span class="node-tech">Trazabilidad distribuida</span>
-          </div>
-          <div class="node" onclick="openDetail('ci-cd')">
-            <span class="node-name">CI/CD Pipeline</span>
-            <span class="node-tech">GitOps · OKE/GKE deploy</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /arch-container M1 -->
-    </div><!-- /subtab-panel M1 -->
-
-    <!-- ══ SUB-TAB: MODELO 2 — CAMEL ══ -->
-    <div id="arch-m2" class="subtab-panel">
-    <div class="arch-container">
-
-      <!-- Canales -->
-      <div class="arch-layer layer-channels">
-        <div class="arch-layer-label"> Capa de Canales</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('tapp')">
-            <span class="node-name">TAPP</span>
-            <span class="node-tech">React Native · GKE</span>
-          </div>
-          <div class="node" onclick="openDetail('svp')">
-            <span class="node-name">SVP 1.5</span>
-            <span class="node-tech">React · GKE</span>
-          </div>
-          <div class="node" onclick="openDetail('salesforce')">
-            <span class="node-name">Salesforce CRM</span>
-            <span class="node-tech">Reemplaza Siebel</span>
-          </div>
-          <div class="node" onclick="openDetail('api-portal')">
-            <span class="node-name">API Portal</span>
-            <span class="node-tech">Integraciones 3rd party</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Seguridad -->
-      <div class="arch-layer layer-security">
-        <div class="arch-layer-label"> Identidad &amp; Seguridad</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('keycloak')">
-            <span class="node-name">Keycloak</span>
-            <span class="node-tech">SSO / OAuth2 / OIDC</span>
-          </div>
-          <div class="node" onclick="openDetail('activeit')">
-            <span class="node-name">Active IT</span>
-            <span class="node-tech">Biometría / RUT</span>
-          </div>
-          <div class="node" onclick="openDetail('zerotrust')">
-            <span class="node-name">Zero Trust Layer</span>
-            <span class="node-tech">mTLS · RBAC · WAF</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Gateway ligero — sin Kong full -->
-      <div class="arch-layer layer-gateway">
-        <div class="arch-layer-label"> API Gateway &amp; BFF</div>
-        <div class="arch-nodes">
-          <div class="node" onclick="openDetail('camel-rest-edge')">
-            <span class="node-name">Camel REST Edge</span>
-            <span class="node-tech">Auth · Rate Limit · TLS termination</span>
-          </div>
-          <div class="node" onclick="openDetail('bff-digital')">
-            <span class="node-name">BFF Digital</span>
-            <span class="node-tech">Go · TAPP + SVP</span>
-          </div>
-          <div class="node" onclick="openDetail('bff-presencial')">
-            <span class="node-name">BFF Presencial</span>
-            <span class="node-tech">Salesforce / MuleSoft</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Eventos y Estado — sin Session Manager separado -->
+      <!-- Eventos y Estado -->
       <div class="arch-layer layer-session">
         <div class="arch-layer-label">Eventos &amp; Estado</div>
         <div class="arch-nodes">
           <div class="node" onclick="openDetail('redis-camel')">
             <span class="node-name">Redis Cluster HA</span>
-            <span class="node-tech">State machine · Cache scoring · Sesión omnicanal</span>
+            <span class="node-tech">N-02 · N-05 · N-07 · caché transversal</span>
           </div>
           <div class="node" onclick="openDetail('kafka')">
             <span class="node-name">Apache Kafka</span>
-            <span class="node-tech">Event Streaming · OKE</span>
+            <span class="node-tech">N-12 cola derivación · ≥60% gestionadas</span>
+          </div>
+          <div class="node" onclick="openDetail('camel-evaluation')">
+            <span class="node-name">Gestor Tokens N-03</span>
+            <span class="node-tech">Token único OAG+ApiGee con TTL</span>
           </div>
         </div>
       </div>
 
-      <!-- CAMEL — capa central que fusiona orquestación + integración + OSB -->
+      <!-- CAMEL — único bus (OSB apagado) -->
       <div class="arch-layer layer-camel">
-        <div class="arch-layer-label"> Apache Camel K — Orquestación + Integración (reemplaza Servicio 147 + OSB)</div>
+        <div class="arch-layer-label"> Apache Camel K — Único bus (OSB formalmente apagado — INI-16 Fase 4)</div>
         <div class="arch-nodes">
           <div class="node" onclick="openDetail('camel-evaluation')">
             <span class="node-name">Route: evaluation</span>
@@ -879,11 +1105,11 @@
           </div>
           <div class="node" onclick="openDetail('camel-osb-eai005')">
             <span class="node-name">Route: EAI-005</span>
-            <span class="node-tech">FlexCube Info Financiera · migrado de OSB</span>
+            <span class="node-tech">FlexCube Info Financiera</span>
           </div>
           <div class="node" onclick="openDetail('camel-osb-menuandes')">
             <span class="node-name">Route: EAI-MenuAndes</span>
-            <span class="node-tech">EAI-053/106/110 · migrado de OSB</span>
+            <span class="node-tech">EAI-053/106/110 · Camel directo</span>
           </div>
           <div class="node" onclick="openDetail('camel-dlq')">
             <span class="node-name">Route: dead-letter</span>
@@ -892,7 +1118,7 @@
         </div>
       </div>
 
-      <!-- Evaluación — igual que M1 -->
+      <!-- Motor FICO -->
       <div class="arch-layer layer-evaluation">
         <div class="arch-layer-label"> Motor de Evaluación de Riesgo</div>
         <div class="arch-nodes">
@@ -902,80 +1128,126 @@
           </div>
           <div class="node" onclick="openDetail('ignite')">
             <span class="node-name">Apache Ignite</span>
-            <span class="node-tech">failureDetection corregido</span>
+            <span class="node-tech">failureDetection corregido · 24 CB activos</span>
           </div>
           <div class="node" onclick="openDetail('scoring-cache')">
-            <span class="node-name">Scoring Cache</span>
-            <span class="node-tech">Redis · BigQuery → Redis sync</span>
+            <span class="node-name">Scoring Cache N-07</span>
+            <span class="node-tech">Redis · BigQuery precalculadas</span>
           </div>
-          <div class="node" onclick="openDetail('eval-db')">
-            <span class="node-name">Eval Scoring DB</span>
-            <span class="node-tech">Oracle OCI · Auditoría</span>
+          <div class="node" onclick="openDetail('n11-rules')">
+            <span class="node-name">N-11 Reglas Negocio</span>
+            <span class="node-tech">Parametrización sin pase a producción TI</span>
           </div>
         </div>
       </div>
 
-      <!-- Datos — igual que M1 -->
+      <!-- Datos -->
       <div class="arch-layer layer-data">
         <div class="arch-layer-label"> Capa de Datos</div>
         <div class="arch-nodes">
           <div class="node" onclick="openDetail('flexcube')">
-            <span class="node-name">FlexCube 14.7</span>
-            <span class="node-tech">New Core · REST APIs</span>
+            <span class="node-name">FlexCube</span>
+            <span class="node-tech">Core bancario · REST APIs</span>
           </div>
-          <div class="node" onclick="openDetail('menuandes')">
-            <span class="node-name">MenuAndes Data API</span>
-            <span class="node-tech">REST sobre Oracle · Desacoplado</span>
+          <div class="node" onclick="openDetail('menuandes-apex')">
+            <span class="node-name">MenuAndes APEX</span>
+            <span class="node-tech">Oracle APEX reemplaza Forms 10g (INI-16 F1)</span>
           </div>
           <div class="node" onclick="openDetail('bigquery')">
             <span class="node-name">BigQuery / Nicanor</span>
             <span class="node-tech">GCP Santiago · Analítica</span>
           </div>
           <div class="node" onclick="openDetail('aprobados-db')">
-            <span class="node-name">Base Aprobados</span>
-            <span class="node-tech">Oracle OCI · Tiempo real</span>
+            <span class="node-name">Base Aprobados N-08</span>
+            <span class="node-tech">Baja en tiempo real · Oracle 19c</span>
           </div>
         </div>
       </div>
 
-      <!-- Externos — igual que M1 -->
+      <!-- Externos -->
       <div class="arch-layer layer-external">
         <div class="arch-layer-label"> Proveedores Externos</div>
         <div class="arch-nodes">
           <div class="node" onclick="openDetail('experian')">
             <span class="node-name">Experian / Equifax</span>
-            <span class="node-tech">Buró de crédito · API + Cache</span>
+            <span class="node-tech">Buró de crédito · SLA contractual</span>
           </div>
           <div class="node" onclick="openDetail('esign')">
             <span class="node-name">e-Sign Chile (ISA)</span>
-            <span class="node-tech">Firma electrónica avanzada</span>
+            <span class="node-tech">Firma electrónica avanzada · SLA</span>
           </div>
           <div class="node" onclick="openDetail('toku')">
             <span class="node-name">Toku / Redbanc</span>
-            <span class="node-tech">Pasarela de desembolso</span>
+            <span class="node-tech">Pasarela de desembolso · SLA</span>
           </div>
           <div class="node" onclick="openDetail('sinacaf')">
             <span class="node-name">SINACAF / SINACOFI</span>
-            <span class="node-tech">Validaciones regulatorias</span>
+            <span class="node-tech">Validaciones regulatorias · SLA</span>
           </div>
         </div>
       </div>
 
-      <!-- Observabilidad — Micrometer en vez de Jaeger -->
+      <!-- Gobierno TOGAF -->
+      <div class="arch-layer layer-togaf">
+        <div class="arch-layer-label"> Gobierno &amp; TOGAF 3.0/5 (INI-11, INI-13, INI-14)</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('togaf-cmdb')">
+            <span class="node-name">CMDB 100%+</span>
+            <span class="node-tech">100+ componentes documentados · OpenTelemetry+Jaeger</span>
+          </div>
+          <div class="node" onclick="openDetail('togaf-cmdb')">
+            <span class="node-name">SLAs 7 proveedores</span>
+            <span class="node-tech">0 → 7 proveedores con SLA contractual (INI-13)</span>
+          </div>
+          <div class="node" onclick="openDetail('togaf-cmdb')">
+            <span class="node-name">DRP + Runbooks x6</span>
+            <span class="node-tech">RTO≤4h · RPO≤1h (INI-14)</span>
+          </div>
+          <div class="node" onclick="openDetail('togaf-cmdb')">
+            <span class="node-name">Trazabilidad E2E</span>
+            <span class="node-tech">OpenTelemetry + Jaeger · ID correlación (INI-11)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modernización Stack -->
+      <div class="arch-layer layer-modern">
+        <div class="arch-layer-label"> Modernización Stack (INI-16)</div>
+        <div class="arch-nodes">
+          <div class="node" onclick="openDetail('menuandes-apex')">
+            <span class="node-name">Oracle APEX</span>
+            <span class="node-tech">Reemplaza Forms 10g · $0 · Fase 1</span>
+          </div>
+          <div class="node" onclick="openDetail('togaf-cmdb')">
+            <span class="node-name">Oracle 19c/21c</span>
+            <span class="node-tech">Upgrade desde Oracle 12 · Fase 2</span>
+          </div>
+          <div class="node" onclick="openDetail('togaf-cmdb')">
+            <span class="node-name">WebLogic evaluado</span>
+            <span class="node-tech">Upgrade/reemplazo 10.3.6 · Fase 3</span>
+          </div>
+          <div class="node" onclick="openDetail('togaf-cmdb')">
+            <span class="node-name">Siebel CX Cloud</span>
+            <span class="node-tech">Evaluación migración · Fase 5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Observabilidad -->
       <div class="arch-layer layer-infra">
         <div class="arch-layer-label"> Observabilidad &amp; Infraestructura</div>
         <div class="arch-nodes">
           <div class="node" onclick="openDetail('grafana')">
             <span class="node-name">Grafana + Prometheus</span>
-            <span class="node-tech">Métricas · Alertas</span>
+            <span class="node-tech">5 dashboards · MTTD ≤1 min</span>
           </div>
           <div class="node" onclick="openDetail('elasticsearch')">
             <span class="node-name">Elasticsearch</span>
             <span class="node-tech">Logs centralizados</span>
           </div>
           <div class="node" onclick="openDetail('camel-micrometer')">
-            <span class="node-name">Micrometer</span>
-            <span class="node-tech">Métricas por ruta Camel → Grafana</span>
+            <span class="node-name">OpenTelemetry + Jaeger</span>
+            <span class="node-tech">Trazabilidad E2E distribuida</span>
           </div>
           <div class="node" onclick="openDetail('ci-cd')">
             <span class="node-name">CI/CD Pipeline</span>
@@ -984,8 +1256,8 @@
         </div>
       </div>
 
-    </div><!-- /arch-container M2 -->
-    </div><!-- /subtab-panel M2 -->
+    </div><!-- /arch-container TB3 -->
+    </div><!-- /subtab-panel TB3 -->
 
   </div>
 </section>
@@ -994,7 +1266,7 @@
 <section id="flujo">
   <div style="max-width:1060px; margin:0 auto;">
     <h1>Flujo Omnicanal de Crédito</h1>
-    <p class="subtitle">Comparación entre el flujo actual (problemático) y el flujo propuesto</p>
+    <p class="subtitle">Comparación entre el flujo actual (problemático) y el flujo propuesto (To-Be 2 — Apache Camel, 10 etapas)</p>
 
     <!-- ── DIAGRAMA FLUJO ACTUAL ── -->
     <h2 style="margin-bottom:6px;">Diagrama — Flujo Actual</h2>
@@ -1270,72 +1542,73 @@
           <div class="comp-item"><span>🟢</span><span><strong>Formalización:</strong> Paralela donde sea posible. Directo a FlexCube 14.7 REST</span></div>
           <div class="comp-item"><span>🟢</span><span><strong>Baja Aprobados:</strong> API en tiempo real post-firma. Kafka event: credit.disbursed</span></div>
           <div class="comp-item"><span>🟢</span><span><strong>Omnicanal:</strong> Sesión en Redis por RUT, reanudable desde cualquier canal</span></div>
-          <div class="comp-item"><span>🟢</span><span><strong>Rate limit:</strong> Kong Gateway aplica límites en todos los endpoints</span></div>
+          <div class="comp-item"><span>🟢</span><span><strong>Rate limit:</strong> Rate Limiter N-04 aplica límites por RUT en todos los endpoints (To-Be 1: INI-06)</span></div>
         </div>
       </div>
     </div>
 
-    <h2>Flujo Paso a Paso — Nuevo Modelo</h2>
+    <h2>Flujo Paso a Paso — To-Be 2</h2>
+    <p style="margin-bottom:16px;">Este flujo refleja el modelo To-Be 2: Apache Camel reemplaza el OSB, Redis mantiene estado omnicanal y la evaluación se convierte en un único proceso con circuit breakers nativos.</p>
     <div style="overflow-x:auto;">
       <div class="flow" style="padding:16px 0; min-width:900px;">
 
         <div class="flow-step">
-          <div class="flow-box good">① Usuario<br>Canal (TAPP / SVP / Salesforce)</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Cualquier canal digital o presencial</span>
+          <div class="flow-box good">① Entrada multicanal<br>(TAPP / SVP / Salesforce)</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Canal único para todos los puntos de acceso</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box good">② Keycloak<br>Auth + Biometría</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Active IT para biometría</span>
+          <div class="flow-box good">② Autenticación<br>Keycloak + Biometría</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">JWT + validación de identidad</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box good">③ Kong Gateway<br>Rate Limit + CB</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Circuit breaker en todos los endpoints</span>
+          <div class="flow-box good">③ Rate Limiter N-04<br>CB por RUT</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Protección contra picos y abuso</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box warn">④ Redis Check<br>¿Cache válida?</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Si existe, saltar evaluación</span>
+          <div class="flow-box good">④ Validación Anticipada<br>Datos + documentos</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Completo antes de invocar al motor</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box good">⑤ FICO v7 OKE<br>Evaluación Única</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Una sola ejecución de "La Araña"</span>
+          <div class="flow-box warn">⑤ Pre-filtro inteligente<br>Reglas livianas</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Reglas regulatorias y de campaña sin FICO</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box good">⑥ FlexCube 14.7<br>Simulación ×1</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">1 llamada, 3 opciones de plazo</span>
+          <div class="flow-box good">⑥ Evaluación única<br>FICO v7 + Camel</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Flujo consolidado, sin doble evaluación</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box warn">⑦ Sesión Redis<br>Estado Omnicanal</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Crédito retomable desde otro canal</span>
+          <div class="flow-box good">⑦ Simulación unificada<br>FlexCube 14.7</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Una llamada, tres opciones</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box good">⑧ Credit Orch.<br>Formalización</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Reutiliza resultado, sin re-evaluar</span>
+          <div class="flow-box warn">⑧ Estado en Redis<br>Retomabilidad omnicanal</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Estado de crédito disponible por RUT</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box good">⑨ e-Sign Chile<br>Firma Docs</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">ISA Chile / Firma avanzada</span>
+          <div class="flow-box good">⑨ Decisión y derivación<br>Camel + Kafka</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Aprobado / Derivar / Rechazar con contexto</span>
         </div>
         <div class="flow-arrow">→</div>
 
         <div class="flow-step">
-          <div class="flow-box good">⑩ Desembolso<br>Toku / Redbanc</div>
-          <span style="font-size:11px;color:var(--muted);text-align:center;">Evento Kafka → Baja Aprobados RT</span>
+          <div class="flow-box good">⑩ Formalización y desembolso<br>e-Sign + Toku</div>
+          <span style="font-size:11px;color:var(--muted);text-align:center;">Firma digital y baja en tiempo real</span>
         </div>
 
       </div>
@@ -1410,39 +1683,39 @@
     <div class="timeline">
 
       <div class="timeline-item done">
-        <div class="timeline-date">Q1 2026 — En curso</div>
-        <div class="timeline-title">ARIs de Estabilización (73 acciones)</div>
-        <div class="timeline-desc">Corrección Apache Ignite, tuning JVM, remoción agente APM, configuración Kafka, circuit breakers OSB. Resultado esperado: eliminación cascadas de error, reducción latencia 40%.</div>
+        <div class="timeline-date">Q1 2026 — En curso / done</div>
+        <div class="timeline-title"><span class="badge badge-green" style="margin-right:8px;">To-Be 1 Fase A</span> 73 ARIs baseline + estabilización core</div>
+        <div class="timeline-desc">Estabilización Apache Ignite (T6 corregido), remoción agente APM fantasma (−309K conexiones/hora = −80% errores gateway), tuning JVM OSB (Survivor space ≥256MB), Oracle DB 8GB→≥32GB, rotación logs. Blaze v7 paridad con v4 (INI-02).</div>
       </div>
 
       <div class="timeline-item progress">
         <div class="timeline-date">Q2–Q3 2026</div>
-        <div class="timeline-title">FICO v7 Cloud (OKE) — Go Live Producción</div>
-        <div class="timeline-desc">Migración definitiva del motor FICO desde Sonda on-premise a OCI/OKE. Blaze Advisor v4 → v7 (elimina Nashorn deprecated). Validación paridad de resultados con v4.</div>
-      </div>
-
-      <div class="timeline-item progress">
-        <div class="timeline-date">Q3 2026</div>
-        <div class="timeline-title">Retiro OSB (SOA PF) + Credit Orchestrator</div>
-        <div class="timeline-desc">Reemplazo del Oracle Service Bus con microservicio Credit Orchestrator. Eliminación definitiva del Servicio 147. Implementación de sesión omnicanal en Redis. Desacoplamiento "Araña".</div>
+        <div class="timeline-title"><span class="badge badge-green" style="margin-right:8px;">To-Be 1 completo</span> FICO v7 go-live + Owner E2E + funnel digital</div>
+        <div class="timeline-desc">FICO v7 go-live en OKE (migración Sonda on-premise → OCI). Owner E2E y RACI por componente (INI-12, primera iniciativa ≤30 días). Funnel digital instrumentado por canal TAPP_APB/NOR/Presencial (INI-05). Rate limiting N-04 activo (INI-06).</div>
       </div>
 
       <div class="timeline-item future">
-        <div class="timeline-date">Q4 2026</div>
-        <div class="timeline-title">MenuAndes Data API + Omnicanalidad Completa</div>
-        <div class="timeline-desc">Separación definitiva Oracle Forms del motor de base de datos. REST API sobre la BD corporativa. Eliminación de batch nocturno de sincronización. Canal digital ≥50% de las ventas.</div>
+        <div class="timeline-date">Q3–Q4 2026</div>
+        <div class="timeline-title"><span class="badge badge-orange" style="margin-right:8px;">To-Be 2 Fases 1-3</span> Camel reemplaza OSB gradualmente</div>
+        <div class="timeline-desc">Fase 1 (mes 1-2): rutas evaluación FICO en Camel. Fase 2 (mes 2-3): rutas EAI-005, EAI-MenuAndes migradas. Fase 3 (mes 3-4): integraciones externas (Experian, e-Sign, Toku). Derivación digital habilitada via Kafka N-12. Retomabilidad Redis N-05.</div>
       </div>
 
       <div class="timeline-item future">
-        <div class="timeline-date">Q1–Q2 2027</div>
-        <div class="timeline-title">BigQuery → Scoring en Tiempo Real</div>
-        <div class="timeline-desc">Migración de variables de scoring desde BigQuery batch mensual a base transaccional (Cloud Spanner o AlloyDB) con cache Redis. Reducción latencia evaluación de ~4.3s a &lt;200ms.</div>
+        <div class="timeline-date">Q1 2027</div>
+        <div class="timeline-title"><span class="badge badge-orange" style="margin-right:8px;">To-Be 2 Fase 4</span> OSB 11g apagado — Camel como único bus</div>
+        <div class="timeline-desc">OSB 11g formalmente descomisionado. 24 circuit breakers Resilience4j activos. BigQuery fuera del camino crítico (variables precalculadas en Redis N-07). Avales en paralelo con Camel multicast (−60/75% tiempo). Evaluación única consolidada.</div>
+      </div>
+
+      <div class="timeline-item far">
+        <div class="timeline-date">Q2–Q3 2027</div>
+        <div class="timeline-title"><span class="badge badge-purple" style="margin-right:8px;">To-Be 3 Fases 1-3</span> Modernización stack + CMDB + SLAs</div>
+        <div class="timeline-desc">MenuAndes APEX reemplaza Forms 10g (INI-16 Fase 1, $0). Oracle 12→19c/21c (Fase 2). CMDB 100+ componentes (INI-11). SLAs contractuales 7 proveedores (INI-13). Trazabilidad E2E OpenTelemetry + Jaeger. Madurez TOGAF 2.5→3.0/5.</div>
       </div>
 
       <div class="timeline-item far">
         <div class="timeline-date">Diciembre 2027</div>
-        <div class="timeline-title">New Core — FlexCube 14.7 + Salesforce</div>
-        <div class="timeline-desc">Migración core financiero FlexCube 11.3 → 14.7. Decomiso definitivo de Siebel, consolidación en Salesforce. Simplificación radical del mapa aplicativo. REST APIs nativas FlexCube.</div>
+        <div class="timeline-title"><span class="badge badge-purple" style="margin-right:8px;">To-Be 3 Fases 4-5</span> New Core + parametrización reglas + TOGAF 3.0/5</div>
+        <div class="timeline-desc">New Core FlexCube 14.7 + Salesforce (decomiso Siebel). WebLogic evaluado/actualizado (Fase 3). Siebel CX Cloud evaluado (Fase 5). N-11 parametrización reglas de negocio: cambios semanas→horas sin pase TI (INI-17). 6 runbooks + DRP RTO≤4h/RPO≤1h (INI-14).</div>
       </div>
 
     </div>
@@ -1513,22 +1786,76 @@
       </div>
     </div>
 
+    <h2>KPIs por Horizonte To-Be</h2>
+    <div class="kpi-grid" style="margin-bottom:32px;">
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Conversión TAPP_NOR (To-Be 3)</div>
+        <div class="kpi-value">3.6% → 7%</div>
+        <div class="kpi-sub">TB1: 4.0% · TB2: ≥6% · TB3: ≥7%</div>
+      </div>
+      <div class="kpi-card kpi-purple">
+        <div class="kpi-label">Derivaciones digitales (To-Be 3)</div>
+        <div class="kpi-value">0% → 60%</div>
+        <div class="kpi-sub">TB1: 0% · TB2: ≥40% · TB3: ≥60%</div>
+      </div>
+      <div class="kpi-card kpi-red">
+        <div class="kpi-label">Evaluaciones perdidas/semana</div>
+        <div class="kpi-value">2.250 → &lt;50</div>
+        <div class="kpi-sub">TB1: &lt;500 · TB2: &lt;100 · TB3: &lt;50</div>
+      </div>
+      <div class="kpi-card kpi-blue">
+        <div class="kpi-label">MTTD (detección incidentes)</div>
+        <div class="kpi-value">45 min → 1 min</div>
+        <div class="kpi-sub">TB1: ≤5 min · TB2: ≤2 min · TB3: ≤1 min</div>
+      </div>
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Circuit breakers activos</div>
+        <div class="kpi-value">0 → 24</div>
+        <div class="kpi-sub">TB1: 0 · TB2: 24 Resilience4j · TB3: 24</div>
+      </div>
+      <div class="kpi-card kpi-purple">
+        <div class="kpi-label">CMDB documentado (To-Be 3)</div>
+        <div class="kpi-value">0% → 100%</div>
+        <div class="kpi-sub">TB1: 0 · TB2: 0 · TB3: 100+ componentes</div>
+      </div>
+      <div class="kpi-card kpi-blue">
+        <div class="kpi-label">Proveedores con SLA (To-Be 3)</div>
+        <div class="kpi-value">0 → 7</div>
+        <div class="kpi-sub">TB1: 0/7 · TB2: 0/7 · TB3: 7/7</div>
+      </div>
+      <div class="kpi-card kpi-purple">
+        <div class="kpi-label">Madurez TOGAF</div>
+        <div class="kpi-value">1.21 → 3.0/5</div>
+        <div class="kpi-sub">TB1: 1.8 · TB2: 2.5 · TB3: 3.0</div>
+      </div>
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Cambio reglas negocio (To-Be 3)</div>
+        <div class="kpi-value">semanas → horas</div>
+        <div class="kpi-sub">TB1: semanas · TB2: días · TB3: horas N-11</div>
+      </div>
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Conversión E2E</div>
+        <div class="kpi-value">5.0% → 8%</div>
+        <div class="kpi-sub">TB1: 5.5% · TB2: ≥7% · TB3: ≥8%</div>
+      </div>
+    </div>
+
     <h2>Gobernanza &amp; Deuda Técnica</h2>
     <div class="cards cards-3">
       <div class="card">
-        <div class="badge badge-blue" style="margin-bottom:8px;">COBIT</div>
-        <h3>Marco de Gobernanza</h3>
-        <p>CMDB actualizada. Catálogo de APIs centralizado. Propietario definido por dominio de datos.</p>
+        <div class="badge badge-purple" style="margin-bottom:8px;">TOGAF 3.0/5</div>
+        <h3>Marco de Gobernanza (To-Be 3)</h3>
+        <p>CMDB 100+ componentes. SLAs 7 proveedores. 6 runbooks. DRP RTO≤4h / RPO≤1h. Trazabilidad E2E OpenTelemetry + Jaeger.</p>
       </div>
       <div class="card">
         <div class="badge badge-green" style="margin-bottom:8px;">Reducción</div>
         <h3>Componentes Eliminados</h3>
-        <p>Servicio 147, OSB, Mambú, Cupo Controlado, Blaze v4 (Nashorn), agente APM mal configurado.</p>
+        <p>OSB 11g (To-Be 2→3), Blaze v4 Nashorn (To-Be 1), agente APM fantasma (To-Be 1), Forms 10g MenuAndes (To-Be 3).</p>
       </div>
       <div class="card">
-        <div class="badge badge-yellow" style="margin-bottom:8px;">Pendiente</div>
+        <div class="badge badge-yellow" style="margin-bottom:8px;">Tolerado</div>
         <h3>Riesgo Residual</h3>
-        <p>MenuAndes Oracle Forms → tolerar hasta New Core (2027). Crédito Hipotecario hasta 2049.</p>
+        <p>Crédito Hipotecario en MenuAndes tolerar hasta 2049. WebLogic 10.3.6 y Siebel CX Cloud bajo evaluación en To-Be 3 Fases 3 y 5.</p>
       </div>
     </div>
   </div>
@@ -1539,40 +1866,41 @@
 <section id="orquestador">
 <div style="max-width:980px;margin:0 auto;">
 
-  <h1>Credit Orchestrator — Camel + Redis</h1>
-  <p class="subtitle">Implementación del orquestador de crédito con Apache Camel como motor de rutas y Redis como máquina de estados</p>
+  <h1>Credit Orchestrator — Opciones To-Be</h1>
+  <p class="subtitle">Comparativa de las tres opciones de modernización y detalle del orquestador Camel (To-Be 2)</p>
 
   <!-- ─ TABLA COMPARATIVA ─ -->
   <h2 style="margin-bottom:6px;">Comparativa de Modelos Arquitectónicos</h2>
-  <p style="margin-bottom:16px;">Modelo 1 — el diseño original de esta presentación (microservicios independientes, orquestación distribuida). Modelo 2 — Camel + Redis como eje central.</p>
+  <p style="margin-bottom:16px;">Los tres horizontes son sucesivos: To-Be 1 estabiliza la plataforma actual, To-Be 2 reemplaza el OSB con Camel, y To-Be 3 completa la modernización con TOGAF 3.0/5.</p>
   <div style="overflow-x:auto;margin-bottom:12px;">
   <table style="width:100%;border-collapse:collapse;font-size:13px;">
     <thead>
       <tr style="background:var(--bg3);border-bottom:2px solid var(--border);">
         <th style="padding:10px 14px;text-align:left;color:var(--muted);font-weight:700;font-size:11px;letter-spacing:.5px;width:22%;">CRITERIO</th>
-        <th style="padding:10px 14px;text-align:center;color:#7c3aed;font-weight:700;font-size:11px;letter-spacing:.5px;width:39%;">MODELO 1 — Microservicios + Temporal / Kong</th>
-        <th style="padding:10px 14px;text-align:center;color:#c05621;font-weight:700;font-size:11px;letter-spacing:.5px;width:39%;">MODELO 2 — Apache Camel + Redis</th>
+        <th style="padding:10px 14px;text-align:center;color:#1a7f37;font-weight:700;font-size:11px;letter-spacing:.5px;width:26%;">TO-BE 1 — Convivencia Unificada</th>
+        <th style="padding:10px 14px;text-align:center;color:#c05621;font-weight:700;font-size:11px;letter-spacing:.5px;width:26%;">TO-BE 2 — Apache Camel</th>
+        <th style="padding:10px 14px;text-align:center;color:#7c3aed;font-weight:700;font-size:11px;letter-spacing:.5px;width:26%;">TO-BE 3 — TOGAF + Camel</th>
       </tr>
     </thead>
     <tbody id="compare-table-body">
     </tbody>
   </table>
   </div>
-  <p style="font-size:11px;color:var(--muted);margin-bottom:28px;">🟢 Ventaja &nbsp;·&nbsp; 🟡 Neutral / posible &nbsp;·&nbsp; 🔴 Desventaja</p>
+  <p style="font-size:11px;color:var(--muted);margin-bottom:28px;">🟢 Ventaja &nbsp;·&nbsp; 🟡 Neutral / en progreso &nbsp;·&nbsp; 🔴 Pendiente</p>
 
   <!-- ─ RESUMEN DECISION ─ -->
-  <div class="alert alert-orange" style="margin-bottom:32px;">
+  <div class="alert alert-green" style="margin-bottom:32px;">
     <span>⚖️</span>
     <div>
-      <strong>Recomendación para Caja Los Andes:</strong> El Modelo 2 (Camel + Redis) es la opción más pragmática en este contexto.
-      Resuelve dos problemas con una sola herramienta: reemplaza el OSB <em>y</em> orquesta el crédito. No requiere infraestructura nueva, el equipo ya conoce Java, y Redis existe en producción.
-      El Modelo 1 es arquitectónicamente más puro y escala mejor a largo plazo, pero implica mayor costo inicial, más piezas independientes y una curva de aprendizaje con Temporal que no está justificada en el horizonte 2026.
+      <strong>Secuencialidad de los horizontes:</strong> To-Be 1 (≤3 meses) estabiliza la plataforma sin reemplazar componentes — elimina la causa raíz T6 (Ignite), el agente APM fantasma (−80% errores gateway) y establece monitoreo proactivo.
+      To-Be 2 (3-6 meses, sobre base TB1) reemplaza el OSB 11g gradualmente con Apache Camel: evaluación única, avales en paralelo, 24 circuit breakers y derivación digital habilitada.
+      To-Be 3 (&gt;6 meses, sobre base TB2) apaga formalmente el OSB, moderniza el stack (APEX, Oracle 19c) e implementa gobierno TOGAF 3.0/5 con CMDB 100%+, SLAs contractuales y parametrización de reglas de negocio N-11.
     </div>
   </div>
 
   <!-- ─ ARQUITECTURA CAMEL ─ -->
-  <h2 style="margin-bottom:6px;">Arquitectura del Orquestador</h2>
-  <p style="margin-bottom:20px;">Camel corre en OKE como microservicio Spring Boot. Redis gestiona el estado del crédito. Kafka conecta los eventos entre rutas.</p>
+  <h2 style="margin-bottom:6px;">Arquitectura del Orquestador — To-Be 2</h2>
+  <p style="margin-bottom:20px;">El siguiente diagrama detalla el orquestador Apache Camel correspondiente al horizonte To-Be 2. Camel corre en OKE como microservicio Spring Boot. Redis gestiona el estado del crédito. Kafka conecta los eventos entre rutas.</p>
 
   <div style="overflow-x:auto;margin-bottom:32px;">
   <svg viewBox="0 0 940 500" style="width:100%;min-width:780px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;" xmlns="http://www.w3.org/2000/svg">
@@ -1629,7 +1957,7 @@
     <!-- Route 1: Evaluation -->
     <rect x="184" y="40" width="170" height="44" rx="7" fill="#f0f2f5" stroke="#c05621" stroke-width="1.5"/>
     <text x="198" y="57" fill="#c05621" font-size="9" font-weight="700">Route: evaluation</text>
-    <text x="198" y="70" fill="#656d76" font-size="9">REST → Kong → FICO v7</text>
+    <text x="198" y="70" fill="#656d76" font-size="9">REST → N-04 → FICO v7</text>
     <text x="198" y="81" fill="#656d76" font-size="8">Resilience4j CB · retry(3)</text>
 
     <!-- Route 2: Simulation -->
@@ -1809,46 +2137,6 @@
 
   </div>
 
-  <!-- ─ CODE SNIPPET ─ -->
-  <h2 style="margin-bottom:14px;">Ejemplo de Ruta — Formalización sin doble invocación</h2>
-  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;overflow-x:auto;margin-bottom:32px;">
-  <pre style="font-family:'Fira Code','Cascadia Code',monospace;font-size:12px;line-height:1.7;color:#e6edf3;margin:0;"><span style="color:#656d76">// Ruta: formalization — reemplaza el Servicio 147
-// Lee el resultado de la preevaluación desde Redis
-// sin llamar a FICO por segunda vez</span>
-
-<span style="color:#c05621">from</span>(<span style="color:#1a7f37">"kafka:credit.option.selected?groupId=credit-orchestrator"</span>)
-  .<span style="color:#0e7490">process</span>(exchange <span style="color:#c05621">-></span> {
-    String rut = exchange.getIn().getHeader(<span style="color:#1a7f37">"rut"</span>, String.class);
-
-    <span style="color:#656d76">// 1. Leer estado guardado en Redis (sin re-evaluar)</span>
-    CreditSession session = redisService.getSession(rut);
-    <span style="color:#c05621">if</span> (session == <span style="color:#0e7490">null</span> || session.isExpired()) {
-      <span style="color:#c05621">throw new</span> SessionExpiredException(<span style="color:#1a7f37">"Sesión vencida para RUT: "</span> + rut);
-    }
-
-    <span style="color:#656d76">// 2. Actualizar estado → FORMALIZING</span>
-    redisService.setState(rut, CreditState.FORMALIZING);
-    exchange.getIn().setBody(session);
-  })
-
-  <span style="color:#656d76">// 3. Crear crédito directamente en FlexCube 14.7 REST</span>
-  .<span style="color:#0e7490">circuitBreaker</span>()
-    .<span style="color:#0e7490">resilience4jConfiguration</span>()
-      .slidingWindowSize(<span style="color:#7c3aed">10</span>).failureRateThreshold(<span style="color:#7c3aed">50</span>)
-      .waitDurationInOpenState(<span style="color:#7c3aed">30</span>).end()
-    .<span style="color:#0e7490">to</span>(<span style="color:#1a7f37">"rest:post:flexcube/credit/create"</span>)
-  .<span style="color:#0e7490">onFallback</span>()
-    .<span style="color:#0e7490">process</span>(e <span style="color:#c05621">-></span> redisService.setState(e.getIn().getHeader(<span style="color:#1a7f37">"rut"</span>, String.class),
-                                             CreditState.COMPENSATING))
-  .<span style="color:#0e7490">end</span>()
-
-  <span style="color:#656d76">// 4. Publicar evento para que Document Service genere PDFs</span>
-  .<span style="color:#0e7490">to</span>(<span style="color:#1a7f37">"kafka:credit.formalized?brokers={{kafka.brokers}}"</span>)
-
-  <span style="color:#656d76">// 5. Estado → DOCS_GENERATED (lo actualiza la ruta de documentos)</span>
-  .<span style="color:#0e7490">log</span>(<span style="color:#1a7f37">"Crédito formalizado sin re-evaluación: ${header.rut}"</span>);</pre>
-  </div>
-
 </div>
 </section>
 
@@ -1867,10 +2155,13 @@
 function showSubtab(panelId, btn) {
   const section = btn.closest('section');
   section.querySelectorAll('.subtab-panel').forEach(p => p.classList.remove('visible'));
-  section.querySelectorAll('.subtab-btn').forEach(b => { b.classList.remove('active'); b.classList.remove('active-orange'); });
+  section.querySelectorAll('.subtab-btn').forEach(b => {
+    b.classList.remove('active','active-tb1','active-tb2','active-tb3');
+  });
   document.getElementById(panelId).classList.add('visible');
-  const isM2 = panelId.includes('m2');
-  btn.classList.add(isM2 ? 'active-orange' : 'active');
+  if (panelId.includes('tb1')) btn.classList.add('active-tb1');
+  else if (panelId.includes('tb2')) btn.classList.add('active-tb2');
+  else btn.classList.add('active-tb3');
 }
 
 // ── Navigation ──
@@ -1883,86 +2174,102 @@ function show(id) {
 }
 
 // ── Comparative Table ──
-// col order: [modelo1, modelo2]
+// col order: [tb1, tb2, tb3]
 const compareRows = [
   {
     categoria: 'ARQUITECTURA',
     rows: [
-      { criterio: 'Orquestador de crédito',
-        m1: ['Temporal.io — workflows duraderos nativos con historial completo', 'green'],
-        m2: ['Apache Camel — rutas de integración + state machine manual en Redis', 'yellow'] },
-      { criterio: 'Reemplazo del OSB',
-        m1: ['Microservicios REST independientes por cada integración', 'yellow'],
-        m2: ['Camel reemplaza el OSB directamente — misma herramienta, migración gradual', 'green'] },
-      { criterio: 'Número de componentes nuevos',
-        m1: ['Alto — Temporal Server, Kong, Credit Orchestrator, MenuAndes API, Session Mgr…', 'yellow'],
-        m2: ['Bajo — Camel K cubre orquestación + integración. Redis ya existe', 'green'] },
-      { criterio: 'Acoplamiento entre piezas',
-        m1: ['Bajo — cada microservicio es independiente y desplegable por separado', 'green'],
-        m2: ['Medio — las rutas Camel comparten proceso; un bug puede afectar varias rutas', 'yellow'] },
-      { criterio: 'Escalabilidad a largo plazo',
-        m1: ['Alta — microservicios escalan independientemente por dominio', 'green'],
-        m2: ['Media — Camel K escala por ruta, pero todas comparten el mismo modelo de datos Redis', 'yellow'] },
+      { criterio: 'Bus de integración',
+        tb1: ['OSB 11g — se mantiene, estabilizado (INI-15)', 'yellow'],
+        tb2: ['Apache Camel — reemplaza OSB gradualmente (Fases 1-4)', 'green'],
+        tb3: ['Camel único — OSB formalmente apagado (INI-16 Fase 4)', 'green'] },
+      { criterio: 'Marco de gobierno',
+        tb1: ['Owner E2E + RACI por componente + CAB (INI-12)', 'yellow'],
+        tb2: ['Owner consolidado + RACI madurado', 'yellow'],
+        tb3: ['TOGAF 3.0/5 — madurez 1.21 → 3.0 (INI-11, INI-13, INI-14)', 'green'] },
+      { criterio: 'Componentes nuevos',
+        tb1: ['N-04 Rate Limiter, alertas Grafana, Owner E2E', 'yellow'],
+        tb2: ['Camel K, Redis N-02/N-05/N-07, Kafka N-12, Gestor tokens N-03, N-08 Aprobados', 'green'],
+        tb3: ['N-11 Parametrización reglas + todos los de TB2 + modernización stack', 'green'] },
+      { criterio: 'Evaluación perdidas/semana',
+        tb1: ['~2.250 → &lt;500 (−78%)', 'yellow'],
+        tb2: ['&lt;500 → &lt;100 (−80% adicional)', 'green'],
+        tb3: ['&lt;100 → &lt;50', 'green'] },
+      { criterio: 'Madurez TOGAF',
+        tb1: ['1.21/5 → 1.8/5', 'yellow'],
+        tb2: ['1.8/5 → 2.5/5', 'yellow'],
+        tb3: ['2.5/5 → 3.0/5', 'green'] },
     ]
   },
   {
     categoria: 'FLUJO DE CRÉDITO',
     rows: [
-      { criterio: 'Estado persistente (sesión omnicanal)',
-        m1: ['Redis explícito + Session Manager dedicado', 'yellow'],
-        m2: ['Redis — mismo mecanismo, sin servicio adicional', 'green'] },
-      { criterio: 'Long-running (ej. afiliado tarda días en firmar)',
-        m1: ['Temporal.io nativo — .waitForSignal() sin polling', 'green'],
-        m2: ['Kafka consumer + resume route — funciona pero requiere diseño cuidadoso', 'yellow'] },
-      { criterio: 'Compensación ante fallo (Saga rollback)',
-        m1: ['Temporal — Compensate Activity nativo con historial', 'green'],
-        m2: ['Dead Letter Channel + lógica de rollback manual en Redis', 'yellow'] },
-      { criterio: 'Circuit breakers por integración',
-        m1: ['Kong + Resilience4j por microservicio (requiere configurar cada uno)', 'yellow'],
-        m2: ['Resilience4j integrado en cada ruta Camel por defecto', 'green'] },
-      { criterio: 'Visibilidad del estado del crédito',
-        m1: ['Temporal UI — historial visual paso a paso de cada crédito', 'green'],
-        m2: ['Solo clave Redis — hay que construir un dashboard propio o consultarlo manualmente', 'yellow'] },
+      { criterio: 'Evaluación crédito',
+        tb1: ['Doble invocación OSB persiste', 'red'],
+        tb2: ['Evaluación única Camel — Knockout + ProcesaSolicitud fusionados', 'green'],
+        tb3: ['Evaluación única consolidada', 'green'] },
+      { criterio: 'Avales',
+        tb1: ['Secuencial OSB — sin paralelismo', 'red'],
+        tb2: ['Camel multicast → −60/75% tiempo de avales', 'green'],
+        tb3: ['Paralelo consolidado', 'green'] },
+      { criterio: 'Circuit breakers',
+        tb1: ['0 (sin cambio)', 'red'],
+        tb2: ['24 Resilience4j (1 por integración)', 'green'],
+        tb3: ['24 activos + maduros', 'green'] },
+      { criterio: 'Canal digital rechazos',
+        tb1: ['277K/mes rechazados sin derivación', 'red'],
+        tb2: ['Derivación digital habilitada via Kafka N-12', 'green'],
+        tb3: ['≥60% rechazos gestionados digitalmente', 'green'] },
+      { criterio: 'Retomabilidad omnicanal',
+        tb1: ['Sin cambio — cada canal es isla', 'red'],
+        tb2: ['Redis N-05 state store — retomabilidad por RUT', 'green'],
+        tb3: ['Retomabilidad consolidada + CMDB', 'green'] },
     ]
   },
   {
     categoria: 'COSTO',
     rows: [
-      { criterio: 'Costo de licencias',
-        m1: ['Temporal self-hosted: gratis. Temporal Cloud: ~USD 0.03–0.05/workflow. Kong OSS: gratis. Kong Enterprise: ~USD 50K/año', 'yellow'],
-        m2: ['Apache Camel: 100% gratuito (Apache 2.0). Sin licencias comerciales requeridas', 'green'] },
+      { criterio: 'Costo licencias',
+        tb1: ['$0 — INI-02 apaga Blaze v4, elimina doble licenciamiento', 'green'],
+        tb2: ['$0 — Camel open source Apache 2.0. Ahorro licencias OSB ~USD 30-80K/año', 'green'],
+        tb3: ['$ a $$ por fase — Oracle APEX $0, Oracle 19c/WebLogic/Siebel CX según evaluación', 'yellow'] },
       { criterio: 'Infraestructura adicional',
-        m1: ['Temporal Server requiere cluster propio + PostgreSQL o Cassandra dedicados (~2–4 VMs)', 'red'],
-        m2: ['Camel K corre en el OKE existente. Redis ya está en producción. Costo incremental cercano a cero', 'green'] },
-      { criterio: 'Costo de migración OSB',
-        m1: ['El OSB se retira, pero se necesitan microservicios REST para cada integración migrada', 'yellow'],
-        m2: ['Las rutas Camel reemplazan el OSB directamente — ahorro en licencias Oracle OSB (~USD 30–80K/año típico)', 'green'] },
-      { criterio: 'Costo de implementación (horas/equipo)',
-        m1: ['Mayor — más piezas independientes, más contratos de API que definir y mantener', 'yellow'],
-        m2: ['Menor — un solo framework. El equipo Java puede contribuir desde el primer sprint', 'green'] },
-      { criterio: 'Costo operacional futuro',
-        m1: ['Bajo — microservicios independientes, cada uno escala y se opera por separado', 'green'],
-        m2: ['Medio — Camel monolítico en rutas; si el proceso crece mucho, el estado en Redis se vuelve complejo de mantener', 'yellow'] },
+        tb1: ['Mínima — solo Rate Limiter N-04 sobre infra existente', 'green'],
+        tb2: ['Bajo — Camel K en OKE existente. Redis ya en producción', 'green'],
+        tb3: ['Moderado — por fases según componentes evaluados', 'yellow'] },
     ]
   },
   {
-    categoria: 'EQUIPO & OPERACIÓN',
+    categoria: 'GOBIERNO Y OPERACIÓN',
     rows: [
-      { criterio: 'Curva de aprendizaje',
-        m1: ['Alta — Temporal es un paradigma nuevo. Kong requiere configuración de plugins', 'red'],
-        m2: ['Media — Camel DSL en Java. El equipo ya tiene experiencia con el OSB (mismo concepto)', 'green'] },
-      { criterio: 'Madurez en ecosistema bancario',
-        m1: ['Temporal: creciendo rápido pero relativamente nuevo en banca latinoamericana', 'yellow'],
-        m2: ['Apache Camel: ampliamente usado como reemplazo de ESB/OSB en banca regional', 'green'] },
-      { criterio: 'Observabilidad nativa',
-        m1: ['Temporal UI para workflows. Prometheus/Grafana para microservicios. Dos planos de observación', 'yellow'],
-        m2: ['Micrometer → Prometheus/Grafana: una sola plataforma para todas las rutas y el estado', 'green'] },
-      { criterio: 'Riesgo de implementación',
-        m1: ['Mayor — más piezas en movimiento, mayor superficie de error al desplegar', 'yellow'],
-        m2: ['Menor — Camel K es maduro en OKE. Redis ya está validado en producción', 'green'] },
-      { criterio: 'Capacidad de evolución (3–5 años)',
-        m1: ['Alta — microservicios permiten reemplazar piezas sin afectar el resto', 'green'],
-        m2: ['Media — si el negocio crece mucho, el monolito de rutas Camel y el estado Redis se vuelven difíciles de escalar sin refactorizar', 'yellow'] },
+      { criterio: 'MTTD (detección incidentes)',
+        tb1: ['45 min → ≤5 min (Grafana alertas INI-10)', 'yellow'],
+        tb2: ['≤5 min → ≤2 min (Micrometer por ruta)', 'green'],
+        tb3: ['≤2 min → ≤1 min (OpenTelemetry + Jaeger E2E)', 'green'] },
+      { criterio: 'CMDB',
+        tb1: ['Sin documentación (0 componentes)', 'red'],
+        tb2: ['Sin CMDB formal (0)', 'red'],
+        tb3: ['100+ componentes documentados (INI-11)', 'green'] },
+      { criterio: 'SLAs proveedores',
+        tb1: ['0 de 7 con SLA', 'red'],
+        tb2: ['0 de 7 con SLA', 'red'],
+        tb3: ['7 de 7 con SLA contractual (INI-13)', 'green'] },
+      { criterio: 'Cambio reglas negocio',
+        tb1: ['Semanas — requiere pase a producción TI', 'red'],
+        tb2: ['Días — Camel rutas más ágiles que OSB', 'yellow'],
+        tb3: ['Horas — N-11 parametrización sin pase TI (INI-17)', 'green'] },
+      { criterio: 'MenuAndes',
+        tb1: ['Forms 10g — sin cambio', 'red'],
+        tb2: ['Forms 10g — Camel accede via EAI', 'red'],
+        tb3: ['Oracle APEX — modernizado $0 (INI-16 Fase 1)', 'green'] },
+      { criterio: 'Conversión E2E',
+        tb1: ['5.0% → 5.5%', 'yellow'],
+        tb2: ['5.5% → ≥7%', 'green'],
+        tb3: ['≥7% → ≥8%', 'green'] },
+      { criterio: 'Conversión TAPP_NOR',
+        tb1: ['3.6% → 4.0%', 'yellow'],
+        tb2: ['4.0% → ≥6%', 'green'],
+        tb3: ['≥6% → ≥7%', 'green'] },
     ]
   },
 ];
@@ -1974,7 +2281,7 @@ if (tbody) {
   compareRows.forEach(group => {
     // Category header row
     const th = document.createElement('tr');
-    th.innerHTML = `<td colspan="3" style="padding:8px 14px;background:var(--bg3);color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1px;border-top:2px solid var(--border);border-bottom:1px solid var(--border);">${group.categoria}</td>`;
+    th.innerHTML = `<td colspan="4" style="padding:8px 14px;background:var(--bg3);color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1px;border-top:2px solid var(--border);border-bottom:1px solid var(--border);">${group.categoria}</td>`;
     tbody.appendChild(th);
     // Data rows
     group.rows.forEach((row, i) => {
@@ -1982,8 +2289,9 @@ if (tbody) {
       tr.style.cssText = `background:${i%2===0?'var(--bg2)':'var(--bg3)'};border-bottom:1px solid var(--border)`;
       tr.innerHTML = `
         <td style="padding:9px 14px;color:var(--text);font-size:13px;vertical-align:top;">${row.criterio}</td>
-        <td style="padding:9px 14px;font-size:12px;background:${bgMap[row.m1[1]]};color:${colorMap[row.m1[1]]};vertical-align:top;">${iconMap[row.m1[1]]} ${row.m1[0]}</td>
-        <td style="padding:9px 14px;font-size:12px;background:${bgMap[row.m2[1]]};color:${colorMap[row.m2[1]]};vertical-align:top;">${iconMap[row.m2[1]]} ${row.m2[0]}</td>`;
+        <td style="padding:9px 14px;font-size:12px;background:${bgMap[row.tb1[1]]};color:${colorMap[row.tb1[1]]};vertical-align:top;">${iconMap[row.tb1[1]]} ${row.tb1[0]}</td>
+        <td style="padding:9px 14px;font-size:12px;background:${bgMap[row.tb2[1]]};color:${colorMap[row.tb2[1]]};vertical-align:top;">${iconMap[row.tb2[1]]} ${row.tb2[0]}</td>
+        <td style="padding:9px 14px;font-size:12px;background:${bgMap[row.tb3[1]]};color:${colorMap[row.tb3[1]]};vertical-align:top;">${iconMap[row.tb3[1]]} ${row.tb3[0]}</td>`;
       tbody.appendChild(tr);
     });
   });
@@ -1998,7 +2306,7 @@ const details = {
     desc: 'Canal digital principal. Backend en Go (BFF). Soporta créditos, seguros y servicios financieros. Alojado en GCP con DR en GCP Brasil (normativa CMF).',
     fixes: [
       { icon: '✅', text: 'Omnicanalidad: sesión de crédito en Redis, reanudable en SVP o Salesforce' },
-      { icon: '✅', text: 'Rate limit aplicado en TODOS los endpoints vía Kong, no solo en preevaluación' },
+      { icon: '✅', text: 'Rate limit aplicado en TODOS los endpoints vía N-04, no solo en preevaluación (INI-06)' },
       { icon: '✅', text: 'Eliminación dependencia de Servicio 147' },
     ],
     aris: 'ARI-13 (Baja Aprobados en línea), ARI-07 (Rate limit evaluación formal)'
@@ -2026,17 +2334,17 @@ const details = {
     ],
     aris: 'Proyecto New Core (Dic 2027). ARIs: ARI-29, ARI-30, ARI-31'
   },
-  kong: {
-    name: 'Kong API Gateway',
-    badge: '🆕 Nuevo', badgeClass: 'badge-green',
-    tech: 'Kong Gateway · OKE/GKE · Lua plugins',
-    desc: 'Reemplaza la función de gateway del DMPS. Punto único de entrada con rate limiting, circuit breakers, autenticación JWT y logging centralizado en todos los endpoints.',
+  'n04-ratelimit': {
+    name: 'Rate Limiter N-04',
+    badge: '🆕 To-Be 1 (INI-06)', badgeClass: 'badge-green',
+    tech: 'Rate Limiting por RUT · BFF backpressure · OKE',
+    desc: 'Pieza nueva N-04. Aplica rate limiting por RUT en las etapas de pre-evaluación y evaluación formal. El BFF implementa backpressure ante degradación del backend, evitando que el usuario espere indefinidamente.',
     fixes: [
-      { icon: '✅', text: 'Rate limit en evaluación FORMAL (hoy sin control: 100 evaluaciones/día mismo RUT)' },
-      { icon: '✅', text: 'Circuit breakers: si FICO cae, responde 503 inmediato en vez de colgar hilos 50s' },
+      { icon: '✅', text: 'Rate limit en evaluación formal (hoy sin control: solicitudes ilimitadas mismo RUT)' },
+      { icon: '✅', text: 'BFF con backpressure: degrada graciosamente ante saturación del motor FICO' },
       { icon: '✅', text: 'Elimina valores "dummy" que DMPS inyecta para forzar 200 OK' },
     ],
-    aris: 'ARI-07, ARI-35, ARI-38, ARI-67'
+    aris: 'INI-06, ARI-07, ARI-35, ARI-38'
   },
   redis: {
     name: 'Redis Cluster HA',
@@ -2183,7 +2491,7 @@ const details = {
     desc: 'Único buró de crédito consultado. FICO consulta el nivel de endeudamiento del afiliado. Cuenta con cache para evitar consultas duplicadas del mismo día.',
     fixes: [
       { icon: '✅', text: 'Cache diario existente se mantiene y se integra con el nuevo flujo de evaluación única' },
-      { icon: '✅', text: 'Circuit breaker en Kong: si buró no responde, flujo continúa con datos en caché' },
+      { icon: '✅', text: 'Circuit breaker Resilience4j (To-Be 2): si buró no responde, flujo continúa con datos en caché' },
     ],
     aris: 'Sin ARI específico. Funciona correctamente con cache.'
   },
@@ -2211,7 +2519,7 @@ const details = {
     name: 'Jaeger / Zipkin',
     badge: '🆕 Nuevo', badgeClass: 'badge-green',
     tech: 'Jaeger · OpenTelemetry · GKE sidecar',
-    desc: 'Trazabilidad distribuida. Permite seguir una evaluación de crédito completa a través de todos los microservicios (BFF → Kong → FICO → FlexCube → ...) con un único trace ID.',
+    desc: 'Trazabilidad distribuida. Permite seguir una evaluación de crédito completa a través de todos los microservicios (BFF → N-04 → FICO → FlexCube → ...) con un único trace ID.',
     fixes: [
       { icon: '✅', text: 'Diagnóstico de incidentes en minutos en vez de horas (hoy requiere correlación manual de logs)' },
       { icon: '✅', text: 'Identifica exactamente en qué servicio se origina la latencia en cada evaluación' },
@@ -2220,14 +2528,14 @@ const details = {
   },
   'api-portal': {
     name: 'API Portal',
-    badge: '🆕 Nuevo', badgeClass: 'badge-green',
-    tech: 'Kong Developer Portal · OpenAPI 3.0',
-    desc: 'Catálogo público/interno de APIs para integraciones de terceros y equipos internos. Centraliza la gobernanza de APIs según el plan estratégico.',
+    badge: '🆕 To-Be 3', badgeClass: 'badge-purple',
+    tech: 'OpenAPI 3.0 · Catálogo interno/externo',
+    desc: 'Catálogo público/interno de APIs para integraciones de terceros y equipos internos. Centraliza la gobernanza de APIs según el plan estratégico TOGAF 3.0/5.',
     fixes: [
-      { icon: '✅', text: 'Gobernanza de APIs: catálogo centralizado con contratos versionados — Plan COBIT' },
+      { icon: '✅', text: 'Gobernanza de APIs: catálogo centralizado con contratos versionados — TOGAF 3.0/5' },
       { icon: '✅', text: 'Reutilización de servicios en nuevos proyectos sin duplicación de integraciones' },
     ],
-    aris: 'ARI-39 (plan desacoplamiento MenuAndes)'
+    aris: 'INI-11, ARI-39 (plan desacoplamiento MenuAndes)'
   },
   'activeit': {
     name: 'Active IT',
@@ -2350,16 +2658,16 @@ const details = {
     ],
     aris: 'ARI-48 (homologar ajustes QA → PRD)'
   },
-  // ── Nodos exclusivos Modelo 2 (Camel) ──
+  // ── Nodos exclusivos To-Be 2 (Camel) ──
   'camel-rest-edge': {
     name: 'Camel REST Edge',
-    badge: '🆕 Modelo 2', badgeClass: 'badge-orange',
+    badge: '🆕 To-Be 2', badgeClass: 'badge-orange',
     tech: 'Apache Camel · camel-servlet · OKE · Keycloak JWT filter',
-    desc: 'Reemplaza Kong como punto de entrada. El componente camel-servlet expone los endpoints REST, valida el token JWT de Keycloak y aplica rate limiting via ThrottlingInflightRoutePolicy. Más liviano que Kong para este caso de uso ya que no se necesita el catálogo de plugins enterprise.',
+    desc: 'Punto de entrada liviano en To-Be 2. El componente camel-servlet expone los endpoints REST, valida el token JWT de Keycloak y aplica rate limiting via ThrottlingInflightRoutePolicy. En To-Be 1 el rate limiting lo cubre N-04 de forma independiente.',
     fixes: [
       { icon: '✅', text: 'Rate limit en todos los endpoints — incluido evaluación formal (hoy sin límite)' },
       { icon: '✅', text: 'Validación JWT integrada con Keycloak sin plugin externo' },
-      { icon: '⚠️', text: 'Menos features que Kong: sin dashboard de API, sin Developer Portal nativo' },
+      { icon: '⚠️', text: 'Sin Developer Portal nativo — se cubre con API Portal en To-Be 3' },
     ],
     aris: 'ARI-07 (rate limit evaluación formal)'
   },
@@ -2367,7 +2675,7 @@ const details = {
     name: 'Redis Cluster HA — State Machine + Cache',
     badge: '🔄 Rol ampliado', badgeClass: 'badge-orange',
     tech: 'Redis 7 · camel-redis component · SETNX para locks distribuidos',
-    desc: 'En el Modelo 2, Redis cumple tres roles en uno: (1) caché de preevaluación FICO, (2) state machine del crédito con TTL de 48h indexado por RUT, y (3) caché de scoring BigQuery. El componente camel-redis permite leer y escribir estado directamente desde las rutas sin código adicional.',
+    desc: 'En To-Be 2, Redis cumple tres roles en uno: (1) caché de preevaluación FICO, (2) state machine del crédito con TTL de 48h indexado por RUT, y (3) caché de scoring BigQuery. El componente camel-redis permite leer y escribir estado directamente desde las rutas sin código adicional.',
     fixes: [
       { icon: '✅', text: 'Unifica en un componente lo que en M1 requiere Redis + Session Manager separado' },
       { icon: '✅', text: 'SETNX previene condiciones de carrera si dos canales intentan modificar el mismo crédito' },
@@ -2480,7 +2788,7 @@ const details = {
     name: 'Micrometer — Métricas por Ruta',
     badge: '📊 Observabilidad', badgeClass: 'badge-orange',
     tech: 'Micrometer · camel-micrometer · Prometheus · Grafana',
-    desc: 'Camel expone métricas por ruta vía Micrometer sin instrumentación adicional: throughput, latencia p50/p95/p99, tasa de error y estado del circuit breaker. Se integran directamente en el Grafana existente. En el Modelo 1, Jaeger requería configuración de sidecar por microservicio.',
+    desc: 'Camel expone métricas por ruta vía Micrometer sin instrumentación adicional: throughput, latencia p50/p95/p99, tasa de error y estado del circuit breaker. Se integran directamente en el Grafana existente. En To-Be 3, OpenTelemetry + Jaeger añaden trazabilidad E2E distribuida.',
     fixes: [
       { icon: '✅', text: 'Una sola plataforma de observabilidad para todas las rutas (vs múltiples sidecars en M1)' },
       { icon: '✅', text: 'SLA medible por ruta individualmente: evaluation, formalization, disbursement, etc.' },
@@ -2494,10 +2802,75 @@ const details = {
     tech: 'SOAP · EAI-003 / EAI-004',
     desc: 'Validaciones regulatorias externas. EAI-003 conecta con SINACAF y EAI-004 con SINACOFI. No tienen circuit breakers configurados actualmente.',
     fixes: [
-      { icon: '✅', text: 'Circuit breakers en Kong para EAI-003 y EAI-004' },
+      { icon: '✅', text: 'Circuit breakers Resilience4j para EAI-003 y EAI-004 (To-Be 2 Camel)' },
       { icon: '✅', text: 'SLA y contratos de datos a documentar — ARI-28' },
     ],
     aris: 'ARI-28 (contratos de datos), governance'
+  },
+  'osb-tb1': {
+    name: 'OSB 11g — Estabilizado (To-Be 1)',
+    badge: '🟡 Se mantiene — INI-15', badgeClass: 'badge-yellow',
+    tech: 'Oracle Service Bus 11g · WebLogic · OCI on-premise',
+    desc: 'En el horizonte To-Be 1, el OSB 11g NO se reemplaza. Se estabiliza: se desactiva el agente APM fantasma (elimina 309K conexiones/hora = 80% errores gateway), se balancea la carga, se amplía Survivor space JVM a ≥256MB y se reduce el timeout de 50s a 10s (ARI-67). El OSB se reemplazará gradualmente en To-Be 2 con Apache Camel.',
+    fixes: [
+      { icon: '✅', text: 'Desactivar agente APM fantasma: −309K conexiones/hora, −80% errores gateway (INI-15)' },
+      { icon: '✅', text: 'Balanceo OSB: distribución de carga entre nodos activos' },
+      { icon: '✅', text: 'Survivor space OSB ≥256MB: reduce Full GC que congela la JVM 50-150ms' },
+      { icon: '✅', text: 'Timeout 50s → 10s (ARI-67): liberación oportuna de hilos ante caídas' },
+      { icon: '⚠️', text: 'Sin circuit breakers aún — se incorporan en To-Be 2 con Camel + Resilience4j' },
+    ],
+    aris: 'INI-15, ARI-67, ARI-52, ARI-53'
+  },
+  'camel-tb2': {
+    name: 'Apache Camel — Motor de Integración (To-Be 2)',
+    badge: '🆕 To-Be 2', badgeClass: 'badge-orange',
+    tech: 'Apache Camel K · Spring Boot · OKE · Resilience4j · Micrometer · OpenTelemetry',
+    desc: 'En To-Be 2, Apache Camel reemplaza el OSB 11g de forma gradual en 4 fases (mes 1-2: evaluación FICO, mes 2-3: rutas EAI, mes 3-4: externos, mes 5-6: apagar OSB). Camel actúa como único bus de integración y orquestador del crédito. Incluye 24 circuit breakers Resilience4j (1 por integración), métricas Micrometer y trazas OpenTelemetry.',
+    fixes: [
+      { icon: '✅', text: 'Reemplaza OSB 11g: misma herramienta para integración y orquestación — migración gradual sin big bang' },
+      { icon: '✅', text: '24 circuit breakers Resilience4j: de 0 a 24, 1 por cada integración' },
+      { icon: '✅', text: 'Avales en paralelo via Camel multicast: −60/75% tiempo de procesamiento' },
+      { icon: '✅', text: 'Evaluación única: Knockout + ProcesaSolicitud fusionados, sin doble invocación' },
+      { icon: '✅', text: 'Métricas por ruta via Micrometer → Grafana (throughput, latencia p95, tasa de error)' },
+    ],
+    aris: 'INI-01, INI-04, INI-07, INI-08, INI-09'
+  },
+  'n11-rules': {
+    name: 'N-11 Parametrización de Reglas (To-Be 3)',
+    badge: '🆕 To-Be 3 — INI-17', badgeClass: 'badge-purple',
+    tech: 'Motor de reglas parametrizable · UI negocio · Sin pase a producción TI',
+    desc: 'Capa de parametrización N-11 que permite al equipo de negocio ajustar reglas blandas del proceso crediticio sin requerir un pase a producción del equipo de TI. El tiempo de cambio pasa de semanas a horas. Incluye auditoría y control de versiones de las reglas.',
+    fixes: [
+      { icon: '✅', text: 'Cambio de reglas blandas: semanas (TI) → horas (negocio) — INI-17' },
+      { icon: '✅', text: 'Negocio puede ajustar parámetros de riesgo, límites y umbrales sin deploy técnico' },
+      { icon: '✅', text: 'Auditoría completa de cambios en reglas: quién, cuándo y qué se modificó' },
+    ],
+    aris: 'INI-17'
+  },
+  'togaf-cmdb': {
+    name: 'CMDB + Gobierno TOGAF 3.0/5 (To-Be 3)',
+    badge: '🆕 To-Be 3', badgeClass: 'badge-purple',
+    tech: 'CMDB · OpenTelemetry + Jaeger · SLAs contractuales · DRP · Runbooks',
+    desc: 'En To-Be 3 se implementa el gobierno TOGAF completo: CMDB con 100+ componentes documentados (INI-11), SLAs contractuales con 7 proveedores externos (INI-13), 6 runbooks operativos, DRP con RTO≤4h y RPO≤1h (INI-14), deuda técnica registrada trimestralmente (INI-16). Madurez arquitectónica sube de 1.21/5 a 3.0/5.',
+    fixes: [
+      { icon: '✅', text: 'CMDB 100+ componentes: trazabilidad E2E con OpenTelemetry + Jaeger (INI-11)' },
+      { icon: '✅', text: 'SLAs 7 proveedores: de 0 a 7 con SLA contractual medible (INI-13)' },
+      { icon: '✅', text: '6 runbooks operativos + DRP RTO≤4h / RPO≤1h (INI-14)' },
+      { icon: '✅', text: 'Registro formal trimestral de deuda técnica (INI-16)' },
+    ],
+    aris: 'INI-11, INI-13, INI-14, INI-16'
+  },
+  'menuandes-apex': {
+    name: 'MenuAndes — Oracle APEX (To-Be 3)',
+    badge: '🔄 To-Be 3 — INI-16 Fase 1', badgeClass: 'badge-purple',
+    tech: 'Oracle APEX · Oracle DB · REST APIs · $0 licencia',
+    desc: 'En To-Be 3 Fase 1, Oracle Forms 10g se reemplaza por Oracle APEX, que está incluido en la licencia Oracle existente (costo $0). APEX permite separar el aplicativo de la base de datos corporativa, exponer APIs REST nativas y modernizar la interfaz sin migrar los datos. Elimina el impedimento para desacoplar MenuAndes del core bancario.',
+    fixes: [
+      { icon: '✅', text: 'Reemplaza Oracle Forms 10g: modernización $0 usando licencia Oracle existente (INI-16 Fase 1)' },
+      { icon: '✅', text: 'Separa aplicativo de BD corporativa: permite escalar y mantener independientemente' },
+      { icon: '✅', text: 'APIs REST nativas APEX: elimina la necesidad de EAI-MenuAndes vía OSB/Camel' },
+    ],
+    aris: 'INI-16 Fase 1, ARI-39, ARI-40'
   },
 };
 

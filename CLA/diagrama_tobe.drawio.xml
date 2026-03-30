@@ -1,0 +1,680 @@
+<mxfile host="app.diagrams.net" version="21.0.0">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     TB1 — CONVIVENCIA UNIFICADA
+     Estabilización sin reemplazo de componentes · ≤3 meses
+     ═══════════════════════════════════════════════════════════════════ -->
+<diagram id="tb1" name="TB1 — Convivencia Unificada">
+<mxGraphModel dx="1200" dy="800" grid="0" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+
+<!-- TÍTULO -->
+<mxCell id="t1-title" value="&lt;b style='font-size:17px'&gt;TO-BE 1 — Convivencia Unificada&lt;/b&gt;&lt;br/&gt;&lt;font color='#656d76' style='font-size:11px'&gt;≤ 3 meses · Bajo esfuerzo / Alto impacto · No se reemplazan componentes · OSB 11g se mantiene&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="20" y="8" width="1120" height="52" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 1: CANALES ─── -->
+<mxCell id="t1-l1-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#0969da;arcSize=3;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="20" y="68" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l1-lbl" value="CAPA DE CANALES" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0969da;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="70" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-tapp" value="&lt;b&gt;TAPP&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;React Native · GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="110" y="98" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-svp" value="&lt;b&gt;SVP 1.5&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;React · GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="265" y="98" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-presencial" value="&lt;b&gt;Canal Presencial&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;MenuAndes · Siebel CRM&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="420" y="98" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-api-portal" value="&lt;b&gt;API Portal&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Integraciones 3rd party&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="575" y="98" width="145" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 2: SEGURIDAD ─── -->
+<mxCell id="t1-l2-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="168" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l2-lbl" value="IDENTIDAD &amp; SEGURIDAD" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#7c3aed;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="170" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-keycloak" value="&lt;b&gt;Keycloak&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;SSO / OAuth2 / OIDC&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="340" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-activeit" value="&lt;b&gt;Active IT&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Biometría / RUT&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="495" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 3: GATEWAY ─── -->
+<mxCell id="t1-l3-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cffafe;strokeColor=#0e7490;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="268" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l3-lbl" value="GATEWAY &amp; BFF" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0e7490;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="270" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-bff-digital" value="&lt;b&gt;BFF Digital&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Go · TAPP + SVP&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-bff-presencial" value="&lt;b&gt;BFF Presencial&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Siebel · OSB&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="368" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-ratelim" value="&lt;b&gt;Rate Limiter N-04 ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Por RUT · INI-06 · Nuevo&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="523" y="298" width="155" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 4: ESTABILIZACIÓN (NUEVA) ─── -->
+<mxCell id="t1-l4-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="368" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l4-lbl" value="★ PIEZAS NUEVAS DE SOPORTE — ESTABILIZACIÓN &amp; GOBIERNO" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#1a7f37;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="370" width="500" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-owner" value="&lt;b&gt;Owner E2E + RACI ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Habilitador #1 · INI-12 · ≤30 días&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="46" y="398" width="170" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-alertas" value="&lt;b&gt;Alertas Automatizadas ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;MTTD 45min → ≤5min · INI-10&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="226" y="398" width="180" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-funnel" value="&lt;b&gt;Funnel Digital ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Métricas sin cambiar flujo · INI-05&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="416" y="398" width="175" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-contingencia" value="&lt;b&gt;Protocolo Contingencia ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;3 escenarios documentados · INI-10&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="601" y="398" width="185" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 5: OSB 11g ESTABILIZADO ─── -->
+<mxCell id="t1-l5-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#9a6700;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="468" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l5-lbl" value="BUS DE INTEGRACIÓN — OSB 11g (SE MANTIENE, ESTABILIZADO)" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#9a6700;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="470" width="500" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-osb" value="&lt;b&gt;OSB 11g (Estabilizado)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Balanceo equitativo · Survivor ≥256MB · Timeout 50.9s→10s&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="110" y="498" width="220" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-blaze" value="&lt;b&gt;Blaze v7 — Motor Único ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Apaga v4 · Elimina Nashorn · Ahorra licencia · INI-02&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="340" y="498" width="225" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-srv147" value="&lt;b&gt;Servicio 147 (Siebel)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Anti-patrón · Doble invocación · Se mantiene&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;fontColor=#cf222e;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="575" y="498" width="200" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 6: MOTOR FICO ─── -->
+<mxCell id="t1-l6-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#0969da;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="568" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l6-lbl" value="MOTOR DE EVALUACIÓN DE RIESGO" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0969da;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="570" width="300" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-fico" value="&lt;b&gt;FICO v7 (OKE)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Blaze Advisor v7 · OCI · En migración Q2-Q3&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="110" y="598" width="190" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-ignite" value="&lt;b&gt;Apache Ignite ✓ (T6)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;failureDetection · backup=1 · pools≥16 · ARI-14,15,57&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="310" y="598" width="225" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-apm" value="&lt;b&gt;Agente APM ✕ REMOVIDO&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;-309K conexiones/hora · -80% errores gateway · ARI-52&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;fontColor=#cf222e;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="545" y="598" width="225" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 7: DATOS ─── -->
+<mxCell id="t1-l7-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#9a6700;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="668" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l7-lbl" value="CAPA DE DATOS" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#9a6700;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="670" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-flexcube" value="&lt;b&gt;FlexCube 11.3&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Core financiero · SOAP · Triple sim.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="698" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-menuandes-data" value="&lt;b&gt;MenuAndes (Forms 10g)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Sin soporte · Cadena obsolescencia · FG-30&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;fontColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="220" y="698" width="190" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-bigquery" value="&lt;b&gt;BigQuery (GCP) ⚠&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;~4,312ms síncrono · Camino crítico · FG-19&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;fontColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="420" y="698" width="180" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-aprobados" value="&lt;b&gt;Base Aprobados&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Job diario Control-M · Riesgo duplicidad · FG-25&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="610" y="698" width="190" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 8: EXTERNOS ─── -->
+<mxCell id="t1-l8-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="768" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l8-lbl" value="PROVEEDORES EXTERNOS" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#cf222e;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="770" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-experian" value="&lt;b&gt;Experian / Equifax&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Buró de crédito · Caché diario&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="798" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-esign" value="&lt;b&gt;e-Sign Chile (ISA)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Firma electrónica avanzada&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="378" y="798" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-sinacofi" value="&lt;b&gt;Sinacofi / Sinacaf&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Validaciones regulatorias · CMF&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="543" y="798" width="155" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 9: OBSERVABILIDAD ─── -->
+<mxCell id="t1-l9-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f2f5;strokeColor=#8c959f;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="868" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t1-l9-lbl" value="OBSERVABILIDAD &amp; INFRAESTRUCTURA" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#656d76;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="870" width="300" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t1-grafana" value="&lt;b&gt;Grafana+Prometheus ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Alertas · Dashboards ampliados&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="898" width="165" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-elastic" value="&lt;b&gt;Elasticsearch ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;CB restaurado · Acceso funcional&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="230" y="898" width="160" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-apm-rest" value="&lt;b&gt;APM Restaurado ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;5 meses inactivo · INI-10&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="400" y="898" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t1-controlm" value="&lt;b&gt;Control-M&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Jobs batch · Sin cambios&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="565" y="898" width="145" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LEYENDA -->
+<mxCell id="t1-ley" value="★ Pieza nueva · ✓ Corregido · ✕ Removido · 🔴 Anti-patrón persistente (se resuelve en TB2/TB3)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#656d76;align=left;" vertex="1" parent="1">
+  <mxGeometry x="20" y="968" width="700" height="22" as="geometry"/>
+</mxCell>
+<mxCell id="t1-kpi" value="KPIs: Eval. perdidas 2,250→&lt;500/sem · MTTD 45min→≤5min · Conversión 5.0%→5.5% · TOGAF 1.21→1.8/5 · Errores gateway -80%" style="text;html=1;strokeColor=none;fillColor=#fef9c3;borderColor=#9a6700;fontSize=10;fontColor=#9a6700;align=left;rounded=1;" vertex="1" parent="1">
+  <mxGeometry x="20" y="990" width="800" height="28" as="geometry"/>
+</mxCell>
+
+</root>
+</mxGraphModel>
+</diagram>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     TB2 — REEMPLAZAR BUS (APACHE CAMEL)
+     Esfuerzo medio · 3-6 meses · Prerequisito: TB1 completado
+     ═══════════════════════════════════════════════════════════════════ -->
+<diagram id="tb2" name="TB2 — Apache Camel">
+<mxGraphModel dx="1200" dy="800" grid="0" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+
+<!-- TÍTULO -->
+<mxCell id="t2-title" value="&lt;b style='font-size:17px'&gt;TO-BE 2 — Reemplazar Bus (Apache Camel)&lt;/b&gt;&lt;br/&gt;&lt;font color='#656d76' style='font-size:11px'&gt;3-6 meses · Esfuerzo medio · Prerequisito: TB1 · Apache Camel reemplaza OSB 11g gradualmente (4 fases) · $0 en licencias&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="20" y="8" width="1120" height="52" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 1: CANALES ─── -->
+<mxCell id="t2-l1-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#0969da;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="68" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l1-lbl" value="CAPA DE CANALES" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0969da;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="70" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-tapp" value="&lt;b&gt;TAPP&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;React Native · GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-svp" value="&lt;b&gt;SVP 1.5&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;React · GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="205" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-salesforce" value="&lt;b&gt;Salesforce CRM&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Reemplaza Siebel&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="355" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-api-portal" value="&lt;b&gt;API Portal&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Integraciones 3rd party&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="505" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 2: SEGURIDAD ─── -->
+<mxCell id="t2-l2-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="168" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l2-lbl" value="IDENTIDAD &amp; SEGURIDAD" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#7c3aed;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="170" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-keycloak" value="&lt;b&gt;Keycloak&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;SSO / OAuth2 / OIDC&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-activeit" value="&lt;b&gt;Active IT&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Biometría / RUT&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="368" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-zerotrust" value="&lt;b&gt;Zero Trust Layer&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;mTLS · RBAC · WAF&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="523" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 3: GATEWAY ─── -->
+<mxCell id="t2-l3-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cffafe;strokeColor=#0e7490;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="268" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l3-lbl" value="GATEWAY &amp; BFF" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0e7490;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="270" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-bff-digital" value="&lt;b&gt;BFF Digital&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Go · TAPP + SVP&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-bff-presencial" value="&lt;b&gt;BFF Presencial&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Salesforce · MuleSoft&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="368" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-ratelim" value="&lt;b&gt;Rate Limiter N-04&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Por RUT · INI-06&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="523" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 4: EVENTOS & ESTADO ─── -->
+<mxCell id="t2-l4-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#c05621;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="368" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l4-lbl" value="EVENTOS &amp; ESTADO — Sesión omnicanal por RUT (TTL 48h)" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#c05621;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="370" width="500" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-redis" value="&lt;b&gt;Redis Cluster HA&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;N-05 Estado · N-02 Caché RUT · N-07 Scoring · SETNX lock&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="280" y="398" width="230" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-kafka" value="&lt;b&gt;Apache Kafka&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;credit.events · OKE · Streaming asíncrono&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="520" y="398" width="200" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 5: APACHE CAMEL K ─── (2 filas) -->
+<mxCell id="t2-l5-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#c05621;arcSize=3;strokeWidth=2;" vertex="1" parent="1">
+  <mxGeometry x="20" y="468" width="1120" height="210" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l5-lbl" value="APACHE CAMEL K — Orquestación + Integración · Reemplaza Servicio 147 + OSB 11g · $0 licencias · OKE" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#c05621;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="470" width="700" height="18" as="geometry"/>
+</mxCell>
+
+<!-- Fila 1 de rutas (7 nodos) -->
+<mxCell id="t2-r-eval" value="&lt;b&gt;evaluation&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Flujo único · Resilience4j CB&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="32" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-avales" value="&lt;b&gt;avales-paralelos&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Multicast · 16+ svc · -60/75%&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="178" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-sim" value="&lt;b&gt;simulation&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Redis→FlexCube · 1 llamada/3 opt.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="324" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-formal" value="&lt;b&gt;formalization&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Redis check · Sin re-evaluar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="470" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-deriv" value="&lt;b&gt;derivacion-digital N-12&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;277K solic/mes · Kafka SLA&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="616" y="492" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-docs" value="&lt;b&gt;documents&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Kafka consumer · PDF async&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="769" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-sign" value="&lt;b&gt;signing&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;e-Sign Chile · Kafka resume&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="915" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+
+<!-- Fila 2 de rutas (6 nodos) -->
+<mxCell id="t2-r-disb" value="&lt;b&gt;disbursement&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;FlexCube→Toku · credit.disbursed&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="100" y="555" width="150" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-eai005" value="&lt;b&gt;EAI-005&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;FlexCube Info Fin. · Migrado OSB&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="258" y="555" width="150" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-eaimenu" value="&lt;b&gt;EAI-MenuAndes&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;EAI-053/106/110 · Migrado OSB&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="416" y="555" width="150" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-r-dlq" value="&lt;b&gt;dead-letter&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Error → compensación · COMPENSATING&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;fontColor=#cf222e;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="574" y="555" width="160" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-n03" value="&lt;b&gt;N-03 Token Manager&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;OAG+ApiGee · TTL · -100-500ms&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="742" y="555" width="160" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-n08" value="&lt;b&gt;N-08 Baja Aprobados RT&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Tiempo real · Reemplaza job diario&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="910" y="555" width="160" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 6: MOTOR EVALUACIÓN ─── -->
+<mxCell id="t2-l6-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#0969da;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="686" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l6-lbl" value="MOTOR DE EVALUACIÓN DE RIESGO" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0969da;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="688" width="300" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-fico" value="&lt;b&gt;FICO v7 (OKE)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Blaze v7 · Flujo único consolidado&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="716" width="190" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-ignite" value="&lt;b&gt;Apache Ignite ✓&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Corregido · backup=1 · pools≥16&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="413" y="716" width="185" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-scoring" value="&lt;b&gt;Scoring Cache (N-07)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;BigQuery→Redis · 4,312ms→&lt;50ms&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="608" y="716" width="200" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 7: DATOS ─── -->
+<mxCell id="t2-l7-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#9a6700;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="786" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l7-lbl" value="CAPA DE DATOS" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#9a6700;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="788" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-flexcube" value="&lt;b&gt;FlexCube 14.7&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;New Core · REST APIs nativas&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="816" width="165" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-menuandes" value="&lt;b&gt;MenuAndes Data API&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;REST sobre Oracle · Forms 10g aún activo&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="230" y="816" width="185" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-bigquery" value="&lt;b&gt;BigQuery / Nicanor&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;GCP Santiago · Analítica · Off camino crítico&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="425" y="816" width="185" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-aprobados" value="&lt;b&gt;Base Aprobados RT&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Oracle OCI · Tiempo real · N-08&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="620" y="816" width="175" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 8: EXTERNOS ─── -->
+<mxCell id="t2-l8-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="886" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l8-lbl" value="PROVEEDORES EXTERNOS" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#cf222e;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="888" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-experian" value="&lt;b&gt;Experian / Equifax&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Buró · N-02 Caché RUT&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="135" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-esign" value="&lt;b&gt;e-Sign Chile (ISA)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Firma electrónica avanzada&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="300" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-toku" value="&lt;b&gt;Toku / Redbanc&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Pasarela desembolso&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="465" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-sinacofi" value="&lt;b&gt;Sinacofi / Sinacaf&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Validaciones regulatorias&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="630" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 9: OBSERVABILIDAD ─── -->
+<mxCell id="t2-l9-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f2f5;strokeColor=#8c959f;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="986" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t2-l9-lbl" value="OBSERVABILIDAD &amp; INFRAESTRUCTURA" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#656d76;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="988" width="300" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t2-grafana" value="&lt;b&gt;Grafana + Prometheus&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Métricas · Alertas&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="32" y="1016" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-elastic" value="&lt;b&gt;Elasticsearch&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Logs centralizados&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="197" y="1016" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-micrometer" value="&lt;b&gt;Micrometer&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Métricas por ruta Camel → Grafana&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="362" y="1016" width="175" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-otel" value="&lt;b&gt;OpenTelemetry&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Trazas distribuidas · ID correlación&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="547" y="1016" width="175" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t2-cicd" value="&lt;b&gt;CI/CD GitOps&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Camel K operator · OKE/GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="732" y="1016" width="155" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LEYENDA / KPIs -->
+<mxCell id="t2-kpi" value="KPIs: Eval. perdidas →&lt;100/sem · MTTD →≤2min · Conversión →≥7% · TAPP_NOR →≥6% · Deriv. digital ≥40% · Circuit breakers 0→24 · BigQuery -4,312ms · Avales -60/75% · TOGAF 2.5/5" style="text;html=1;strokeColor=none;fillColor=#ffedd5;borderColor=#c05621;fontSize=10;fontColor=#c05621;align=left;rounded=1;" vertex="1" parent="1">
+  <mxGeometry x="20" y="1090" width="1000" height="28" as="geometry"/>
+</mxCell>
+
+</root>
+</mxGraphModel>
+</diagram>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     TB3 — TOGAF COMPLETO + CAMEL CONSOLIDADO
+     Esfuerzo alto · >6 meses · Prerequisito: TB2
+     ═══════════════════════════════════════════════════════════════════ -->
+<diagram id="tb3" name="TB3 — TOGAF + Camel Consolidado">
+<mxGraphModel dx="1200" dy="800" grid="0" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1654" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+
+<!-- TÍTULO -->
+<mxCell id="t3-title" value="&lt;b style='font-size:17px'&gt;TO-BE 3 — TOGAF Completo + Camel Consolidado&lt;/b&gt;&lt;br/&gt;&lt;font color='#656d76' style='font-size:11px'&gt;&gt;6 meses · Esfuerzo alto · Prerequisito: TB2 · OSB 11g apagado formalmente · TOGAF 1.21→3.0/5 · Modernización full-stack&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="20" y="8" width="1120" height="52" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYERS 1-5: Idénticos a TB2 ─── -->
+
+<!-- LAYER 1: CANALES -->
+<mxCell id="t3-l1-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#0969da;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="68" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l1-lbl" value="CAPA DE CANALES" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0969da;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="70" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-tapp" value="&lt;b&gt;TAPP&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;React Native · GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-svp" value="&lt;b&gt;SVP 1.5&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;React · GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="205" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-salesforce" value="&lt;b&gt;Salesforce CRM&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Reemplaza Siebel&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="355" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-api-portal" value="&lt;b&gt;API Portal&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Integraciones 3rd party&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="505" y="98" width="140" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 2: SEGURIDAD -->
+<mxCell id="t3-l2-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="168" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l2-lbl" value="IDENTIDAD &amp; SEGURIDAD" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#7c3aed;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="170" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-keycloak" value="&lt;b&gt;Keycloak&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;SSO / OAuth2 / OIDC&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-activeit" value="&lt;b&gt;Active IT&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Biometría / RUT&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="368" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-zerotrust" value="&lt;b&gt;Zero Trust Layer&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;mTLS · RBAC · WAF&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="523" y="198" width="145" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 3: GATEWAY -->
+<mxCell id="t3-l3-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cffafe;strokeColor=#0e7490;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="268" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l3-lbl" value="GATEWAY &amp; BFF" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0e7490;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="270" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-bff-digital" value="&lt;b&gt;BFF Digital&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Go · TAPP + SVP&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-bff-presencial" value="&lt;b&gt;BFF Presencial&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Salesforce · MuleSoft&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="368" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-ratelim" value="&lt;b&gt;Rate Limiter N-04&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Por RUT · INI-06&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0e7490;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="523" y="298" width="145" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 4: EVENTOS & ESTADO -->
+<mxCell id="t3-l4-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#c05621;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="368" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l4-lbl" value="EVENTOS &amp; ESTADO" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#c05621;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="370" width="200" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-redis" value="&lt;b&gt;Redis Cluster HA&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;N-05 Estado · N-02 Caché · N-07 Scoring&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="280" y="398" width="220" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-kafka" value="&lt;b&gt;Apache Kafka&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;credit.events · OKE · Streaming&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="510" y="398" width="200" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 5: APACHE CAMEL K CONSOLIDADO -->
+<mxCell id="t3-l5-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#c05621;arcSize=3;strokeWidth=2;" vertex="1" parent="1">
+  <mxGeometry x="20" y="468" width="1120" height="210" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l5-lbl" value="APACHE CAMEL K — Único bus del ecosistema · OSB 11g APAGADO · INI-16 Fase 4" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#c05621;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="470" width="700" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-eval" value="&lt;b&gt;evaluation&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Flujo único · Resilience4j CB&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="32" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-avales" value="&lt;b&gt;avales-paralelos&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Multicast · 16+ svc · -60/75%&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="178" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-sim" value="&lt;b&gt;simulation&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Redis→FlexCube · 1 llamada/3 opt.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="324" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-formal" value="&lt;b&gt;formalization&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Redis check · Sin re-evaluar&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="470" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-deriv" value="&lt;b&gt;derivacion-digital N-12&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Derivación ≥60% · Kafka SLA&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="616" y="492" width="145" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-docs" value="&lt;b&gt;documents&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Kafka consumer · PDF async&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="769" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-sign" value="&lt;b&gt;signing&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;e-Sign Chile · Kafka resume&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="915" y="492" width="138" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-disb" value="&lt;b&gt;disbursement&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;FlexCube→Toku · credit.disbursed&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="100" y="555" width="150" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-eai005" value="&lt;b&gt;EAI-005&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;FlexCube Info Fin. · En Camel&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="258" y="555" width="150" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-r-eaimenu" value="&lt;b&gt;EAI-MenuAndes&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;EAI-053/106/110 · En Camel&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="416" y="555" width="150" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-n11" value="&lt;b&gt;N-11 Reglas Blandas ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Negocio parametriza sin TI · Semanas→Horas&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="574" y="555" width="175" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-n03" value="&lt;b&gt;N-03 Token Manager&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;OAG+ApiGee · TTL centralizado&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="757" y="555" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-n08" value="&lt;b&gt;N-08 Baja Aprobados RT&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Tiempo real · Reemplaza batch&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c05621;fontColor=#c05621;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+  <mxGeometry x="920" y="555" width="155" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 6: MOTOR -->
+<mxCell id="t3-l6-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#0969da;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="686" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l6-lbl" value="MOTOR DE EVALUACIÓN DE RIESGO" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#0969da;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="688" width="300" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-fico" value="&lt;b&gt;FICO v7 (OKE)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Blaze v7 · Flujo único consolidado&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="213" y="716" width="190" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-ignite" value="&lt;b&gt;Apache Ignite ✓&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Corregido · backup=1 · pools≥16&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="413" y="716" width="185" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-scoring" value="&lt;b&gt;Scoring Cache (N-07)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;BigQuery→Redis · &lt;50ms&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0969da;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="608" y="716" width="200" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 7: DATOS (con APEX y Oracle 19c) -->
+<mxCell id="t3-l7-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#9a6700;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="786" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l7-lbl" value="CAPA DE DATOS — Modernización INI-16 Fases 1-2" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#9a6700;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="788" width="400" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-flexcube" value="&lt;b&gt;FlexCube 14.7&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;New Core · REST APIs nativas&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="32" y="816" width="165" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-apex" value="&lt;b&gt;Oracle APEX ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Reemplaza Forms 10g · $0 · INI-16 F1&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="207" y="816" width="185" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-oracle19" value="&lt;b&gt;Oracle 19c/21c ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Upgrade desde 12c · CVEs mitigados · INI-16 F2&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="402" y="816" width="195" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-bigquery" value="&lt;b&gt;BigQuery / Nicanor&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;GCP Santiago · Analítica · Off camino crítico&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9a6700;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="607" y="816" width="185" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-aprobados" value="&lt;b&gt;Base Aprobados RT&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Oracle OCI · Tiempo real · N-08&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="802" y="816" width="185" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 8: EXTERNOS -->
+<mxCell id="t3-l8-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#cf222e;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="886" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l8-lbl" value="PROVEEDORES EXTERNOS — 7/7 con SLA formalizado · INI-13" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#cf222e;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="888" width="500" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-experian" value="&lt;b&gt;Experian / Equifax&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;SLA formalizado · N-02 Caché&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-esign" value="&lt;b&gt;e-Sign Chile (ISA)&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;SLA formalizado · Firma avanzada&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="220" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-toku" value="&lt;b&gt;Toku / Redbanc&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;SLA formalizado · Desembolso&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="385" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-sinacofi" value="&lt;b&gt;Sinacofi / Sinacaf&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;SLA formalizado · CMF&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cf222e;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="550" y="916" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-siebel-cx" value="&lt;b&gt;Siebel CX Cloud (eval) ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Migración on-premise→OCI · INI-16 F5&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="715" y="916" width="185" height="50" as="geometry"/>
+</mxCell>
+
+<!-- LAYER 9: OBSERVABILIDAD -->
+<mxCell id="t3-l9-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f2f5;strokeColor=#8c959f;arcSize=3;" vertex="1" parent="1">
+  <mxGeometry x="20" y="986" width="1120" height="92" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l9-lbl" value="OBSERVABILIDAD &amp; INFRAESTRUCTURA — Trazabilidad E2E completa · INI-11" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#656d76;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="988" width="500" height="18" as="geometry"/>
+</mxCell>
+<mxCell id="t3-grafana" value="&lt;b&gt;Grafana + Prometheus&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;5 dashboards operativos&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="32" y="1016" width="165" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-elastic" value="&lt;b&gt;Elasticsearch&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Logs · 134K errores desagregados&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="207" y="1016" width="165" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-jaeger" value="&lt;b&gt;OpenTelemetry + Jaeger ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;ID correlación · Trazas E2E · INI-11&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="382" y="1016" width="190" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-micrometer" value="&lt;b&gt;Micrometer&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Métricas por ruta Camel&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="582" y="1016" width="155" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="t3-cicd" value="&lt;b&gt;CI/CD GitOps&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Camel K operator · OKE/GKE&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8c959f;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="747" y="1016" width="155" height="50" as="geometry"/>
+</mxCell>
+
+<!-- ─── LAYER 10: TOGAF GOVERNANCE (EXCLUSIVO TB3) ─── -->
+<mxCell id="t3-l10-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;arcSize=3;strokeWidth=2;" vertex="1" parent="1">
+  <mxGeometry x="20" y="1086" width="1120" height="215" as="geometry"/>
+</mxCell>
+<mxCell id="t3-l10-lbl" value="★ TOGAF GOVERNANCE — Marco de gobierno completo · TOGAF 1.21→3.0/5 · Iniciativas INI-11, INI-13, INI-14, INI-16, INI-17" style="text;html=1;fontStyle=1;fontSize=9;fontColor=#7c3aed;align=left;verticalAlign=top;" vertex="1" parent="1">
+  <mxGeometry x="26" y="1088" width="900" height="18" as="geometry"/>
+</mxCell>
+
+<!-- Fila 1 TOGAF -->
+<mxCell id="t3-cmdb" value="&lt;b&gt;CMDB 100+ ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;De 62% sin info a 100% · Catálogo APIs · INI-11&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="1112" width="190" height="55" as="geometry"/>
+</mxCell>
+<mxCell id="t3-slas" value="&lt;b&gt;SLAs 7 Proveedores ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;De 0/7 a 7/7 · Penalidades · Soporte 24/7 · INI-13&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="255" y="1112" width="195" height="55" as="geometry"/>
+</mxCell>
+<mxCell id="t3-n11-gov" value="&lt;b&gt;N-11 Reglas Blandas ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Negocio ajusta sin TI · Versioning · Rollback · INI-17&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="460" y="1112" width="200" height="55" as="geometry"/>
+</mxCell>
+<mxCell id="t3-drp" value="&lt;b&gt;Runbooks + DRP ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;6 runbooks · RTO ≤4h · RPO ≤1h · Simulacros · INI-14&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="670" y="1112" width="205" height="55" as="geometry"/>
+</mxCell>
+
+<!-- Fila 2 TOGAF -->
+<mxCell id="t3-osb-off" value="&lt;b&gt;OSB 11g — APAGADO ✓&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Descomisionado · Camel único bus · INI-16 F4&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#1a7f37;fontColor=#1a7f37;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="55" y="1178" width="195" height="55" as="geometry"/>
+</mxCell>
+<mxCell id="t3-weblogic" value="&lt;b&gt;WebLogic 10.3.6 (eval) ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Sin soporte → upgrade o contenedores · INI-16 F3&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="260" y="1178" width="200" height="55" as="geometry"/>
+</mxCell>
+<mxCell id="t3-deuda" value="&lt;b&gt;Deuda Técnica Formal ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;Registro · Priorización trimestral · 7 años de deuda visible&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="470" y="1178" width="200" height="55" as="geometry"/>
+</mxCell>
+<mxCell id="t3-formacion" value="&lt;b&gt;Formación Cruzada ★&lt;/b&gt;&lt;br/&gt;&lt;font style='font-size:9px'&gt;5 personas clave con backup · ITIL · INI-14&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7c3aed;fontColor=#7c3aed;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+  <mxGeometry x="680" y="1178" width="200" height="55" as="geometry"/>
+</mxCell>
+
+<!-- KPIs TB3 -->
+<mxCell id="t3-kpi" value="KPIs: Eval. →&lt;50/sem · MTTD →≤1min · Conversión →≥8% · Deriv. digital ≥60% · CMDB 100% · 7/7 SLA · DRP RTO≤4h · Cambio reglas Semanas→Horas · TOGAF 3.0/5 · OSB apagado · Forms 10g → APEX · Oracle 12c → 19c" style="text;html=1;strokeColor=none;fillColor=#ede9fe;borderColor=#7c3aed;fontSize=10;fontColor=#7c3aed;align=left;rounded=1;" vertex="1" parent="1">
+  <mxGeometry x="20" y="1312" width="1100" height="28" as="geometry"/>
+</mxCell>
+
+</root>
+</mxGraphModel>
+</diagram>
+
+</mxfile>

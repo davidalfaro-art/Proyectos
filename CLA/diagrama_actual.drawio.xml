@@ -1,0 +1,157 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" version="29.6.6">
+  <diagram id="4z4kH7dFhJkf1Zx2GQvB" name="Page-1">
+    <mxGraphModel dx="1188" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg1" parent="1" style="rounded=1;strokeColor=#d0d7de;fillColor=#ffffff;fontSize=10;fontColor=#656d76;align=center;verticalAlign=top;spacingTop=5;" value="FASE 1 · PREEVALUACIÓN" vertex="1">
+          <mxGeometry height="590" width="200" x="8" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bg2" parent="1" style="rounded=1;strokeColor=#d0d7de;fillColor=#ffffff;fontSize=10;fontColor=#656d76;align=center;verticalAlign=top;spacingTop=5;" value="FASE 2 · ARAÑA" vertex="1">
+          <mxGeometry height="590" width="150" x="218" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bg3" parent="1" style="rounded=1;strokeColor=#cf222e;fillColor=#fff5f5;fontSize=10;fontColor=#cf222e;align=center;verticalAlign=top;spacingTop=5;" value="FASE 3 · TRIPLE SIM 🔴" vertex="1">
+          <mxGeometry height="590" width="160" x="378" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bg4" parent="1" style="rounded=1;strokeColor=#cf222e;fillColor=#fff5f5;fontSize=10;fontColor=#cf222e;align=center;verticalAlign=top;spacingTop=5;" value="FASE 4 · DOBLE INV. 🔴" vertex="1">
+          <mxGeometry height="590" width="200" x="548" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bg5" parent="1" style="rounded=1;strokeColor=#d0d7de;fillColor=#ffffff;fontSize=10;fontColor=#656d76;align=center;verticalAlign=top;spacingTop=5;" value="FASE 5 · DESEMBOLSO" vertex="1">
+          <mxGeometry height="590" width="215" x="758" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="tapp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0969da;fillColor=#dbeafe;fontSize=11;fontColor=#0969da;align=center;verticalAlign=middle;fontStyle=1;" value="TAPP&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;React Native&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="80" x="22" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="keycloak" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=11;fontColor=#1f2328;align=center;verticalAlign=middle;fontStyle=1;" value="Keycloak&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;+ Active IT&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="80" x="115" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#c05621;fillColor=#ffedd5;fontSize=11;fontColor=#c05621;align=center;verticalAlign=middle;fontStyle=1;" value="Redis\nCache check" vertex="1">
+          <mxGeometry height="40" width="80" x="22" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="aprobados" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;fontStyle=1;" value="Base Aprobados\nws_aprobados WLS" vertex="1">
+          <mxGeometry height="40" width="80" x="115" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="fico" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0969da;fillColor=#dbeafe;fontSize=12;fontColor=#0969da;align=center;verticalAlign=middle;fontStyle=1;" value="FICO DMPS\n&#39;La Araña&#39; — Orquestador\nBlaze Advisor v4 (Nashorn ⚠️)" vertex="1">
+          <mxGeometry height="50" width="173" x="22" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="osb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#9a6700;fillColor=#fef9c3;fontSize=11;fontColor=#9a6700;align=center;verticalAlign=middle;fontStyle=1;" value="OSB\nOracle Service Bus 11g" vertex="1">
+          <mxGeometry height="36" width="125" x="228" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="flexcube" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="FlexCube\nEAI-005 · 18,350 errores 🔴" vertex="1">
+          <mxGeometry height="34" width="125" x="228" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="menuandes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="MenuAndes\nWebLogic Producers + OSB" vertex="1">
+          <mxGeometry height="34" width="125" x="228" y="263" as="geometry" />
+        </mxCell>
+        <mxCell id="experian" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="Experian/Equifax\nBuró externo · API + cache" vertex="1">
+          <mxGeometry height="34" width="125" x="228" y="311" as="geometry" />
+        </mxCell>
+        <mxCell id="bigquery" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#c05621;fillColor=#ffedd5;fontSize=10;fontColor=#c05621;align=center;verticalAlign=middle;" value="BigQuery (GCP)\n~4,312 ms síncrono 🔴" vertex="1">
+          <mxGeometry height="34" width="125" x="228" y="359" as="geometry" />
+        </mxCell>
+        <mxCell id="blaze" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0969da;fillColor=#dbeafe;fontSize=10;fontColor=#0969da;align=center;verticalAlign=middle;" value="Blaze Advisor v4\nMotor de reglas (Nashorn)" vertex="1">
+          <mxGeometry height="34" width="125" x="228" y="407" as="geometry" />
+        </mxCell>
+        <mxCell id="evaldb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="Eval Scoring DB\n1ª escritura aquí" vertex="1">
+          <mxGeometry height="34" width="125" x="228" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="simulator" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="FlexCube Simulator\n3 llamadas × cuotas" vertex="1">
+          <mxGeometry height="40" width="144" x="386" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="opciones" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#1a7f37;fillColor=#dcfce7;fontSize=10;fontColor=#1a7f37;align=center;verticalAlign=middle;" value="Opciones al usuario\n24 / 36 / 48 cuotas" vertex="1">
+          <mxGeometry height="34" width="144" x="386" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="afiliado" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0969da;fillColor=#dbeafe;fontSize=10;fontColor=#0969da;align=center;verticalAlign=middle;" value="Afiliado\nacepta cuotas" vertex="1">
+          <mxGeometry height="36" width="90" x="556" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="servicio147" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#cf222e;fillColor=#fee2e2;fontSize=10;fontColor=#cf222e;align=center;verticalAlign=middle;" value="Servicio 147\nSiebel Workflow Manager\nAnti-patrón · Inmodificable" vertex="1">
+          <mxGeometry height="44" width="130" x="556" y="246" as="geometry" />
+        </mxCell>
+        <mxCell id="siebel" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="Siebel CRM\nCrea crédito inactivo" vertex="1">
+          <mxGeometry height="36" width="130" x="556" y="314" as="geometry" />
+        </mxCell>
+        <mxCell id="bipublisher" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="BI Publisher\nGenera PDFs (mutuo, pagaré)" vertex="1">
+          <mxGeometry height="36" width="130" x="766" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="webcenter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="WebCenter Content\nDocs (~20TB)" vertex="1">
+          <mxGeometry height="36" width="130" x="766" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="esign" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="e-Sign Chile\nFirma electrónica avanzada" vertex="1">
+          <mxGeometry height="36" width="130" x="766" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="flexcube2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0969da;fillColor=#dbeafe;fontSize=10;fontColor=#0969da;align=center;verticalAlign=middle;" value="FlexCube\nActiva crédito" vertex="1">
+          <mxGeometry height="36" width="130" x="766" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="toku" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#1f2328;align=center;verticalAlign=middle;" value="Toku / Redbanc\nDesembolso" vertex="1">
+          <mxGeometry height="36" width="130" x="766" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="aprobadosFail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#cf222e;fillColor=#fee2e2;fontSize=10;fontColor=#cf222e;align=center;verticalAlign=middle;" value="Base Aprobados\nBaja en TAPP falla 🔴\nDepende batch nocturno" vertex="1">
+          <mxGeometry height="44" width="130" x="766" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="legendBg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d0d7de;fillColor=#f0f2f5;fontSize=10;fontColor=#656d76;align=left;verticalAlign=top;spacingTop=5;" value="LEYENDA" vertex="1">
+          <mxGeometry height="72" width="940" x="22" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" edge="1" parent="1" source="tapp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="keycloak">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="fico">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" edge="1" parent="1" source="aprobados" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="fico">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" edge="1" parent="1" source="fico" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#9a6700;" target="osb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" edge="1" parent="1" source="fico" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="flexcube">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" edge="1" parent="1" source="fico" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="menuandes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" edge="1" parent="1" source="fico" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="experian">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" edge="1" parent="1" source="fico" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#c05621;" target="bigquery">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge9" edge="1" parent="1" source="fico" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="blaze">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge10" edge="1" parent="1" source="fico" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="evaldb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge11" edge="1" parent="1" source="opciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="afiliado">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge12" edge="1" parent="1" source="afiliado" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#cf222e;" target="servicio147">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge13" edge="1" parent="1" source="servicio147" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#cf222e;dashed=1;" target="fico">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge14" edge="1" parent="1" source="servicio147" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="siebel">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge15" edge="1" parent="1" source="siebel" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="bipublisher">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge16" edge="1" parent="1" source="bipublisher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="webcenter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge17" edge="1" parent="1" source="webcenter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="esign">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge18" edge="1" parent="1" source="esign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="flexcube2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge19" edge="1" parent="1" source="flexcube2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;" target="toku">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge20" edge="1" parent="1" source="toku" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#cf222e;dashed=1;" target="aprobadosFail">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

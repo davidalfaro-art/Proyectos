@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python3 -c \":*)"
+      "Bash(python3 -c \":*)",
+      "Bash(wc -l grep \"arch-tb1\\\\|arch-tb2\\\\|arch-tb3\" \"f:\\\\trabajo\\\\repositorio\\\\Proyectos\\\\CLA\\\\arquitectura-pilar-financiero.html\")"
     ]
   }
 }
