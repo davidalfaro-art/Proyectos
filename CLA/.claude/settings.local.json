@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(python3 -c \":*)",
-      "Bash(wc -l grep \"arch-tb1\\\\|arch-tb2\\\\|arch-tb3\" \"f:\\\\trabajo\\\\repositorio\\\\Proyectos\\\\CLA\\\\arquitectura-pilar-financiero.html\")"
+      "Bash(wc -l grep \"arch-tb1\\\\|arch-tb2\\\\|arch-tb3\" \"f:\\\\trabajo\\\\repositorio\\\\Proyectos\\\\CLA\\\\arquitectura-pilar-financiero.html\")",
+      "Bash(python -c ':*)",
+      "Bash(pip install:*)",
+      "Bash(python gen_diagram.py)"
     ]
   }
 }

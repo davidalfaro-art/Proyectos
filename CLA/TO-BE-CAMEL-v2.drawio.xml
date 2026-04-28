@@ -1,0 +1,456 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="TO-BE-CAMEL" id="to-be-camel-v2">
+    <mxGraphModel dx="1800" dy="1100" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== TÍTULO ===== -->
+        <mxCell id="title" value="&lt;b&gt;&lt;font style='font-size:15px'&gt;TO-BE: Pilar Financiero Digital — Apache Camel + Redis (Modelo 2 Recomendado)&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="10" y="8" width="1340" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== FONDOS DE SWIM LANES ===== -->
+
+        <mxCell id="bg-canales" value="" style="rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="10" y="50" width="1340" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-canales" value="&lt;b&gt;CANALES&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="50" width="28" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bg-seg" value="" style="rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="10" y="165" width="1340" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-seg" value="&lt;b&gt;SEGURIDAD&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="165" width="28" height="85" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bg-gw" value="" style="rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="10" y="255" width="1340" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-gw" value="&lt;b&gt;GATEWAY&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="255" width="28" height="85" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bg-state" value="" style="rounded=0;fillColor=#f8cecc;strokeColor=#b85450;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="10" y="345" width="1340" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-state" value="&lt;b&gt;ESTADO /&lt;br&gt;MENSAJERÍA&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="345" width="28" height="95" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bg-camel" value="" style="rounded=0;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="10" y="445" width="1340" height="185" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-camel" value="&lt;b&gt;CAMEL K&lt;br&gt;ROUTES&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="445" width="28" height="185" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bg-eval" value="" style="rounded=0;fillColor=#e1d5e7;strokeColor=#9673a6;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="10" y="635" width="1340" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-eval" value="&lt;b&gt;EVALUACIÓN&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="635" width="28" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bg-core" value="" style="rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="10" y="740" width="1340" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-core" value="&lt;b&gt;CORE&lt;br&gt;BANCARIO&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="740" width="28" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bg-ext" value="" style="rounded=0;fillColor=#f5f5f5;strokeColor=#666666;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="10" y="845" width="1340" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl-ext" value="&lt;b&gt;EXTERNOS&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;rotation=-90;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="10" y="845" width="28" height="95" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== CANALES ===== -->
+        <mxCell id="c-tapp" value="&lt;b&gt;TAPP&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;React Native · GKE&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="42" y="68" width="110" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-svp" value="&lt;b&gt;SVP 1.5&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Modyo · GKE&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="170" y="68" width="110" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-appcla" value="&lt;b&gt;APP CLA&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Móvil&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="298" y="68" width="110" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-salesforce" value="&lt;b&gt;Salesforce CRM&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Ejecutivo presencial&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="426" y="68" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-base-aprobados" value="&lt;b&gt;Base Aprobados RT&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;pre-evaluación&lt;br&gt;actualización en tiempo real&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="700" y="62" width="145" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== SEGURIDAD ===== -->
+        <mxCell id="c-keycloak" value="&lt;b&gt;Keycloak&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;SSO · OAuth2 · OIDC&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="150" y="180" width="130" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-activeit" value="&lt;b&gt;Active IT&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Biometría · MFA&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="310" y="180" width="120" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-zerotrust" value="&lt;b&gt;Zero Trust&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;mTLS · RBAC · WAF&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="460" y="180" width="120" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== GATEWAY ===== -->
+        <mxCell id="c-camel-edge" value="&lt;b&gt;Camel REST Edge&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;auth · rate limit · TLS&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="90" y="270" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-bff-digital" value="&lt;b&gt;BFF Digital&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Go · GKE&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="265" y="270" width="120" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-bff-pres" value="&lt;b&gt;BFF Presencial&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;MuleSoft&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="410" y="270" width="120" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-apigee" value="&lt;b&gt;APIgee&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;API Portal externo&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="558" y="270" width="115" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== ESTADO / MENSAJERÍA ===== -->
+        <mxCell id="c-redis" value="&lt;b&gt;Redis Cluster HA&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;credit:{RUT}:state · TTL 48h&lt;br&gt;SETNX lock · sesión omnicanal&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="90" y="358" width="185" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-kafka" value="&lt;b&gt;Apache Kafka&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;credit.evaluated · credit.option.selected&lt;br&gt;credit.formalized · credit.disbursed&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="300" y="358" width="220" height="68" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== CAMEL K ROUTES — Fila 1: flujo principal ===== -->
+        <mxCell id="r-eval" value="&lt;b&gt;route:evaluation&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;REST → FICO v7&lt;br&gt;Resilience4j CB + retry(3)&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="42" y="460" width="148" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="r-sim" value="&lt;b&gt;route:simulation&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Redis → FlexCube REST&lt;br&gt;&lt;b style='color:#b85450'&gt;1 call · 3 opciones plazo ✓&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="205" y="460" width="158" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="r-form" value="&lt;b&gt;route:formalization&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Lee sesión Redis → FlexCube&lt;br&gt;&lt;b style='color:#b85450'&gt;sin re-evaluar ✓&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="378" y="460" width="158" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="r-docs" value="&lt;b&gt;route:documents&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Kafka consumer&lt;br&gt;→ PDF Service async&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="550" y="460" width="145" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="r-sign" value="&lt;b&gt;route:signing&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Redis PENDING_SIGN&lt;br&gt;→ e-Sign Chile → Kafka resume&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="710" y="460" width="155" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="r-disb" value="&lt;b&gt;route:disbursement&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;FlexCube → Toku/Redbanc&lt;br&gt;→ publica credit.disbursed&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="880" y="460" width="155" height="68" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== CAMEL K ROUTES — Fila 2: migración OSB + error ===== -->
+        <mxCell id="r-eai005" value="&lt;b&gt;route:EAI-005&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;FlexCube Info Financiera&lt;br&gt;migrado desde OSB&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f0e6ff;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="42" y="548" width="148" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="r-eai-m" value="&lt;b&gt;route:EAI-MenuAndes&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;EAI-053 / 106 / 110&lt;br&gt;migrado desde OSB&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f0e6ff;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="205" y="548" width="158" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="r-dead" value="&lt;b&gt;route:dead-letter&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Error → compensación&lt;br&gt;→ Redis COMPENSATING&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="378" y="548" width="158" height="65" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== EVALUACIÓN ===== -->
+        <mxCell id="c-ficov7" value="&lt;b&gt;FICO V7&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;OKE · Blaze v7 (sin Nashorn)&lt;br&gt;motor de reglas crediticias&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="90" y="650" width="150" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-evaldb" value="&lt;b&gt;Eval Scoring DB&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;resultado evaluación&lt;br&gt;(único registro) ✓&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="265" y="650" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-experian" value="&lt;b&gt;Experian / Equifax&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;buró crediticio externo&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="430" y="650" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-bigquery" value="&lt;b&gt;BigQuery / Nicanor&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;scoring → &lt;b&gt;Redis cache&lt;/b&gt;&lt;br&gt;&lt;font color='#b85450'&gt;4.3 s → &lt; 200 ms ✓&lt;/font&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="595" y="650" width="148" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== CORE BANCARIO ===== -->
+        <mxCell id="c-flexcube" value="&lt;b&gt;FlexCube 14.7&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;core bancario · Oracle Cloud&lt;br&gt;&lt;b style='color:#b85450'&gt;1× simulación ✓&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="90" y="755" width="155" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-menuandes" value="&lt;b&gt;MenuAndes Data API&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;Oracle Forms 10g&lt;br&gt;(tolerar hasta New Core 2027)&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="265" y="755" width="160" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-siebel" value="&lt;b&gt;Siebel&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;CRM legacy&lt;br&gt;→ Salesforce dic 2027&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#ffcc99;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="445" y="755" width="130" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== EXTERNOS ===== -->
+        <mxCell id="c-esign" value="&lt;b&gt;e-Sign Chile (ISA)&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;firma electrónica&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="90" y="860" width="140" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-toku" value="&lt;b&gt;Toku / Redbanc&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;desembolso&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="250" y="860" width="130" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-bipub" value="&lt;b&gt;BI Publisher&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;generación PDFs&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="400" y="860" width="120" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-webcenter" value="&lt;b&gt;WebCenter Content&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;~20 TB documentos&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="535" y="860" width="135" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-sinacaf" value="&lt;b&gt;SINACAF / SINACOFI&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;regulatorio&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="685" y="860" width="135" height="58" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== FLUJO DE CRÉDITO — FLECHAS PRINCIPALES ===== -->
+
+        <!-- ① Canales → Keycloak -->
+        <mxCell id="e1" value="① Auth" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#1565c0;fontStyle=1;fontSize=11;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="c-tapp" target="c-keycloak" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1b" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#1565c0;dashed=1;" edge="1" source="c-svp" target="c-keycloak" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1c" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#1565c0;dashed=1;" edge="1" source="c-appcla" target="c-keycloak" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1d" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#1565c0;dashed=1;" edge="1" source="c-salesforce" target="c-activeit" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ② Auth → Camel REST Edge -->
+        <mxCell id="e2" value="② token JWT" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#1565c0;fontStyle=1;fontSize=11;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="c-keycloak" target="c-camel-edge" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2b" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#1565c0;dashed=1;" edge="1" source="c-activeit" target="c-camel-edge" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ③ Camel REST Edge → Redis (check pre-aprobados) -->
+        <mxCell id="e3" value="③ check pre-aprobados" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#b85450;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="c-camel-edge" target="c-redis" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ③b Camel REST Edge → Kafka (publica solicitud) -->
+        <mxCell id="e3b" value="publica solicitud" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#d79b00;dashed=1;fontSize=9;labelBackgroundColor=none;" edge="1" source="c-camel-edge" target="c-kafka" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ④ Redis / Kafka → route:evaluation -->
+        <mxCell id="e4" value="④ credit.initiated" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#d79b00;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="c-kafka" target="r-eval" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="427"/>
+              <mxPoint x="116" y="427"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑤ route:evaluation → FICO V7 -->
+        <mxCell id="e5" value="⑤ evalúa (única vez)" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#9673a6;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="r-eval" target="c-ficov7" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- FICO → Experian (dashed, scoring) -->
+        <mxCell id="ef-exp" value="buró" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1;strokeColor=#9673a6;dashed=1;fontSize=9;labelBackgroundColor=none;" edge="1" source="c-ficov7" target="c-experian" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- FICO → BigQuery (scoring cache) -->
+        <mxCell id="ef-bq" value="scoring cache" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1;strokeColor=#9673a6;dashed=1;fontSize=9;labelBackgroundColor=none;" edge="1" source="c-ficov7" target="c-bigquery" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- FICO → Eval DB -->
+        <mxCell id="ef-db" value="graba resultado" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1;strokeColor=#9673a6;dashed=1;fontSize=9;labelBackgroundColor=none;" edge="1" source="c-ficov7" target="c-evaldb" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ⑥ FICO → Kafka (credit.evaluated) -->
+        <mxCell id="e6" value="⑥ credit.evaluated" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#d79b00;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="c-ficov7" target="c-kafka" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="165" y="685"/>
+              <mxPoint x="165" y="430"/>
+              <mxPoint x="410" y="430"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑥b Kafka → route:simulation -->
+        <mxCell id="e6b" value="consumer" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#d79b00;dashed=1;fontSize=9;labelBackgroundColor=none;" edge="1" source="c-kafka" target="r-sim" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="427"/>
+              <mxPoint x="284" y="427"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑦ route:simulation → FlexCube (1× llamada) -->
+        <mxCell id="e7" value="⑦ 1 llamada · 3 opciones plazo" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#d6b656;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="r-sim" target="c-flexcube" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="284" y="630"/>
+              <mxPoint x="167" y="630"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑧ route:simulation → Redis (opciones en sesión) -->
+        <mxCell id="e8" value="⑧ guarda sesión omnicanal" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#b85450;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="r-sim" target="c-redis" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="284" y="460"/>
+              <mxPoint x="182" y="460"/>
+              <mxPoint x="182" y="426"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑨ Kafka option.selected → route:formalization -->
+        <mxCell id="e9a" value="credit.option.selected" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#d79b00;dashed=1;fontSize=9;labelBackgroundColor=none;" edge="1" source="c-kafka" target="r-form" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="425"/>
+              <mxPoint x="457" y="425"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑨b route:formalization → FlexCube (sin re-evaluar) -->
+        <mxCell id="e9b" value="⑨ formaliza (sin re-evaluar)" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#d6b656;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="r-form" target="c-flexcube" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="457" y="630"/>
+              <mxPoint x="167" y="630"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑩ route:documents → BI Publisher + WebCenter -->
+        <mxCell id="e10" value="⑩ PDF async" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#d79b00;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="r-docs" target="c-bipub" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="622" y="630"/>
+              <mxPoint x="622" y="840"/>
+              <mxPoint x="460" y="840"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑪ route:signing → e-Sign Chile -->
+        <mxCell id="e11" value="⑪ firma electrónica" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#d79b00;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="r-sign" target="c-esign" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="787" y="630"/>
+              <mxPoint x="787" y="840"/>
+              <mxPoint x="160" y="840"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑫ route:disbursement → Toku/Redbanc -->
+        <mxCell id="e12" value="⑫ desembolso" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2.5;strokeColor=#d79b00;fontStyle=1;fontSize=10;flowAnimation=1;labelBackgroundColor=none;" edge="1" source="r-disb" target="c-toku" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="957" y="840"/>
+              <mxPoint x="315" y="840"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ⑬ Kafka credit.disbursed → Base Aprobados RT (baja aprobados) -->
+        <mxCell id="e13" value="⑬ credit.disbursed → baja aprobados RT" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#82b366;fontStyle=1;fontSize=9;flowAnimation=1;dashed=1;labelBackgroundColor=none;" edge="1" source="c-kafka" target="c-base-aprobados" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="358"/>
+              <mxPoint x="772" y="358"/>
+              <mxPoint x="772" y="97"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== ZONAS DE INFRAESTRUCTURA ===== -->
+        <mxCell id="zone-gcp" value="☁  Google Cloud · stgo (GKE/OKE)" style="text;html=1;align=right;verticalAlign=top;fontStyle=1;fontSize=10;fontColor=#1a73e8;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="255" width="270" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="zone-gcp2" value="☁  Google Cloud · US (BigQuery)" style="text;html=1;align=right;verticalAlign=top;fontStyle=1;fontSize=10;fontColor=#1a73e8;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="635" width="270" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="zone-oracle" value="☁  Oracle Cloud · stgo (FlexCube)" style="text;html=1;align=right;verticalAlign=top;fontStyle=1;fontSize=10;fontColor=#c74634;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="740" width="270" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="zone-onprem" value="🖥  On-Premise · Sonda stgo (MenuAndes, Siebel)" style="text;html=1;align=right;verticalAlign=top;fontStyle=1;fontSize=10;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="762" width="270" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== PANEL DERECHO: MÁQUINA DE ESTADOS REDIS ===== -->
+        <mxCell id="sm-bg" value="" style="rounded=1;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1365" y="340" width="310" height="510" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-title" value="&lt;b&gt;Redis State Machine&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;credit:{RUT}:state · TTL 48 h · SETNX lock&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1365" y="345" width="310" height="38" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sm-ini" value="INITIATED" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="390" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-eva" value="EVALUATED" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="435" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-sel" value="OPTION_SELECTED" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="480" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-for" value="FORMALIZING" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="525" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-dg" value="DOCS_GENERATED" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="570" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-ps" value="PENDING_SIGNATURE" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="615" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-sig" value="SIGNED" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="660" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-dis" value="DISBURSED ✓" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="705" width="150" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="sm-com" value="COMPENSATING ✗" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="660" width="100" height="32" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sme1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#555;" edge="1" source="sm-ini" target="sm-eva" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="sme2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#555;" edge="1" source="sm-eva" target="sm-sel" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="sme3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#555;" edge="1" source="sm-sel" target="sm-for" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="sme4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#555;" edge="1" source="sm-for" target="sm-dg" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="sme5" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#555;" edge="1" source="sm-dg" target="sm-ps" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="sme6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#555;" edge="1" source="sm-ps" target="sm-sig" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="sme7" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#555;" edge="1" source="sm-sig" target="sm-dis" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="sme8" value="error" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1.5;strokeColor=#b85450;dashed=1;fontSize=9;" edge="1" source="sm-sig" target="sm-com" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="sm-note" value="&lt;font size='9'&gt;Claves por RUT:&lt;br&gt;:state · :evaluation · :selected_option&lt;br&gt;:documents · :channel · :lock&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=9;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1375" y="748" width="290" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== PANEL DERECHO: KPIs ===== -->
+        <mxCell id="kpi-bg" value="" style="rounded=1;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1365" y="50" width="310" height="278" as="geometry"/>
+        </mxCell>
+        <mxCell id="kpi-title" value="&lt;b&gt;Anti-patrones resueltos · KPIs&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1365" y="55" width="310" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="kpi-table" value="&lt;table style='font-size:10px;border-collapse:collapse;width:100%;line-height:1.5'&gt;
+&lt;tr style='background:#f0f0f0'&gt;&lt;td&gt;&lt;b&gt;Problema&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Antes&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Después&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Doble evaluación FG-22&lt;/td&gt;&lt;td&gt;100 %&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;0 % ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Llamadas FlexCube FG-26&lt;/td&gt;&lt;td&gt;3 ×&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;1 × ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Latencia BigQuery FG-19&lt;/td&gt;&lt;td&gt;4 312 ms&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;&lt; 200 ms ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Cascada OSB FG-05&lt;/td&gt;&lt;td&gt;50 s · 13 svcs&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;10 s CB ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Errores EAI-005 FG-12&lt;/td&gt;&lt;td&gt;18 350 / 5m&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;~ 0 ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Canales habilitados&lt;/td&gt;&lt;td&gt;1 isla&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;4 omnicanal ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Incidentes P1 latencia&lt;/td&gt;&lt;td&gt;baseline&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;− 70 % ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;MTTR&lt;/td&gt;&lt;td&gt;horas&lt;/td&gt;&lt;td style='color:green'&gt;&lt;b&gt;minutos ✓&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="86" width="300" height="235" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== PIE: Observabilidad y CI/CD ===== -->
+        <mxCell id="obs" value="&lt;b&gt;Observabilidad:&lt;/b&gt;  Grafana + Prometheus  |  Micrometer por ruta Camel  |  Elasticsearch  |  Jaeger / Zipkin" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="42" y="955" width="900" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="cicd" value="&lt;b&gt;CI/CD:&lt;/b&gt;  GitOps  |  cada Route Camel K es un operador independiente con auto-scaling en OKE  |  Q3 2026: retiro OSB" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="42" y="978" width="900" height="22" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

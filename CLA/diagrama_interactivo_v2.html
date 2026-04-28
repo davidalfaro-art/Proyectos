@@ -378,6 +378,15 @@
             background: var(--color-warning);
         }
 
+        .component.heredado {
+            border-color: var(--color-info);
+            background: #eff6ff;
+        }
+
+        .component.heredado::before {
+            background: var(--color-info);
+        }
+
         .component-title {
             font-weight: 700;
             font-size: 13px;
@@ -395,18 +404,17 @@
         }
 
         .initiative-badge {
-            display: inline-block;
+            display: inline-flex;
             background: var(--color-primary);
             color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 9px;
             font-weight: 700;
             flex-shrink: 0;
+            white-space: nowrap;
+            align-items: center;
+            line-height: 1.4;
         }
 
         /* Tooltip */
@@ -643,19 +651,19 @@
 
         <!-- Phase Tabs -->
         <div class="phase-tabs">
-            <button class="phase-tab active" onclick="switchPhase('f0')">
+            <button class="phase-tab active" onclick="switchPhase('f0', this)">
                 📊 F0 — AS-IS
             </button>
-            <button class="phase-tab" onclick="switchPhase('f1')">
+            <button class="phase-tab" onclick="switchPhase('f1', this)">
                 ⚡ F1 — Estabilización (0-3m)
             </button>
-            <button class="phase-tab" onclick="switchPhase('f2')">
+            <button class="phase-tab" onclick="switchPhase('f2', this)">
                 ☁️ F2 — Cloud (3-9m)
             </button>
-            <button class="phase-tab" onclick="switchPhase('f3')">
+            <button class="phase-tab" onclick="switchPhase('f3', this)">
                 🌍 F3 — Omnicanalidad (9-18m)
             </button>
-            <button class="phase-tab" onclick="switchPhase('f4')">
+            <button class="phase-tab" onclick="switchPhase('f4', this)">
                 ✅ F4 — TO-BE FINAL
             </button>
         </div>
@@ -678,28 +686,6 @@
                     ausencia de gobernanza E2E. <strong>134,446 errores genéricos</strong> sin causa raíz desagregada.
                 </div>
                 <div class="phase-duration">⏱️ Baseline — Sin cambios planeados</div>
-            </div>
-
-            <div class="legend">
-                <div class="legend-title">Leyenda de componentes:</div>
-                <div class="legend-grid">
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #f6f8fa; border-color: #656d76;">⬜</div>
-                        <div class="legend-text"><strong>Existente:</strong> Componente en operación actual</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #fff7ed; border-color: #ea580c;">⚠️</div>
-                        <div class="legend-text"><strong>Anti-patrón:</strong> Componente problemático o obsoleto que debe evolucionar</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: white; border: 2px solid #656d76;">[F]</div>
-                        <div class="legend-text"><strong>Funcional:</strong> Capa de negocio y canales</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: white; border: 2px solid #0969da;">[T]</div>
-                        <div class="legend-text"><strong>Técnico:</strong> Infraestructura, integraciones, datos</div>
-                    </div>
-                </div>
             </div>
 
             <div class="layers-container">
@@ -827,6 +813,47 @@
                 <div id="f3-layers"></div>
             </div>
         </div>
+
+        <!-- F4: TO-BE Final -->
+        <div id="f4" class="phase-container">
+            <div class="phase-header">
+                <div class="phase-title">✅ F4 — Arquitectura TO-BE Final Consolidada</div>
+                <div class="phase-description">
+                    <strong>Estado final:</strong> Arquitectura TO-BE completamente consolidada sobre la base de F1–F3.
+                    Sistema omnicanal cloud-native, motor de decisión FICO v7 distribuido en OKE, orquestación integral via Apache Camel,
+                    gobernanza TOGAF madura (3.0/5) y alta disponibilidad end-to-end con SLAs formalizados.<br>
+                    <strong>Meta final:</strong> Conversión E2E ≥ 8%, latencia crédito &lt; 4s, MTTD ≤ 5min, RPO ≤ 1h, RTO ≤ 4h.
+                </div>
+                <div class="phase-duration">⏱️ 18+ meses | ✅ Estado objetivo | 🏆 Transformación completa</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Conversión E2E</div>
+                    <div class="stat-value">≥ 8% 🏆</div>
+                    <div class="stat-desc">Objetivo final alcanzado</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Latencia Crédito</div>
+                    <div class="stat-value">&lt; 4s ⚡</div>
+                    <div class="stat-desc">vs 50.9s actual</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Canales Omnicanal</div>
+                    <div class="stat-value">4 ✅</div>
+                    <div class="stat-desc">TAPP, SVP, Salesforce, API</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Disponibilidad</div>
+                    <div class="stat-value">99.9% 🟢</div>
+                    <div class="stat-desc">SLA formalizado con 7 proveedores</div>
+                </div>
+            </div>
+
+            <div class="layers-container">
+                <div id="f4-layers"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Tooltip -->
@@ -841,7 +868,7 @@
         </div>
         <div id="tooltip-criticality" class="tooltip-criticality"><div class="criticality-badge"></div><span></span></div>
         <div id="tooltip-component-desc" class="tooltip-description" style="font-size: 11px; color: var(--color-gray-700); margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--color-gray-300);"></div>
-        <div id="tooltip-initiative-id" class="tooltip-initiative-id" style="font-size: 10px; color: var(--color-primary); font-weight: 600; margin-bottom: 6px;"></div>
+        <div id="tooltip-initiative-id" class="tooltip-initiative-id"></div>
         <div id="tooltip-description" class="tooltip-description"></div>
     </div>
 
@@ -852,269 +879,561 @@
     </footer>
 
     <script>
-        // Base de datos completa de componentes por fase
+        // Base de datos completa — todas las capas en cada fase
+        // Tipos: existente (gris), antipatron (naranja), nuevo (verde), removido (rojo), heredado (azul)
         const phases = {
             f0: {
                 title: 'F0 — AS-IS',
                 type: 'as-is',
                 layers: [
-                    {
-                        name: 'L1 CANALES & ENTRADA',
-                        type: 'funcional',
-                        components: [
-                            { name: 'TAPP', type: 'existente', desc: 'App móvil clientes [F]' },
-                            { name: 'SVP 1.5', type: 'existente', desc: 'Simulador Web Presencial [F]' },
-                            { name: 'Canal Presencial', type: 'existente', desc: 'MenuAndes/Siebel [F]' },
-                            { name: 'API Portal', type: 'existente', desc: 'APIs externas [F]' }
-                        ]
-                    },
-                    {
-                        name: 'L2 OFERTA EVAL & PROC',
-                        type: 'funcional',
-                        components: [
-                            { name: 'FICO Eval Flow', type: 'existente', desc: 'Integrado en OSB [F]' },
-                            { name: 'Simulación FlexCube 3×', type: 'antipatron', desc: '3 llamadas · FG-26 [F]', issue: 'Multiplica probabilidad de falla' },
-                            { name: 'Generación Oferta', type: 'existente', desc: 'Solo campaña preaprobada [F]' }
-                        ]
-                    },
-                    {
-                        name: 'L6 API GW & BFF',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'OSB 11g', type: 'antipatron', desc: 'Middleware EOL · sin circuit breakers [T]', issue: 'End of Life, punto de falla único' },
-                            { name: 'BFF Digital', type: 'existente', desc: 'Backend for Frontend [T]' },
-                            { name: 'BFF Presencial', type: 'existente', desc: 'Backend sucursal [T]' }
-                        ]
-                    },
-                    {
-                        name: 'L8 MOTOR DECISIÓN',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'FICO v4', type: 'antipatron', desc: 'Blaze + Nashorn deprecated [T]', issue: 'Punto de falla crítico, degradación recurrente' },
-                            { name: 'Apache Ignite', type: 'antipatron', desc: 'Sin backup, falsos positivos [T]', issue: 'Genera cascadas de 214K errores 5XX' }
-                        ]
-                    },
-                    {
-                        name: 'L9 CORE BANCARIO',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'FlexCube 11.3', type: 'antipatron', desc: '3 versiones atrás · ORANGE [T]', issue: '🔴 CRÍTICO: Soporte limitado' },
-                            { name: 'WebLogic EOL', type: 'antipatron', desc: 'App server sin soporte [T]', issue: 'Sin parches de seguridad activos' },
-                            { name: 'Oracle DB RAC', type: 'existente', desc: 'Base de datos principal [T]' }
-                        ]
-                    },
-                    {
-                        name: 'L10 DATOS & CACHÉ',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'MenuAndes Forms 10g', type: 'antipatron', desc: 'EOL · bloquea modernización [T]', issue: 'Cadena de obsolescencia circular' },
-                            { name: 'BigQuery Síncrono', type: 'antipatron', desc: '4.3s latencia · anti-patrón [T]', issue: 'En camino crítico, suma 4.3segundos' },
-                            { name: 'Base Aprobados Job', type: 'existente', desc: 'Batch nocturno sin RT [T]', issue: 'Riesgo de duplicidad de créditos' }
-                        ]
-                    },
-                    {
-                        name: 'L11 OBSERVABILIDAD',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'Logs Básicos', type: 'existente', desc: 'Sin instrumentación real [T]' },
-                            { name: 'Sin Alertas Auto', type: 'antipatron', desc: 'Sin monitoreo activo · MTTD 45min [T]', issue: 'Detección tardía de fallas' },
-                            { name: 'Agente APM Parásito', type: 'antipatron', desc: 'Overhead CPU · 309K conn/h [T]', issue: '80% de errores gateway causados por esto' }
-                        ]
-                    },
-                    {
-                        name: 'L12 GOBIERNO & ARQ',
-                        type: 'gobierno',
-                        components: [
-                            { name: 'Sin Owner E2E', type: 'antipatron', desc: 'No hay responsable integral [G]', issue: '7 años sin resolución de fondo (nov 2024)' },
-                            { name: 'Sin RACI', type: 'antipatron', desc: 'Sin matriz de responsabilidades [G]' },
-                            { name: 'Sin Blueprint', type: 'antipatron', desc: 'Sin arquitectura documentada [G]', issue: '62% de componentes sin info técnica' }
-                        ]
-                    }
+                    { name: 'L1 CANALES & ENTRADA', type: 'funcional', components: [
+                        { name: 'TAPP', type: 'existente', desc: 'App móvil clientes [F]' },
+                        { name: 'SVP 1.5', type: 'existente', desc: 'Simulador Web Presencial [F]' },
+                        { name: 'Canal Presencial', type: 'existente', desc: 'Ejecutivos vía MenuAndes/Siebel [F]' },
+                        { name: 'API Portal', type: 'existente', desc: 'APIs externas [F]' }
+                    ]},
+                    { name: 'L2 OFERTA EVAL & PROC', type: 'funcional', components: [
+                        { name: 'FICO Eval Flow (OSB)', type: 'existente', desc: 'Evaluación integrada en OSB [F]' },
+                        { name: 'Simulación FlexCube 3×', type: 'antipatron', desc: '3 llamadas síncronas · FG-26 [F]', issue: 'Triple carga en FlexCube: 3× probabilidad de falla' },
+                        { name: 'Oferta Solo Pre-aprobada', type: 'existente', desc: 'Campaña preaprobada únicamente [F]' }
+                    ]},
+                    { name: 'L3 DOC & FIRMA', type: 'funcional', components: [
+                        { name: 'BI Publisher PDFs', type: 'existente', desc: 'Generación documentos crédito [F]' },
+                        { name: 'WebCenter Content', type: 'existente', desc: 'Repositorio documentos ~20TB [F]' },
+                        { name: 'e-Sign Chile (ISA)', type: 'existente', desc: 'Firma electrónica avanzada [F]' }
+                    ]},
+                    { name: 'L4 CRM & CLIENTE', type: 'funcional', components: [
+                        { name: 'Siebel CRM', type: 'existente', desc: 'CRM on-premise canal ejecutivos [F]' }
+                    ]},
+                    { name: 'L5 SEGURIDAD', type: 'tecnico', components: [
+                        { name: 'Keycloak SSO', type: 'existente', desc: 'OAuth2/OIDC autenticación [T]' },
+                        { name: 'Active IT Biometría', type: 'existente', desc: 'Validación identidad digital [T]' }
+                    ]},
+                    { name: 'L6 API GW & BFF', type: 'tecnico', components: [
+                        { name: 'OSB 11g', type: 'antipatron', desc: 'Middleware EOL sin circuit breakers [T]', issue: 'Sin CB: 13 servicios caen en cascada. Timeout 50s' },
+                        { name: 'BFF Digital', type: 'existente', desc: 'Backend for Frontend móvil [T]' },
+                        { name: 'BFF Presencial', type: 'existente', desc: 'Backend ejecutivos sucursal [T]' }
+                    ]},
+                    { name: 'L7 ORQUESTACIÓN', type: 'tecnico', components: [
+                        { name: 'Servicio 147 (Siebel WF)', type: 'antipatron', desc: 'Doble invocación al confirmar · FG-22 [T]', issue: 'Re-ejecuta toda "La Araña" desde cero: +4s latencia, 2× carga motor' }
+                    ]},
+                    { name: 'L8 MOTOR DECISIÓN', type: 'tecnico', components: [
+                        { name: 'FICO v4 (Blaze+Nashorn)', type: 'antipatron', desc: 'Motor reglas EOL · deprecated [T]', issue: 'Nashorn incompatible Java 15+. Punto de falla único' },
+                        { name: 'Apache Ignite (0 backups)', type: 'antipatron', desc: 'failureDetection < metricsUpdate [T]', issue: 'Falsos positivos matan nodos sanos → 214K errores 5XX' },
+                        { name: 'Agente APM Parásito', type: 'antipatron', desc: '309K conn/h innecesarias en FICO [T]', issue: '80% de errores de gateway causados por este agente' }
+                    ]},
+                    { name: 'L9 CORE BANCARIO', type: 'tecnico', components: [
+                        { name: 'FlexCube 11.3', type: 'antipatron', desc: '3 versiones atrás · soporte limitado [T]', issue: 'ORANGE: soporte limitado. New Core planificado dic 2027' },
+                        { name: 'WebLogic EOL', type: 'antipatron', desc: 'App server sin soporte activo [T]', issue: 'Sin parches de seguridad. Evaluado para upgrade' },
+                        { name: 'Oracle DB RAC 12c', type: 'existente', desc: 'Base de datos principal [T]' },
+                        { name: 'MenuAndes Oracle Forms 10g', type: 'antipatron', desc: 'EOL · bloquea modernización [T]', issue: 'Impide separar aplicativo de BD Oracle. Cadena de obsolescencia circular' }
+                    ]},
+                    { name: 'L10 DATOS & CACHÉ', type: 'tecnico', components: [
+                        { name: 'BigQuery Síncrono 4.3s', type: 'antipatron', desc: 'OCI↔GCP bloqueante · FG-19 [T]', issue: 'En camino crítico: 4.312ms por llamada. Datos actualizados solo mensualmente' },
+                        { name: 'Base Aprobados (Batch Job)', type: 'existente', desc: 'Batch nocturno sin tiempo real [T]', issue: 'Permite re-solicitudes indebidas el mismo día' }
+                    ]},
+                    { name: 'L11 OBSERVABILIDAD', type: 'tecnico', components: [
+                        { name: 'Logs Básicos (sin trazas)', type: 'existente', desc: 'Sin instrumentación real [T]' },
+                        { name: 'Sin Alertas Automatizadas', type: 'antipatron', desc: 'MTTD 45min · detección tardía [T]', issue: 'Fallas detectadas horas después del inicio' },
+                        { name: 'Agente APM en FICO', type: 'antipatron', desc: 'Overhead CPU · 309K conn/h [T]', issue: '80% errores gateway causados por agente mal configurado' }
+                    ]},
+                    { name: 'L12 GOBIERNO & ARQ', type: 'gobierno', components: [
+                        { name: 'Sin Owner E2E', type: 'antipatron', desc: 'Sin responsable integral [G]', issue: '7 años sin resolución de fondo (nov 2024)' },
+                        { name: 'Sin RACI Formal', type: 'antipatron', desc: 'Sin matriz de responsabilidades [G]' },
+                        { name: 'Sin Blueprint Arquitectónico', type: 'antipatron', desc: 'Sin arquitectura documentada [G]', issue: '62% de componentes sin info técnica' }
+                    ]}
                 ]
             },
             f1: {
                 title: 'F1 — Estabilización Inmediata',
                 type: 'estabilizacion',
                 layers: [
-                    {
-                        name: 'L1 CANALES & ENTRADA',
-                        type: 'funcional',
-                        components: [
-                            { name: 'TAPP', type: 'existente', desc: 'App móvil clientes [F]' },
-                            { name: 'SVP 1.5', type: 'existente', desc: 'Simulador Web [F]' },
-                            { name: 'Funnel Digital Básico', type: 'nuevo', desc: 'INI-05 · métricas [F]', initiative: 'INI-05' },
-                            { name: 'UX Research Inicial', type: 'nuevo', desc: 'INI-49 · mejora UX [F]', initiative: 'INI-49' }
-                        ]
-                    },
-                    {
-                        name: 'L8 MOTOR DECISIÓN',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'Apache Ignite CORREGIDO', type: 'nuevo', desc: 'INI-03 · failureDetection ajustado [T]', initiative: 'INI-03', criticality: 'alta' },
-                            { name: 'Agente APM REMOVIDO', type: 'removido', desc: 'INI-15 · -309K conn/h [T]', initiative: 'INI-15', criticality: 'alta' }
-                        ]
-                    },
-                    {
-                        name: 'L11 OBSERVABILIDAD',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'Observabilidad FICO', type: 'nuevo', desc: 'INI-36 · instrumentación [T]', initiative: 'INI-36', criticality: 'media' },
-                            { name: 'Alertas Automatizadas', type: 'nuevo', desc: 'INI-10 · MTTD ≤5min [T]', initiative: 'INI-10', criticality: 'alta' },
-                            { name: 'Dashboard KPIs', type: 'nuevo', desc: 'INI-27 · métricas en Grafana [T]', initiative: 'INI-27', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L12 GOBIERNO & ARQ',
-                        type: 'gobierno',
-                        components: [
-                            { name: 'Owner E2E + RACI', type: 'nuevo', desc: 'INI-12 · responsable integral [G]', initiative: 'INI-12', criticality: 'alta' },
-                            { name: 'Blueprint Proceso', type: 'nuevo', desc: 'INI-12 · arquitectura base [G]', initiative: 'INI-12', criticality: 'media' },
-                            { name: 'Runbooks + DRP', type: 'nuevo', desc: 'INI-31 · operación documentada [G]', initiative: 'INI-31', criticality: 'media' },
-                            { name: 'Protocolo Contingencia', type: 'nuevo', desc: 'INI-40 · planes backup [G]', initiative: 'INI-40', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L10 DATOS & CACHÉ',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'Sincronización Datos', type: 'nuevo', desc: 'INI-37 · mejorada [T]', initiative: 'INI-37', criticality: 'media' },
-                            { name: 'Limpieza Deuda Técnica', type: 'nuevo', desc: 'INI-38 · refactoring [T]', initiative: 'INI-38', criticality: 'media' }
-                        ]
-                    }
+                    { name: 'L1 CANALES & ENTRADA', type: 'funcional', components: [
+                        { name: 'TAPP', type: 'heredado', desc: 'App móvil · sin cambios en F1 [F]' },
+                        { name: 'SVP 1.5', type: 'heredado', desc: 'Simulador Web · sin cambios [F]' },
+                        { name: 'Canal Presencial', type: 'heredado', desc: 'Ejecutivos · sin cambios [F]' },
+                        { name: 'API Portal', type: 'heredado', desc: 'APIs externas · sin cambios [F]' },
+                        { name: 'Funnel Digital Básico', type: 'nuevo', desc: 'INI-05 · métricas sin cambiar flujo [F]', initiative: 'INI-05' },
+                        { name: 'UX Research Inicial', type: 'nuevo', desc: 'INI-49 · mejora experiencia digital [F]', initiative: 'INI-49' }
+                    ]},
+                    { name: 'L2 OFERTA EVAL & PROC', type: 'funcional', components: [
+                        { name: 'FICO Eval Flow (OSB)', type: 'antipatron', desc: 'Sin cambios en F1 · se resuelve en F2 [F]', issue: 'Evaluación aún integrada en OSB 11g' },
+                        { name: 'Simulación FlexCube 3×', type: 'antipatron', desc: 'FG-26 pendiente · se resuelve en F2 [F]', issue: 'Triple llamada FlexCube sin resolver' },
+                        { name: 'Oferta Solo Pre-aprobada', type: 'heredado', desc: 'Sin cambios en F1 [F]' }
+                    ]},
+                    { name: 'L3 DOC & FIRMA', type: 'funcional', components: [
+                        { name: 'BI Publisher PDFs', type: 'heredado', desc: 'Sin cambios [F]' },
+                        { name: 'WebCenter Content', type: 'heredado', desc: 'Repositorio docs · sin cambios [F]' },
+                        { name: 'e-Sign Chile (ISA)', type: 'heredado', desc: 'Firma electrónica · sin cambios [F]' }
+                    ]},
+                    { name: 'L4 CRM & CLIENTE', type: 'funcional', components: [
+                        { name: 'Siebel CRM', type: 'heredado', desc: 'CRM on-premise · migración planificada en F3 [F]' }
+                    ]},
+                    { name: 'L5 SEGURIDAD', type: 'tecnico', components: [
+                        { name: 'Keycloak SSO', type: 'heredado', desc: 'OAuth2/OIDC · sin cambios [T]' },
+                        { name: 'Active IT Biometría', type: 'heredado', desc: 'Validación identidad · sin cambios [T]' }
+                    ]},
+                    { name: 'L6 API GW & BFF', type: 'tecnico', components: [
+                        { name: 'OSB 11g', type: 'antipatron', desc: 'Middleware EOL · aún en operación [T]', issue: 'Se retira en F2. Sin circuit breakers: cascadas posibles' },
+                        { name: 'BFF Digital', type: 'heredado', desc: 'Backend for Frontend móvil [T]' },
+                        { name: 'BFF Presencial', type: 'heredado', desc: 'Backend ejecutivos sucursal [T]' }
+                    ]},
+                    { name: 'L7 ORQUESTACIÓN', type: 'tecnico', components: [
+                        { name: 'Servicio 147 (Siebel WF)', type: 'antipatron', desc: 'FG-22 pendiente · se elimina en F2 [T]', issue: 'Anti-patrón doble invocación sin resolver hasta F2' }
+                    ]},
+                    { name: 'L8 MOTOR DECISIÓN', type: 'tecnico', components: [
+                        { name: 'FICO v4 (Blaze+Nashorn)', type: 'antipatron', desc: 'Motor EOL · migración a v7 en F2 [T]', issue: 'Sin resolver en F1. Migración planificada en F2' },
+                        { name: 'Apache Ignite CORREGIDO', type: 'nuevo', desc: 'INI-03 · failureDetection ajustado [T]', initiative: 'INI-03', criticality: 'alta' },
+                        { name: '✕ Agente APM REMOVIDO', type: 'removido', desc: 'INI-15 · eliminado −309K conn/h [T]', initiative: 'INI-15', criticality: 'alta' }
+                    ]},
+                    { name: 'L9 CORE BANCARIO', type: 'tecnico', components: [
+                        { name: 'FlexCube 11.3', type: 'antipatron', desc: 'Sin cambios en F1 · New Core 2027 [T]', issue: 'New Core planificado dic 2027' },
+                        { name: 'WebLogic EOL', type: 'antipatron', desc: 'Sin cambios en F1 [T]', issue: 'Sin parches activos. Upgrade evaluado para F4' },
+                        { name: 'Oracle DB RAC 12c', type: 'heredado', desc: 'BD principal · sin cambios [T]' },
+                        { name: 'MenuAndes Oracle Forms 10g', type: 'antipatron', desc: 'EOL · sin cambios en F1 · retiro en F3 [T]', issue: 'Retiro planificado en F3 con wrapper REST' }
+                    ]},
+                    { name: 'L10 DATOS & CACHÉ', type: 'tecnico', components: [
+                        { name: 'BigQuery Síncrono 4.3s', type: 'antipatron', desc: 'Latencia bloqueante · sin resolver en F1 [T]', issue: 'Se optimiza en F4 mediante caché Redis' },
+                        { name: 'Base Aprobados (Batch Job)', type: 'heredado', desc: 'Batch nocturno · sin cambios [T]' },
+                        { name: 'Sincronización Datos', type: 'nuevo', desc: 'INI-37 · reducción knockouts por desync [T]', initiative: 'INI-37' },
+                        { name: 'Limpieza Deuda Técnica', type: 'nuevo', desc: 'INI-38 · refactoring código [T]', initiative: 'INI-38' }
+                    ]},
+                    { name: 'L11 OBSERVABILIDAD', type: 'tecnico', components: [
+                        { name: 'Logs Básicos', type: 'heredado', desc: 'Sin trazas distribuidas aún [T]' },
+                        { name: '✕ Sin Alertas Auto', type: 'removido', desc: 'Reemplazado por alertas reales [T]' },
+                        { name: '✕ Agente APM Parásito', type: 'removido', desc: 'INI-15 · eliminado de FICO [T]', initiative: 'INI-15' },
+                        { name: 'Observabilidad FICO', type: 'nuevo', desc: 'INI-36 · instrumentación motor [T]', initiative: 'INI-36' },
+                        { name: 'Alertas Automatizadas', type: 'nuevo', desc: 'INI-10 · MTTD 45min → ≤5min [T]', initiative: 'INI-10', criticality: 'alta' },
+                        { name: 'Dashboard KPIs Básico', type: 'nuevo', desc: 'INI-27 · métricas en Grafana [T]', initiative: 'INI-27' }
+                    ]},
+                    { name: 'L12 GOBIERNO & ARQ', type: 'gobierno', components: [
+                        { name: '✕ Sin Owner E2E', type: 'removido', desc: 'Rol creado → Owner E2E designado [G]' },
+                        { name: '✕ Sin RACI Formal', type: 'removido', desc: 'RACI creado por componente [G]' },
+                        { name: '✕ Sin Blueprint', type: 'removido', desc: 'Blueprint arquitectónico documentado [G]' },
+                        { name: 'Owner E2E + RACI', type: 'nuevo', desc: 'INI-12 · responsable integral [G]', initiative: 'INI-12', criticality: 'alta' },
+                        { name: 'Blueprint Arquitectónico', type: 'nuevo', desc: 'INI-12 · arquitectura documentada [G]', initiative: 'INI-12' },
+                        { name: 'Runbooks + DRP', type: 'nuevo', desc: 'INI-31 · operación documentada [G]', initiative: 'INI-31' },
+                        { name: 'Protocolo Contingencia', type: 'nuevo', desc: 'INI-40 · failover documentado [G]', initiative: 'INI-40' }
+                    ]}
                 ]
             },
             f2: {
                 title: 'F2 — Plataforma Cloud-Native',
                 type: 'cloud',
                 layers: [
-                    {
-                        name: 'L2 OFERTA EVAL & PROC',
-                        type: 'funcional',
-                        components: [
-                            { name: 'Evaluación FICO v7', type: 'nuevo', desc: 'En migración OCI [F]', initiative: 'INI-18', criticality: 'media' },
-                            { name: 'Simulación 1×', type: 'nuevo', desc: 'INI-21 · FG-26 resuelto [F]', initiative: 'INI-21', criticality: 'media' },
-                            { name: 'Oferta Dinámica', type: 'nuevo', desc: 'INI-02 · personalizada [F]', initiative: 'INI-02', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L6 API GW & BFF',
-                        type: 'tecnico',
-                        components: [
-                            { name: '✕ OSB 11g RETIRADO', type: 'removido', desc: 'INI-22 · reemplazado [T]', initiative: 'INI-22', criticality: 'alta' },
-                            { name: 'Apigee API Gateway', type: 'nuevo', desc: 'INI-22 · nuevo GW [T]', initiative: 'INI-22', criticality: 'media' },
-                            { name: 'BFF Digital Modernizado', type: 'nuevo', desc: 'INI-47 · actualizado [T]', initiative: 'INI-47', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L7 ORQUEST & CAMEL',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'Apache Camel + CB', type: 'nuevo', desc: 'INI-24 · orquestador central [T]', initiative: 'INI-24', criticality: 'alta' },
-                            { name: 'Apache Kafka 3 Brokers', type: 'nuevo', desc: 'INI-24 · eventos streaming [T]', initiative: 'INI-24', criticality: 'media' },
-                            { name: 'Redis Cluster HA', type: 'nuevo', desc: 'INI-25 · caché distribuido [T]', initiative: 'INI-25', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L8 MOTOR DECISIÓN',
-                        type: 'tecnico',
-                        components: [
-                            { name: '✕ FICO v4+Nashorn APAG.', type: 'removido', desc: 'INI-18 · descontinuado [T]', initiative: 'INI-18', criticality: 'alta' },
-                            { name: 'FICO v7 OKE (Blaze v7)', type: 'nuevo', desc: 'INI-18 · nueva plataforma [T]', initiative: 'INI-18', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L11 OBSERVABILIDAD',
-                        type: 'tecnico',
-                        components: [
-                            { name: 'OpenTelemetry E2E', type: 'nuevo', desc: 'INI-28 · trazabilidad completa [T]', initiative: 'INI-28', criticality: 'media' },
-                            { name: 'Grafana + Prometheus', type: 'nuevo', desc: 'INI-27 · métricas avanzadas [T]', initiative: 'INI-27', criticality: 'media' },
-                            { name: 'ElasticSearch', type: 'nuevo', desc: 'INI-28 · logs centralizados [T]', initiative: 'INI-28', criticality: 'media' }
-                        ]
-                    }
+                    { name: 'L1 CANALES & ENTRADA', type: 'funcional', components: [
+                        { name: 'TAPP', type: 'heredado', desc: 'App móvil · sin cambios en F2 [F]' },
+                        { name: 'SVP 1.5', type: 'heredado', desc: 'Simulador Web · sin cambios [F]' },
+                        { name: 'Canal Presencial', type: 'heredado', desc: 'Ejecutivos · sin cambios [F]' },
+                        { name: 'API Portal', type: 'heredado', desc: 'APIs externas · sin cambios [F]' },
+                        { name: 'Funnel Digital', type: 'heredado', desc: 'INI-05 · de F1 [F]', initiative: 'INI-05' },
+                        { name: 'UX Research', type: 'heredado', desc: 'INI-49 · de F1 [F]', initiative: 'INI-49' }
+                    ]},
+                    { name: 'L2 OFERTA EVAL & PROC', type: 'funcional', components: [
+                        { name: '✕ FICO Eval Flow OSB', type: 'removido', desc: 'Reemplazado por FICO v7 en OKE [F]' },
+                        { name: '✕ Simulación FlexCube 3×', type: 'removido', desc: 'FG-26 resuelto: 3 llamadas → 1 [F]' },
+                        { name: '✕ Oferta Solo Pre-aprobada', type: 'removido', desc: 'Reemplazada por oferta dinámica [F]' },
+                        { name: 'Evaluación FICO v7', type: 'nuevo', desc: 'INI-18 · motor cloud OKE [F]', initiative: 'INI-18', criticality: 'alta' },
+                        { name: 'Simulación 1× (3 plazos)', type: 'nuevo', desc: 'INI-21 · 1 llamada FlexCube [F]', initiative: 'INI-21' },
+                        { name: 'Oferta Dinámica', type: 'nuevo', desc: 'INI-02 · personalizada por perfil [F]', initiative: 'INI-02' }
+                    ]},
+                    { name: 'L3 DOC & FIRMA', type: 'funcional', components: [
+                        { name: 'BI Publisher PDFs', type: 'heredado', desc: 'Sin cambios en F2 [F]' },
+                        { name: 'WebCenter Content', type: 'heredado', desc: 'Repositorio docs · sin cambios [F]' },
+                        { name: 'e-Sign Chile (ISA)', type: 'heredado', desc: 'Firma electrónica · sin cambios [F]' }
+                    ]},
+                    { name: 'L4 CRM & CLIENTE', type: 'funcional', components: [
+                        { name: 'Siebel CRM', type: 'heredado', desc: 'CRM on-premise · migración en F3 [F]' }
+                    ]},
+                    { name: 'L5 SEGURIDAD', type: 'tecnico', components: [
+                        { name: 'Keycloak SSO', type: 'heredado', desc: 'OAuth2/OIDC · sin cambios [T]' },
+                        { name: 'Active IT Biometría', type: 'heredado', desc: 'Validación identidad · sin cambios [T]' }
+                    ]},
+                    { name: 'L6 API GW & BFF', type: 'tecnico', components: [
+                        { name: '✕ OSB 11g RETIRADO', type: 'removido', desc: 'INI-22 · reemplazado por Apigee+Camel [T]', initiative: 'INI-22', criticality: 'alta' },
+                        { name: 'Apigee API Gateway', type: 'nuevo', desc: 'INI-22 · rate limit + CB + TLS [T]', initiative: 'INI-22', criticality: 'alta' },
+                        { name: '✕ BFF Digital (básico)', type: 'removido', desc: 'Evolucionado → BFF Modernizado [T]' },
+                        { name: 'BFF Digital Modernizado', type: 'nuevo', desc: 'INI-47 · patrones cloud-native [T]', initiative: 'INI-47' },
+                        { name: 'BFF Presencial', type: 'heredado', desc: 'Backend ejecutivos · sin cambios [T]' }
+                    ]},
+                    { name: 'L7 ORQUESTACIÓN', type: 'tecnico', components: [
+                        { name: '✕ Servicio 147 ELIMINADO', type: 'removido', desc: 'FG-22 resuelto: Camel toma el rol [T]' },
+                        { name: 'Apache Camel + CB', type: 'nuevo', desc: 'INI-24 · orquestador + Resilience4j [T]', initiative: 'INI-24', criticality: 'alta' },
+                        { name: 'Apache Kafka 3 Brokers', type: 'nuevo', desc: 'INI-24 · eventos streaming [T]', initiative: 'INI-24' },
+                        { name: 'Redis Cluster HA', type: 'nuevo', desc: 'INI-25 · caché + estado omnicanal [T]', initiative: 'INI-25' }
+                    ]},
+                    { name: 'L8 MOTOR DECISIÓN', type: 'tecnico', components: [
+                        { name: '✕ FICO v4+Nashorn APAGADO', type: 'removido', desc: 'INI-18 · descontinuado [T]', initiative: 'INI-18', criticality: 'alta' },
+                        { name: 'FICO v7 OKE (Blaze v7)', type: 'nuevo', desc: 'INI-18 · distribuido en Kubernetes [T]', initiative: 'INI-18', criticality: 'alta' },
+                        { name: 'Apache Ignite CORREGIDO', type: 'heredado', desc: 'INI-03 · de F1 · estable [T]', initiative: 'INI-03' }
+                    ]},
+                    { name: 'L9 CORE BANCARIO', type: 'tecnico', components: [
+                        { name: 'FlexCube 11.3', type: 'antipatron', desc: 'Sin cambios · pendiente New Core 2027 [T]', issue: 'New Core planificado dic 2027' },
+                        { name: 'WebLogic EOL', type: 'antipatron', desc: 'Sin cambios en F2 [T]', issue: 'Upgrade evaluado para F4' },
+                        { name: 'Oracle DB RAC 12c', type: 'heredado', desc: 'BD principal · sin cambios [T]' },
+                        { name: 'MenuAndes Oracle Forms 10g', type: 'antipatron', desc: 'Sin cambios en F2 · retiro en F3 [T]', issue: 'Retiro planificado en F3' }
+                    ]},
+                    { name: 'L10 DATOS & CACHÉ', type: 'tecnico', components: [
+                        { name: 'BigQuery Síncrono 4.3s', type: 'antipatron', desc: 'Aún bloqueante · se optimiza en F4 [T]', issue: 'Redis caché reducirá a <200ms en F4' },
+                        { name: 'Base Aprobados (Batch Job)', type: 'heredado', desc: 'Batch nocturno · se moderniza en F4 [T]' },
+                        { name: 'Sincronización Datos', type: 'heredado', desc: 'INI-37 · de F1 [T]', initiative: 'INI-37' },
+                        { name: 'Limpieza Deuda Técnica', type: 'heredado', desc: 'INI-38 · de F1 [T]', initiative: 'INI-38' }
+                    ]},
+                    { name: 'L11 OBSERVABILIDAD', type: 'tecnico', components: [
+                        { name: '✕ Logs Básicos', type: 'removido', desc: 'Reemplazado por ElasticSearch + OTel [T]' },
+                        { name: 'Observabilidad FICO', type: 'heredado', desc: 'INI-36 · de F1 [T]', initiative: 'INI-36' },
+                        { name: 'Alertas Automatizadas', type: 'heredado', desc: 'INI-10 · de F1 [T]', initiative: 'INI-10' },
+                        { name: 'Dashboard KPIs', type: 'heredado', desc: 'INI-27 · de F1 [T]', initiative: 'INI-27' },
+                        { name: 'OpenTelemetry E2E', type: 'nuevo', desc: 'INI-28 · trazas distribuidas [T]', initiative: 'INI-28' },
+                        { name: 'Grafana + Prometheus', type: 'nuevo', desc: 'INI-27 · métricas completas [T]', initiative: 'INI-27' },
+                        { name: 'ElasticSearch Logs', type: 'nuevo', desc: 'INI-28 · logs centralizados [T]', initiative: 'INI-28' }
+                    ]},
+                    { name: 'L12 GOBIERNO & ARQ', type: 'gobierno', components: [
+                        { name: 'Owner E2E + RACI', type: 'heredado', desc: 'INI-12 · de F1 [G]', initiative: 'INI-12' },
+                        { name: 'Blueprint Arquitectónico', type: 'heredado', desc: 'INI-12 · de F1 [G]', initiative: 'INI-12' },
+                        { name: 'Runbooks + DRP', type: 'heredado', desc: 'INI-31 · de F1 [G]', initiative: 'INI-31' },
+                        { name: 'Protocolo Contingencia', type: 'heredado', desc: 'INI-40 · de F1 [G]', initiative: 'INI-40' }
+                    ]}
                 ]
             },
             f3: {
                 title: 'F3 — Omnicanalidad & Crédito Inteligente',
                 type: 'omnicanalidad',
                 layers: [
-                    {
-                        name: 'L1 CANALES & ENTRADA',
-                        type: 'funcional',
-                        components: [
-                            { name: 'TAPP Omnicanal', type: 'nuevo', desc: 'INI-14 · nuevo flujo [F]', initiative: 'INI-14', criticality: 'media' },
-                            { name: 'Salesforce Ejecutivos', type: 'nuevo', desc: 'INI-42 · migración [F]', initiative: 'INI-42', criticality: 'media' },
-                            { name: 'Retomabilidad Cross-Channel', type: 'nuevo', desc: 'INI-07 · continuidad [F]', initiative: 'INI-07', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L4 CRM & CLIENTE',
-                        type: 'funcional',
-                        components: [
-                            { name: '✕ Siebel CRM MIGRADO', type: 'removido', desc: 'INI-42 · reemplazado [F]', initiative: 'INI-42', criticality: 'alta' },
-                            { name: 'Salesforce Cloud', type: 'nuevo', desc: 'INI-42 · nuevo CRM [F]', initiative: 'INI-42', criticality: 'media' },
-                            { name: 'MDM Base Corporativa', type: 'nuevo', desc: 'INI-34 · master data [T]', initiative: 'INI-34', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L9 CORE BANCARIO',
-                        type: 'tecnico',
-                        components: [
-                            { name: '✕ MenuAndes Forms RETIRO', type: 'removido', desc: 'INI-32 · en plan de retiro [T]', initiative: 'INI-32', criticality: 'media' },
-                            { name: 'MenuAndes Data API', type: 'nuevo', desc: 'INI-37 · wrapper REST [T]', initiative: 'INI-37', criticality: 'media' }
-                        ]
-                    },
-                    {
-                        name: 'L12 GOBIERNO & ARQ',
-                        type: 'gobierno',
-                        components: [
-                            { name: 'TOGAF Marco Arq.', type: 'nuevo', desc: 'INI-44 · madurez 3.0/5 [G]', initiative: 'INI-44', criticality: 'media' },
-                            { name: 'Gobierno Reglas Negocio', type: 'nuevo', desc: 'INI-11 · parametrización [F]', initiative: 'INI-11', criticality: 'media' },
-                            { name: 'Parametrización Autónoma', type: 'nuevo', desc: 'INI-17 · reglas sin TI [G]', initiative: 'INI-17', criticality: 'media' }
-                        ]
-                    }
+                    { name: 'L1 CANALES & ENTRADA', type: 'funcional', components: [
+                        { name: '✕ TAPP (básico)', type: 'removido', desc: 'Evoluciona → TAPP Omnicanal [F]' },
+                        { name: 'TAPP Omnicanal', type: 'nuevo', desc: 'INI-14 · nuevo flujo sin banner [F]', initiative: 'INI-14' },
+                        { name: 'SVP 1.5', type: 'heredado', desc: 'Simulador Web · sin cambios [F]' },
+                        { name: 'Salesforce Ejecutivos', type: 'nuevo', desc: 'INI-42 · canal omnicanal ejecutivos [F]', initiative: 'INI-42' },
+                        { name: 'Retomabilidad Cross-Channel', type: 'nuevo', desc: 'INI-07 · estado Redis por RUT [F]', initiative: 'INI-07' },
+                        { name: 'Funnel Digital', type: 'heredado', desc: 'INI-05 · de F1 [F]', initiative: 'INI-05' },
+                        { name: 'API Portal', type: 'heredado', desc: 'APIs externas · sin cambios [F]' }
+                    ]},
+                    { name: 'L2 OFERTA EVAL & PROC', type: 'funcional', components: [
+                        { name: 'Evaluación FICO v7', type: 'heredado', desc: 'INI-18 · de F2 [F]', initiative: 'INI-18' },
+                        { name: 'Simulación 1× (3 plazos)', type: 'heredado', desc: 'INI-21 · de F2 [F]', initiative: 'INI-21' },
+                        { name: 'Oferta Dinámica', type: 'heredado', desc: 'INI-02 · de F2 [F]', initiative: 'INI-02' }
+                    ]},
+                    { name: 'L3 DOC & FIRMA', type: 'funcional', components: [
+                        { name: 'BI Publisher PDFs', type: 'heredado', desc: 'Sin cambios en F3 [F]' },
+                        { name: 'WebCenter Content', type: 'heredado', desc: 'Repositorio docs · sin cambios [F]' },
+                        { name: 'e-Sign Chile (ISA)', type: 'heredado', desc: 'Firma electrónica · sin cambios [F]' }
+                    ]},
+                    { name: 'L4 CRM & CLIENTE', type: 'funcional', components: [
+                        { name: '✕ Siebel CRM MIGRADO', type: 'removido', desc: 'INI-42 · reemplazado por Salesforce [F]', initiative: 'INI-42', criticality: 'alta' },
+                        { name: 'Salesforce Cloud', type: 'nuevo', desc: 'INI-42 · nuevo CRM cloud [F]', initiative: 'INI-42' },
+                        { name: 'MDM Base Corporativa', type: 'nuevo', desc: 'INI-34 · master data centralizado [T]', initiative: 'INI-34' }
+                    ]},
+                    { name: 'L5 SEGURIDAD', type: 'tecnico', components: [
+                        { name: 'Keycloak SSO', type: 'heredado', desc: 'OAuth2/OIDC · sin cambios [T]' },
+                        { name: 'Active IT Biometría', type: 'heredado', desc: 'Validación identidad · sin cambios [T]' }
+                    ]},
+                    { name: 'L6 API GW & BFF', type: 'tecnico', components: [
+                        { name: 'Apigee API Gateway', type: 'heredado', desc: 'INI-22 · de F2 [T]', initiative: 'INI-22' },
+                        { name: 'BFF Digital Modernizado', type: 'heredado', desc: 'INI-47 · de F2 [T]', initiative: 'INI-47' },
+                        { name: 'BFF Presencial', type: 'heredado', desc: 'Backend ejecutivos · sin cambios [T]' }
+                    ]},
+                    { name: 'L7 ORQUESTACIÓN', type: 'tecnico', components: [
+                        { name: 'Apache Camel + CB', type: 'heredado', desc: 'INI-24 · de F2 [T]', initiative: 'INI-24' },
+                        { name: 'Apache Kafka 3 Brokers', type: 'heredado', desc: 'INI-24 · de F2 [T]', initiative: 'INI-24' },
+                        { name: 'Redis Cluster HA', type: 'heredado', desc: 'INI-25 · de F2 · sesión omnicanal [T]', initiative: 'INI-25' }
+                    ]},
+                    { name: 'L8 MOTOR DECISIÓN', type: 'tecnico', components: [
+                        { name: 'FICO v7 OKE (Blaze v7)', type: 'heredado', desc: 'INI-18 · de F2 [T]', initiative: 'INI-18' },
+                        { name: 'Apache Ignite CORREGIDO', type: 'heredado', desc: 'INI-03 · de F1 [T]', initiative: 'INI-03' }
+                    ]},
+                    { name: 'L9 CORE BANCARIO', type: 'tecnico', components: [
+                        { name: 'FlexCube 11.3', type: 'antipatron', desc: 'Sin cambios · pendiente New Core 2027 [T]', issue: 'New Core planificado dic 2027' },
+                        { name: 'WebLogic EOL', type: 'antipatron', desc: 'Sin cambios en F3 [T]', issue: 'Upgrade pendiente en F4' },
+                        { name: 'Oracle DB RAC 12c', type: 'heredado', desc: 'BD principal · sin cambios [T]' },
+                        { name: '✕ MenuAndes Forms 10g', type: 'removido', desc: 'INI-32 · retiro Oracle Forms [T]', initiative: 'INI-32' },
+                        { name: 'MenuAndes Data API', type: 'nuevo', desc: 'INI-37 · wrapper REST tiempo real [T]', initiative: 'INI-37' }
+                    ]},
+                    { name: 'L10 DATOS & CACHÉ', type: 'tecnico', components: [
+                        { name: 'BigQuery Síncrono 4.3s', type: 'antipatron', desc: 'Aún sin resolver · se optimiza en F4 [T]', issue: 'Redis caché resolverá latencia en F4' },
+                        { name: 'Base Aprobados (Batch Job)', type: 'heredado', desc: 'Batch nocturno · se moderniza en F4 [T]' },
+                        { name: 'Sincronización Datos', type: 'heredado', desc: 'INI-37 · de F1 [T]', initiative: 'INI-37' }
+                    ]},
+                    { name: 'L11 OBSERVABILIDAD', type: 'tecnico', components: [
+                        { name: 'OpenTelemetry E2E', type: 'heredado', desc: 'INI-28 · de F2 [T]', initiative: 'INI-28' },
+                        { name: 'Grafana + Prometheus', type: 'heredado', desc: 'INI-27 · de F2 [T]', initiative: 'INI-27' },
+                        { name: 'ElasticSearch Logs', type: 'heredado', desc: 'INI-28 · de F2 [T]', initiative: 'INI-28' },
+                        { name: 'Observabilidad FICO', type: 'heredado', desc: 'INI-36 · de F1 [T]', initiative: 'INI-36' },
+                        { name: 'Alertas Automatizadas', type: 'heredado', desc: 'INI-10 · de F1 [T]', initiative: 'INI-10' }
+                    ]},
+                    { name: 'L12 GOBIERNO & ARQ', type: 'gobierno', components: [
+                        { name: 'Owner E2E + RACI', type: 'heredado', desc: 'INI-12 · de F1 [G]', initiative: 'INI-12' },
+                        { name: 'Blueprint Arquitectónico', type: 'heredado', desc: 'INI-12 · de F1 [G]', initiative: 'INI-12' },
+                        { name: 'Runbooks + DRP', type: 'heredado', desc: 'INI-31 · de F1 [G]', initiative: 'INI-31' },
+                        { name: 'Protocolo Contingencia', type: 'heredado', desc: 'INI-40 · de F1 [G]', initiative: 'INI-40' },
+                        { name: 'TOGAF Marco Arq.', type: 'nuevo', desc: 'INI-44 · madurez arquitectónica 3.0/5 [G]', initiative: 'INI-44' },
+                        { name: 'Gobierno Reglas Negocio', type: 'nuevo', desc: 'INI-11 · proceso formal de cambios [G]', initiative: 'INI-11' },
+                        { name: 'Parametrización Autónoma', type: 'nuevo', desc: 'INI-17 · negocio sin pase a TI [G]', initiative: 'INI-17' }
+                    ]}
                 ]
             },
-            f4: { title: 'F4 - Arquitectura TO-BE Final Consolidada', type: 'final', layers: [ { name: 'L1 CANALES', type: 'funcional', components: [ { name: 'TAPP Omnicanal', type: 'nuevo', desc: 'INI-14 · plataforma digital [F]', initiative: 'INI-14', criticality: 'media' }, { name: 'Salesforce Canales', type: 'nuevo', desc: 'INI-42 · ejecutivos [F]', initiative: 'INI-42', criticality: 'media' }, { name: 'Chatbot IA', type: 'nuevo', desc: 'Pre-evaluacion auto [F]', initiative: 'INI-05', criticality: 'media' } ] }, { name: 'L2 OFERTA', type: 'funcional', components: [ { name: 'Pre-evaluacion FICO v7', type: 'nuevo', desc: 'INI-01 · sin oferta [F]', initiative: 'INI-01', criticality: 'media' }, { name: 'Oferta Dinamica', type: 'nuevo', desc: 'INI-02 · personalizada [F]', initiative: 'INI-02', criticality: 'media' } ] }, { name: 'L4 CRM MASTER', type: 'funcional', components: [ { name: 'Salesforce Cloud', type: 'nuevo', desc: 'INI-42 · unico CRM [F]', initiative: 'INI-42', criticality: 'media' }, { name: 'MDM Centralizado', type: 'nuevo', desc: 'INI-34 · master data [T]', initiative: 'INI-34', criticality: 'media' } ] }, { name: 'L6 API & BFF', type: 'tecnico', components: [ { name: 'Apigee API Platform', type: 'nuevo', desc: 'INI-22 · gateway [T]', initiative: 'INI-22', criticality: 'media' }, { name: 'BFF Cloud-Native', type: 'nuevo', desc: 'INI-47 · GraphQL [T]', initiative: 'INI-47', criticality: 'media' } ] }, { name: 'L7 ORQUESTACION', type: 'tecnico', components: [ { name: 'Apache Camel', type: 'nuevo', desc: 'INI-24 · orquestador [T]', initiative: 'INI-24', criticality: 'media' }, { name: 'Kafka HA', type: 'nuevo', desc: 'INI-24 · eventos [T]', initiative: 'INI-24', criticality: 'media' }, { name: 'Redis Cluster', type: 'nuevo', desc: 'INI-25 · cache [T]', initiative: 'INI-25', criticality: 'media' } ] }, { name: 'L8 DECISION', type: 'tecnico', components: [ { name: 'FICO v7 OKE', type: 'nuevo', desc: 'INI-18 · distribuido [T]', initiative: 'INI-18', criticality: 'media' }, { name: 'Blaze Rules', type: 'nuevo', desc: 'Motor reglas [T]', criticality: 'media' } ] }, { name: 'L9 CORE MODERNO', type: 'tecnico', components: [ { name: 'MenuAndes API', type: 'nuevo', desc: 'INI-37 · wrapper REST [T]', initiative: 'INI-37', criticality: 'media' }, { name: 'Oracle 19c', type: 'nuevo', desc: 'EOL 12c mitigado [T]', criticality: 'media' } ] }, { name: 'L10 DATOS', type: 'tecnico', components: [ { name: 'BigQuery Optimizado', type: 'nuevo', desc: '500ms optimizado [T]', criticality: 'media' }, { name: 'DataLake OCI', type: 'nuevo', desc: 'Cliente 360 [T]', criticality: 'media' }, { name: 'Airflow', type: 'nuevo', desc: 'ETL automatizado [T]', criticality: 'baja' } ] }, { name: 'L11 OBSERVABILIDAD', type: 'tecnico', components: [ { name: 'OpenTelemetry', type: 'nuevo', desc: 'INI-28 · trazas [T]', initiative: 'INI-28', criticality: 'media' }, { name: 'Grafana Prometheus', type: 'nuevo', desc: 'INI-27 · metricas [T]', initiative: 'INI-27', criticality: 'media' }, { name: 'ElasticSearch', type: 'nuevo', desc: 'INI-28 · logs [T]', initiative: 'INI-28', criticality: 'media' } ] }, { name: 'L12 GOBIERNO', type: 'gobierno', components: [ { name: 'TOGAF Maduro', type: 'nuevo', desc: 'INI-44 · 3.0/5 [G]', initiative: 'INI-44', criticality: 'media' }, { name: 'Rules Autonomo', type: 'nuevo', desc: 'INI-17 · sin TI [G]', initiative: 'INI-17', criticality: 'media' }, { name: 'DRP Validado', type: 'nuevo', desc: 'INI-31 · prod [G]', initiative: 'INI-31', criticality: 'media' } ] } ] }
+            f4: {
+                title: 'F4 — Arquitectura TO-BE Final Consolidada',
+                type: 'final',
+                layers: [
+                    { name: 'L1 CANALES & ENTRADA', type: 'funcional', components: [
+                        { name: 'TAPP Omnicanal', type: 'heredado', desc: 'INI-14 · de F3 [F]', initiative: 'INI-14' },
+                        { name: 'SVP 1.5', type: 'heredado', desc: 'Simulador Web · sin cambios [F]' },
+                        { name: 'Salesforce Ejecutivos', type: 'heredado', desc: 'INI-42 · de F3 [F]', initiative: 'INI-42' },
+                        { name: 'Retomabilidad Cross-Channel', type: 'heredado', desc: 'INI-07 · de F3 [F]', initiative: 'INI-07' },
+                        { name: 'API Portal', type: 'heredado', desc: 'APIs externas · sin cambios [F]' },
+                        { name: 'Chatbot IA Pre-eval', type: 'nuevo', desc: 'INI-05 · pre-evaluación automática [F]', initiative: 'INI-05' }
+                    ]},
+                    { name: 'L2 OFERTA EVAL & PROC', type: 'funcional', components: [
+                        { name: 'Pre-evaluación sin Oferta', type: 'nuevo', desc: 'INI-01 · evaluación sin presión al cliente [F]', initiative: 'INI-01' },
+                        { name: 'Evaluación FICO v7', type: 'heredado', desc: 'INI-18 · de F2 [F]', initiative: 'INI-18' },
+                        { name: 'Simulación 1× (3 plazos)', type: 'heredado', desc: 'INI-21 · de F2 [F]', initiative: 'INI-21' },
+                        { name: 'Oferta Dinámica', type: 'heredado', desc: 'INI-02 · de F2 [F]', initiative: 'INI-02' }
+                    ]},
+                    { name: 'L3 DOC & FIRMA', type: 'funcional', components: [
+                        { name: 'BI Publisher PDFs', type: 'heredado', desc: 'Sin cambios en F4 [F]' },
+                        { name: 'WebCenter Content', type: 'heredado', desc: 'Repositorio docs · sin cambios [F]' },
+                        { name: 'e-Sign Chile (ISA)', type: 'heredado', desc: 'Firma electrónica · sin cambios [F]' }
+                    ]},
+                    { name: 'L4 CRM & CLIENTE', type: 'funcional', components: [
+                        { name: 'Salesforce Cloud', type: 'heredado', desc: 'INI-42 · de F3 · único CRM [F]', initiative: 'INI-42' },
+                        { name: 'MDM Centralizado', type: 'heredado', desc: 'INI-34 · de F3 · vista 360 cliente [T]', initiative: 'INI-34' }
+                    ]},
+                    { name: 'L5 SEGURIDAD', type: 'tecnico', components: [
+                        { name: 'Keycloak SSO', type: 'heredado', desc: 'OAuth2/OIDC · sin cambios [T]' },
+                        { name: 'Active IT Biometría', type: 'heredado', desc: 'Validación identidad · sin cambios [T]' }
+                    ]},
+                    { name: 'L6 API GW & BFF', type: 'tecnico', components: [
+                        { name: 'Apigee API Gateway', type: 'heredado', desc: 'INI-22 · de F2 [T]', initiative: 'INI-22' },
+                        { name: 'BFF Digital Modernizado', type: 'heredado', desc: 'INI-47 · de F2 [T]', initiative: 'INI-47' },
+                        { name: 'BFF Presencial', type: 'heredado', desc: 'Backend ejecutivos · sin cambios [T]' }
+                    ]},
+                    { name: 'L7 ORQUESTACIÓN', type: 'tecnico', components: [
+                        { name: 'Apache Camel + CB', type: 'heredado', desc: 'INI-24 · de F2 [T]', initiative: 'INI-24' },
+                        { name: 'Apache Kafka 3 Brokers', type: 'heredado', desc: 'INI-24 · de F2 [T]', initiative: 'INI-24' },
+                        { name: 'Redis Cluster HA', type: 'heredado', desc: 'INI-25 · de F2 [T]', initiative: 'INI-25' }
+                    ]},
+                    { name: 'L8 MOTOR DECISIÓN', type: 'tecnico', components: [
+                        { name: 'FICO v7 OKE (Blaze v7)', type: 'heredado', desc: 'INI-18 · de F2 [T]', initiative: 'INI-18' },
+                        { name: 'Apache Ignite CORREGIDO', type: 'heredado', desc: 'INI-03 · de F1 [T]', initiative: 'INI-03' }
+                    ]},
+                    { name: 'L9 CORE BANCARIO', type: 'tecnico', components: [
+                        { name: 'FlexCube 11.3', type: 'antipatron', desc: 'Pendiente New Core dic 2027 [T]', issue: 'Upgrade FlexCube 11.3→14.7 en New Core 2027' },
+                        { name: 'WebLogic (upgrade)', type: 'nuevo', desc: 'Actualizado a versión soportada [T]' },
+                        { name: 'Oracle DB RAC 19c', type: 'nuevo', desc: 'Upgrade 12c→19c · LTS con soporte [T]' },
+                        { name: 'MenuAndes Data API', type: 'heredado', desc: 'INI-37 · de F3 · wrapper REST [T]', initiative: 'INI-37' }
+                    ]},
+                    { name: 'L10 DATOS & CACHÉ', type: 'tecnico', components: [
+                        { name: '✕ BigQuery Síncrono 4.3s', type: 'removido', desc: 'Reemplazado por caché Redis + BigQuery optimizado [T]' },
+                        { name: 'BigQuery Optimizado', type: 'nuevo', desc: '4.3s → <500ms · score precacheado en Redis [T]' },
+                        { name: 'DataLake OCI', type: 'nuevo', desc: 'Vista 360° cliente · analítica avanzada [T]' },
+                        { name: 'Airflow ETL', type: 'nuevo', desc: 'Pipelines de datos automatizados [T]' },
+                        { name: '✕ Base Aprobados Batch', type: 'removido', desc: 'Reemplazado por procesamiento RT [T]' },
+                        { name: 'Base Aprobados RT', type: 'nuevo', desc: 'Tiempo real · sin re-solicitudes indebidas [T]' }
+                    ]},
+                    { name: 'L11 OBSERVABILIDAD', type: 'tecnico', components: [
+                        { name: 'OpenTelemetry E2E', type: 'heredado', desc: 'INI-28 · de F2 [T]', initiative: 'INI-28' },
+                        { name: 'Grafana + Prometheus', type: 'heredado', desc: 'INI-27 · de F2 [T]', initiative: 'INI-27' },
+                        { name: 'ElasticSearch Logs', type: 'heredado', desc: 'INI-28 · de F2 [T]', initiative: 'INI-28' },
+                        { name: 'Observabilidad FICO', type: 'heredado', desc: 'INI-36 · de F1 [T]', initiative: 'INI-36' },
+                        { name: 'Alertas Automatizadas', type: 'heredado', desc: 'INI-10 · de F1 [T]', initiative: 'INI-10' }
+                    ]},
+                    { name: 'L12 GOBIERNO & ARQ', type: 'gobierno', components: [
+                        { name: 'Owner E2E + RACI', type: 'heredado', desc: 'INI-12 · de F1 [G]', initiative: 'INI-12' },
+                        { name: 'TOGAF Marco Arq.', type: 'heredado', desc: 'INI-44 · de F3 · madurez 3.0/5 [G]', initiative: 'INI-44' },
+                        { name: 'Gobierno Reglas Negocio', type: 'heredado', desc: 'INI-11 · de F3 [G]', initiative: 'INI-11' },
+                        { name: 'Parametrización Autónoma', type: 'heredado', desc: 'INI-17 · de F3 [G]', initiative: 'INI-17' },
+                        { name: 'Runbooks + DRP Validado', type: 'heredado', desc: 'INI-31 · de F1 · drill semestral [G]', initiative: 'INI-31' },
+                        { name: 'Gestión Proveedores SLA', type: 'nuevo', desc: 'INI-30 · 7 proveedores formalizados [G]', initiative: 'INI-30' }
+                    ]}
+                ]
+            }
         };
 
         const initiatives = {
-            'INI-01': { title: 'Pre-evaluación FICO sin Oferta', criticality: 'media', desc: 'Evaluación cualificada sin presentar opciones de crédito inmediatamente.' },
-            'INI-02': { title: 'Oferta Dinámica Personalizada', criticality: 'media', desc: 'Generación inteligente de oferta basada en perfil, sin doble evaluación.' },
-            'INI-03': { title: 'Estabilizar Apache Ignite', criticality: 'alta', desc: 'Ajustar failureDetectionTimeout, incrementar thread pools ≥16, configurar backup ≥1. Elimina causa de 214K errores 5XX.' },
-            'INI-05': { title: 'Instrumentar Funnel Digital', criticality: 'media', desc: 'Captura de métricas sin cambiar flujo. Segmentación por canal, medición abandono digital.' },
-            'INI-07': { title: 'Retomabilidad Omnicanal', criticality: 'media', desc: 'Persistencia de estado entre canales. Cliente abandona TAPP, retoma en sucursal.' },
-            'INI-10': { title: 'Alertas Automatizadas', criticality: 'alta', desc: 'Alertas en Grafana/Elasticsearch. MTTD de 45min → ≤5min. Protocolo contingencia.' },
-            'INI-12': { title: 'Owner E2E + Gobierno', criticality: 'alta', desc: 'Responsable integral con autoridad transversal. RACI por componente. Habilitador #1.' },
-            'INI-14': { title: 'Módulo TAPP Sin Banner', criticality: 'media', desc: 'Nuevo flujo digital sin solicitud preaprobada. Expansión segmento normal.' },
-            'INI-15': { title: 'Estabilizar Infraestructura', criticality: 'alta', desc: 'Desactivar APM parásito (-309K conn/h), balancear OSB, fix memory leak Cassandra, KB Oracle 8→32GB.' },
-            'INI-18': { title: 'FICO v7 en OKE', criticality: 'alta', desc: 'Migración a Oracle Cloud + Kubernetes. Blaze v7, Nashorn eliminado.' },
-            'INI-21': { title: 'Simulación 1× (no 3×)', criticality: 'media', desc: 'Consolidar 3 llamadas a FlexCube en 1. Reduce latencia, fallas.' },
-            'INI-22': { title: 'Apache Camel Orquestador', criticality: 'alta', desc: 'Reemplazar OSB 11g. Circuit breakers nativos (Resilience4j). Único bus.' },
-            'INI-24': { title: 'Camel Resiliencia', criticality: 'media', desc: 'Circuit breakers, retry, backoff, métricas nativas en Camel.' },
-            'INI-25': { title: 'Redis Caché Distribuido', criticality: 'media', desc: 'Caché transversal, session recovery, reducción BigQuery latencia.' },
-            'INI-27': { title: 'Dashboards KPIs', criticality: 'media', desc: 'Grafana con métricas de negocio y técnicas. Visibilidad operativa.' },
-            'INI-28': { title: 'OpenTelemetry E2E', criticality: 'media', desc: 'Trazabilidad distribuida, Jaeger, 5 dashboards operativos.' },
-            'INI-30': { title: 'Gestión Proveedores', criticality: 'media', desc: 'SLAs formalizados con 7 proveedores. Métricas, penalidades.' },
-            'INI-31': { title: 'Runbooks + DRP', criticality: 'media', desc: 'Documentación operativa, 6 runbooks, DRP RTO≤4h RPO≤1h.' },
-            'INI-34': { title: 'MDM Base Corporativa', criticality: 'media', desc: 'Master Data Management centralizado para cliente, producto, riesgo.' },
-            'INI-36': { title: 'Observabilidad FICO', criticality: 'media', desc: 'Instrumentación de FICO con trazas y métricas OpenTelemetry.' },
-            'INI-37': { title: 'Sincronización Datos', criticality: 'media', desc: 'Wrapper REST para MenuAndes. Desincronización reducida (-12K knockouts).' },
-            'INI-38': { title: 'Limpieza Deuda Técnica', criticality: 'media', desc: 'Refactorización de código técnicamente deudor. Mantenibilidad mejorada.' },
-            'INI-40': { title: 'Protocolo Contingencia', criticality: 'media', desc: '3 escenarios documentados. Failover automático ante fallas críticas.' },
-            'INI-42': { title: 'Migración Siebel→Salesforce', criticality: 'alta', desc: 'Migración CRM a nube. Reemplazo de canal ejecutivos.' },
-            'INI-44': { title: 'TOGAF Marco Arquitectónico', criticality: 'media', desc: 'Framework TOGAF completo. Madurez de 1.21→3.0/5.' },
-            'INI-47': { title: 'BFF Modernizado', criticality: 'media', desc: 'Backend for Frontend actual refactorizado con patrones cloud-native.' },
-            'INI-49': { title: 'UX Research Digital', criticality: 'baja', desc: 'Estudio de experiencia de usuario. Base para mejoras de interfaz.' }
+            'INI-01': {
+                title: 'Pre-evaluación FICO sin Oferta',
+                criticality: 'media',
+                desc: 'Habilita una evaluación crediticia cualificada por FICO v7 sin presentar inmediatamente opciones de crédito al cliente. Permite separar el paso de evaluación del paso de oferta, mejorando la tasa de conversión al no comprometer al cliente en un producto antes de conocer su perfil completo. Elimina la presión innecesaria en el funnel digital y reduce abandonos tempranos.'
+            },
+            'INI-02': {
+                title: 'Oferta Dinámica Personalizada',
+                criticality: 'media',
+                desc: 'Generación inteligente de oferta de crédito basada en el perfil de riesgo del cliente, historial crediticio y variables de comportamiento, sin re-ejecutar la evaluación FICO (anti-patrón FG-22 eliminado). La oferta incluye múltiples opciones de plazo y cuota calculadas en una sola llamada a FlexCube, personalizadas por segmento y canal de origen.'
+            },
+            'INI-03': {
+                title: 'Estabilizar Apache Ignite',
+                criticality: 'alta',
+                desc: 'Corrección de la causa raíz de 214K errores 5XX: ajustar failureDetectionTimeout > metricsUpdateFrequency para eliminar falsos positivos que matan nodos sanos. Incrementar thread pools a ≥16 hilos y configurar al menos 1 backup de caché para evitar pérdida total de datos ante kill de nodo. Esta iniciativa resuelve ARIs 14, 15, 57 identificados en el assessment y es prerequisito para cualquier otra mejora de estabilidad.'
+            },
+            'INI-05': {
+                title: 'Instrumentar Funnel Digital',
+                criticality: 'media',
+                desc: 'Captura de métricas de conversión en cada paso del funnel digital (inicio, evaluación, oferta, selección, firma, desembolso) sin modificar el flujo funcional actual. Incluye segmentación por canal (TAPP, SVP), medición de tasa de abandono por paso, y eventos de comportamiento para análisis posterior. Habilita la toma de decisiones basada en datos para priorizar mejoras UX.'
+            },
+            'INI-07': {
+                title: 'Retomabilidad Omnicanal',
+                criticality: 'media',
+                desc: 'Persistencia del estado del proceso de crédito mediante sesión indexada por RUT en Redis, permitiendo que un cliente inicie en TAPP y retome desde sucursal (SVP/ejecutivo), o viceversa, sin perder contexto. El estado abarca: datos ingresados, resultado de evaluación FICO, opciones de plazo generadas y documentos pendientes de firma. Habilita el flujo omnicanal completo que actualmente es imposible por la arquitectura de islas.'
+            },
+            'INI-10': {
+                title: 'Alertas Automatizadas',
+                criticality: 'alta',
+                desc: 'Implementación de alertas proactivas en Grafana y Elasticsearch sobre umbrales críticos: tasa de error > 5%, latencia P95 > 8s, heap JVM > 85%, caché Ignite con 0 backups activos y disponibilidad FICO < 99%. Reduce el MTTD (Mean Time to Detect) de 45 minutos a ≤ 5 minutos. Incluye protocolo de escalamiento con runbook vinculado a cada alerta y canal de notificación a equipo on-call.'
+            },
+            'INI-12': {
+                title: 'Owner E2E + Gobierno del Proceso',
+                criticality: 'alta',
+                desc: 'Designación de un responsable integral del proceso de crédito con autoridad transversal sobre todos los componentes (TAPP, FICO, OSB, FlexCube, Siebel). Creación de RACI formal por componente y proceso. Este es el habilitador #1 de la transformación: sin owner E2E, los problemas circulan entre equipos sin resolución. El assessment detectó 7 años de incidentes recurrentes (nov 2024) atribuibles a esta ausencia de gobernanza.'
+            },
+            'INI-14': {
+                title: 'Módulo TAPP Sin Banner Preaprobado',
+                criticality: 'media',
+                desc: 'Nuevo flujo digital en TAPP para clientes del segmento normal (sin oferta preaprobada), permitiendo solicitar crédito de consumo desde cero en el canal digital. Actualmente TAPP solo opera con créditos preaprobados (banner), dejando fuera al segmento general. Este módulo expande el mercado accesible digitalmente y es prerequisito para lograr el objetivo de conversión digital ≥ 50%.'
+            },
+            'INI-15': {
+                title: 'Estabilizar Infraestructura Base',
+                criticality: 'alta',
+                desc: 'Conjunto de correcciones de infraestructura de impacto inmediato: (1) Desactivar agente APM parásito en FICO que genera 309K conexiones/hora innecesarias y representa el 80% de errores de gateway. (2) Balancear carga entre instancias OSB para reducir saturación. (3) Corregir memory leak en Cassandra. (4) Ampliar KB de Oracle de 8 GB a 32 GB. Impacto estimado: eliminación de ~80% errores de infraestructura en 2 semanas de ejecución.'
+            },
+            'INI-18': {
+                title: 'FICO v7 en OKE (Oracle Kubernetes)',
+                criticality: 'alta',
+                desc: 'Migración del motor de decisión crediticia de FICO v4 (Blaze Advisor + Nashorn deprecated) a FICO v7 sobre Oracle Container Engine for Kubernetes (OKE). Elimina la dependencia de Nashorn (incompatible desde Java 15+), actualiza el motor Blaze a v7 con soporte activo, y despliega el motor como microservicio escalable en Kubernetes con 3 réplicas y auto-scaling. Resuelve el principal punto de falla único del flujo de crédito.'
+            },
+            'INI-21': {
+                title: 'Consolidar Simulación FlexCube 1× (no 3×)',
+                criticality: 'media',
+                desc: 'Elimina el anti-patrón FG-26: actualmente se realizan 3 llamadas síncronas independientes a FlexCube para simular plazos de 24, 36 y 48 cuotas. La diferencia entre usar el simulador express y el módulo completo es de $1-$2 por redondeo, justificando el cambio. La solución consolida las 3 llamadas en 1, enviando múltiples plazos en un solo request. Reduce la carga en FlexCube en 3× y elimina 3 puntos de falla en el camino crítico.'
+            },
+            'INI-22': {
+                title: 'Apache Camel como Orquestador Central',
+                criticality: 'alta',
+                desc: 'Reemplazo del OSB 11g (EOL, sin circuit breakers, 14 servicios en cascada ante saturación) por Apache Camel K desplegado en OKE. Camel actúa simultáneamente como bus de integración EAI y orquestador del flujo de crédito, reemplazando también al Servicio 147 (anti-patrón FG-22 de doble invocación). Integra Resilience4j nativo para circuit breakers en cada ruta, con timeout reducido de 50s a 10s (ARI-67). Migración gradual: OSB y Camel en coexistencia hasta retiro completo.'
+            },
+            'INI-24': {
+                title: 'Camel Resiliencia y Rutas EAI',
+                criticality: 'media',
+                desc: 'Implementación de patrones de resiliencia en todas las rutas Apache Camel: circuit breakers Resilience4j con sliding window de 10 llamadas y umbral de falla al 50%, retry con backoff exponencial (3 intentos, espera 30s en estado abierto), dead-letter channel para compensación de errores y métricas nativas via Micrometer hacia Prometheus. Incluye migración de rutas EAI críticas desde OSB: EAI-005 (18.350 errores en 5 meses) y EAI-MenuAndes (batch nocturno → tiempo real).'
+            },
+            'INI-25': {
+                title: 'Redis Caché Distribuido y Estado Omnicanal',
+                criticality: 'media',
+                desc: 'Implementación de Redis Cluster en alta disponibilidad como caché transversal y almacén de estado del proceso de crédito por RUT (TTL 48h). Resuelve la latencia de 4.312ms de BigQuery síncrono (anti-patrón FG-19) mediante pre-carga del scoring en caché, reduciendo a < 200ms. Gestiona la máquina de estados: INITIATED → EVALUATED → FORMALIZING → SIGNED → DISBURSED. Distributed locks via SETNX para concurrencia multi-canal sin condiciones de carrera.'
+            },
+            'INI-27': {
+                title: 'Dashboards KPIs Técnicos y de Negocio',
+                criticality: 'media',
+                desc: 'Implementación de dashboards operativos en Grafana con métricas de negocio (tasa de aprobación, conversión por canal, evaluaciones/min, tiempo promedio E2E) y métricas técnicas (latencia P50/P95/P99, tasa de error por servicio, uso de recursos JVM, estado de circuit breakers). Visibilidad en tiempo real para negocio y TI en un mismo panel. Prerequisito para medir el impacto de cada iniciativa del roadmap.'
+            },
+            'INI-28': {
+                title: 'OpenTelemetry E2E y Trazabilidad Distribuida',
+                criticality: 'media',
+                desc: 'Implementación de trazabilidad distribuida end-to-end usando OpenTelemetry como estándar unificado, con Jaeger como backend de trazas y Elasticsearch para logs centralizados. Cada request de crédito genera un trace ID que atraviesa TAPP → Camel → FICO → FlexCube, permitiendo identificar el componente exacto de cada falla. Incluye 5 dashboards operativos y correlación trace-log para reducir MTTR de horas a minutos.'
+            },
+            'INI-30': {
+                title: 'Gestión Formal de Proveedores con SLA',
+                criticality: 'media',
+                desc: 'Formalización de contratos SLA con los 7 proveedores críticos del ecosistema: FlexCube (Oracle), Experian, Equifax, e-Sign Chile (ISA), Toku/Redbanc, Sonda (infra on-premise) y proveedor APM. Incluye definición de métricas de disponibilidad, penalidades por incumplimiento, procedimiento de escalamiento y revisiones trimestrales. Actualmente ningún proveedor tiene SLA formalizado, lo que impide exigir compensación ante incidentes.'
+            },
+            'INI-31': {
+                title: 'Runbooks Operativos y Plan DRP',
+                criticality: 'media',
+                desc: 'Creación de 6 runbooks paso a paso para los escenarios de falla más frecuentes: caída de Apache Ignite, degradación de FICO, timeout OSB generalizado, falla en e-Sign Chile, pérdida de conexión FlexCube y saturación de Base de Aprobados. Plan DRP con RTO ≤ 4h y RPO ≤ 1h, con procedimiento de failover documentado y validado mediante drill semestral. Reduce el MTTR operativo y permite que cualquier integrante del equipo resuelva incidentes sin depender de personas clave.'
+            },
+            'INI-34': {
+                title: 'MDM Base Corporativa (Master Data Management)',
+                criticality: 'media',
+                desc: 'Implementación de una capa centralizada de Master Data Management para las entidades clave: cliente (RUT, datos contacto, segmento), producto crediticio (tasas, plazos, condiciones) y riesgo (scoring, historial). Actualmente los datos de cliente están desincronizados entre MenuAndes y Siebel via batch nocturno, generando 18.350 errores EAI-005 en 5 meses (anti-patrón FG-12). El MDM centralizado elimina la fuente de inconsistencias y habilita la vista 360 del cliente.'
+            },
+            'INI-36': {
+                title: 'Observabilidad FICO (Instrumentación)',
+                criticality: 'media',
+                desc: 'Instrumentación interna del motor FICO v7 con trazas OpenTelemetry y métricas Micrometer para exponer: tiempo de evaluación por regla Blaze, tasa de aprobación/rechazo por segmento, uso de heap JVM del motor, y tiempo de acceso a caché Ignite. Actualmente FICO es una caja negra: cuando falla, no hay visibilidad de qué regla o qué integración causó el problema. Esta iniciativa convierte FICO en un componente observable y diagnosticable.'
+            },
+            'INI-37': {
+                title: 'Sincronización de Datos y Wrapper REST MenuAndes',
+                criticality: 'media',
+                desc: 'Reemplazo del batch nocturno de sincronización MenuAndes → Siebel por un wrapper REST sobre Oracle Forms 10g, habilitando consulta de datos en tiempo real. Reduce los knockouts por datos desactualizados en aproximadamente 12.000 casos mensuales (anti-patrón FG-12: T5 datos desincronizados). El wrapper actúa como capa de anticorrupción que aísla la obsolescencia de Oracle Forms sin requerir su reemplazo inmediato, postergable hasta New Core 2027.'
+            },
+            'INI-38': {
+                title: 'Limpieza de Deuda Técnica Acumulada',
+                criticality: 'media',
+                desc: 'Refactorización controlada de los módulos con mayor deuda técnica identificada en el assessment: dependencias circulares en OSB, lógica de negocio embebida en procedimientos almacenados Oracle, duplicación de código entre canales y configuraciones hardcodeadas en servicios. Mejora la mantenibilidad del código base, reduce el tiempo de onboarding de nuevos desarrolladores y disminuye la probabilidad de regresiones durante la migración a Camel.'
+            },
+            'INI-40': {
+                title: 'Protocolo de Contingencia y Failover',
+                criticality: 'media',
+                desc: 'Documentación y prueba de 3 escenarios de contingencia críticos: (1) Caída total de FICO → activar modo degradado con reglas simplificadas precacheadas. (2) Timeout FlexCube generalizado → derivar a cola de procesamiento diferido con notificación al cliente. (3) Falla e-Sign Chile → proceso de firma presencial de respaldo. Incluye prueba de failover semestral (game day) para validar que los procedimientos funcionan bajo presión real.'
+            },
+            'INI-42': {
+                title: 'Migración Siebel CRM → Salesforce Cloud',
+                criticality: 'alta',
+                desc: 'Migración del CRM de ejecutivos desde Siebel (on-premise, en proceso de obsolescencia, a reemplazar en New Core dic 2027) a Salesforce Cloud. Habilita a los ejecutivos de sucursal como canal digital dentro del flujo omnicanal, compartiendo el mismo estado de sesión Redis que TAPP. Incluye migración de datos históricos de clientes, integración con el nuevo MDM corporativo y capacitación de ejecutivos. Prerrequisito para la omnicanalidad completa.'
+            },
+            'INI-44': {
+                title: 'TOGAF Marco Arquitectónico Empresarial',
+                criticality: 'media',
+                desc: 'Implementación del framework TOGAF como estructura formal de gobernanza arquitectónica: Architecture Development Method (ADM), repositorio de arquitectura, principios y estándares tecnológicos, y proceso de revisión de nuevas iniciativas. Eleva la madurez arquitectónica de 1.21 a 3.0/5 (escala TOGAF). Garantiza que futuras iniciativas pasen por un proceso de diseño formal, evitando la acumulación de nuevos anti-patrones como los que generaron la crisis actual.'
+            },
+            'INI-47': {
+                title: 'BFF Modernizado con Patrones Cloud-Native',
+                criticality: 'media',
+                desc: 'Refactorización del Backend for Frontend actual hacia patrones cloud-native: separación en BFF Digital (TAPP/SVP) y BFF Presencial (ejecutivos), con contratos GraphQL para el canal digital y REST para el canal presencial. Implementa caché de respuestas en Redis, manejo de errores con respuestas parciales (partial failure tolerance) y compresión de payloads. Reduce la carga en servicios backend al consolidar múltiples llamadas en el BFF en lugar de hacerlas desde el frontend.'
+            },
+            'INI-49': {
+                title: 'UX Research y Mejora de Experiencia Digital',
+                criticality: 'baja',
+                desc: 'Estudio estructurado de experiencia de usuario en el flujo digital de crédito: entrevistas a clientes que abandonaron el proceso, análisis de grabaciones de sesión (con consentimiento), heatmaps de interacción y test de usabilidad con prototipos. Identifica los puntos de fricción específicos que causan abandono en el funnel digital y genera un backlog priorizado de mejoras de interfaz para TAPP y SVP.'
+            },
+            'INI-11': {
+                title: 'Gobierno de Reglas de Negocio',
+                criticality: 'media',
+                desc: 'Marco formal de gobierno para las reglas de crédito que corren en el motor Blaze (FICO): proceso documentado de propuesta, revisión, aprobación y despliegue de cambios en reglas. Actualmente cualquier cambio en una regla de negocio (tasas, segmentos, condiciones de aprobación) requiere un pase a producción de TI que toma semanas. El gobierno define roles: negocio propone, arquitectura valida impacto técnico, TI despliega con trazabilidad completa y rollback garantizado.'
+            },
+            'INI-17': {
+                title: 'Parametrización Autónoma por Negocio',
+                criticality: 'media',
+                desc: 'Interfaz de configuración que permite al área de negocio modificar parámetros operativos del crédito (tasas por segmento, rangos de plazo habilitados, montos mínimos/máximos, condiciones de pre-aprobación) sin requerir intervención de TI ni pase a producción. Los cambios se aplican sobre la configuración de Blaze Rules en tiempo real con validación automática de rangos permitidos. Reduce el tiempo de cambio de parámetros de 3-4 semanas a menos de 1 día hábil.'
+            },
+            'INI-32': {
+                title: 'Plan de Retiro Oracle Forms 10g (MenuAndes)',
+                criticality: 'media',
+                desc: 'Plan estructurado de descomisionamiento de Oracle Forms 10g en MenuAndes, que actualmente impide separar el aplicativo de la base de datos Oracle corporativa, bloqueando toda modernización independiente. El retiro se hace en fases: primero se crea el wrapper REST (INI-37) como capa de anticorrupción, luego se migran funcionalidades críticas a una interfaz moderna, y finalmente se retira Forms. Timeline alineado con el proyecto New Core (dic 2027) que reemplazará MenuAndes completamente.'
+            }
         };
 
-        function switchPhase(phaseId) {
+        // Índice de qué componentes fueron "nuevo" en cada fase, para heredado inteligente
+        const phaseOrder = ['f0', 'f1', 'f2', 'f3', 'f4'];
+        const everNewByPhase = {};  // { phaseId: Set<name> }
+        phaseOrder.forEach((pid, idx) => {
+            const newInThisPhase = new Set();
+            // acumular todos los "nuevo" de fases anteriores también
+            for (let i = 0; i <= idx; i++) {
+                phases[phaseOrder[i]].layers.forEach(l =>
+                    l.components.forEach(c => { if (c.type === 'nuevo') newInThisPhase.add(c.name); })
+                );
+            }
+            everNewByPhase[pid] = newInThisPhase;
+        });
+
+        // Un componente "heredado" se muestra azul solo si alguna vez fue "nuevo" antes;
+        // si venía del AS-IS sin haber pasado por verde → se muestra gris (existente)
+        function resolveType(comp, phaseId) {
+            if (comp.type !== 'heredado') return comp.type;
+            return everNewByPhase[phaseId].has(comp.name) ? 'heredado' : 'existente';
+        }
+
+        let tooltipTimeout = null;
+
+        function switchPhase(phaseId, btn) {
             // Hide all phases
             document.querySelectorAll('.phase-container').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
             
             // Show selected phase
             document.getElementById(phaseId).classList.add('active');
-            event.target.classList.add('active');
+            btn.classList.add('active');
             
             // Render layers
             renderLayers(phaseId);
@@ -1124,6 +1443,59 @@
             const phase = phases[phaseId];
             const layersContainer = document.getElementById(`${phaseId}-layers`);
             layersContainer.innerHTML = '';
+
+            // Leyenda dinámica
+            const legendDiv = document.createElement('div');
+            legendDiv.className = 'legend';
+            legendDiv.style.marginBottom = 'var(--spacing-xl)';
+            if (phaseId === 'f0') {
+                legendDiv.innerHTML = `
+                    <div class="legend-title">Leyenda — Estado Actual (AS-IS):</div>
+                    <div class="legend-grid">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:#f6f8fa;border:2px solid #656d76;">⬜</div>
+                            <div class="legend-text"><strong>Existente:</strong> Componente en operación actual</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:#fff7ed;border:2px solid #ea580c;">⚠️</div>
+                            <div class="legend-text"><strong>Anti-patrón:</strong> Componente problemático u obsoleto</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:white;border:2px solid #1a7f37;font-size:11px;display:flex;align-items:center;justify-content:center;">[F]</div>
+                            <div class="legend-text"><strong>[F] Funcional:</strong> Capa de negocio y canales</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:white;border:2px solid #0969da;font-size:11px;display:flex;align-items:center;justify-content:center;">[T]</div>
+                            <div class="legend-text"><strong>[T] Técnico:</strong> Infraestructura, integraciones, datos</div>
+                        </div>
+                    </div>`;
+            } else {
+                legendDiv.innerHTML = `
+                    <div class="legend-title">Leyenda — ${phase.title}:</div>
+                    <div class="legend-grid">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:#f0fdf4;border:2px solid #1a7f37;font-size:18px;display:flex;align-items:center;justify-content:center;">+</div>
+                            <div class="legend-text"><strong>Nuevo (verde):</strong> Añadido en esta fase</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:#fee2e2;border:2px solid #cf222e;font-size:18px;display:flex;align-items:center;justify-content:center;">✕</div>
+                            <div class="legend-text"><strong>Removido (rojo):</strong> Retirado en esta fase</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:#eff6ff;border:2px solid #0969da;font-size:18px;display:flex;align-items:center;justify-content:center;">◆</div>
+                            <div class="legend-text"><strong>Heredado (azul):</strong> De fases anteriores, sin cambios aquí</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:#f6f8fa;border:2px solid #656d76;font-size:18px;display:flex;align-items:center;justify-content:center;">—</div>
+                            <div class="legend-text"><strong>Sin cambios (gris):</strong> Existía en AS-IS, no ha sido modificado</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background:#fff7ed;border:2px solid #ea580c;font-size:14px;display:flex;align-items:center;justify-content:center;">⚠️</div>
+                            <div class="legend-text"><strong>Anti-patrón (naranja):</strong> Problema aún pendiente de resolver</div>
+                        </div>
+                    </div>`;
+            }
+            layersContainer.appendChild(legendDiv);
 
             phase.layers.forEach((layer, idx) => {
                 const layerHtml = document.createElement('div');
@@ -1152,14 +1524,15 @@
 
                 layer.components.forEach(comp => {
                     const compDiv = document.createElement('div');
-                    compDiv.className = `component ${comp.type}`;
+                    const displayType = resolveType(comp, phaseId);
+                    compDiv.className = `component ${displayType}`;
                     compDiv.dataset.searchText = `${comp.name} ${comp.desc} ${comp.initiative || ''}`.toLowerCase();
 
                     let html = `<div class="component-title">
                         <span>${comp.name}</span>`;
                     
                     if (comp.initiative) {
-                        html += `<span class="initiative-badge">${comp.initiative.substring(4)}</span>`;
+                        html += `<span class="initiative-badge">${comp.initiative}</span>`;
                     }
                     
                     html += `</div>
@@ -1178,11 +1551,14 @@
                             showTooltip(comp.initiative, e, comp);
                         });
                         compDiv.addEventListener('mouseenter', (e) => {
-                            if (comp.initiative && initiatives[comp.initiative]) {
-                                showTooltip(comp.initiative, e, comp);
-                            }
+                            clearTimeout(tooltipTimeout);
+                            showTooltip(comp.initiative, e, comp);
                         });
-                        compDiv.addEventListener('mouseleave', closeTooltip);
+                        compDiv.addEventListener('mouseleave', () => {
+                            tooltipTimeout = setTimeout(closeTooltip, 300);
+                        });
+                    } else if (comp.initiative && !initiatives[comp.initiative]) {
+                        compDiv.title = comp.initiative + ' (sin detalle)';
                     }
 
                     contentDiv.appendChild(compDiv);
@@ -1229,15 +1605,21 @@
             tooltip.classList.add('active');
 
             if (event) {
-                let x = event.pageX + 15;
-                let y = event.pageY - 50;
-                
+                const TW = 440, TH = 400;
+                let x = event.clientX + 15;
+                let y = event.clientY - 50;
+                if (x + TW > window.innerWidth - 10) x = event.clientX - TW - 15;
+                if (y + TH > window.innerHeight - 10) y = window.innerHeight - TH - 10;
+                if (y < 10) y = 10;
+                if (x < 10) x = 10;
                 tooltip.style.left = x + 'px';
                 tooltip.style.top = y + 'px';
             }
         }
 
         function closeTooltip() {
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = null;
             document.getElementById('tooltip').classList.remove('active');
         }
 
@@ -1251,6 +1633,13 @@
 
         // Initialize
         renderLayers('f0');
+
+        // Tooltip stays open when hovering over it
+        const tooltipEl = document.getElementById('tooltip');
+        tooltipEl.addEventListener('mouseenter', () => clearTimeout(tooltipTimeout));
+        tooltipEl.addEventListener('mouseleave', () => {
+            tooltipTimeout = setTimeout(closeTooltip, 300);
+        });
 
         // Close tooltip on click outside
         document.addEventListener('click', (e) => {
