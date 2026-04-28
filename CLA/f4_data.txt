@@ -1,0 +1,98 @@
+            f4: {
+                title: 'F4 - Arquitectura TO-BE Final Consolidada',
+                type: 'final',
+                layers: [
+                    {
+                        name: 'L1 CANALES & ENTRADA OMNICANAL',
+                        type: 'funcional',
+                        components: [
+                            { name: 'TAPP Omnicanal', type: 'nuevo', desc: 'INI-14 · plataforma digital unificada [F]', initiative: 'INI-14', criticality: 'media' },
+                            { name: 'Salesforce Canales', type: 'nuevo', desc: 'INI-42 · ejecutivos empowered [F]', initiative: 'INI-42', criticality: 'media' },
+                            { name: 'Chatbot IA Primer Contacto', type: 'nuevo', desc: 'Pre-evaluacion automatica sin TI [F]', initiative: 'INI-05', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L2 OFERTA & EVALUACION',
+                        type: 'funcional',
+                        components: [
+                            { name: 'Pre-evaluacion FICO v7', type: 'nuevo', desc: 'INI-01 · sin oferta inmediata [F]', initiative: 'INI-01', criticality: 'media' },
+                            { name: 'Oferta Dinamica Inteligente', type: 'nuevo', desc: 'INI-02 · personalizada [F]', initiative: 'INI-02', criticality: 'media' },
+                            { name: 'Simulacion 1x Mejorada', type: 'nuevo', desc: 'INI-21 · sin replicacion [F]', initiative: 'INI-21', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L4 CRM & CLIENTE MASTER',
+                        type: 'funcional',
+                        components: [
+                            { name: 'Salesforce Cloud Nativo', type: 'nuevo', desc: 'INI-42 · unico CRM [F]', initiative: 'INI-42', criticality: 'media' },
+                            { name: 'MDM Centralizado', type: 'nuevo', desc: 'INI-34 · single source truth [T]', initiative: 'INI-34', criticality: 'media' },
+                            { name: 'Historial Cliente 360', type: 'nuevo', desc: 'Omnicanal integrado todas canales [F]', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L6 API GATEWAY & BFF',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'Apigee API Platform', type: 'nuevo', desc: 'INI-22 · rate limit, auth, analytics [T]', initiative: 'INI-22', criticality: 'media' },
+                            { name: 'BFF Cloud-Native', type: 'nuevo', desc: 'INI-47 · GraphQL REST [T]', initiative: 'INI-47', criticality: 'media' },
+                            { name: 'API Marketplace Interno', type: 'nuevo', desc: 'Descubrimiento APIs reutilizables [T]', criticality: 'baja' }
+                        ]
+                    },
+                    {
+                        name: 'L7 ORQUESTACION & EVENTOS',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'Apache Camel Enterprise', type: 'nuevo', desc: 'INI-24 · orquestador central circuit-breaker [T]', initiative: 'INI-24', criticality: 'media' },
+                            { name: 'Apache Kafka HA', type: 'nuevo', desc: 'INI-24 · 5 brokers streaming eventos [T]', initiative: 'INI-24', criticality: 'media' },
+                            { name: 'Redis Cluster Multi-Zone', type: 'nuevo', desc: 'INI-25 · cache distribuida resiliente [T]', initiative: 'INI-25', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L8 MOTOR DECISION FICO',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'FICO v7 Multi-Region OKE', type: 'nuevo', desc: 'INI-18 · engine decision distribuido [T]', initiative: 'INI-18', criticality: 'media' },
+                            { name: 'Blaze Rules Cloud-Native', type: 'nuevo', desc: 'Motor reglas escalable OKE [T]', criticality: 'media' },
+                            { name: 'Reentrenamiento MLOps Auto', type: 'nuevo', desc: 'Modelos FICO mejorados continuamente [T]', criticality: 'baja' }
+                        ]
+                    },
+                    {
+                        name: 'L9 CORE BANCARIO MODERNIZADO',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'MenuAndes Data API Gateway', type: 'nuevo', desc: 'INI-37 · wrapper REST-first [T]', initiative: 'INI-37', criticality: 'media' },
+                            { name: 'Oracle 19c OCI', type: 'nuevo', desc: 'EOL 12c mitigado soporte 2027 [T]', criticality: 'media' },
+                            { name: 'Sincronizacion RT Datos', type: 'nuevo', desc: 'INI-37 · deuda tecnica resuelta [T]', initiative: 'INI-37', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L10 DATOS & CACHE DISTRIBUIDO',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'BigQuery Asincronico Optimizado', type: 'nuevo', desc: '4.3s hacia 500ms latencia parallelizada [T]', criticality: 'media' },
+                            { name: 'DataLake Centralizado OCI', type: 'nuevo', desc: 'Datos cliente 360 auditoria completa [T]', criticality: 'media' },
+                            { name: 'ETL Orchestration Airflow', type: 'nuevo', desc: 'Pipelines datos automaticos alertas [T]', criticality: 'baja' }
+                        ]
+                    },
+                    {
+                        name: 'L11 OBSERVABILIDAD E2E',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'OpenTelemetry Enterprise', type: 'nuevo', desc: 'INI-28 · trazabilidad distribuida [T]', initiative: 'INI-28', criticality: 'media' },
+                            { name: 'Grafana Prometheus Avanzado', type: 'nuevo', desc: 'INI-27 · SLOs alertas ML-driven [T]', initiative: 'INI-27', criticality: 'media' },
+                            { name: 'ElasticSearch Centralizado', type: 'nuevo', desc: 'INI-28 · logs RBAC securizados [T]', initiative: 'INI-28', criticality: 'media' },
+                            { name: 'Jaeger Distributed Tracing', type: 'nuevo', desc: 'Rastreo transaccional E2E 5ms RTT [T]', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L12 GOBIERNO & ARQUITECTURA',
+                        type: 'gobierno',
+                        components: [
+                            { name: 'TOGAF Governance Maduro', type: 'nuevo', desc: 'INI-44 · madurez 3.0/5 [G]', initiative: 'INI-44', criticality: 'media' },
+                            { name: 'Rules Engine Autonomo', type: 'nuevo', desc: 'INI-17 · parametrizacion sin TI [G]', initiative: 'INI-17', criticality: 'media' },
+                            { name: 'Architecture Portal', type: 'nuevo', desc: 'Documentacion viva decisiones auditadas [G]', criticality: 'media' },
+                            { name: 'Runbooks DRP Validado', type: 'nuevo', desc: 'INI-31 · RTO 2h RPO 15min prod [G]', initiative: 'INI-31', criticality: 'media' }
+                        ]
+                    }
+                ]
+            }

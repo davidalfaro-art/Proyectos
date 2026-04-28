@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama Arquitectónico - Pilar Financiero Caja Los Andes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: scroll;
+        }
+
+        .container {
+            max-width: 2000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        .legend {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-size: 13px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .color-existente { background: #f6f8fa; border: 2px solid #656d76; }
+        .color-nuevo { background: #dcfce7; border: 2px solid #1a7f37; }
+        .color-removido { background: #fee2e2; border: 2px solid #cf222e; }
+        .color-antipatron { background: #fff7ed; border: 2px solid #ea580c; }
+        .color-funcional { background: #dcfce7; }
+        .color-tecnico { background: #dbeafe; }
+        .color-gobierno { background: #fefce8; }
+
+        .diagram-container {
+            padding: 40px;
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: calc(100vh - 300px);
+        }
+
+        .diagram {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0;
+        }
+
+        .diagram-labels {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .diagram-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .layer {
+            display: flex;
+            gap: 0;
+            margin-bottom: 0;
+        }
+
+        .layer-label {
+            width: 120px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            background: #f5f5f5;
+            white-space: normal;
+            word-wrap: break-word;
+            flex-shrink: 0;
+        }
+
+        .layer-content {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            align-content: flex-start;
+            border: 1px solid #e0e0e0;
+            background: white;
+            min-height: 100px;
+        }
+
+        .layer-title {
+            width: 100%;
+            padding: 8px 15px;
+            background: linear-gradient(90deg, #dcfce7 0%, #dcfce7 100%);
+            border-bottom: 2px solid #1a7f37;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #1a7f37;
+            grid-column: 1 / -1;
+        }
+
+        .component {
+            min-width: 160px;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 11px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            border: 2px solid;
+            font-weight: 600;
+            background: white;
+        }
+
+        .component:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .component.existente {
+            border-color: #656d76;
+            background: #f6f8fa;
+            color: #24292f;
+        }
+
+        .component.nuevo {
+            border-color: #1a7f37;
+            background: #dcfce7;
+            color: #1a7f37;
+        }
+
+        .component.removido {
+            border-color: #cf222e;
+            background: #fee2e2;
+            color: #cf222e;
+            text-decoration: line-through;
+        }
+
+        .component.antipatron {
+            border-color: #ea580c;
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .component-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .component-desc {
+            font-size: 9px;
+            opacity: 0.8;
+        }
+
+        .initiative-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #667eea;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 380px;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            display: none;
+        }
+
+        .tooltip.active {
+            opacity: 1;
+            transform: scale(1);
+            display: block;
+            pointer-events: auto;
+        }
+
+        .tooltip-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #24292f;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tooltip-initiative-id {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .tooltip-criticality {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .criticality-alta {
+            background: #fee2e2;
+            color: #cf222e;
+        }
+
+        .criticality-media {
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        .criticality-baja {
+            background: #dcfce7;
+            color: #1a7f37;
+        }
+
+        .tooltip-description {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #424a50;
+            margin-bottom: 10px;
+        }
+
+        .tooltip-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #656d76;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .component {
+                min-width: 140px;
+                padding: 12px;
+                font-size: 10px;
+            }
+
+            .layer-label {
+                width: 100px;
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .component {
+                min-width: 120px;
+                padding: 10px;
+                font-size: 9px;
+            }
+        }
+
+        .section-separator {
+            width: 100%;;
+            padding: 10px 15px;
+            background: linear-gradient(90deg, #dcfce7 0%, #dcfce7 100%);
+            border-bottom: 3px solid #1a7f37;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #1a7f37;
+        }
+
+        .section-separator.tecnico {
+            background: linear-gradient(90deg, #dbeafe 0%, #dbeafe 100%);
+            border-bottom-color: #0969da;
+            color: #0969da;
+        }
+
+        .section-separator.gobierno {
+            background: linear-gradient(90deg, #fefce8 0%, #fefce8 100%);
+            border-bottom-color: #fde047;
+            color: #fde047;
+        }
+
+        footer {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            font-size: 12px;
+            color: #656d76;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ Diagrama de Arquitectura - Pilar Financiero</h1>
+            <p><strong>F1 — Estabilización Inmediata (0-3 meses)</strong></p>
+            <p>Pasa el mouse sobre las "cajitas" verdes para ver detalles de las iniciativas</p>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color color-existente"></div>
+                <span>⬜ Existente</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-nuevo"></div>
+                <span>🟩 Nuevo/Actualizado (Toca para más info)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-removido"></div>
+                <span>🟥 Deprecado/Removido</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-antipatron"></div>
+                <span>🟧 Anti-patrón/Problema</span>
+            </div>
+            <div class="legend-item">
+                <span><strong>[F]</strong> = Funcional</span>
+            </div>
+            <div class="legend-item">
+                <span><strong>[T]</strong> = Técnico</span>
+            </div>
+            <div class="legend-item">
+                <span><strong>[G]</strong> = Gobierno</span>
+            </div>
+        </div>
+
+        <div class="diagram-container">
+            <div class="diagram" id="diagram">
+                <!-- El diagrama se generará dinámicamente con JavaScript -->
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Caja Los Andes - Ecosistema de Crédito | Hoja de Ruta de Transformación Digital</p>
+            <p>Fuente: Assessment Técnico PwC + Iniciativas de Transformación</p>
+        </footer>
+    </div>
+
+    <div class="tooltip" id="tooltip">
+        <button class="tooltip-close" onclick="closeTooltip()">✕</button>
+        <div class="tooltip-title">
+            <span id="tooltip-init-id" class="tooltip-initiative-id"></span>
+            <span id="tooltip-title-text"></span>
+        </div>
+        <div id="tooltip-criticality" class="tooltip-criticality"></div>
+        <div id="tooltip-description" class="tooltip-description"></div>
+    </div>
+
+    <script>
+        // Base de datos de iniciativas con descripción y criticidad
+        const initiatives = {
+            'INI-03': {
+                title: 'Estabilizar Apache Ignite',
+                criticality: 'alta',
+                description: 'Ajustar failureDetectionTimeout, incrementar thread pools (≥16), configurar backup ≥1, habilitar monitoreo de nodos/memoria. Elimina causa raíz T6 de cascadas de 214K errores 5XX.'
+            },
+            'INI-15': {
+                title: 'Estabilizar Infraestructura',
+                criticality: 'alta',
+                description: 'Desactivar agente APM fantasma (-309K conexiones/h), balancear OSB, ajustar Survivor space, corregir memory leak Cassandra, incrementar Oracle DB de 8GB a ≥32GB, rotación automática de logs.'
+            },
+            'INI-10': {
+                title: 'Alertas Automatizadas & Protocolo Contingencia',
+                criticality: 'alta',
+                description: 'Alertas automáticas en Grafana/Elasticsearch que reduzcan MTTD de 45 min a ≤5 min. Restablecer APM (5 meses inactivo). Monitoreo Kafka consumer. Protocolo documentado de contingencia.'
+            },
+            'INI-05': {
+                title: 'Instrumentar Funnel Digital',
+                criticality: 'media',
+                description: 'Captura de métricas sin cambiar flujo. Segmentación por canal (TAPP_APB, TAPP_NOR, Presencial). Medición de abandono digital. Cálculo de costo por evaluación. Dashboard en Grafana.'
+            },
+            'INI-06': {
+                title: 'Rate Limiting + Protección Frontend',
+                criticality: 'media',
+                description: 'Rate limiting por RUT en preevaluación + evaluación. Detección de degradación en BFF con deshabilitación proactiva. Coordinación marketing-plataforma antes de campañas push.'
+            },
+            'INI-02': {
+                title: 'Migración Completa a Blaze v7',
+                criticality: 'media',
+                description: 'Completar paridad de reglas v4→v7 con validación funcional de Riesgo. Apagar v4 para crédito. Fin del doble licenciamiento. Homologar FICO OKE con producción.'
+            },
+            'INI-12': {
+                title: 'Owner E2E + Gobierno & RACI',
+                criticality: 'alta',
+                description: 'Owner E2E con autoridad transversal. Matriz RACI por componente. CAB fortalecido con fast track. Cadencias formalizadas. Gestión formal de deuda técnica. HABILITADOR #1.'
+            },
+            'INI-36': {
+                title: 'Observabilidad FICO Básica',
+                criticality: 'media',
+                description: 'Instrumentación inicial de FICO para trazas y métricas básicas en formato OpenTelemetry.'
+            },
+            'INI-27': {
+                title: 'Alertas &  Dashboards KPIs',
+                criticality: 'media',
+                description: 'Configuración de alertas automáticas y dashboards de KPIs básicos de negocio y técnicos en Grafana.'
+            },
+            'INI-31': {
+                title: 'Runbooks & DRP',
+                criticality: 'media',
+                description: 'Documentación operativa de procedimientos. Planes de recuperación ante desastres (DRP) documentados y validados.'
+            },
+            'INI-13': {
+                title: 'Resiliencia Operativa',
+                criticality: 'media',
+                description: 'Plan de continuidad operativa, failover procedures, y escalamiento de incidentes formalizado.'
+            },
+            'INI-30': {
+                title: 'Gestión de Proveedores',
+                criticality: 'media',
+                description: 'Formalización de contratos y SLAs con proveedores estratégicos. Inicio de bases para gobernanza de relaciones.'
+            },
+            'INI-40': {
+                title: 'Protocolo de Contingencia',
+                criticality: 'media',
+                description: 'Planes documentados para 3 escenarios de contingencia. Procedimientos de failover ante fallas críticas.'
+            },
+            'INI-50': {
+                title: 'Flujos de Excepción',
+                criticality: 'media',
+                description: 'Definición de flujos alternativos para manejo de excepciones y casos límite en el proceso de crédito.'
+            },
+            'INI-37': {
+                title: 'Sincronización de Datos Mejorada',
+                criticality: 'media',
+                description: 'Mejora en sincronización de datos entre MenuAndes, FlexCube y Siebel para reducir knockouts por desincronización.'
+            },
+            'INI-38': {
+                title: 'Limpieza de Deuda Técnica',
+                criticality: 'media',
+                description: 'Identificación y refactorización de código técnicamente deudor. Mejora en mantenibilidad del ecosistema.'
+            },
+            'INI-49': {
+                title: 'UX Research Inicial',
+                criticality: 'baja',
+                description: 'Estudio inicial sobre experiencia de usuario. Base para mejoras en interfaces digitales.'
+            },
+            'INI-41': {
+                title: 'Ciberseguridad Básica',
+                criticality: 'media',
+                description: 'Establecimiento de línea base de ciberseguridad. Auditoría inicial y recomendaciones de hardening.'
+            }
+        };
+
+        // Estructura del diagrama
+        const diagramStructure = [
+            {
+                title: 'L1 CANALES & ENTRADA',
+                type: 'funcional',
+                components: [
+                    { name: 'TAPP', type: 'existente', desc: 'App móvil clientes [F]' },
+                    { name: 'SVP 1.5', type: 'existente', desc: 'Simulador Web Presencial [F]' },
+                    { name: 'Canal Presencial', type: 'existente', desc: 'MenuAndes/Siebel [F]' },
+                    { name: 'API Portal', type: 'existente', desc: 'Exposición APIs externas [F]' },
+                    { name: 'Funnel Digital Básico', type: 'nuevo', desc: 'INI-09 parcial [F]', initiative: 'INI-05' },
+                    { name: 'UX Research Inicial', type: 'nuevo', desc: 'INI-49 · mejora UX [F]', initiative: 'INI-49' }
+                ]
+            },
+            {
+                title: 'L2 OFERTA EVAL & PROC',
+                type: 'funcional',
+                components: [
+                    { name: 'FICO Eval Flow', type: 'existente', desc: 'Integrado en OSB [F]' },
+                    { name: 'Simulación FlexCube 3×', type: 'antipatron', desc: '3 llamadas · anti-patrón FG-26 [F]' },
+                    { name: 'Generación Oferta campaña', type: 'existente', desc: 'Solo preaprobados [F]' }
+                ]
+            },
+            {
+                title: 'L3 DOC, FIRMA & DESEMB',
+                type: 'funcional',
+                components: [
+                    { name: 'Documentación', type: 'existente', desc: 'BI Publisher [F]' },
+                    { name: 'Firma e-Sign Chile', type: 'existente', desc: 'ISA eSign [F]' },
+                    { name: 'Desembolso TOKU', type: 'existente', desc: 'Pagos y desembolso [F]' }
+                ]
+            },
+            {
+                title: 'L4 CRM & CLIENTE',
+                type: 'funcional',
+                components: [
+                    { name: 'Siebel CRM', type: 'existente', desc: 'Gestión clientes [F]' },
+                    { name: 'Base Aprobados batch', type: 'existente', desc: 'Batch diario [F]' },
+                    { name: 'Campañas Preaprobados', type: 'existente', desc: 'Segmento campaña [F]' }
+                ]
+            },
+            {
+                title: 'L5 IDENTIDAD & SEGUR',
+                type: 'tecnico',
+                components: [
+                    { name: 'Keycloak SSO', type: 'existente', desc: 'Autenticación centralizada [T]' },
+                    { name: 'Active IT Biometría', type: 'existente', desc: 'Biometría facial [T]' },
+                    { name: 'Ciberseguridad Básica', type: 'nuevo', desc: 'INI-41 · línea base [F]', initiative: 'INI-41' }
+                ]
+            },
+            {
+                title: 'L6 API GW & BFF',
+                type: 'tecnico',
+                components: [
+                    { name: 'OSB 11g Estabilizado', type: 'existente', desc: 'Timeout 10s · ARI-67 [T]' },
+                    { name: 'BFF Digital', type: 'existente', desc: 'Backend for Frontend digital [T]' },
+                    { name: 'BFF Presencial', type: 'existente', desc: 'Backend for Frontend sucursal [T]' }
+                ]
+            },
+            {
+                title: 'L7 ORQUEST & CAMEL',
+                type: 'tecnico',
+                components: [
+                    { name: 'Servicio 147', type: 'antipatron', desc: 'Siebel WF · persiste FG-22 [T]' },
+                    { name: '[Sin orquestador]', type: 'existente', desc: 'Sin ESB moderno aún [T]' }
+                ]
+            },
+            {
+                title: 'L8 MOTOR DECISIÓN',
+                type: 'tecnico',
+                components: [
+                    { name: 'FICO v4/v7', type: 'existente', desc: 'En proceso migración [T]', initiative: 'INI-02' },
+                    { name: 'Apache Ignite CORREGIDO', type: 'nuevo', desc: 'INI-39 · ARI-14,15,57 [T]', initiative: 'INI-03' },
+                    { name: 'Agente APM REMOVIDO', type: 'removido', desc: 'INI-39 · ARI-52 resuelto [T]', initiative: 'INI-15' }
+                ]
+            },
+            {
+                title: 'L9 CORE BANCARIO',
+                type: 'tecnico',
+                components: [
+                    { name: 'FlexCube 11.3', type: 'existente', desc: 'Versión legada [T]' },
+                    { name: 'WebLogic', type: 'existente', desc: 'App server [T]' },
+                    { name: 'Oracle DB RAC', type: 'existente', desc: 'Base de datos [T]' }
+                ]
+            },
+            {
+                title: 'L10 DATOS & CACHÉ',
+                type: 'tecnico',
+                components: [
+                    { name: 'MenuAndes Forms 10g', type: 'antipatron', desc: 'EOL · en plan retiro [T]' },
+                    { name: 'BigQuery Síncrono', type: 'antipatron', desc: '4.3s persiste FG-19 [T]' },
+                    { name: 'Base Aprobados Job', type: 'existente', desc: 'Batch nocturno [T]' },
+                    { name: 'Sincronización Datos', type: 'nuevo', desc: 'INI-37 · mejorada [T]', initiative: 'INI-37' },
+                    { name: 'Limpieza Deuda Técnica', type: 'nuevo', desc: 'INI-38 · refactoring [T]', initiative: 'INI-38' }
+                ]
+            },
+            {
+                title: 'L11 OBSERVABILIDAD',
+                type: 'tecnico',
+                components: [
+                    { name: 'Observabilidad FICO', type: 'nuevo', desc: 'INI-36 · básica [T]', initiative: 'INI-36' },
+                    { name: 'Alertas Automatizadas', type: 'nuevo', desc: 'INI-27 parcial [T]', initiative: 'INI-10' },
+                    { name: 'Dashboard KPIs básico', type: 'nuevo', desc: 'INI-27 · métricas [T]', initiative: 'INI-27' }
+                ]
+            },
+            {
+                title: 'L12 GOBIERNO & ARQ',
+                type: 'gobierno',
+                components: [
+                    { name: 'Owner E2E + RACI', type: 'nuevo', desc: 'INI-12 · responsable integral [G]', initiative: 'INI-12' },
+                    { name: 'Blueprint Proceso', type: 'nuevo', desc: 'INI-12 · arquitectura base [G]', initiative: 'INI-12' },
+                    { name: 'Runbooks + DRP', type: 'nuevo', desc: 'INI-31 · operación documentada [G]', initiative: 'INI-31' },
+                    { name: 'Resiliencia Operativa', type: 'nuevo', desc: 'INI-13 · DRP actualizado [G]', initiative: 'INI-13' },
+                    { name: 'Gestión Proveedores', type: 'nuevo', desc: 'INI-30 · contratos SLA [G]', initiative: 'INI-30' },
+                    { name: 'Protocolo Contingencia', type: 'nuevo', desc: 'INI-40 · planes backup [G]', initiative: 'INI-40' },
+                    { name: 'Flujos de Excepción', type: 'nuevo', desc: 'INI-50 · manejo errores [G]', initiative: 'INI-50' }
+                ]
+            },
+            {
+                title: 'L13 EXTERNOS & REGUL',
+                type: 'tecnico',
+                components: [
+                    { name: 'Experian/Equifax', type: 'existente', desc: 'Bureaus de crédito [T]' },
+                    { name: 'e-Sign Chile ISA', type: 'existente', desc: 'Firma electrónica [T]' },
+                    { name: 'Sinacofi/Sinacaf CMF', type: 'existente', desc: 'Regulatorio [T]' },
+                    { name: 'TOKU/Redbanc', type: 'existente', desc: 'Desembolso/pagos [T]' }
+                ]
+            }
+        ];
+
+        function renderDiagram() {
+            const diagramDiv = document.getElementById('diagram');
+            diagramDiv.innerHTML = '';
+
+            diagramStructure.forEach((layer, idx) => {
+                const layerHtml = document.createElement('div');
+                layerHtml.className = 'layer';
+
+                // Label de capa
+                const labelDiv = document.createElement('div');
+                labelDiv.className = 'layer-label';
+                labelDiv.textContent = `${layer.title.substring(0, 20)}`;
+                
+                // Contenido de capa
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'layer-content';
+
+                layer.components.forEach(comp => {
+                    const compDiv = document.createElement('div');
+                    compDiv.className = `component ${comp.type}`;
+                    
+                    let html = `<span class="component-title">${comp.name}</span>`;
+                    html += `<span class="component-desc">${comp.desc}</span>`;
+                    
+                    if (comp.initiative) {
+                        html += `<span class="initiative-badge">${comp.initiative.substring(4)}</span>`;
+                        compDiv.style.cursor = 'pointer';
+                        compDiv.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            showTooltip(comp.initiative, comp.name, e);
+                        });
+                        compDiv.addEventListener('mouseenter', (e) => {
+                            if (comp.initiative && initiatives[comp.initiative]) {
+                                showTooltip(comp.initiative, comp.name, e);
+                            }
+                        });
+                        compDiv.addEventListener('mouseleave', closeTooltip);
+                    }
+                    
+                    compDiv.innerHTML = html;
+                    contentDiv.appendChild(compDiv);
+                });
+
+                layerHtml.appendChild(labelDiv);
+                layerHtml.appendChild(contentDiv);
+                diagramDiv.appendChild(layerHtml);
+            });
+        }
+
+        function showTooltip(initiativeId, componentName, event) {
+            const initiative = initiatives[initiativeId];
+            if (!initiative) return;
+
+            const tooltip = document.getElementById('tooltip');
+            document.getElementById('tooltip-init-id').textContent = initiativeId;
+            document.getElementById('tooltip-title-text').textContent = initiative.title;
+            document.getElementById('tooltip-criticality').innerHTML = 
+                `<span class="criticality-${initiative.criticality}">Criticidad: ${initiative.criticality.toUpperCase()}</span>`;
+            document.getElementById('tooltip-description').textContent = initiative.description;
+
+            tooltip.classList.add('active');
+
+            // Posicionar tooltip cerca del mouse
+            if (event) {
+                const x = event.pageX + 15;
+                const y = event.pageY - 50;
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+            }
+        }
+
+        function closeTooltip() {
+            document.getElementById('tooltip').classList.remove('active');
+        }
+
+        // Cerrar tooltip al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.component') && !e.target.closest('.tooltip-close')) {
+                closeTooltip();
+            }
+        });
+
+        // Inicializar diagrama
+        renderDiagram();
+    </script>
+</body>
+</html>

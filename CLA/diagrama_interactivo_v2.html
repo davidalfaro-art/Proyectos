@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilar Financiero - Hoja de Ruta de Transformación Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #667eea;
+            --color-secondary: #764ba2;
+            --color-accent: #f093fb;
+            --color-success: #1a7f37;
+            --color-warning: #ea580c;
+            --color-danger: #cf222e;
+            --color-info: #0969da;
+            --color-gray-50: #f8f9fa;
+            --color-gray-100: #f0f2f5;
+            --color-gray-200: #e9ecef;
+            --color-gray-300: #dee2e6;
+            --color-gray-700: #495057;
+            --color-gray-900: #212529;
+            --spacing-xs: 8px;
+            --spacing-sm: 12px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html, body {
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--color-gray-900);
+            line-height: 1.6;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar-subtitle {
+            font-size: 12px;
+            color: var(--color-gray-700);
+            margin-top: 4px;
+        }
+
+        .phase-tabs {
+            display: flex;
+            gap: var(--spacing-md);
+            border-bottom: 2px solid var(--color-gray-200);
+            overflow-x: auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .phase-tab {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-gray-700);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .phase-tab:hover {
+            color: var(--color-primary);
+        }
+
+        .phase-tab.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .phase-container {
+            display: none;
+        }
+
+        .phase-container.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .phase-header {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .phase-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-gray-900);
+        }
+
+        .phase-description {
+            font-size: 14px;
+            color: var(--color-gray-700);
+            line-height: 1.8;
+        }
+
+        .phase-duration {
+            display: inline-block;
+            background: linear-gradient(135deg, #dcfce7, #f0fdf4);
+            color: var(--color-success);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: var(--spacing-md);
+        }
+
+        .legend {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-gray-900);
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .legend-color {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--border-radius);
+            border: 2px solid;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .legend-text {
+            font-size: 12px;
+            color: var(--color-gray-700);
+        }
+
+        .layers-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .layer {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .layer-header {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            border-left: 4px solid var(--color-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .layer-header:hover {
+            background: linear-gradient(135deg, #edf0f5 0%, #e0e4eb 100%);
+        }
+
+        .layer-header.funcional {
+            border-left-color: var(--color-success);
+            background: #f0fdf4;
+        }
+
+        .layer-header.tecnico {
+            border-left-color: var(--color-info);
+            background: #f0f7ff;
+        }
+
+        .layer-header.gobierno {
+            border-left-color: #fbbf24;
+            background: #fffbeb;
+        }
+
+        .layer-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .layer-type-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .layer-type-badge.funcional {
+            background: #dcfce7;
+            color: var(--color-success);
+        }
+
+        .layer-type-badge.tecnico {
+            background: #dbeafe;
+            color: var(--color-info);
+        }
+
+        .layer-type-badge.gobierno {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .layer-toggle {
+            font-size: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-gray-700);
+            transition: var(--transition);
+        }
+
+        .layer-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .layer-content {
+            padding: var(--spacing-lg);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: var(--spacing-md);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .layer-content.collapsed {
+            display: none;
+        }
+
+        .component {
+            background: white;
+            border: 2px solid var(--color-gray-300);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-gray-300);
+            transition: var(--transition);
+        }
+
+        .component:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .component.existente {
+            border-color: #656d76;
+            background: #f6f8fa;
+        }
+
+        .component.existente::before {
+            background: #656d76;
+        }
+
+        .component.nuevo {
+            border-color: var(--color-success);
+            background: #f0fdf4;
+        }
+
+        .component.nuevo::before {
+            background: var(--color-success);
+        }
+
+        .component.removido {
+            border-color: var(--color-danger);
+            background: #fee2e2;
+            opacity: 0.8;
+        }
+
+        .component.removido::before {
+            background: var(--color-danger);
+        }
+
+        .component.antipatron {
+            border-color: var(--color-warning);
+            background: #fff7ed;
+        }
+
+        .component.antipatron::before {
+            background: var(--color-warning);
+        }
+
+        .component-title {
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-gray-900);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .component-desc {
+            font-size: 11px;
+            color: var(--color-gray-700);
+            line-height: 1.4;
+        }
+
+        .initiative-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            border-left: 4px solid var(--color-primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 420px;
+            max-height: 400px;
+            overflow-y: auto;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: var(--transition);
+            display: none;
+        }
+
+        .tooltip.active {
+            opacity: 1;
+            transform: scale(1);
+            display: block;
+            pointer-events: auto;
+        }
+
+        .tooltip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tooltip-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--color-gray-900);
+            flex: 1;
+        }
+
+        .tooltip-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--color-gray-700);
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: var(--spacing-md);
+        }
+
+        .tooltip-initiative-id {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tooltip-criticality {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-sm);
+            background: var(--color-gray-50);
+            border-radius: var(--border-radius);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .criticality-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .criticality-alta {
+            background: var(--color-danger);
+        }
+
+        .criticality-media {
+            background: var(--color-warning);
+        }
+
+        .criticality-baja {
+            background: var(--color-success);
+        }
+
+        .tooltip-description {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--color-gray-700);
+        }
+
+        .search-box {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--color-gray-700);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .stat-desc {
+            font-size: 11px;
+            color: var(--color-gray-700);
+            margin-top: var(--spacing-xs);
+        }
+
+        footer {
+            background: white;
+            padding: var(--spacing-lg);
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-gray-700);
+            border-top: 1px solid var(--color-gray-200);
+            margin-top: var(--spacing-2xl);
+        }
+
+        @media (max-width: 1024px) {
+            .layer-content {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .phase-tabs {
+                padding: 0;
+                overflow-x: auto;
+            }
+
+            .phase-tab {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 12px;
+            }
+
+            .container {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+
+            .layer-content {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .phase-title {
+                font-size: 20px;
+            }
+
+            .tooltip {
+                max-width: 90vw;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            right: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gray-700);
+            font-size: 12px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <div>
+                <div class="navbar-title">🏛️ Pilar Financiero — Caja Los Andes</div>
+                <div class="navbar-subtitle">Hoja de Ruta de Transformación Digital del Ecosistema de Crédito</div>
+            </div>
+        </div>
+
+        <!-- Phase Tabs -->
+        <div class="phase-tabs">
+            <button class="phase-tab active" onclick="switchPhase('f0')">
+                📊 F0 — AS-IS
+            </button>
+            <button class="phase-tab" onclick="switchPhase('f1')">
+                ⚡ F1 — Estabilización (0-3m)
+            </button>
+            <button class="phase-tab" onclick="switchPhase('f2')">
+                ☁️ F2 — Cloud (3-9m)
+            </button>
+            <button class="phase-tab" onclick="switchPhase('f3')">
+                🌍 F3 — Omnicanalidad (9-18m)
+            </button>
+            <button class="phase-tab" onclick="switchPhase('f4')">
+                ✅ F4 — TO-BE FINAL
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Busca componentes, iniciativas o tecnologías..." onkeyup="filterComponents()">
+        </div>
+
+        <!-- F0: AS-IS -->
+        <div id="f0" class="phase-container active">
+            <div class="phase-header">
+                <div class="phase-title">📊 F0 — Estado Actual (AS-IS)</div>
+                <div class="phase-description">
+                    <strong>Baseline:</strong> Arquitectura actual con anti-patrones identificados, puntos de falla críticos y deuda técnica acumulada de 7 años. 
+                    El flujo actual sufre de duplicidad de invocaciones, timeout críticos (50.9s), motor FICO como punto de falla único, y 
+                    ausencia de gobernanza E2E. <strong>134,446 errores genéricos</strong> sin causa raíz desagregada.
+                </div>
+                <div class="phase-duration">⏱️ Baseline — Sin cambios planeados</div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-title">Leyenda de componentes:</div>
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f6f8fa; border-color: #656d76;">⬜</div>
+                        <div class="legend-text"><strong>Existente:</strong> Componente en operación actual</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #fff7ed; border-color: #ea580c;">⚠️</div>
+                        <div class="legend-text"><strong>Anti-patrón:</strong> Componente problemático o obsoleto que debe evolucionar</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: white; border: 2px solid #656d76;">[F]</div>
+                        <div class="legend-text"><strong>Funcional:</strong> Capa de negocio y canales</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: white; border: 2px solid #0969da;">[T]</div>
+                        <div class="legend-text"><strong>Técnico:</strong> Infraestructura, integraciones, datos</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layers-container">
+                <div id="f0-layers"></div>
+            </div>
+        </div>
+
+        <!-- F1: Estabilización -->
+        <div id="f1" class="phase-container">
+            <div class="phase-header">
+                <div class="phase-title">⚡ F1 — Estabilización Inmediata</div>
+                <div class="phase-description">
+                    <strong>Horizonte:</strong> 0-3 meses. <strong>Estrategia:</strong> No se modifica el flujo funcional ni se reemplazan componentes core. 
+                    Se estabiliza la plataforma actual, se crean piezas nuevas de soporte (alertas, métricas, gobierno) y se habilita visibilidad.<br>
+                    <strong>Beneficios:</strong> Evaluaciones perdidas de ~2,250/semana → <500. MTTD de 45min → ≤5min. Eliminación del agente APM fantasma (-309K conn/h = -80% errores gateway).
+                </div>
+                <div class="phase-duration">⏱️ 0-3 meses | 🎯 7 iniciativas clave | 💚 Bajo-Medio esfuerzo</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Evaluaciones Perdidas</div>
+                    <div class="stat-value">~2,250 ❌ → <500 ✅</div>
+                    <div class="stat-desc">por semana</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">MTTD (Descubrimiento de Falla)</div>
+                    <div class="stat-value">45min ❌ → ≤5min ✅</div>
+                    <div class="stat-desc">Gracias a alertas automatizadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Errores Gateway</div>
+                    <div class="stat-value">-309K 🗑️</div>
+                    <div class="stat-desc">conexiones/hora por APM fantasma</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Conversión E2E</div>
+                    <div class="stat-value">5.0% → 5.5% 📈</div>
+                    <div class="stat-desc">Mejora por funnel digital</div>
+                </div>
+            </div>
+
+            <div class="layers-container">
+                <div id="f1-layers"></div>
+            </div>
+        </div>
+
+        <!-- F2: Plataforma Cloud -->
+        <div id="f2" class="phase-container">
+            <div class="phase-header">
+                <div class="phase-title">☁️ F2 — Plataforma Cloud-Native</div>
+                <div class="phase-description">
+                    <strong>Horizonte:</strong> 3-9 meses (sobre la base F1 completada). <strong>Estrategia:</strong> Introducción de Apache Camel como reemplazo del bus OSB 11g, 
+                    habilitando circuit breakers nativos, resiliencia y observabilidad. Migración gradual: OSB y Camel en coexistencia durante transición (4 fases).<br>
+                    <strong>Cambio clave:</strong> Motor FICO en OKE (Kubernetes). Avales en paralelo vía Camel multicast (-60-75% tiempo).
+                </div>
+                <div class="phase-duration">⏱️ 3-9 meses | 🎯 5 iniciativas clave | 🟠 Esfuerzo alto</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Circuit Breakers</div>
+                    <div class="stat-value">0 ❌ → 24 ✅</div>
+                    <div class="stat-desc">1 por integración vía Apache Camel</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Tiempo Avales</div>
+                    <div class="stat-value">-60-75% ⚡</div>
+                    <div class="stat-desc">Ejecución paralela vs secuencial</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">OSB 11g</div>
+                    <div class="stat-value">🗑️ Retirado</div>
+                    <div class="stat-desc">Apache Camel como único bus</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Conversión E2E</div>
+                    <div class="stat-value">5.5% → 7% 📈</div>
+                    <div class="stat-desc">Derivación digital habilitada</div>
+                </div>
+            </div>
+
+            <div class="layers-container">
+                <div id="f2-layers"></div>
+            </div>
+        </div>
+
+        <!-- F3: Omnicanalidad -->
+        <div id="f3" class="phase-container">
+            <div class="phase-header">
+                <div class="phase-title">🌍 F3 — Omnicanalidad & Crédito Inteligente</div>
+                <div class="phase-description">
+                    <strong>Horizonte:</strong> 9-18 meses. <strong>Estrategia:</strong> Aplicación completa de TOGAF como framework de gobernanza. 
+                    Migración de Siebel a Salesforce. Parametrización de reglas de negocio autónoma (sin pase a TI). 
+                    Modernización full-stack: MenuAndes Forms 10g → APEX, Oracle 12c → 19c, WebLogic evaluado para upgrade.<br>
+                    <strong>Fin de obsolescencia circular:</strong> 7 años de patrones sin resolución → gobernanza madura (TOGAF 3.0/5).
+                </div>
+                <div class="phase-duration">⏱️ 9-18 meses | 🎯 Transformación organizacional | 🔴 Esfuerzo muy alto</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Tiempo Cambio de Reglas</div>
+                    <div class="stat-value">Semanas ❌ → Horas ✅</div>
+                    <div class="stat-desc">Parametrización autónoma por negocio</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">TOGAF Madurez</div>
+                    <div class="stat-value">1.21 → 3.0 📊</div>
+                    <div class="stat-desc">Framework empresarial completo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Proveedores con SLA</div>
+                    <div class="stat-value">0 ❌ → 7 ✅</div>
+                    <div class="stat-desc">Contratos formalizados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Conversión E2E</div>
+                    <div class="stat-value">7% → 8%+ 📈</div>
+                    <div class="stat-desc">Flujos omnicanal inteligentes</div>
+                </div>
+            </div>
+
+            <div class="layers-container">
+                <div id="f3-layers"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-header">
+            <div>
+                <div id="tooltip-component-name" class="tooltip-component-name" style="font-size: 12px; font-weight: 600; color: var(--color-gray-700); margin-bottom: 4px;"></div>
+                <div class="tooltip-title" id="tooltip-title"></div>
+                <div id="tooltip-component-type" class="tooltip-component-type" style="font-size: 10px; color: var(--color-gray-700); margin-top: 4px;"></div>
+            </div>
+            <button class="tooltip-close" onclick="closeTooltip()">✕</button>
+        </div>
+        <div id="tooltip-criticality" class="tooltip-criticality"><div class="criticality-badge"></div><span></span></div>
+        <div id="tooltip-component-desc" class="tooltip-description" style="font-size: 11px; color: var(--color-gray-700); margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--color-gray-300);"></div>
+        <div id="tooltip-initiative-id" class="tooltip-initiative-id" style="font-size: 10px; color: var(--color-primary); font-weight: 600; margin-bottom: 6px;"></div>
+        <div id="tooltip-description" class="tooltip-description"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>© 2026 Caja Los Andes</strong> — Ecosistema de Crédito | Modernización Digital</p>
+        <p>Fuente: Assessment Técnico PwC + Plan de Transformación Arquitectónica | Actualizado: Abril 2026</p>
+    </footer>
+
+    <script>
+        // Base de datos completa de componentes por fase
+        const phases = {
+            f0: {
+                title: 'F0 — AS-IS',
+                type: 'as-is',
+                layers: [
+                    {
+                        name: 'L1 CANALES & ENTRADA',
+                        type: 'funcional',
+                        components: [
+                            { name: 'TAPP', type: 'existente', desc: 'App móvil clientes [F]' },
+                            { name: 'SVP 1.5', type: 'existente', desc: 'Simulador Web Presencial [F]' },
+                            { name: 'Canal Presencial', type: 'existente', desc: 'MenuAndes/Siebel [F]' },
+                            { name: 'API Portal', type: 'existente', desc: 'APIs externas [F]' }
+                        ]
+                    },
+                    {
+                        name: 'L2 OFERTA EVAL & PROC',
+                        type: 'funcional',
+                        components: [
+                            { name: 'FICO Eval Flow', type: 'existente', desc: 'Integrado en OSB [F]' },
+                            { name: 'Simulación FlexCube 3×', type: 'antipatron', desc: '3 llamadas · FG-26 [F]', issue: 'Multiplica probabilidad de falla' },
+                            { name: 'Generación Oferta', type: 'existente', desc: 'Solo campaña preaprobada [F]' }
+                        ]
+                    },
+                    {
+                        name: 'L6 API GW & BFF',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'OSB 11g', type: 'antipatron', desc: 'Middleware EOL · sin circuit breakers [T]', issue: 'End of Life, punto de falla único' },
+                            { name: 'BFF Digital', type: 'existente', desc: 'Backend for Frontend [T]' },
+                            { name: 'BFF Presencial', type: 'existente', desc: 'Backend sucursal [T]' }
+                        ]
+                    },
+                    {
+                        name: 'L8 MOTOR DECISIÓN',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'FICO v4', type: 'antipatron', desc: 'Blaze + Nashorn deprecated [T]', issue: 'Punto de falla crítico, degradación recurrente' },
+                            { name: 'Apache Ignite', type: 'antipatron', desc: 'Sin backup, falsos positivos [T]', issue: 'Genera cascadas de 214K errores 5XX' }
+                        ]
+                    },
+                    {
+                        name: 'L9 CORE BANCARIO',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'FlexCube 11.3', type: 'antipatron', desc: '3 versiones atrás · ORANGE [T]', issue: '🔴 CRÍTICO: Soporte limitado' },
+                            { name: 'WebLogic EOL', type: 'antipatron', desc: 'App server sin soporte [T]', issue: 'Sin parches de seguridad activos' },
+                            { name: 'Oracle DB RAC', type: 'existente', desc: 'Base de datos principal [T]' }
+                        ]
+                    },
+                    {
+                        name: 'L10 DATOS & CACHÉ',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'MenuAndes Forms 10g', type: 'antipatron', desc: 'EOL · bloquea modernización [T]', issue: 'Cadena de obsolescencia circular' },
+                            { name: 'BigQuery Síncrono', type: 'antipatron', desc: '4.3s latencia · anti-patrón [T]', issue: 'En camino crítico, suma 4.3segundos' },
+                            { name: 'Base Aprobados Job', type: 'existente', desc: 'Batch nocturno sin RT [T]', issue: 'Riesgo de duplicidad de créditos' }
+                        ]
+                    },
+                    {
+                        name: 'L11 OBSERVABILIDAD',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'Logs Básicos', type: 'existente', desc: 'Sin instrumentación real [T]' },
+                            { name: 'Sin Alertas Auto', type: 'antipatron', desc: 'Sin monitoreo activo · MTTD 45min [T]', issue: 'Detección tardía de fallas' },
+                            { name: 'Agente APM Parásito', type: 'antipatron', desc: 'Overhead CPU · 309K conn/h [T]', issue: '80% de errores gateway causados por esto' }
+                        ]
+                    },
+                    {
+                        name: 'L12 GOBIERNO & ARQ',
+                        type: 'gobierno',
+                        components: [
+                            { name: 'Sin Owner E2E', type: 'antipatron', desc: 'No hay responsable integral [G]', issue: '7 años sin resolución de fondo (nov 2024)' },
+                            { name: 'Sin RACI', type: 'antipatron', desc: 'Sin matriz de responsabilidades [G]' },
+                            { name: 'Sin Blueprint', type: 'antipatron', desc: 'Sin arquitectura documentada [G]', issue: '62% de componentes sin info técnica' }
+                        ]
+                    }
+                ]
+            },
+            f1: {
+                title: 'F1 — Estabilización Inmediata',
+                type: 'estabilizacion',
+                layers: [
+                    {
+                        name: 'L1 CANALES & ENTRADA',
+                        type: 'funcional',
+                        components: [
+                            { name: 'TAPP', type: 'existente', desc: 'App móvil clientes [F]' },
+                            { name: 'SVP 1.5', type: 'existente', desc: 'Simulador Web [F]' },
+                            { name: 'Funnel Digital Básico', type: 'nuevo', desc: 'INI-05 · métricas [F]', initiative: 'INI-05' },
+                            { name: 'UX Research Inicial', type: 'nuevo', desc: 'INI-49 · mejora UX [F]', initiative: 'INI-49' }
+                        ]
+                    },
+                    {
+                        name: 'L8 MOTOR DECISIÓN',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'Apache Ignite CORREGIDO', type: 'nuevo', desc: 'INI-03 · failureDetection ajustado [T]', initiative: 'INI-03', criticality: 'alta' },
+                            { name: 'Agente APM REMOVIDO', type: 'removido', desc: 'INI-15 · -309K conn/h [T]', initiative: 'INI-15', criticality: 'alta' }
+                        ]
+                    },
+                    {
+                        name: 'L11 OBSERVABILIDAD',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'Observabilidad FICO', type: 'nuevo', desc: 'INI-36 · instrumentación [T]', initiative: 'INI-36', criticality: 'media' },
+                            { name: 'Alertas Automatizadas', type: 'nuevo', desc: 'INI-10 · MTTD ≤5min [T]', initiative: 'INI-10', criticality: 'alta' },
+                            { name: 'Dashboard KPIs', type: 'nuevo', desc: 'INI-27 · métricas en Grafana [T]', initiative: 'INI-27', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L12 GOBIERNO & ARQ',
+                        type: 'gobierno',
+                        components: [
+                            { name: 'Owner E2E + RACI', type: 'nuevo', desc: 'INI-12 · responsable integral [G]', initiative: 'INI-12', criticality: 'alta' },
+                            { name: 'Blueprint Proceso', type: 'nuevo', desc: 'INI-12 · arquitectura base [G]', initiative: 'INI-12', criticality: 'media' },
+                            { name: 'Runbooks + DRP', type: 'nuevo', desc: 'INI-31 · operación documentada [G]', initiative: 'INI-31', criticality: 'media' },
+                            { name: 'Protocolo Contingencia', type: 'nuevo', desc: 'INI-40 · planes backup [G]', initiative: 'INI-40', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L10 DATOS & CACHÉ',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'Sincronización Datos', type: 'nuevo', desc: 'INI-37 · mejorada [T]', initiative: 'INI-37', criticality: 'media' },
+                            { name: 'Limpieza Deuda Técnica', type: 'nuevo', desc: 'INI-38 · refactoring [T]', initiative: 'INI-38', criticality: 'media' }
+                        ]
+                    }
+                ]
+            },
+            f2: {
+                title: 'F2 — Plataforma Cloud-Native',
+                type: 'cloud',
+                layers: [
+                    {
+                        name: 'L2 OFERTA EVAL & PROC',
+                        type: 'funcional',
+                        components: [
+                            { name: 'Evaluación FICO v7', type: 'nuevo', desc: 'En migración OCI [F]', initiative: 'INI-18', criticality: 'media' },
+                            { name: 'Simulación 1×', type: 'nuevo', desc: 'INI-21 · FG-26 resuelto [F]', initiative: 'INI-21', criticality: 'media' },
+                            { name: 'Oferta Dinámica', type: 'nuevo', desc: 'INI-02 · personalizada [F]', initiative: 'INI-02', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L6 API GW & BFF',
+                        type: 'tecnico',
+                        components: [
+                            { name: '✕ OSB 11g RETIRADO', type: 'removido', desc: 'INI-22 · reemplazado [T]', initiative: 'INI-22', criticality: 'alta' },
+                            { name: 'Apigee API Gateway', type: 'nuevo', desc: 'INI-22 · nuevo GW [T]', initiative: 'INI-22', criticality: 'media' },
+                            { name: 'BFF Digital Modernizado', type: 'nuevo', desc: 'INI-47 · actualizado [T]', initiative: 'INI-47', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L7 ORQUEST & CAMEL',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'Apache Camel + CB', type: 'nuevo', desc: 'INI-24 · orquestador central [T]', initiative: 'INI-24', criticality: 'alta' },
+                            { name: 'Apache Kafka 3 Brokers', type: 'nuevo', desc: 'INI-24 · eventos streaming [T]', initiative: 'INI-24', criticality: 'media' },
+                            { name: 'Redis Cluster HA', type: 'nuevo', desc: 'INI-25 · caché distribuido [T]', initiative: 'INI-25', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L8 MOTOR DECISIÓN',
+                        type: 'tecnico',
+                        components: [
+                            { name: '✕ FICO v4+Nashorn APAG.', type: 'removido', desc: 'INI-18 · descontinuado [T]', initiative: 'INI-18', criticality: 'alta' },
+                            { name: 'FICO v7 OKE (Blaze v7)', type: 'nuevo', desc: 'INI-18 · nueva plataforma [T]', initiative: 'INI-18', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L11 OBSERVABILIDAD',
+                        type: 'tecnico',
+                        components: [
+                            { name: 'OpenTelemetry E2E', type: 'nuevo', desc: 'INI-28 · trazabilidad completa [T]', initiative: 'INI-28', criticality: 'media' },
+                            { name: 'Grafana + Prometheus', type: 'nuevo', desc: 'INI-27 · métricas avanzadas [T]', initiative: 'INI-27', criticality: 'media' },
+                            { name: 'ElasticSearch', type: 'nuevo', desc: 'INI-28 · logs centralizados [T]', initiative: 'INI-28', criticality: 'media' }
+                        ]
+                    }
+                ]
+            },
+            f3: {
+                title: 'F3 — Omnicanalidad & Crédito Inteligente',
+                type: 'omnicanalidad',
+                layers: [
+                    {
+                        name: 'L1 CANALES & ENTRADA',
+                        type: 'funcional',
+                        components: [
+                            { name: 'TAPP Omnicanal', type: 'nuevo', desc: 'INI-14 · nuevo flujo [F]', initiative: 'INI-14', criticality: 'media' },
+                            { name: 'Salesforce Ejecutivos', type: 'nuevo', desc: 'INI-42 · migración [F]', initiative: 'INI-42', criticality: 'media' },
+                            { name: 'Retomabilidad Cross-Channel', type: 'nuevo', desc: 'INI-07 · continuidad [F]', initiative: 'INI-07', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L4 CRM & CLIENTE',
+                        type: 'funcional',
+                        components: [
+                            { name: '✕ Siebel CRM MIGRADO', type: 'removido', desc: 'INI-42 · reemplazado [F]', initiative: 'INI-42', criticality: 'alta' },
+                            { name: 'Salesforce Cloud', type: 'nuevo', desc: 'INI-42 · nuevo CRM [F]', initiative: 'INI-42', criticality: 'media' },
+                            { name: 'MDM Base Corporativa', type: 'nuevo', desc: 'INI-34 · master data [T]', initiative: 'INI-34', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L9 CORE BANCARIO',
+                        type: 'tecnico',
+                        components: [
+                            { name: '✕ MenuAndes Forms RETIRO', type: 'removido', desc: 'INI-32 · en plan de retiro [T]', initiative: 'INI-32', criticality: 'media' },
+                            { name: 'MenuAndes Data API', type: 'nuevo', desc: 'INI-37 · wrapper REST [T]', initiative: 'INI-37', criticality: 'media' }
+                        ]
+                    },
+                    {
+                        name: 'L12 GOBIERNO & ARQ',
+                        type: 'gobierno',
+                        components: [
+                            { name: 'TOGAF Marco Arq.', type: 'nuevo', desc: 'INI-44 · madurez 3.0/5 [G]', initiative: 'INI-44', criticality: 'media' },
+                            { name: 'Gobierno Reglas Negocio', type: 'nuevo', desc: 'INI-11 · parametrización [F]', initiative: 'INI-11', criticality: 'media' },
+                            { name: 'Parametrización Autónoma', type: 'nuevo', desc: 'INI-17 · reglas sin TI [G]', initiative: 'INI-17', criticality: 'media' }
+                        ]
+                    }
+                ]
+            },
+            f4: { title: 'F4 - Arquitectura TO-BE Final Consolidada', type: 'final', layers: [ { name: 'L1 CANALES', type: 'funcional', components: [ { name: 'TAPP Omnicanal', type: 'nuevo', desc: 'INI-14 · plataforma digital [F]', initiative: 'INI-14', criticality: 'media' }, { name: 'Salesforce Canales', type: 'nuevo', desc: 'INI-42 · ejecutivos [F]', initiative: 'INI-42', criticality: 'media' }, { name: 'Chatbot IA', type: 'nuevo', desc: 'Pre-evaluacion auto [F]', initiative: 'INI-05', criticality: 'media' } ] }, { name: 'L2 OFERTA', type: 'funcional', components: [ { name: 'Pre-evaluacion FICO v7', type: 'nuevo', desc: 'INI-01 · sin oferta [F]', initiative: 'INI-01', criticality: 'media' }, { name: 'Oferta Dinamica', type: 'nuevo', desc: 'INI-02 · personalizada [F]', initiative: 'INI-02', criticality: 'media' } ] }, { name: 'L4 CRM MASTER', type: 'funcional', components: [ { name: 'Salesforce Cloud', type: 'nuevo', desc: 'INI-42 · unico CRM [F]', initiative: 'INI-42', criticality: 'media' }, { name: 'MDM Centralizado', type: 'nuevo', desc: 'INI-34 · master data [T]', initiative: 'INI-34', criticality: 'media' } ] }, { name: 'L6 API & BFF', type: 'tecnico', components: [ { name: 'Apigee API Platform', type: 'nuevo', desc: 'INI-22 · gateway [T]', initiative: 'INI-22', criticality: 'media' }, { name: 'BFF Cloud-Native', type: 'nuevo', desc: 'INI-47 · GraphQL [T]', initiative: 'INI-47', criticality: 'media' } ] }, { name: 'L7 ORQUESTACION', type: 'tecnico', components: [ { name: 'Apache Camel', type: 'nuevo', desc: 'INI-24 · orquestador [T]', initiative: 'INI-24', criticality: 'media' }, { name: 'Kafka HA', type: 'nuevo', desc: 'INI-24 · eventos [T]', initiative: 'INI-24', criticality: 'media' }, { name: 'Redis Cluster', type: 'nuevo', desc: 'INI-25 · cache [T]', initiative: 'INI-25', criticality: 'media' } ] }, { name: 'L8 DECISION', type: 'tecnico', components: [ { name: 'FICO v7 OKE', type: 'nuevo', desc: 'INI-18 · distribuido [T]', initiative: 'INI-18', criticality: 'media' }, { name: 'Blaze Rules', type: 'nuevo', desc: 'Motor reglas [T]', criticality: 'media' } ] }, { name: 'L9 CORE MODERNO', type: 'tecnico', components: [ { name: 'MenuAndes API', type: 'nuevo', desc: 'INI-37 · wrapper REST [T]', initiative: 'INI-37', criticality: 'media' }, { name: 'Oracle 19c', type: 'nuevo', desc: 'EOL 12c mitigado [T]', criticality: 'media' } ] }, { name: 'L10 DATOS', type: 'tecnico', components: [ { name: 'BigQuery Optimizado', type: 'nuevo', desc: '500ms optimizado [T]', criticality: 'media' }, { name: 'DataLake OCI', type: 'nuevo', desc: 'Cliente 360 [T]', criticality: 'media' }, { name: 'Airflow', type: 'nuevo', desc: 'ETL automatizado [T]', criticality: 'baja' } ] }, { name: 'L11 OBSERVABILIDAD', type: 'tecnico', components: [ { name: 'OpenTelemetry', type: 'nuevo', desc: 'INI-28 · trazas [T]', initiative: 'INI-28', criticality: 'media' }, { name: 'Grafana Prometheus', type: 'nuevo', desc: 'INI-27 · metricas [T]', initiative: 'INI-27', criticality: 'media' }, { name: 'ElasticSearch', type: 'nuevo', desc: 'INI-28 · logs [T]', initiative: 'INI-28', criticality: 'media' } ] }, { name: 'L12 GOBIERNO', type: 'gobierno', components: [ { name: 'TOGAF Maduro', type: 'nuevo', desc: 'INI-44 · 3.0/5 [G]', initiative: 'INI-44', criticality: 'media' }, { name: 'Rules Autonomo', type: 'nuevo', desc: 'INI-17 · sin TI [G]', initiative: 'INI-17', criticality: 'media' }, { name: 'DRP Validado', type: 'nuevo', desc: 'INI-31 · prod [G]', initiative: 'INI-31', criticality: 'media' } ] } ] }
+        };
+
+        const initiatives = {
+            'INI-01': { title: 'Pre-evaluación FICO sin Oferta', criticality: 'media', desc: 'Evaluación cualificada sin presentar opciones de crédito inmediatamente.' },
+            'INI-02': { title: 'Oferta Dinámica Personalizada', criticality: 'media', desc: 'Generación inteligente de oferta basada en perfil, sin doble evaluación.' },
+            'INI-03': { title: 'Estabilizar Apache Ignite', criticality: 'alta', desc: 'Ajustar failureDetectionTimeout, incrementar thread pools ≥16, configurar backup ≥1. Elimina causa de 214K errores 5XX.' },
+            'INI-05': { title: 'Instrumentar Funnel Digital', criticality: 'media', desc: 'Captura de métricas sin cambiar flujo. Segmentación por canal, medición abandono digital.' },
+            'INI-07': { title: 'Retomabilidad Omnicanal', criticality: 'media', desc: 'Persistencia de estado entre canales. Cliente abandona TAPP, retoma en sucursal.' },
+            'INI-10': { title: 'Alertas Automatizadas', criticality: 'alta', desc: 'Alertas en Grafana/Elasticsearch. MTTD de 45min → ≤5min. Protocolo contingencia.' },
+            'INI-12': { title: 'Owner E2E + Gobierno', criticality: 'alta', desc: 'Responsable integral con autoridad transversal. RACI por componente. Habilitador #1.' },
+            'INI-14': { title: 'Módulo TAPP Sin Banner', criticality: 'media', desc: 'Nuevo flujo digital sin solicitud preaprobada. Expansión segmento normal.' },
+            'INI-15': { title: 'Estabilizar Infraestructura', criticality: 'alta', desc: 'Desactivar APM parásito (-309K conn/h), balancear OSB, fix memory leak Cassandra, KB Oracle 8→32GB.' },
+            'INI-18': { title: 'FICO v7 en OKE', criticality: 'alta', desc: 'Migración a Oracle Cloud + Kubernetes. Blaze v7, Nashorn eliminado.' },
+            'INI-21': { title: 'Simulación 1× (no 3×)', criticality: 'media', desc: 'Consolidar 3 llamadas a FlexCube en 1. Reduce latencia, fallas.' },
+            'INI-22': { title: 'Apache Camel Orquestador', criticality: 'alta', desc: 'Reemplazar OSB 11g. Circuit breakers nativos (Resilience4j). Único bus.' },
+            'INI-24': { title: 'Camel Resiliencia', criticality: 'media', desc: 'Circuit breakers, retry, backoff, métricas nativas en Camel.' },
+            'INI-25': { title: 'Redis Caché Distribuido', criticality: 'media', desc: 'Caché transversal, session recovery, reducción BigQuery latencia.' },
+            'INI-27': { title: 'Dashboards KPIs', criticality: 'media', desc: 'Grafana con métricas de negocio y técnicas. Visibilidad operativa.' },
+            'INI-28': { title: 'OpenTelemetry E2E', criticality: 'media', desc: 'Trazabilidad distribuida, Jaeger, 5 dashboards operativos.' },
+            'INI-30': { title: 'Gestión Proveedores', criticality: 'media', desc: 'SLAs formalizados con 7 proveedores. Métricas, penalidades.' },
+            'INI-31': { title: 'Runbooks + DRP', criticality: 'media', desc: 'Documentación operativa, 6 runbooks, DRP RTO≤4h RPO≤1h.' },
+            'INI-34': { title: 'MDM Base Corporativa', criticality: 'media', desc: 'Master Data Management centralizado para cliente, producto, riesgo.' },
+            'INI-36': { title: 'Observabilidad FICO', criticality: 'media', desc: 'Instrumentación de FICO con trazas y métricas OpenTelemetry.' },
+            'INI-37': { title: 'Sincronización Datos', criticality: 'media', desc: 'Wrapper REST para MenuAndes. Desincronización reducida (-12K knockouts).' },
+            'INI-38': { title: 'Limpieza Deuda Técnica', criticality: 'media', desc: 'Refactorización de código técnicamente deudor. Mantenibilidad mejorada.' },
+            'INI-40': { title: 'Protocolo Contingencia', criticality: 'media', desc: '3 escenarios documentados. Failover automático ante fallas críticas.' },
+            'INI-42': { title: 'Migración Siebel→Salesforce', criticality: 'alta', desc: 'Migración CRM a nube. Reemplazo de canal ejecutivos.' },
+            'INI-44': { title: 'TOGAF Marco Arquitectónico', criticality: 'media', desc: 'Framework TOGAF completo. Madurez de 1.21→3.0/5.' },
+            'INI-47': { title: 'BFF Modernizado', criticality: 'media', desc: 'Backend for Frontend actual refactorizado con patrones cloud-native.' },
+            'INI-49': { title: 'UX Research Digital', criticality: 'baja', desc: 'Estudio de experiencia de usuario. Base para mejoras de interfaz.' }
+        };
+
+        function switchPhase(phaseId) {
+            // Hide all phases
+            document.querySelectorAll('.phase-container').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+            
+            // Show selected phase
+            document.getElementById(phaseId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Render layers
+            renderLayers(phaseId);
+        }
+
+        function renderLayers(phaseId) {
+            const phase = phases[phaseId];
+            const layersContainer = document.getElementById(`${phaseId}-layers`);
+            layersContainer.innerHTML = '';
+
+            phase.layers.forEach((layer, idx) => {
+                const layerHtml = document.createElement('div');
+                layerHtml.className = 'layer';
+
+                const headerHtml = document.createElement('div');
+                headerHtml.className = `layer-header ${layer.type}`;
+                headerHtml.onclick = () => toggleLayer(layerHtml);
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'layer-name';
+                nameDiv.innerHTML = `
+                    <span>${layer.name}</span>
+                    <span class="layer-type-badge ${layer.type}">[${layer.type[0].toUpperCase()}]</span>
+                `;
+
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'layer-toggle open';
+                toggleBtn.innerHTML = '▼';
+
+                headerHtml.appendChild(nameDiv);
+                headerHtml.appendChild(toggleBtn);
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'layer-content';
+
+                layer.components.forEach(comp => {
+                    const compDiv = document.createElement('div');
+                    compDiv.className = `component ${comp.type}`;
+                    compDiv.dataset.searchText = `${comp.name} ${comp.desc} ${comp.initiative || ''}`.toLowerCase();
+
+                    let html = `<div class="component-title">
+                        <span>${comp.name}</span>`;
+                    
+                    if (comp.initiative) {
+                        html += `<span class="initiative-badge">${comp.initiative.substring(4)}</span>`;
+                    }
+                    
+                    html += `</div>
+                        <div class="component-desc">${comp.desc}</div>`;
+
+                    if (comp.issue) {
+                        html += `<div style="font-size: 10px; color: #cf222e; margin-top: 6px; line-height: 1.3;">⚠️ ${comp.issue}</div>`;
+                    }
+
+                    compDiv.innerHTML = html;
+
+                    if (comp.initiative && initiatives[comp.initiative]) {
+                        compDiv.style.cursor = 'pointer';
+                        compDiv.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            showTooltip(comp.initiative, e, comp);
+                        });
+                        compDiv.addEventListener('mouseenter', (e) => {
+                            if (comp.initiative && initiatives[comp.initiative]) {
+                                showTooltip(comp.initiative, e, comp);
+                            }
+                        });
+                        compDiv.addEventListener('mouseleave', closeTooltip);
+                    }
+
+                    contentDiv.appendChild(compDiv);
+                });
+
+                layerHtml.appendChild(headerHtml);
+                layerHtml.appendChild(contentDiv);
+                layersContainer.appendChild(layerHtml);
+            });
+        }
+
+        function toggleLayer(layerElement) {
+            const content = layerElement.querySelector('.layer-content');
+            const toggle = layerElement.querySelector('.layer-toggle');
+            
+            content.classList.toggle('collapsed');
+            toggle.classList.toggle('open');
+        }
+
+        function showTooltip(initiativeId, event, component) {
+            const initiative = initiatives[initiativeId];
+            if (!initiative) return;
+
+            const tooltip = document.getElementById('tooltip');
+            
+            // Información del componente
+            document.getElementById('tooltip-component-name').textContent = component?.name || '';
+            document.getElementById('tooltip-component-type').textContent = component?.type ? `Tipo: ${component.type.charAt(0).toUpperCase() + component.type.slice(1)}` : '';
+            document.getElementById('tooltip-component-desc').textContent = component?.desc || '';
+            
+            // Información de la iniciativa
+            document.getElementById('tooltip-initiative-id').textContent = `Iniciativa: ${initiativeId}`;
+            document.getElementById('tooltip-title').textContent = initiative.title;
+            
+            const critBadge = tooltip.querySelector('.criticality-badge');
+            const critSpan = tooltip.querySelector('.tooltip-criticality span');
+            
+            const criticalityLevel = component?.criticality || initiative.criticality;
+            critBadge.className = `criticality-badge criticality-${criticalityLevel}`;
+            critSpan.textContent = `Criticidad: ${criticalityLevel.toUpperCase()}`;
+            
+            document.getElementById('tooltip-description').textContent = initiative.desc;
+
+            tooltip.classList.add('active');
+
+            if (event) {
+                let x = event.pageX + 15;
+                let y = event.pageY - 50;
+                
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+            }
+        }
+
+        function closeTooltip() {
+            document.getElementById('tooltip').classList.remove('active');
+        }
+
+        function filterComponents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.component').forEach(comp => {
+                const matches = comp.dataset.searchText.includes(searchTerm);
+                comp.classList.toggle('hidden', !matches && searchTerm.length > 0);
+            });
+        }
+
+        // Initialize
+        renderLayers('f0');
+
+        // Close tooltip on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.component') && !e.target.closest('.tooltip')) {
+                closeTooltip();
+            }
+        });
+    </script>
+</body>
+</html>
